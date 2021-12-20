@@ -1,29 +1,4 @@
- Iteration:           1 Convergence:   384.25381351628084     
- Iteration:           2 Convergence:   23.261117124664906     
- Iteration:           3 Convergence:   6.4870551929425346     
- Iteration:           4 Convergence:  0.68723395421511668     
- Iteration:           5 Convergence:  0.15383220880585213     
- Iteration:           6 Convergence:   5.0038669404329994E-002
- Iteration:           7 Convergence:   1.8965228446631954E-002
- Iteration:           8 Convergence:   7.7103174985495571E-003
- Iteration:           9 Convergence:   3.2657855949764780E-003
- Iteration:          10 Convergence:   1.4229469884412538E-003
- Iteration:          11 Convergence:   6.3316666955870460E-004
- Iteration:          12 Convergence:   2.8630633460124955E-004
- Iteration:          13 Convergence:   1.3109080646245275E-004
- Iteration:          14 Convergence:   6.0618088355113287E-005
- Iteration:          15 Convergence:   2.8254779863345902E-005
- Iteration:          16 Convergence:   1.3257102636998752E-005
- Iteration:          17 Convergence:   6.2556714510719758E-006
- Iteration:          18 Convergence:   2.9669358809769619E-006
- Iteration:          19 Convergence:   1.4139104678179137E-006
- Iteration:          20 Convergence:   6.7691416916204616E-007
- Iteration:          21 Convergence:   3.2563684726483189E-007
- Iteration:          22 Convergence:   1.5740442904643714E-007
- Iteration:          23 Convergence:   7.6486230682348832E-008
- Iteration:          24 Convergence:   3.7424797483254224E-008
- Iteration:          25 Convergence:   1.8428636394673958E-008
- Iteration:          26 Convergence:   9.1235961008351296E-009
+ Restarting from file!
  Single Particle States | 
  Neutrons | 
  n=           1 l=           0 is=           1 Energy=  -49.689169543271419     

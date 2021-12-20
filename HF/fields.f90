@@ -200,4 +200,27 @@ contains
     end do
   end subroutine energy_sort
 
+  subroutine calc_energy
+  integer :: iq, is, l, n
+  real(wp) :: field(0:nbox), pot(0:nbox), e_sp, j
+  do iq =1,2
+    do is =1,2
+      do l =0,lmax
+          j = l + spin(is)
+          if (l==0) j=0.5
+          field(:) = -0.25*(dumr(:,iq)/umr(:,iq))**2&
+          +(-uc(:,iq) -ucso(:,iq)-udd(:,iq)-uso(:,iq)*(j*(j+1)- l*(l+1) - 0.75) &
+          -dumr(:,iq)/mesh(:) + (1-iq)*ucoul(:) - umr(:,iq)*l*(l+1)/mesh(:)**2)/umr(:,iq)&
+          -0.5*(d2umr(:,iq)*umr(:,iq) - dumr(:,iq)**2)/(umr(:,iq)**2)
+          !pot(:) = temp1(:) + Etrial/umr(ir,iq)
+          do n = 1,nnmax
+            e_sp = sum(-field(:)*wfr(:,n,l,is,iq)**2)
+            energies(n,l,is,iq) = e_sp
+
+          end do
+      end do
+    end do
+  end do
+  end subroutine calc_energy
+
 end module fields

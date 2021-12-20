@@ -17,18 +17,21 @@ implicit none
      real(wp), allocatable, dimension(:,:) ::uc,umr,dumr, d2umr,udd,uso,ucso,sortenergies
      real(wp), allocatable, dimension(:,:,:,:,:) :: wfl,wfr
      real(wp), allocatable, dimension(:,:,:,:) :: energies
+     real(wp), allocatable :: potential(:),vocc(:,:,:,:)
      integer :: nbox, nodes, radius, lmax,nmax,njoin,itermax,nnmax
      integer :: nn,np,nt,icoul,icm
-     logical :: j2terms
+     logical :: j2terms, printwf, printdens, restartwf
      integer, allocatable :: sortstates(:,:,:)
 contains
      !> Initialization of the parameters
      subroutine init_params
+          namelist /io/ printwf,printdens,restartwf
           namelist /box/ nbox,h
           namelist /params/ r0,conv,hbar22m,itermax
           namelist /nucleus/ nn,np,lmax
           namelist /interaction/ t0,x0,t1,x1,t2,x2,t3,x3,sig,w0, &
                    j2terms,icoul,icm
+          read(5,io)
           read(5,box)
           read(5,params)
           read(5,nucleus)
@@ -104,6 +107,8 @@ contains
   subroutine init_fields
     integer :: ir,iq
     allocate(uc(0:nbox,2),umr(0:nbox,2),udd(0:nbox,2),uso(0:nbox,2),ucoul(0:nbox),ucso(0:nbox,2),dumr(0:nbox,2),d2umr(0:nbox,2))
+    allocate(potential(0:nbox),vocc(lmax,0:lmax,2,2),energies(lmax,0:lmax,2,2))
+    allocate(sortenergies(1:nmax,2),sortstates(1:nmax,1:3,2))
     udd=0._wp
     ucso=0.0_wp
     dumr=0.0_wp

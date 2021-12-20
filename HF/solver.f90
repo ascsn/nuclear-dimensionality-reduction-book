@@ -13,14 +13,12 @@ contains
 
     integer :: i, ir, nnodes,l, is, iq, n,iter
     real(wp) :: Etrial, Eupper, Elower, a1, a2, a3, b1, b2, b3, norm, j, diff,oldtotenergy,currentconv
-    real(wp), allocatable :: potential(:),vocc(:,:,:,:),temp1(:)
-
-    allocate(potential(0:nbox),vocc(lmax,0:lmax,2,2),energies(lmax,0:lmax,2,2))
+    real(wp), allocatable :: temp1(:)
 
     oldtotenergy = 0.0
     wfr(:,:,:,:,:) = 0.0
     !Main loop begins here; be careful
-    allocate(sortenergies(1:nmax,2),sortstates(1:nmax,1:3,2),temp1(0:nbox))
+    allocate(temp1(0:nbox))
     do iter = 1,itermax
       if(iter>1) then
         call build_fields

@@ -57,6 +57,57 @@ contains
      call ddensities
   end subroutine build_densities
 
+  subroutine restart_densities
+    integer :: npr,iq,ir,i,l,n,is
+    real(wp) :: j
+
+    do iq =1,2
+
+        if (iq == 1) then
+        npr = nn
+        else
+        npr = np
+        end if
+        rho(:,iq)=small
+        tau(:,iq)=small
+        jsc(:,iq)=small
+        do i = 1, npr
+           if (sortenergies(i,iq) < - small) then
+             n = sortstates(i,1,iq)
+             l = sortstates(i,2,iq)
+             is= sortstates(i,3,iq)
+             j = sortstates(i,2,iq) + spin(sortstates(i,3,iq))
+             if (sortstates(i,2,iq) == 0) j = 0.5
+             do ir=1,nbox
+               tau(ir,iq) = tau(ir,iq) + (2*j+1)*((dwavefunction(ir,n,l,is,iq)&
+               -wfr(ir,n,l,is,iq)/mesh(ir))**2+l*(l+1)*(wfr(ir,n,l,is,iq)**2)&
+               /mesh(ir)**2)/(4*pi*mesh(ir)**2)
+
+               rho(ir,iq) = rho(ir,iq) + (2*j+1)*wfr(ir,sortstates(i,1,iq),sortstates(i,2,iq),sortstates(i,3,iq),iq)&
+               *wfr(ir,sortstates(i,1,iq),sortstates(i,2,iq),sortstates(i,3,iq),iq) / (4*pi*mesh(ir)**2)
+
+               jsc(ir,iq) = jsc(ir,iq) + (2*j+1)*(j*(j+1)-sortstates(i,2,iq)*(sortstates(i,2,iq)+1)-0.75)&
+               *wfr(ir,sortstates(i,1,iq),sortstates(i,2,iq),sortstates(i,3,iq),iq)**2&
+               /(4*pi*mesh(ir)**3)
+              end do
+              rho(0,iq) = rho(1,iq)
+              !tau(2,iq) = tau(3,iq)
+              tau(1,iq) = tau(2,iq)
+              tau(0,iq) = tau(1,iq)
+            end if
+        end do
+     end do
+     rho(:,3)=rho(:,1) + rho(:,2)
+     rho(0,3) = rho(1,3)
+     rho(:,4)=rho(:,1) - rho(:,2)
+     tau(:,3)=tau(:,1) + tau(:,2)
+     tau(:,4)=tau(:,1) - tau(:,2)
+     jsc(:,3)=jsc(:,1) + jsc(:,2)
+     jsc(:,4)=jsc(:,1) - jsc(:,2)
+
+     call ddensities
+  end subroutine restart_densities
+
   !> dwavefunction calculates the derivative of the wavefunctions and a given
   !! point using second order finite difference
   function dwavefunction(ir,n,l,is,iq) result(derv)
@@ -148,5 +199,28 @@ contains
     laprho(:,i) = ddrho(:,i) + 2._wp/mesh(:)*drho(:,i)
     end do
   end subroutine ddensities
+
+  subroutine restartwfs
+
+    Open(Unit=19, File="wf.restart", Status='unknown', Form='unformatted', Position='asis')
+
+    Read(19) sortstates, sortenergies, wfr
+
+    Close(Unit=19,Status='keep')
+
+  end subroutine restartwfs
+
+  subroutine printwfs
+
+    Open(Unit=19, File="wf.bin", Status='unknown', Form='unformatted', Position='asis')
+    Open(Unit=20, File="wf_numpy.bin", status='replace', access="stream")
+
+    Write(19) sortstates, sortenergies, wfr
+    Write(20) nbox, lmax, nmax, sortstates, sortenergies, wfr
+
+    Close(Unit=19,Status='keep')
+    Close(Unit=20,Status='keep')
+
+  end subroutine printwfs
 
 end module

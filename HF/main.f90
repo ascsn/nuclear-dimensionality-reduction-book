@@ -15,7 +15,16 @@ program main
     call init_grids
     call init_wavefunctions
     call init_fields
-    call statichf
+    if(restartwf) then
+      write(6,*) "Restarting from file!"
+      call restartwfs
+      call build_densities
+      call build_fields
+      call totenergy
+      call calc_energy
+    else
+      call statichf
+    end if
 
     ! Writing the single particle states to 'out'
     write(6,*) "Single Particle States | "
@@ -39,9 +48,10 @@ program main
             end if
       end do
     end do
-    do ir=0,nbox
-      write (13,*) ir*h, wfr(ir,1,0,1,1), wfr(ir,1,1,1,1)
-    end do
+    if(printwf) call printwfs
+    !do ir=0,nbox
+    !  write (13,*) ir*h, wfr(ir,1,0,1,1), wfr(ir,1,1,1,1)
+    !end do
     ! Particle by way of density integration
     call totenergy
     nneu = sum(4*pi*h*mesh(:)**2*rho(:,1))
