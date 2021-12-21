@@ -72,7 +72,6 @@ contains
         tau(:,iq)=small
         jsc(:,iq)=small
         do i = 1, npr
-           if (sortenergies(i,iq) < - small) then
              n = sortstates(i,1,iq)
              l = sortstates(i,2,iq)
              is= sortstates(i,3,iq)
@@ -94,7 +93,6 @@ contains
               !tau(2,iq) = tau(3,iq)
               tau(1,iq) = tau(2,iq)
               tau(0,iq) = tau(1,iq)
-            end if
         end do
      end do
      rho(:,3)=rho(:,1) + rho(:,2)

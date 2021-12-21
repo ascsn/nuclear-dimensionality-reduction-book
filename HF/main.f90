@@ -18,10 +18,11 @@ program main
     if(restartwf) then
       write(6,*) "Restarting from file!"
       call restartwfs
-      call build_densities
+      call restart_densities
       call build_fields
       call totenergy
       call calc_energy
+      call energy_sort
     else
       call statichf
     end if

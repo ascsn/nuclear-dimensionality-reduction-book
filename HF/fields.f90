@@ -14,7 +14,7 @@ contains
     real(wp) :: tot1=0.0d0,tot2=0.0d0
     real(wp) :: xmix, ymix,a,b,c
 
-    xmix = 0.4
+    xmix = 1.0
     ymix = 1.-xmix
 
     do iq = 1,2
@@ -201,8 +201,8 @@ contains
   end subroutine energy_sort
 
   subroutine calc_energy
-  integer :: iq, is, l, n
-  real(wp) :: field(0:nbox), pot(0:nbox), e_sp, j
+  integer :: iq, is, l, n, ir
+  real(wp) :: field(0:nbox), pot(0:nbox), e_sp, j, norm,wft(0:nbox,lmax,0:lmax,2,2)
   do iq =1,2
     do is =1,2
       do l =0,lmax
@@ -212,9 +212,26 @@ contains
           +(-uc(:,iq) -ucso(:,iq)-udd(:,iq)-uso(:,iq)*(j*(j+1)- l*(l+1) - 0.75) &
           -dumr(:,iq)/mesh(:) + (1-iq)*ucoul(:) - umr(:,iq)*l*(l+1)/mesh(:)**2)/umr(:,iq)&
           -0.5*(d2umr(:,iq)*umr(:,iq) - dumr(:,iq)**2)/(umr(:,iq)**2)
+          
           !pot(:) = temp1(:) + Etrial/umr(ir,iq)
           do n = 1,nnmax
-            e_sp = sum(-field(:)*wfr(:,n,l,is,iq)**2)
+            wft(:,n,l,is,iq) = wfr(:,n,l,is,iq) * sqrt( umr(:,iq) )
+            norm = 1!sum(h*wfr(:,n,l,is,iq)*wfr(:,n,l,is,iq))
+            !e_sp = sum(-field(:)*(2*j+1)*norm*wfr(:,n,l,is,iq)**2/(4.0*pi*mesh(:)**2))
+            !do ir = 0, nbox
+            !e_sp = 
+            !end do
+            !pot(:) = -umr(:,iq)*field(:)*wfr(:,n,l,is,iq)/mesh(:) !/(4.0*pi*mesh(:)**2))
+            !e_sp = h*(2*j+1)*sum(pot(:)*wfr(:,n,l,is,iq)/mesh(:) )!/(4.0*pi*mesh(:)**2))
+            !e_sp = sum(-umr(:,iq)*field(:)*h*wfr(:,n,l,is,iq)**2)!/(4.0*pi*mesh(:)**2))
+            !e_sp = sum(-hbar22m*cmcorr*field(:)*h*wft(:,n,l,is,iq)**2)!/(4.0*pi*mesh(:)**2))
+            e_sp = sum(-umr(:,iq)*h*field(:)*wfr(:,n,l,is,iq)**2)!/(4.0*pi*mesh(:)**2))
+            if(e_sp>-1500.0 .And. e_sp<1500.0) then
+            write(*,*) iq,is,l,n
+            write(*,*) "e_sp = ",e_sp
+            !write(*,*) "norm??",h*sum(wfr(:,n,l,is,iq)**2),sum(wfr(:,n,l,is,iq)**2/(mesh(:)**2))
+            end if
+            energies = 0.01
             energies(n,l,is,iq) = e_sp
 
           end do
