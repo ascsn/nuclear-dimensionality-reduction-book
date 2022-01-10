@@ -46,7 +46,6 @@ program main
                           &"l=",sortstates(i,2,iq),&
                           &"is=",sortstates(i,3,iq),&
                           &"Energy=", sortenergies(i,iq)
-              write(69,*) sortenergies(i,iq)
             end if
       end do
     end do

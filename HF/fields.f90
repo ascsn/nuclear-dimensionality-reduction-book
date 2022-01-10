@@ -205,8 +205,6 @@ contains
   real(wp) :: field(0:nbox), pot(0:nbox), e_sp, j, norm,dwf(0:nbox,lmax,0:lmax,2,2),ddwf(0:nbox,lmax,0:lmax,2,2)
   real(wp) :: wft(0:nbox,lmax,0:lmax,2,2)
   do iq =1,2
-    if(iq==1) write(6,*) "Neutrons"
-    if(iq==2) write(6,*) "Protons"
     do is =1,2
       do l =0,lmax
           j = l + spin(is)
