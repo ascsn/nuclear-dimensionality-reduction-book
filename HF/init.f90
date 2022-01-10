@@ -8,7 +8,7 @@ implicit none
      real(wp), parameter :: a = 0.67_wp
      real(wp), parameter :: vso = 23_wp
      real(wp) :: t0,x0,t1,x1,t2,x2,t3,x3,sig,w0
-     real(wp) :: cmcorr
+     real(wp) :: cmcorr, xmix
      real(wp) :: h,conv,hbar22m,v0,nrad,vpb(2),r0,small,spin(2),totalenergy,totfunct,totalkinetic
      real(wp) :: a0r0,a1r1,a0s0,a1s1,a0tau0,a1tau1,a0t0,a1t1,a0r0p,a1r1p,&
                 & a0s0p,a1s1p,cddr0,cddr1,cdds0,cdds1,cso0,cso1
@@ -27,7 +27,7 @@ contains
      subroutine init_params
           namelist /io/ printwf,printdens,restartwf
           namelist /box/ nbox,h
-          namelist /params/ r0,conv,hbar22m,itermax
+          namelist /params/ r0,conv,hbar22m,itermax,xmix
           namelist /nucleus/ nn,np,lmax
           namelist /interaction/ t0,x0,t1,x1,t2,x2,t3,x3,sig,w0, &
                    j2terms,icoul,icm
@@ -36,6 +36,7 @@ contains
           read(5,params)
           read(5,nucleus)
           read(5,interaction)
+          if(restartwf) xmix = 1.0
           sig = 1./sig
           nnmax = lmax-2
           if (lmax <= 3) nnmax = lmax 

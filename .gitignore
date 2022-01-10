@@ -3,8 +3,11 @@
 *.restart
 *.bin*
 *.o
+*.mod
+*.bin
 in
 out
+main
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

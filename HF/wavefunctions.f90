@@ -8,8 +8,7 @@ contains
   !> The densities (rho, tau, J) are calculated here
   subroutine build_densities
     integer :: npr,iq,ir,i,l,n,is
-    real(wp) :: j
-
+    real(wp) :: j, dwfr(0:nbox,lmax,0:lmax,2,2)
     do iq =1,2
 
         if (iq == 1) then
@@ -27,8 +26,13 @@ contains
              is= sortstates(i,3,iq)
              j = sortstates(i,2,iq) + spin(sortstates(i,3,iq))
              if (sortstates(i,2,iq) == 0) j = 0.5
+             dwfr = 0.0
+             call derivative_sca( nbox, wfr(1:nbox,n,l,is,iq), dwfr(1:nbox,n,l,is,iq), l )
              do ir=1,nbox
-               tau(ir,iq) = tau(ir,iq) + (2*j+1)*((dwavefunction(ir,n,l,is,iq)&
+               !tau(ir,iq) = tau(ir,iq) + (2*j+1)*((dwavefunction(ir,n,l,is,iq)&
+               !-wfr(ir,n,l,is,iq)/mesh(ir))**2+l*(l+1)*(wfr(ir,n,l,is,iq)**2)&
+               !/mesh(ir)**2)/(4*pi*mesh(ir)**2)
+               tau(ir,iq) = tau(ir,iq) + (2*j+1)*((dwfr(ir,n,l,is,iq)&
                -wfr(ir,n,l,is,iq)/mesh(ir))**2+l*(l+1)*(wfr(ir,n,l,is,iq)**2)&
                /mesh(ir)**2)/(4*pi*mesh(ir)**2)
 
@@ -105,6 +109,58 @@ contains
 
      call ddensities
   end subroutine restart_densities
+
+  ! Adapted from derivatives in HFBRAD
+  !! Derivative of a...
+  !
+
+  ! ...salar function
+
+  subroutine derivative_sca( n, f, df, l )
+    implicit none
+    integer, intent(in) :: n
+    real (wp), intent(in) :: f(n)
+    real (wp), intent(inout) :: df(n)
+    integer, intent(in) :: l
+    real (wp) :: sig, h_12, h_60
+    integer :: i, boundary_condition
+    boundary_condition = 2
+    h_12 = h*12.0_wp
+    h_60 = h*60.0_wp
+    sig = ( modulo(l,2) - 0.5_wp ) * 2
+    df(1) = ( 8.0_wp * f(2) - f(3) + sig * f(1) ) / h_12
+    df(2) = ( 45.0_wp * ( f(3) - f(1) ) - 9.0_wp * f(4) &
+         + f(5) - sig * f(1) ) / h_60
+    df(3) = ( 45.0_wp * ( f(4) - f(2) ) - 9.0_wp * ( f(5) - f(1) ) &
+         + f(6) ) / h_60
+    !
+    if ( boundary_condition == 0 .or.  &
+         !boundary_condition == 2 .and. l == 2 * ( l / 2 ) .or. &
+         (boundary_condition == 2 .and. mod(l,2) == 0) .or. &
+         (boundary_condition == 3 .and. l /= 2 * ( l / 2 )) ) then
+       df(n) = ( -8.0_wp * f(n-1) + f(n) + f(n-2) ) / h_12
+       df(n-1) = ( 45.0_wp * ( f(n) - f(n-2) ) + 9.0_wp * f(n-3) &
+            - f(n) - f(n-4) ) / h_60
+       df(n-2) = ( 45.0_wp * ( f(n-1) - f(n-3) ) &
+            - 9.0_wp * ( f(n) - f(n-4) ) - f(n-5) ) / h_60
+    end if
+    if ( boundary_condition == 1 .or.  &
+         (boundary_condition == 2 .and. mod(l,2) /= 0) .or. &
+         (boundary_condition == 3 .and. l == 2 * ( l / 2 )) ) then
+       df(n) = ( - 54._wp * f(n-1) + 45._wp * f(n) + 10._wp * f(n-2) - f(n-3) ) / h_60
+       df(n-1) = ( 36._wp * f(n) + f(n-1) - 45._wp * f(n-2) &
+            + 9._wp * f(n-3) - f(n-4) ) / h_60
+       df(n-2) = ( 45._wp * ( f(n-1) - f(n-3) ) - 8._wp * f(n)  &
+            + 9._wp * f(n-4) - f(n-5) ) / h_60
+    end if
+    !
+    do i = 4, n - 3
+       df(i) = ( 45.0_wp * ( f(i+1) - f(i-1) )  &
+            - 9.0_wp * ( f(i+2) - f(i-2) ) &
+            + f(i+3) - f(i-3) ) / h_60
+    end do
+    !
+  end subroutine derivative_sca
 
   !> dwavefunction calculates the derivative of the wavefunctions and a given
   !! point using second order finite difference
@@ -200,7 +256,7 @@ contains
 
   subroutine restartwfs
 
-    Open(Unit=19, File="wf.restart", Status='unknown', Form='unformatted', Position='asis')
+    Open(Unit=19, File="wf.bin", Status='unknown', Form='unformatted', Position='asis')
 
     Read(19) sortstates, sortenergies, wfr
 
@@ -214,7 +270,7 @@ contains
     Open(Unit=20, File="wf_numpy.bin", status='replace', access="stream")
 
     Write(19) sortstates, sortenergies, wfr
-    Write(20) nbox, lmax, nmax, sortstates, sortenergies, wfr
+    Write(20) h, nbox, lmax, nmax, sortstates, sortenergies, wfr
 
     Close(Unit=19,Status='keep')
     Close(Unit=20,Status='keep')
