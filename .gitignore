@@ -9,6 +9,8 @@ in
 out
 main
 
+HF/results/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
