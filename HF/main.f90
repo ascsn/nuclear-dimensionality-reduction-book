@@ -18,7 +18,8 @@ program main
     if(restartwf) then
       write(6,*) "Restarting from file!"
       call restartwfs
-      call restart_densities
+      !call restart_densities
+      call build_densities
       call build_fields
       call totenergy
       call calc_energy
@@ -50,6 +51,7 @@ program main
       end do
     end do
     if(printwf) call printwfs
+    if(printhpsi) call printhpsis
     !do ir=0,nbox
     !  write (13,*) ir*h, wfr(ir,1,0,1,1), wfr(ir,1,1,1,1)
     !end do

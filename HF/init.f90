@@ -15,23 +15,24 @@ implicit none
      real(wp), allocatable,dimension(:) :: mesh,ucoul
      real(wp), allocatable, dimension(:,:) :: rho,tau,jsc,drho,ddrho,dtau,djsc,laprho
      real(wp), allocatable, dimension(:,:) ::uc,umr,dumr, d2umr,udd,uso,ucso,sortenergies
-     real(wp), allocatable, dimension(:,:,:,:,:) :: wfl,wfr
+     real(wp), allocatable, dimension(:,:,:,:,:) :: wfl,wfr,hpsi
      real(wp), allocatable, dimension(:,:,:,:) :: energies
      real(wp), allocatable :: potential(:),vocc(:,:,:,:)
      integer :: nbox, nodes, radius, lmax,nmax,njoin,itermax,nnmax
      integer :: nn,np,nt,icoul,icm
-     logical :: j2terms, printwf, printdens, restartwf
+     logical :: j2terms, printwf, printdens, restartwf, printhpsi
      integer, allocatable :: sortstates(:,:,:)
 contains
      !> Initialization of the parameters
      subroutine init_params
-          namelist /io/ printwf,printdens,restartwf
+          namelist /io/ printwf,printdens,restartwf,printhpsi
           namelist /box/ nbox,h
           namelist /params/ r0,conv,hbar22m,itermax,xmix
           namelist /nucleus/ nn,np,lmax
           namelist /interaction/ t0,x0,t1,x1,t2,x2,t3,x3,sig,w0, &
                    j2terms,icoul,icm
           read(5,io)
+          rewind(5)
           read(5,box)
           read(5,params)
           read(5,nucleus)
@@ -100,7 +101,7 @@ contains
 
      !> Initialization of the wavefunctions and densities
      subroutine init_wavefunctions
-          allocate(wfr(0:nbox,lmax,0:lmax,2,2),&
+          allocate(wfr(0:nbox,lmax,0:lmax,2,2),hpsi(0:nbox,lmax,0:lmax,2,2),&
           wfl(0:nbox,lmax,0:lmax,2,2),rho(0:nbox,4),drho(0:nbox,4),ddrho(0:nbox,4),&
           tau(0:nbox,4),jsc(0:nbox,4),djsc(0:nbox,4),laprho(0:nbox,4))
      end subroutine init_wavefunctions

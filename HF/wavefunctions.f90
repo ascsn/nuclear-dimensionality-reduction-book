@@ -255,12 +255,12 @@ contains
   end subroutine ddensities
 
   subroutine restartwfs
+    implicit none
+    Open(Unit=20, File="wf_numpy.bin", form='unformatted', access="stream")
 
-    Open(Unit=19, File="wf.bin", Status='unknown', Form='unformatted', Position='asis')
+    Read(20) h, nbox, lmax, nmax, sortstates, sortenergies, wfr
 
-    Read(19) sortstates, sortenergies, wfr
-
-    Close(Unit=19,Status='keep')
+    Close(Unit=20,Status='keep')
 
   end subroutine restartwfs
 
@@ -276,5 +276,15 @@ contains
     Close(Unit=20,Status='keep')
 
   end subroutine printwfs
+
+  subroutine printhpsis
+
+    Open(Unit=21, File="hpsi.bin", status='replace', access="stream")
+
+    Write(21) nbox, lmax, nmax, sortenergies, hpsi
+
+    Close(Unit=21,Status='keep')
+
+  end subroutine printhpsis
 
 end module

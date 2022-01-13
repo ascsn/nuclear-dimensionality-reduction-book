@@ -231,7 +231,7 @@ contains
           !-uso(:,iq)*(j*(j+1)- l*(l+1) - 0.75)/(2.0*mesh(:)) &
           !-dumr(:,iq)/mesh(:) + (1-iq)*ucoul(:) - umr(:,iq)*l*(l+1)/mesh(:)**2) * wfr(:,n,l,is,iq)
           ! THIS ONE VVV
-          field(:) = +umr(:,iq)*ddwf(:,n,l,is,iq)+dumr(:,iq)*dwf(:,n,l,is,iq) &
+          hpsi(:,n,l,is,iq) = +umr(:,iq)*ddwf(:,n,l,is,iq)+dumr(:,iq)*dwf(:,n,l,is,iq) &
           + (-uc(:,iq) -ucso(:,iq)-udd(:,iq) &
           -uso(:,iq)*(j*(j+1._wp)- l*(l+1._wp) - 0.75_wp)&!/(2.0*mesh(:)) &
           -dumr(:,iq)/mesh(:) + (1._wp-iq)*ucoul(:) - umr(:,iq)*l*(l+1._wp)/mesh(:)**2) * wft(:,n,l,is,iq)
@@ -246,7 +246,7 @@ contains
             !e_sp = sum(-umr(:,iq)*(2*j+1)*field(:)*h*wfr(:,n,l,is,iq)/(4.0*pi*mesh(:)**2))
             !e_sp = sum(-hbar22m*cmcorr*field(:)*h*wft(:,n,l,is,iq)**2)!/(4.0*pi*mesh(:)**2))
             !e_sp = sum(-h*umr(:,iq)*field(:)*wft(:,n,l,is,iq))!/(4.0*pi*mesh(:)**2))
-            e_sp = sum(-h*field(:)*wft(:,n,l,is,iq))!/(4.0*pi*mesh(:)**2))
+            e_sp = sum(-h*hpsi(:,n,l,is,iq)*wft(:,n,l,is,iq))!/(4.0*pi*mesh(:)**2))
             if(e_sp>-1500.0 .And. e_sp<1500.0) then
             !write (6,*) "n=",n, &
             !           &"l=",l,&

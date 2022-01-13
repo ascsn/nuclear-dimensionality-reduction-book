@@ -1,5 +1,6 @@
 CC	= gfortran #ifort #gfortran
-CFLAGS	=  -Ofast #-fdefault-real-8 #-g -fbounds-check -Wall -ffpe-trap=invalid
+CFLAGS	=  -Ofast -fno-stack-arrays #-fdefault-real-8 #-g -fbounds-check -Wall -ffpe-trap=invalid
+#CFLAGS	=  -g -fcheck=all -fbounds-check -Wall -ffpe-trap=invalid
 
 LDFLAGS	=
 EXEC	= main

@@ -1,4 +1,4 @@
-&io printwf=T,printdens=F,restartwf=F /
+!&io printwf=T,printdens=F,restartwf=F,printhpsi=T /
 &box nbox=2000,h=0.01 /
 &params r0=1.27,conv=1E-8,hbar22m=20.73553,itermax=200,xmix=0.2 /
 &nucleus np=20,nn=28,lmax=8 /
