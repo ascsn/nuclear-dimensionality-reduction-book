@@ -247,6 +247,19 @@ contains
             !e_sp = sum(-hbar22m*cmcorr*field(:)*h*wft(:,n,l,is,iq)**2)!/(4.0*pi*mesh(:)**2))
             !e_sp = sum(-h*umr(:,iq)*field(:)*wft(:,n,l,is,iq))!/(4.0*pi*mesh(:)**2))
             e_sp = sum(-h*hpsi(:,n,l,is,iq)*wft(:,n,l,is,iq))!/(4.0*pi*mesh(:)**2))
+            if(.False. .and. l==0 .and. n==1 .and. is==1 .and. iq ==1) then
+              print *, umr(30,iq)
+              print *, dumr(30,iq)
+              print *, uc(30,iq)
+              print *, ucso(30,iq)
+              print *, udd(30,iq)
+              print *, uso(30,iq)
+              print *, ucoul(30)
+              print *, dwf(0:10,n,l,is,iq)
+              print *, ddwf(0:10,n,l,is,iq)
+              print *, wft(0:10,n,l,is,iq)
+              print *, hpsi(0:10,n,l,is,iq)
+            end if
             if(e_sp>-1500.0 .And. e_sp<1500.0) then
             !write (6,*) "n=",n, &
             !           &"l=",l,&
