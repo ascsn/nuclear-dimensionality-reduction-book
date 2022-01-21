@@ -1,6 +1,6 @@
 !&io printwf=T,printdens=F,restartwf=F,printhpsi=T /
-&box nbox=2000,h=0.01 /
-&params r0=1.27,conv=1E-8,hbar22m=20.73553,itermax=200,xmix=0.2 /
+&box nbox=1500,h=0.01 /
+&params r0=1.27,conv=1E-12,hbar22m=20.73553,itermax=300,xmix=0.2 /
 &nucleus np=20,nn=28,lmax=8 /
 !&interaction t0= -2483.4500,x0=0.77600,t1=484.2300,x1=-0.31700,t2=-556.6900,x2=-1.0,t3=13757.0,x3=1.2630,w0=125.0,sig=6.0,icoul=1,icm=1,j2terms=.true. / ! SLy5
 !&interaction t0= -1132.4,x0=0.0,t1=0.0,x1=0.0,t2=0.0,x2=0.0,t3=23610.40,x3=0.0,w0=0.0,sig=1.0,icoul=1,icm=1,j2terms=.false. / !tot3
