@@ -1,0 +1,11 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: landing
+chapters:
+- file: introduction/introduction
+  sections:
+    - file: introduction/emulators
+- file: notebooks
+- file: markdown-notebooks
