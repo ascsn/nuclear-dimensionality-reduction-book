@@ -7,5 +7,22 @@ chapters:
 - file: introduction/introduction
   sections:
     - file: introduction/emulators
-- file: notebooks
-- file: markdown-notebooks
+    - file: introduction/redundancy
+- file: rbm/rbm
+  sections:
+  - file: rbm/training
+    sections:
+    - file: rbm/lagrange
+    - file: rbm/pod
+  - file: rbm/projecting
+- file: ho/ho
+  sections:
+  - file: ho/ho-ritz
+  - file: ho/ho-rbm
+- file: greedy/greedy
+- file: gp/gp
+- file: transforms/transforms
+- file: scattering/scattering
+- file: dft/dft
+
+
