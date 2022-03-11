@@ -8,7 +8,7 @@
 in
 out
 main
-
+*.so
 HF/results/
 
 # Byte-compiled / optimized / DLL files
