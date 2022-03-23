@@ -19,6 +19,7 @@ chapters:
   sections:
   - file: ho/ho-ritz
   - file: ho/ho-rbm
+  - file: ho/1dHO.ipynb
 - file: greedy/greedy
 - file: gp/gp
 - file: transforms/transforms
