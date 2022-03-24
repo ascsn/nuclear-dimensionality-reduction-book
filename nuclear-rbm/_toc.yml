@@ -17,7 +17,7 @@ chapters:
   - file: rbm/projecting
 - file: ho/ho
   sections:
-  - file: ho/1dHO.ipynb
+  - file: ho/1dHO
 - file: greedy/greedy
 - file: gp/gp
 - file: transforms/transforms
