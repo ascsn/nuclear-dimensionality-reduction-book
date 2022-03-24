@@ -17,8 +17,6 @@ chapters:
   - file: rbm/projecting
 - file: ho/ho
   sections:
-  - file: ho/ho-ritz
-  - file: ho/ho-rbm
   - file: ho/1dHO.ipynb
 - file: greedy/greedy
 - file: gp/gp
