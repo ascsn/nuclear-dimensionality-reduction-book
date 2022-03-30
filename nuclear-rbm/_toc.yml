@@ -15,9 +15,7 @@ chapters:
     - file: rbm/lagrange
     - file: rbm/pod
   - file: rbm/projecting
-- file: ho/ho
-  sections:
-  - file: ho/1dHO
+- file: ho/1dHO
 - file: greedy/greedy
 - file: gp/gp
 - file: transforms/transforms
