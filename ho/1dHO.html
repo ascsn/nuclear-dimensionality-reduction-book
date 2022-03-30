@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Reduced Basis Method Demo 1: The 1-d Quantum Harmonic Oscillator &#8212; Reduced Basis Methods in Nuclear Physics</title>
+    <title>Application 1: The Quantum Harmonic Oscillator &#8212; Reduced Basis Methods in Nuclear Physics</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet">
   <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -56,7 +56,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="The Greedy Algorithm" href="../greedy/greedy.html" />
-    <link rel="prev" title="Application 1: The Quantum Harmonic Oscillator" href="ho.html" />
+    <link rel="prev" title="Finding the Coefficients: Projecting" href="../rbm/projecting.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -162,22 +162,10 @@ const thebe_selector_output = ".output, .cell_output"
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="reference internal" href="ho.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Application 1: The Quantum Harmonic Oscillator
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
-     Reduced Basis Method Demo 1: The 1-d Quantum Harmonic Oscillator
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../greedy/greedy.html">
@@ -309,32 +297,23 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#consider-the-schrodinger-equation-for-the-1-d-harmonic-oscillator">
-   Consider the Schrodinger equation for the 1-d Harmonic Oscillator:
+  <a class="reference internal nav-link" href="#background">
+   Background
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-select-a-set-of-values-of-alpha-to-solve-the-se-with-these-solutions-will-be-used-as-the-basis-in-the-reduced-basis-model">
-   First select a set of values of
-   <span class="math notranslate nohighlight">
-    \(\alpha\)
-   </span>
-   to solve the SE with. These solutions will be used as the basis in the reduced basis model.
+  <a class="reference internal nav-link" href="#solving-exactly">
+   Solving “Exactly”
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#now-solve-the-se-for-selected-values-of-alpha-and-compare-numerical-solution-to-exact-solution">
-   Now solve the SE for selected values of alpha and compare numerical solution to exact solution
+  <a class="reference internal nav-link" href="#visiting-the-pca-doctor">
+   Visiting the PCA Doctor
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#now-apply-pca-doctor-to-see-if-our-problem-can-be-approximated-by-a-reduced-basis">
-   Now apply PCA Doctor to see if our problem can be approximated by a reduced basis.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#now-that-we-know-rbm-is-applicable-to-our-problem-we-now-construct-a-reduced-basis-for-the-schrodinger-equation">
-   Now that we know RBM is applicable to our problem, we now construct a reduced basis for the Schrodinger equation.
+  <a class="reference internal nav-link" href="#constructing-the-basis-and-comparing">
+   Constructing the Basis and Comparing
   </a>
  </li>
 </ul>
@@ -347,7 +326,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Reduced Basis Method Demo 1: The 1-d Quantum Harmonic Oscillator</h1>
+                <h1>Application 1: The Quantum Harmonic Oscillator</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -358,32 +337,23 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#consider-the-schrodinger-equation-for-the-1-d-harmonic-oscillator">
-   Consider the Schrodinger equation for the 1-d Harmonic Oscillator:
+  <a class="reference internal nav-link" href="#background">
+   Background
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#first-select-a-set-of-values-of-alpha-to-solve-the-se-with-these-solutions-will-be-used-as-the-basis-in-the-reduced-basis-model">
-   First select a set of values of
-   <span class="math notranslate nohighlight">
-    \(\alpha\)
-   </span>
-   to solve the SE with. These solutions will be used as the basis in the reduced basis model.
+  <a class="reference internal nav-link" href="#solving-exactly">
+   Solving “Exactly”
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#now-solve-the-se-for-selected-values-of-alpha-and-compare-numerical-solution-to-exact-solution">
-   Now solve the SE for selected values of alpha and compare numerical solution to exact solution
+  <a class="reference internal nav-link" href="#visiting-the-pca-doctor">
+   Visiting the PCA Doctor
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#now-apply-pca-doctor-to-see-if-our-problem-can-be-approximated-by-a-reduced-basis">
-   Now apply PCA Doctor to see if our problem can be approximated by a reduced basis.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#now-that-we-know-rbm-is-applicable-to-our-problem-we-now-construct-a-reduced-basis-for-the-schrodinger-equation">
-   Now that we know RBM is applicable to our problem, we now construct a reduced basis for the Schrodinger equation.
+  <a class="reference internal nav-link" href="#constructing-the-basis-and-comparing">
+   Constructing the Basis and Comparing
   </a>
  </li>
 </ul>
@@ -395,18 +365,19 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="reduced-basis-method-demo-1-the-1-d-quantum-harmonic-oscillator">
-<h1>Reduced Basis Method Demo 1: The 1-d Quantum Harmonic Oscillator<a class="headerlink" href="#reduced-basis-method-demo-1-the-1-d-quantum-harmonic-oscillator" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="consider-the-schrodinger-equation-for-the-1-d-harmonic-oscillator">
-<h2>Consider the Schrodinger equation for the 1-d Harmonic Oscillator:<a class="headerlink" href="#consider-the-schrodinger-equation-for-the-1-d-harmonic-oscillator" title="Permalink to this headline">¶</a></h2>
-<div class="amsmath math notranslate nohighlight" id="equation-7324171f-18b1-4d11-8a57-0e11e1314b26">
-<span class="eqno">(1)<a class="headerlink" href="#equation-7324171f-18b1-4d11-8a57-0e11e1314b26" title="Permalink to this equation">¶</a></span>\[\begin{align}
+  <div class="tex2jax_ignore mathjax_ignore section" id="application-1-the-quantum-harmonic-oscillator">
+<h1>Application 1: The Quantum Harmonic Oscillator<a class="headerlink" href="#application-1-the-quantum-harmonic-oscillator" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="background">
+<h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>Consider the Schrodinger equation for the 1-d Harmonic Oscillator:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-cc6bd9ce-521d-4da7-a615-b4cb32ecbe54">
+<span class="eqno">(1)<a class="headerlink" href="#equation-cc6bd9ce-521d-4da7-a615-b4cb32ecbe54" title="Permalink to this equation">¶</a></span>\[\begin{align}
 &amp;\Big(- \frac{d^{2}}{dx^{2}} + \alpha x^{2}  - \lambda \Big) \phi = 0 \\
 &amp;F_{\alpha}\Big( \phi_{\alpha}(x) \Big) = 0 
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda = 2 m E\)</span> is the eigenvalue with energy <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(\alpha = m^{2} \omega^{2}\)</span> is the harmonic oscillator parameter. We want to find solutions to this equation for many values of <span class="math notranslate nohighlight">\(\alpha\)</span> without repeatly solving the Schrodinger equation directly. We do this by constructing an approximate solution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e540bedb-bf51-4833-a191-b602d457d219">
-<span class="eqno">(2)<a class="headerlink" href="#equation-e540bedb-bf51-4833-a191-b602d457d219" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4c5d221b-a8ac-4bf3-8cb4-bad79140cda4">
+<span class="eqno">(2)<a class="headerlink" href="#equation-4c5d221b-a8ac-4bf3-8cb4-bad79140cda4" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \hat{\phi}_{\alpha_{k}}(x) = \sum_{i=1}^{n} a_{i} \phi_{i}(x) 
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi_{i}(x)\)</span> are exact solutions to the Schrodinger equation for chosen values of <span class="math notranslate nohighlight">\(\alpha\)</span>. The goal of this tutorial is to show how Galerkin projection can be used to construct an approximate solution <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_{k}}(x)\)</span> that is significantly cheaper to evaluate for any <span class="math notranslate nohighlight">\(\alpha\)</span> of interest and to quantify the error of  <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_{k}}(x)\)</span> and approximate eigenvalues <span class="math notranslate nohighlight">\(\hat{\lambda}_{\alpha_{k}}\)</span>.</p>
@@ -605,8 +576,9 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-<div class="section" id="first-select-a-set-of-values-of-alpha-to-solve-the-se-with-these-solutions-will-be-used-as-the-basis-in-the-reduced-basis-model">
-<h2>First select a set of values of <span class="math notranslate nohighlight">\(\alpha\)</span> to solve the SE with. These solutions will be used as the basis in the reduced basis model.<a class="headerlink" href="#first-select-a-set-of-values-of-alpha-to-solve-the-se-with-these-solutions-will-be-used-as-the-basis-in-the-reduced-basis-model" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="solving-exactly">
+<h2>Solving “Exactly”<a class="headerlink" href="#solving-exactly" title="Permalink to this headline">¶</a></h2>
+<p>First select a set of values of <span class="math notranslate nohighlight">\(\alpha\)</span> to solve the SE with. These solutions will be used as the basis in the reduced basis model.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Select alpha values to use to solve SE exactly.</span>
@@ -620,9 +592,7 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="now-solve-the-se-for-selected-values-of-alpha-and-compare-numerical-solution-to-exact-solution">
-<h2>Now solve the SE for selected values of alpha and compare numerical solution to exact solution<a class="headerlink" href="#now-solve-the-se-for-selected-values-of-alpha-and-compare-numerical-solution-to-exact-solution" title="Permalink to this headline">¶</a></h2>
+<p>Now solve the SE for selected values of alpha and compare numerical solution to exact solution</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">alpha_sample</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alpha_vals</span><span class="p">):</span>
@@ -659,11 +629,11 @@ const thebe_selector_output = ".output, .cell_output"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 0.5, lambda = 0.7071036561722082
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 0.5, lambda = 0.707103656172208
 alpha = 0.5, exact lambda = 0.7071067811865476
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 5, lambda = 2.236036727063778
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 5, lambda = 2.236036727063779
 alpha = 5, exact lambda = 2.23606797749979
 </pre></div>
 </div>
@@ -676,8 +646,8 @@ alpha = 15, exact lambda = 3.872983346207417
 </pre></div>
 </div>
 <img alt="../_images/1dHO_7_4.png" src="../_images/1dHO_7_4.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|lambda - lambda_exact| = 3.1250143394112584e-06
-|lambda - lambda_exact| = 3.1250436011820426e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|lambda - lambda_exact| = 3.1250143395222807e-06
+|lambda - lambda_exact| = 3.125043601093225e-05
 |lambda - lambda_exact| = 6.250123597917323e-05
 |lambda - lambda_exact| = 9.375226888597155e-05
 </pre></div>
@@ -685,8 +655,9 @@ alpha = 15, exact lambda = 3.872983346207417
 </div>
 </div>
 </div>
-<div class="section" id="now-apply-pca-doctor-to-see-if-our-problem-can-be-approximated-by-a-reduced-basis">
-<h2>Now apply PCA Doctor to see if our problem can be approximated by a reduced basis.<a class="headerlink" href="#now-apply-pca-doctor-to-see-if-our-problem-can-be-approximated-by-a-reduced-basis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="visiting-the-pca-doctor">
+<h2>Visiting the PCA Doctor<a class="headerlink" href="#visiting-the-pca-doctor" title="Permalink to this headline">¶</a></h2>
+<p>Now apply PCA Doctor to see if our problem can be approximated by a reduced basis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">Vh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
@@ -709,16 +680,17 @@ alpha = 15, exact lambda = 3.872983346207417
 </div>
 <p>PCA Doctor shows the singular values of the solution matrix T are decreasing as we move down the diagonal of the matrix of singular values resulting from the singular value decomposition. This tells us that as we increase the number of basis elements, we gain less and less information. This implies that reduced basis methods are applicable to our problem and solutions can be well approximated by just a few basis elements. Also note the principle components in the right panel.</p>
 </div>
-<div class="section" id="now-that-we-know-rbm-is-applicable-to-our-problem-we-now-construct-a-reduced-basis-for-the-schrodinger-equation">
-<h2>Now that we know RBM is applicable to our problem, we now construct a reduced basis for the Schrodinger equation.<a class="headerlink" href="#now-that-we-know-rbm-is-applicable-to-our-problem-we-now-construct-a-reduced-basis-for-the-schrodinger-equation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="constructing-the-basis-and-comparing">
+<h2>Constructing the Basis and Comparing<a class="headerlink" href="#constructing-the-basis-and-comparing" title="Permalink to this headline">¶</a></h2>
+<p>Now that we know RBM is applicable to our problem, we now construct a reduced basis for the Schrodinger equation.</p>
 <p>Here we explicitly construct <span class="math notranslate nohighlight">\( \hat{\phi}_{\alpha_{k}}= \sum_{i=1}^{n} a_{i} \phi_{i}\)</span> using the Galerkin method, that is, projecting <span class="math notranslate nohighlight">\(F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big)\)</span> over <span class="math notranslate nohighlight">\(n\)</span> linearly independent functions projecting functions <span class="math notranslate nohighlight">\(\{ \psi_{i}\}_{i=1}^{n}\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-95d3036b-1bc0-4333-afc5-a5a524d60ca9">
-<span class="eqno">(3)<a class="headerlink" href="#equation-95d3036b-1bc0-4333-afc5-a5a524d60ca9" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-64130021-0f58-4c52-9688-1dcee7d5ea2f">
+<span class="eqno">(3)<a class="headerlink" href="#equation-64130021-0f58-4c52-9688-1dcee7d5ea2f" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \langle \psi_{i}, F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big) \rangle = 0 
 \end{align}\]</div>
 <p>We can interpret this as enforcing the orthogonality of <span class="math notranslate nohighlight">\(F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big)\)</span> to the subspace spanned by <span class="math notranslate nohighlight">\(\{\psi_{i}\}\)</span> that is, by finding <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha}\)</span> such that <span class="math notranslate nohighlight">\(F_{\alpha_{k}}(\hat{\psi}_{\alpha_{k}})\)</span> is approximately zero up to the ability of the set <span class="math notranslate nohighlight">\(\{\psi_{i}\}\)</span>. The choice of projecting functions <span class="math notranslate nohighlight">\(\{ \psi_{i} \}\)</span> is arbitrary, but is usually also informed by the solution manifold. Here we choose the solution set <span class="math notranslate nohighlight">\(\{ \phi_{i} \}\)</span> to be our projecting functions. This leads to an equation <span class="math notranslate nohighlight">\(n\)</span> equations for the coeffecients <span class="math notranslate nohighlight">\(a_{k}\)</span>. However, since <span class="math notranslate nohighlight">\(\lambda\)</span> is also unknown, we need an additional equation. This comes from the normalization conditions</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0127f896-4452-43e4-adbc-59e421e66123">
-<span class="eqno">(4)<a class="headerlink" href="#equation-0127f896-4452-43e4-adbc-59e421e66123" title="Permalink to this equation">¶</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-668a3db9-6252-4b86-b9eb-82d2ce32261d">
+<span class="eqno">(4)<a class="headerlink" href="#equation-668a3db9-6252-4b86-b9eb-82d2ce32261d" title="Permalink to this equation">¶</a></span>\[\begin{align}
 \langle \hat{\phi}_{\alpha_{k}},\hat{\phi}_{\alpha_{k}} \rangle  = 1
 \end{align}\]</div>
 <p>This results in <span class="math notranslate nohighlight">\(n +1\)</span> equations for the <span class="math notranslate nohighlight">\(n\)</span> unknown coeffecients <span class="math notranslate nohighlight">\(a_{k}\)</span> and eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
@@ -766,9 +738,9 @@ alpha = 15, exact lambda = 3.872983346207417
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coeffecients a_k: [-0.02001628  0.72240374 -3.01421624  3.31046244]
-Appproximate lambda: 5.001175561286952
+Appproximate lambda: 5.001175561288746
 Exact lambda: 5.0
-lambda difference: 0.0011755612869519538
+lambda difference: 0.0011755612887460742
 </pre></div>
 </div>
 <img alt="../_images/1dHO_12_1.png" src="../_images/1dHO_12_1.png" />
@@ -802,11 +774,11 @@ lambda difference: 0.0011755612869519538
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="ho.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="../rbm/projecting.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Application 1: The Quantum Harmonic Oscillator</p>
+            <p class="prev-next-title">Finding the Coefficients: Projecting</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../greedy/greedy.html" title="next page">
