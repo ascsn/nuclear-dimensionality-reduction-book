@@ -1,1 +1,0 @@
-# Lagrange Reduced Basis
