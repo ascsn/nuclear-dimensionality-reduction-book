@@ -108,6 +108,7 @@ contains
         call totenergy
         currentconv = abs(totfunct - oldtotenergy)
         write (6,*) "Iteration:",iter,"Convergence:",currentconv
+        flush(6)
         if (currentconv<conv) exit
 
        end do
