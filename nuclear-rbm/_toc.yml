@@ -21,5 +21,6 @@ chapters:
 - file: transforms/transforms
 - file: scattering/scattering
 - file: dft/dft
+- file: contributors
 
 
