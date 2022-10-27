@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Why Emulators? &#8212; Reduced Basis Methods in Nuclear Physics</title>
+    <title>Why emulators? &#8212; Reduced Basis Methods in Nuclear Physics</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Redundancy in Simulations" href="redundancy.html" />
@@ -126,7 +128,7 @@ const thebe_selector_output = ".output, .cell_output"
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Why Emulators?
+     Why emulators?
     </a>
    </li>
    <li class="toctree-l2">
@@ -261,6 +263,53 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/kylegodbey/nuclear-rbm/main?urlpath=tree/nuclear-rbm/introduction/emulators.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/kylegodbey/nuclear-rbm/blob/main/nuclear-rbm/introduction/emulators.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -328,7 +377,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/introduction/emulators.md"
+        <a href="../_sources/introduction/emulators.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -339,7 +388,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.md</span>
+<span class="headerbtn__text-container">.ipynb</span>
 </a>
 
       </li>
@@ -365,23 +414,70 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-case-calibrating-and-quantifying-the-uncertainty-of-a-physics-model">
+   First case: calibrating and quantifying the uncertainty of a physics model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#second-case-experimental-optimization-and-online-tune-up">
+   Second case, experimental optimization and online tune-up
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Why Emulators?</h1>
+                <h1>Why emulators?</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#first-case-calibrating-and-quantifying-the-uncertainty-of-a-physics-model">
+   First case: calibrating and quantifying the uncertainty of a physics model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#second-case-experimental-optimization-and-online-tune-up">
+   Second case, experimental optimization and online tune-up
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -390,7 +486,30 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="why-emulators">
-<h1>Why Emulators?<a class="headerlink" href="#why-emulators" title="Permalink to this headline">#</a></h1>
+<h1>Why emulators?<a class="headerlink" href="#why-emulators" title="Permalink to this headline">#</a></h1>
+<p>Contributed by: Pablo Giuliani, Ruchi Garg.</p>
+<p>Before we dive into the Reduced Basis Method, we first must look inward, deep inside our souls, and ask a fundamentally important question: why would we even want to learn about all this?</p>
+<p>The Reduced Basis Method, from a practitioner point of view, can be thought of as an emulator, which is an algorithm that can be trained to “mimic” or approximate expensive calculations, usually with very little loss in accuracy, but with a gigantic gain in speed. If setting up the emulator is not too much of a hassle, then in principle we should always make use of them if the accuracy loss is indeed negligible. At the end of the day, performing the same calculation 100 times faster should be a great win for almost every research group. Let us walk you through two short examples, in which the speed up gain could not only be beneficial, but decisive in the amount of science that can be produced.</p>
+<section id="first-case-calibrating-and-quantifying-the-uncertainty-of-a-physics-model">
+<h2>First case: calibrating and quantifying the uncertainty of a physics model<a class="headerlink" href="#first-case-calibrating-and-quantifying-the-uncertainty-of-a-physics-model" title="Permalink to this headline">#</a></h2>
+<p>Imagine that you and your colleagues have developed a nice physics model <span class="math notranslate nohighlight">\(f(\alpha,x)\)</span> that depends on some list of parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and explains a phenomena we observe in nature as a function of the parameter <span class="math notranslate nohighlight">\(x\)</span>. For example, you could be modeling how likely it is for a neutron to interact with a nucleus as a function of the beam energy. The parameters <span class="math notranslate nohighlight">\(\alpha\)</span> could be modeling, for example, how strongly the neutrons interact with other particles in the nucleus.
+<img src="attachment:image-3.png" alt="Fig. 1" style="width:320px;height:450px;"></p>
+<p>Figure1: Hypothetical situation you find yourself in after starting reading this book. Your model (in red) for a given parameter set <span class="math notranslate nohighlight">\(\alpha\)</span> is compared with experimental data (in blue) your friends from the laboratory just measured.</p>
+<p>You would like your model to compare well with the recent experimental data your friends have just measured at the laboratory after an expensive and long campaign. For that, you will have to explore the response of your model <span class="math notranslate nohighlight">\(f(\alpha,x)\)</span> for different values of the parameters <span class="math notranslate nohighlight">\(\alpha\)</span> until you find one that matches the observed data well. This can take several evaluations of your model, perhaps of the order of hundreds to several thousands, a task that could become very time consuming if each evaluation takes an appreciable time to compute. Here are two hypotetical examples on opposite sides of the computational burden spectrum:
+<img src="attachment:image-6.png" alt="Fig. 1" style="width:400px;height:70px;"></p>
+<p>If instead of just finding the set of optimal parameters <span class="math notranslate nohighlight">\(\alpha\)</span> you are interested instead in finding a Bayesian posterior distribution of them to <a class="reference external" href="https://bandframework.github.io/">quantify the uncertainty</a> of your model, things can quickly get out of hand.</p>
+<p><img alt="image-7.png" src="introduction/attachment:image-7.png" />
+Figure 2: Same as Figure 1 with the addition of an uncertainty band in orange. In this hypotetical example, such band was built by sampling 5,000,000 values of the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> and evaluating the model <span class="math notranslate nohighlight">\(f(\alpha,x)\)</span> to compare with the experimental data in blue.</p>
+<p>These posteriors could sometimes take millions of evaluations to compute. If you were not to run them in parallel in a computer cluster, this will turn the total computational time needed to several years in the case of the simple model, and to several millennia in the case of the complex one. In these cases, an emulator becomes almost a required resource if you would like to finish your uncertainty quantification of your model <span class="math notranslate nohighlight">\(f(\alpha,x)\)</span> within your lifetime.</p>
+</section>
+<section id="second-case-experimental-optimization-and-online-tune-up">
+<h2>Second case, experimental optimization and online tune-up<a class="headerlink" href="#second-case-experimental-optimization-and-online-tune-up" title="Permalink to this headline">#</a></h2>
+<p>Now let’s imagine that you put your experimental hat and you go to the laboratory to join the heroes that carefully measure nature in all its glory. An experimental set up consists of several elements and moving parts that all have to be synchronized almost to perfection to provide reliable data to the scientific community. For example, in the case of a facility that investigates rare nuclei, one part of the experimental set up is completely dedicated to the focusing and control of the beam of particles as they traverse their way from their production, through their target where the reaction occurs, until finally arriving at the target location. Figure 3 illustrates this situation for the Separator for Capture Reactions (SECAR).
+<img src="attachment:image-9.png" alt="Fig. 3" style="width:600px;height:330px;"></p>
+<p>Figure 3: Adapted from <a class="reference external" href="https://doi.org/10.1103/PhysRevAccelBeams.25.044601">a recent study</a> by S. A. Miskovich et al., showing the focusing and defocusing of the beam of isotopes as it passes through the dipoles, quadrupoles, and octupoles magnet configurations at SECAR. The final step of the beam path is drawn as a star on a blue target, which will be missed by the beam if the currents passing through each of the magnents in SECAR is not set correctly.</p>
+<p>The process of finding an optimal setting for the many parameters in the apparatus controlling the beam location can be challenging, sometimes involving the use of computationally expensive simulations and the fine tune of several components by hand. For such challenges, the use of an emulator that can mimic the alignment response and reduce the effective dimensionality in the large parameter space could help tremendously in speeding up the general tunning process. Further speeding up the necessary simulation packages could enable the on-line tunning in real time of the beam location as the experimental conditions are changing during the actual measurement, maximizing the time in which useful data is being actively collected.</p>
+<p>We hope these two examples have served as an appetizer to motivate you for further reading and studying these techniques. If so, please join us on our next chapter where we give an intuitive description on why any of these types of technique have a chance of working. In a nutshell, most of our computations and calculations involving varying parameters are highly redundant.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
