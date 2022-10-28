@@ -199,53 +199,6 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/kylegodbey/nuclear-rbm/main?urlpath=tree/nuclear-rbm/introduction/emulators.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/kylegodbey/nuclear-rbm/blob/main/nuclear-rbm/introduction/emulators.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="headerbtn__text-container">Colab</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -313,7 +266,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/introduction/emulators.ipynb"
+        <a href="../_sources/introduction/emulators.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -324,7 +277,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="headerbtn__text-container">.md</span>
 </a>
 
       </li>
@@ -423,13 +376,15 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="why-emulators">
 <h1>Why emulators?<a class="headerlink" href="#why-emulators" title="Permalink to this headline">#</a></h1>
-<p>Contributed by: Pablo Giuliani, Ruchi Garg.</p>
+<p>Contributed by: Pablo Giuliani, Ruchi Garg
+Edited by: Kyle Godbey</p>
 <p>Before we dive into the Reduced Basis Method, we first must look inward, deep inside our souls, and ask a fundamentally important question: why would we even want to learn about all this?</p>
 <p>The Reduced Basis Method, from a practitioner point of view, can be thought of as an emulator, which is an algorithm that can be trained to “mimic” or approximate expensive calculations, usually with very little loss in accuracy, but with a gigantic gain in speed. If setting up the emulator is not too much of a hassle, then in principle we should always make use of them if the accuracy loss is indeed negligible. At the end of the day, performing the same calculation 100 times faster should be a great win for almost every research group. Let us walk you through two short examples, in which the speed up gain could not only be beneficial, but decisive in the amount of science that can be produced.</p>
 <section id="first-case-calibrating-and-quantifying-the-uncertainty-of-a-physics-model">
 <h2>First case: calibrating and quantifying the uncertainty of a physics model<a class="headerlink" href="#first-case-calibrating-and-quantifying-the-uncertainty-of-a-physics-model" title="Permalink to this headline">#</a></h2>
 <p>Imagine that you and your colleagues have developed a nice physics model <span class="math notranslate nohighlight">\(f(\alpha,x)\)</span> that depends on some list of parameters <span class="math notranslate nohighlight">\(\alpha\)</span> and explains a phenomena we observe in nature as a function of the parameter <span class="math notranslate nohighlight">\(x\)</span>. For example, you could be modeling how likely it is for a neutron to interact with a nucleus as a function of the beam energy. The parameters <span class="math notranslate nohighlight">\(\alpha\)</span> could be modeling, for example, how strongly the neutrons interact with other particles in the nucleus.</p>
 <center><img src="Fig1WhyEmu.png" alt="Fig. 1" style="width:320px;height:450px;"></center>
+<p><img alt="Fig1" src="../_images/Fig1WhyEmu.png" /></p>
 <p>Figure1: Hypothetical situation you find yourself in after starting reading this book. Your model (in red) for a given parameter set <span class="math notranslate nohighlight">\(\alpha\)</span> is compared with experimental data (in blue) your friends from the laboratory just measured.</p>
 <p>You would like your model to compare well with the recent experimental data your friends have just measured at the laboratory after an expensive and long campaign. For that, you will have to explore the response of your model <span class="math notranslate nohighlight">\(f(\alpha,x)\)</span> for different values of the parameters <span class="math notranslate nohighlight">\(\alpha\)</span> until you find one that matches the observed data well. This can take several evaluations of your model, perhaps of the order of hundreds to several thousands, a task that could become very time consuming if each evaluation takes an appreciable time to compute. Here are two hypotetical examples on opposite sides of the computational burden spectrum:</p>
 <center><img src="Fig2WhyEmu.png" alt="Fig. 2" style="width:450px;height:100px;"></center>
