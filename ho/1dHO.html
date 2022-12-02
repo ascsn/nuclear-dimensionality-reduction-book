@@ -447,14 +447,14 @@ title="Print to PDF"
 <section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h2>
 <p>Consider the Schrodinger equation for the 1-d Harmonic Oscillator:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6e4c08f8-ad25-4d4b-acc0-b54dcd633b5b">
-<span class="eqno">(1)<a class="headerlink" href="#equation-6e4c08f8-ad25-4d4b-acc0-b54dcd633b5b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c6461095-01a5-45eb-b318-9d64cf41c39c">
+<span class="eqno">(1)<a class="headerlink" href="#equation-c6461095-01a5-45eb-b318-9d64cf41c39c" title="Permalink to this equation">#</a></span>\[\begin{align}
 &amp;\Big(- \frac{d^{2}}{dx^{2}} + \alpha x^{2}  - \lambda \Big) \phi = 0 \\
 &amp;F_{\alpha}\Big( \phi_{\alpha}(x) \Big) = 0 
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda = 2 m E\)</span> is the eigenvalue with energy <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(\alpha = m^{2} \omega^{2}\)</span> is the harmonic oscillator parameter. We want to find solutions to this equation for many values of <span class="math notranslate nohighlight">\(\alpha\)</span> without repeatly solving the Schrodinger equation directly. We do this by constructing an approximate solution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7d349250-a490-47cb-af87-df6654393cd2">
-<span class="eqno">(2)<a class="headerlink" href="#equation-7d349250-a490-47cb-af87-df6654393cd2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0807f917-0313-4d26-ad10-9d4926cdc1fd">
+<span class="eqno">(2)<a class="headerlink" href="#equation-0807f917-0313-4d26-ad10-9d4926cdc1fd" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{\phi}_{\alpha_{k}}(x) = \sum_{i=1}^{n} a_{i} \phi_{i}(x) 
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi_{i}(x)\)</span> are exact solutions to the Schrodinger equation for chosen values of <span class="math notranslate nohighlight">\(\alpha\)</span>. The goal of this tutorial is to show how Galerkin projection can be used to construct an approximate solution <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_{k}}(x)\)</span> that is significantly cheaper to evaluate for any <span class="math notranslate nohighlight">\(\alpha\)</span> of interest and to quantify the error of  <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_{k}}(x)\)</span> and approximate eigenvalues <span class="math notranslate nohighlight">\(\hat{\lambda}_{\alpha_{k}}\)</span>.</p>
@@ -706,11 +706,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 0.5, lambda = 0.707103656172208
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 0.5, lambda = 0.7071036561722082
 alpha = 0.5, exact lambda = 0.7071067811865476
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 5, lambda = 2.236036727063779
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 5, lambda = 2.236036727063778
 alpha = 5, exact lambda = 2.23606797749979
 </pre></div>
 </div>
@@ -723,8 +723,8 @@ alpha = 15, exact lambda = 3.872983346207417
 </pre></div>
 </div>
 <img alt="../_images/1dHO_7_4.png" src="../_images/1dHO_7_4.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|lambda - lambda_exact| = 3.1250143395222807e-06
-|lambda - lambda_exact| = 3.125043601093225e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|lambda - lambda_exact| = 3.1250143394112584e-06
+|lambda - lambda_exact| = 3.1250436011820426e-05
 |lambda - lambda_exact| = 6.250123597917323e-05
 |lambda - lambda_exact| = 9.375226888597155e-05
 </pre></div>
@@ -761,13 +761,13 @@ alpha = 15, exact lambda = 3.872983346207417
 <h2>Constructing the Basis and Comparing<a class="headerlink" href="#constructing-the-basis-and-comparing" title="Permalink to this headline">#</a></h2>
 <p>Now that we know RBM is applicable to our problem, we now construct a reduced basis for the Schrodinger equation.</p>
 <p>Here we explicitly construct <span class="math notranslate nohighlight">\( \hat{\phi}_{\alpha_{k}}= \sum_{i=1}^{n} a_{i} \phi_{i}\)</span> using the Galerkin method, that is, projecting <span class="math notranslate nohighlight">\(F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big)\)</span> over <span class="math notranslate nohighlight">\(n\)</span> linearly independent functions projecting functions <span class="math notranslate nohighlight">\(\{ \psi_{i}\}_{i=1}^{n}\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b3e2539-f84b-4df9-a31b-a779858c2f0a">
-<span class="eqno">(3)<a class="headerlink" href="#equation-5b3e2539-f84b-4df9-a31b-a779858c2f0a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-62df688f-5f85-477d-a31c-a9896534eb1e">
+<span class="eqno">(3)<a class="headerlink" href="#equation-62df688f-5f85-477d-a31c-a9896534eb1e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \psi_{i}, F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big) \rangle = 0 
 \end{align}\]</div>
 <p>We can interpret this as enforcing the orthogonality of <span class="math notranslate nohighlight">\(F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big)\)</span> to the subspace spanned by <span class="math notranslate nohighlight">\(\{\psi_{i}\}\)</span> that is, by finding <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha}\)</span> such that <span class="math notranslate nohighlight">\(F_{\alpha_{k}}(\hat{\psi}_{\alpha_{k}})\)</span> is approximately zero up to the ability of the set <span class="math notranslate nohighlight">\(\{\psi_{i}\}\)</span>. The choice of projecting functions <span class="math notranslate nohighlight">\(\{ \psi_{i} \}\)</span> is arbitrary, but is usually also informed by the solution manifold. Here we choose the solution set <span class="math notranslate nohighlight">\(\{ \phi_{i} \}\)</span> to be our projecting functions. This leads to an equation <span class="math notranslate nohighlight">\(n\)</span> equations for the coeffecients <span class="math notranslate nohighlight">\(a_{k}\)</span>. However, since <span class="math notranslate nohighlight">\(\lambda\)</span> is also unknown, we need an additional equation. This comes from the normalization conditions</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c5b38e1f-7ab2-4b01-8663-27e4d72a1222">
-<span class="eqno">(4)<a class="headerlink" href="#equation-c5b38e1f-7ab2-4b01-8663-27e4d72a1222" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-05750675-8574-4053-a2eb-6c104b59cad1">
+<span class="eqno">(4)<a class="headerlink" href="#equation-05750675-8574-4053-a2eb-6c104b59cad1" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \hat{\phi}_{\alpha_{k}},\hat{\phi}_{\alpha_{k}} \rangle  = 1
 \end{align}\]</div>
 <p>This results in <span class="math notranslate nohighlight">\(n +1\)</span> equations for the <span class="math notranslate nohighlight">\(n\)</span> unknown coeffecients <span class="math notranslate nohighlight">\(a_{k}\)</span> and eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
@@ -815,9 +815,9 @@ alpha = 15, exact lambda = 3.872983346207417
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coeffecients a_k: [-0.02001628  0.72240374 -3.01421624  3.31046244]
-Appproximate lambda: 5.001175561288746
+Appproximate lambda: 5.00117556128781
 Exact lambda: 5.0
-lambda difference: 0.0011755612887460742
+lambda difference: 0.0011755612878099342
 </pre></div>
 </div>
 <img alt="../_images/1dHO_12_1.png" src="../_images/1dHO_12_1.png" />

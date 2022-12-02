@@ -1,0 +1,1060 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Empirical Interpolation Method for a non-affine parameter in a potential &#8212; Reduced Basis Methods in Nuclear Physics</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Reduced Basis Methods in Nuclear Physics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing.html">
+                    Introduction to Reduced-Basis Methods in Nuclear Physics
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../introduction/introduction.html">
+   Introduction
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../introduction/emulators.html">
+     Why emulators?
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../ho/1dHO.html">
+   Application 1: The Quantum Harmonic Oscillator
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="scattering.html">
+   Application 2: Two body single channel nuclear scattering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributors.html">
+   Contributors
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/kylegodbey/nuclear-rbm/main?urlpath=tree/nuclear-rbm/scattering/eim.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/kylegodbey/nuclear-rbm/blob/main/nuclear-rbm/scattering/eim.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/kylegodbey/nuclear-rbm"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/kylegodbey/nuclear-rbm/issues/new?title=Issue%20on%20page%20%2Fscattering/eim.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/scattering/eim.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Empirical Interpolation Method for a non-affine parameter in a potential
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-the-rbm-for-the-affinely-decomposed-problem">
+   Building the RBM for the affinely-decomposed problem
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Empirical Interpolation Method for a non-affine parameter in a potential</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Empirical Interpolation Method for a non-affine parameter in a potential
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-the-rbm-for-the-affinely-decomposed-problem">
+   Building the RBM for the affinely-decomposed problem
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="empirical-interpolation-method-for-a-non-affine-parameter-in-a-potential">
+<h1>Empirical Interpolation Method for a non-affine parameter in a potential<a class="headerlink" href="#empirical-interpolation-method-for-a-non-affine-parameter-in-a-potential" title="Permalink to this headline">#</a></h1>
+<p>Let’s consider the following potential with Woods-Saxon form:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fccf834e-b075-47e4-964c-6afa87a09c3a">
+<span class="eqno">()<a class="headerlink" href="#equation-fccf834e-b075-47e4-964c-6afa87a09c3a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    V(r;R,a) = -\frac{V_0}{1 + \exp{\frac{r-R}{a}}}.
+\end{equation}\]</div>
+<p>We would like to vary <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, and/or the momentum; <span class="math notranslate nohighlight">\(p\)</span>. For now, let’s focus our attention on just <span class="math notranslate nohighlight">\(R\)</span>. First, let’s apply the scaling. We now have:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d6e4a243-41bd-4ee0-a74f-34274a538bed">
+<span class="eqno">()<a class="headerlink" href="#equation-d6e4a243-41bd-4ee0-a74f-34274a538bed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+  U(s,p;S,z) = -\frac{ 2 \mu V_0 }{ p^2}  \frac{1}{ (1 + \exp{ \frac{s-S}{ z }})},
+\end{equation}\]</div>
+<p>where we’ve defined <span class="math notranslate nohighlight">\(S = R p\)</span> and <span class="math notranslate nohighlight">\(z = a p\)</span>.</p>
+<p>Notice how our parameters of interest are distincively non-affine; for example: <span class="math notranslate nohighlight">\(U(s,p; S + S', \tilde{a}) \neq U(s,p; S, \tilde{a}) + U(s,p; S', \tilde{a})\)</span>. If we want to construct an RBM with which we can perturb <span class="math notranslate nohighlight">\(S \rightarrow S'\)</span>, we will not be able to simply construct an affine space of scattering wavefunctions with a set of training points <span class="math notranslate nohighlight">\(T = \{ S_1, S_2, ..., S_N \}\)</span> as before. Unless perhaps we could find an approximation of <span class="math notranslate nohighlight">\(U\)</span> (let’s call it <span class="math notranslate nohighlight">\(\tilde{U}\)</span>), that was affine in <span class="math notranslate nohighlight">\(S\)</span> …</p>
+<div class="amsmath math notranslate nohighlight" id="equation-84440543-007b-4ef3-a8f0-913e9486c667">
+<span class="eqno">()<a class="headerlink" href="#equation-84440543-007b-4ef3-a8f0-913e9486c667" title="Permalink to this equation">#</a></span>\[\begin{equation}
+U(s; S)  \approx \tilde{U}(s; S)  = \sum_k^M \beta_k(S) U_k(s) 
+\end{equation}\]</div>
+<p>… yeah, something like that! Here, we denote <span class="math notranslate nohighlight">\(U_k(s) = U(s,S_k)\)</span> as a “snapshot”, or training point, of <span class="math notranslate nohighlight">\(U(s; S)\)</span>, evaluated at particular values <span class="math notranslate nohighlight">\(S = S_k\)</span> (<span class="math notranslate nohighlight">\(z\)</span> and <span class="math notranslate nohighlight">\(p\)</span> will be fixed, so we will suppress dependence upon them going forward). <span class="math notranslate nohighlight">\(\tilde{U}(s;S)\)</span> should interpolate <span class="math notranslate nohighlight">\(U(s;S)\)</span> between the training points <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>Already, we see an analogy with what we did before in the space of wavefunctions, but now in the space of operators <span class="math notranslate nohighlight">\(U(s;S)\)</span>: we will evaluate <span class="math notranslate nohighlight">\(N\)</span> snapshots of <span class="math notranslate nohighlight">\(U(s;S)\)</span>, with <span class="math notranslate nohighlight">\(S\)</span> evaluated at each value on the training space <span class="math notranslate nohighlight">\(T\)</span>, which we are free to choose. As before, we will then do PCA to find <span class="math notranslate nohighlight">\(M &lt; N\)</span> dimensions that suitably encapsulate the information content of <span class="math notranslate nohighlight">\(U(s;S)\)</span> as we vary <span class="math notranslate nohighlight">\(S \in T\)</span>.</p>
+<p>Then, we can simply plug our <span class="math notranslate nohighlight">\(M\)</span> snapshots, <span class="math notranslate nohighlight">\(U_k(s)\)</span> into the equation that enforces our desired interpolation:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b1d73161-6e11-4676-b8da-856902e7bfc3">
+<span class="eqno">()<a class="headerlink" href="#equation-b1d73161-6e11-4676-b8da-856902e7bfc3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+U(s; S) = \sum_k^M \beta_k(S) U_k(s).
+\end{equation}\]</div>
+<p>We’ll maybe not so simply, but we’ll burn that bridge when we get to it. For now, let’s build our training space.</p>
+<p>First, define our constantns and potentials:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+
+<span class="n">hbarc</span> <span class="o">=</span> <span class="mi">197</span> <span class="c1"># MeV • fm</span>
+<span class="n">mass</span> <span class="o">=</span> <span class="mi">939</span> <span class="c1"># MeV</span>
+<span class="n">energy</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1"># center-of-mass scattering energy, fixed for the first example</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">mass</span><span class="o">*</span><span class="n">energy</span><span class="p">)</span><span class="o">/</span><span class="n">hbarc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">woods_saxon</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="n">V0</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">V0</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="n">r</span><span class="o">-</span><span class="n">R</span><span class="p">)</span><span class="o">/</span><span class="n">a</span><span class="p">))</span>
+    
+<span class="k">def</span> <span class="nf">woods_saxon_tilde</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.</span><span class="o">/</span><span class="n">energy</span> <span class="o">*</span> <span class="n">woods_saxon</span><span class="p">(</span><span class="n">s</span><span class="o">/</span><span class="n">k</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+
+<span class="c1"># interaction parameters we will use for testing</span>
+<span class="n">V0</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1"># MeV</span>
+<span class="n">a</span>  <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># fm</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create N points, distributed evenly, on our desired range</span>
+<span class="c1"># it is inexpensive to simply evaluate a potential, so might as well </span>
+<span class="c1"># use a large number of training points</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+
+<span class="c1"># let&#39;s take a physical range</span>
+<span class="n">R_min</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">R_max</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">R_min</span><span class="p">,</span> <span class="n">R_max</span><span class="p">,</span> <span class="p">(</span><span class="n">R_max</span> <span class="o">-</span> <span class="n">R_min</span><span class="p">)</span><span class="o">/</span><span class="n">N</span><span class="p">)</span> 
+<span class="c1">#T = generate_rand_log(np.log(R_min), np.log(R_max), N=N)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Utrain</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes in an array of s values, spits out a matrix of the Woods-Saxon reduced potential</span>
+<span class="sd">    evaluated at those s and each S value on T</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">outer</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">T</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">TT</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="n">T</span> 
+    <span class="n">SS</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">T</span> <span class="o">+</span> <span class="n">s</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">woods_saxon_tilde</span><span class="p">(</span><span class="n">SS</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="p">(</span><span class="n">V0</span><span class="p">,</span> <span class="n">TT</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span> <span class="p">])[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">s_endpts</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1e-6</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span> <span class="c1"># dimensionless</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">*</span><span class="n">s_endpts</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">s</span><span class="o">/</span><span class="n">k</span>
+
+<span class="n">Umat</span> <span class="o">=</span> <span class="n">Utrain</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">Umat</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s = r k$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$U$ [a.u.]&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;$U$ [a.u.]&#39;)
+</pre></div>
+</div>
+<img alt="../_images/eim_6_1.png" src="../_images/eim_6_1.png" />
+</div>
+</div>
+<p>Great, we have a healthy training set of potentials. We would expect that the diffraction minima in differential elastic scattering cross sections, for example, to be quite sensitive to the <span class="math notranslate nohighlight">\(R\)</span> value of a Woods-Saxon potential. In other words, all those potentials would produce very different cross-sections! Now let’s do PCA and keep just the few that encapsulate most of this information.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># how big is our final basis?</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">Umat</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">S</span><span class="p">[:</span><span class="mi">15</span><span class="p">]</span><span class="o">/</span><span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;None&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;SV index&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$S_i$ [%]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eim_8_0.png" src="../_images/eim_8_0.png" />
+</div>
+</div>
+<p>These singular values are dropping nicely; let’s take only the first few.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">M</span> <span class="o">=</span> <span class="mi">6</span> <span class="c1"># definitely less than N!</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">U</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;sing. val. ratio </span><span class="si">{:1.3f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s = r k$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$U$ [a.u.]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">U</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,:</span><span class="n">M</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eim_10_0.png" src="../_images/eim_10_0.png" />
+</div>
+</div>
+<p>Great, we have our basis <span class="math notranslate nohighlight">\(U_k(s)\)</span>. We only need <span class="math notranslate nohighlight">\(M\)</span> elements to represent most of the information encapsulated in our training set! Now we would like to determine our <span class="math notranslate nohighlight">\(M\)</span> coefficients, <span class="math notranslate nohighlight">\(\beta_k(S)\)</span>. If we evaluate the interpolation equation at <span class="math notranslate nohighlight">\(M\)</span> values of <span class="math notranslate nohighlight">\(s\)</span>, we have <span class="math notranslate nohighlight">\(M\)</span> equations, which pairs quite nicely with our <span class="math notranslate nohighlight">\(M\)</span> unknown coefficients. But what values of <span class="math notranslate nohighlight">\(s\)</span> should we choose?</p>
+<p>Intuitively, we should choose the <span class="math notranslate nohighlight">\(s\)</span> values which provide the most information - the places where the variance in potential values between the different parameters is highest. Let’s take a look at the standard deviation of our training set as a function of <span class="math notranslate nohighlight">\(s\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">Umat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s = r k$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\sigma^2(s)$ [a.u.]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eim_12_0.png" src="../_images/eim_12_0.png" />
+</div>
+</div>
+<p>As a first pass, let’s consider two simple ways of choosing our <span class="math notranslate nohighlight">\(M\)</span> points, <span class="math notranslate nohighlight">\(s_k\)</span>.</p>
+<ol class="simple">
+<li><p>Sampling from the variance distribution</p></li>
+<li><p>uniformly and linearly sampling the range [0,10]</p></li>
+</ol>
+<p>Explore these methods below, or alternatively, hand-pick your own training points to study the sensitivity of the EIM to your choice. Notice the downside of method 1.: for small <span class="math notranslate nohighlight">\(M\)</span>, the accuracy of the solution can be very sensitive to random noise, but it produces a good solution on average. What if, instead of independently sampling all <span class="math notranslate nohighlight">\(M\)</span> points according to the variance, we were to sample each point sequentially, to optimize the variance conditional on the locations of the previous points? This is the essence of the greedy algorithm, which is not yet covered in this section.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">Umat</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1"># normalize</span>
+<span class="n">ps</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">trapz</span><span class="p">(</span><span class="n">ps</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
+<span class="n">ps</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">ps</span><span class="p">)</span>
+
+<span class="c1"># change this to try method 1 or 2 defined above</span>
+<span class="n">sample_from_variance</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="k">if</span> <span class="n">sample_from_variance</span><span class="p">:</span>
+    <span class="n">sample_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">M</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">ps</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">sample_pts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_pts</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.06345878, 6.53665058, 6.41560151, 3.93959792, 3.37837044,
+       3.89558008])
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once we have chosen the sample points one way or another, we can simultaneously solve our interpolation equation at those points. We know want to solve an equation of the form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-19b98983-00b7-457d-9dd5-473c75eb7fcb">
+<span class="eqno">()<a class="headerlink" href="#equation-19b98983-00b7-457d-9dd5-473c75eb7fcb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\mathbf{A} \overline{x}(S) = \overline{b}(S),
+\end{equation}\]</div>
+<p>where</p>
+<div class="amsmath math notranslate nohighlight" id="equation-df341aaf-bcd9-422a-a699-6349e18accde">
+<span class="eqno">()<a class="headerlink" href="#equation-df341aaf-bcd9-422a-a699-6349e18accde" title="Permalink to this equation">#</a></span>\[\begin{equation}
+{b}_{j} = U(s_j,S),
+\end{equation}\]</div>
+<p>and</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4db8bea9-cef0-4dfe-9a09-db238dd02a4e">
+<span class="eqno">()<a class="headerlink" href="#equation-4db8bea9-cef0-4dfe-9a09-db238dd02a4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+{A}_{jk} = U_j(s_k),
+\end{equation}\]</div>
+<p>and our unkown coefficient functions,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-abb4522c-eea7-409a-a670-0367d1c3795b">
+<span class="eqno">()<a class="headerlink" href="#equation-abb4522c-eea7-409a-a670-0367d1c3795b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+{x}_{k} = \beta_k(S).
+\end{equation}\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">M</span><span class="p">,</span><span class="n">M</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">[:,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span> <span class="n">sample_pts</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">U</span><span class="p">[:,</span><span class="n">j</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s take a look at our potential evaluated at our <span class="math notranslate nohighlight">\(M\)</span> chosen sample points, over the range of <span class="math notranslate nohighlight">\(S\)</span> values in <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">M</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ki</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">b</span><span class="p">[</span><span class="n">ki</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">woods_saxon_tilde</span><span class="p">(</span><span class="n">sample_pts</span><span class="p">[</span><span class="n">ki</span><span class="p">],</span> <span class="p">(</span><span class="n">V0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="n">woods_saxon_tilde</span><span class="p">(</span><span class="n">sample_pts</span><span class="p">[</span><span class="n">ki</span><span class="p">],</span> <span class="p">(</span><span class="n">V0</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">a</span><span class="p">)),</span> 
+                <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;k=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ki</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$S = R k$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$U(s_k,S)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eim_19_0.png" src="../_images/eim_19_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solve the system to find the coefficient functions</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;jk,k...&#39;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="n">x</span><span class="p">[:,</span><span class="n">j</span><span class="p">],</span>  <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;k=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$S = Rk$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\beta_k(S)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eim_21_0.png" src="../_images/eim_21_0.png" />
+</div>
+</div>
+<p>Intuitively, we see that the coefficients generally decrease in magnitude with the singular value, which is a good sanity check. Now let’s put it all together to test our affine decomposition of the potential.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">beta</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+    <span class="n">betas</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+        <span class="n">betas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">k</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="n">x</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">betas</span>
+
+<span class="k">def</span> <span class="nf">ws_affine_decomp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    affine decomposition of our Woods-Saxon potential</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">V0</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="n">S</span> <span class="o">=</span> <span class="n">R</span><span class="o">*</span><span class="n">k</span>
+    
+    <span class="n">betas</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="n">Uad</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">betas</span> <span class="o">*</span> <span class="n">U</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">Uad</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">R_test</span> <span class="o">=</span> <span class="mf">4.2</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">woods_saxon_tilde</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="n">V0</span><span class="p">,</span> <span class="n">R_test</span><span class="p">,</span> <span class="n">a</span><span class="p">)),</span>  <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">ws_affine_decomp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="n">V0</span><span class="p">,</span> <span class="n">R_test</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span> <span class="n">T</span><span class="p">),</span> <span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;EIM&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$s = r k$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$U$ [a.u.]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eim_24_0.png" src="../_images/eim_24_0.png" />
+</div>
+</div>
+<p>Nice! By messing with the choice of sample points, we can see this method is very sensitive to the choice. This motivates the need for a greedy algorithm that can optimally choose the next sample point to maximize the variance, conditional on the initial set.</p>
+<p>Another thing to notice is that the method fails to extrapolate; if <span class="math notranslate nohighlight">\(R_{test} \notin [R_{min}, R_{max}]\)</span> we visually see poor agreement.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="building-the-rbm-for-the-affinely-decomposed-problem">
+<h1>Building the RBM for the affinely-decomposed problem<a class="headerlink" href="#building-the-rbm-for-the-affinely-decomposed-problem" title="Permalink to this headline">#</a></h1>
+<p>Now that we have our affine decomposition for the Woods-Saxon potential, we can use it in a scattering RBM. First, we will select a new, smaller, set of training points, and calculate solutions for each one. We will borrow most of the RBM machinery from the previous section, with a few key differences that we will highlight.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">initial_conditions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span> <span class="c1"># initial phi(0) and phi&#39;(0) conditions</span>
+
+<span class="k">def</span> <span class="nf">solve_se</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">l</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="n">phi</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="p">(</span><span class="n">woods_saxon_tilde</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span> <span class="o">+</span> <span class="n">l</span><span class="o">*</span><span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">s</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">*</span> <span class="n">phi</span><span class="p">[</span><span class="mi">0</span><span class="p">]]),</span>
+        <span class="n">s_endpts</span><span class="p">,</span> <span class="n">initial_conditions</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">dense_output</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">sol</span><span class="p">(</span><span class="n">s</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">,</span> <span class="n">phi</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we construct our training basis:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_train_pts</span> <span class="o">=</span> <span class="mi">25</span>
+
+<span class="c1"># Only consider the s-waves</span>
+<span class="n">l</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># construct RB training set</span>
+<span class="n">training_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">R_min</span><span class="p">,</span> <span class="n">R_max</span><span class="p">,</span> <span class="n">n_train_pts</span><span class="p">)</span>
+
+<span class="n">training_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">(</span><span class="n">V0</span><span class="p">,</span> <span class="n">R_train</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span> <span class="k">for</span> <span class="n">R_train</span> <span class="ow">in</span>  <span class="n">training_set</span>
+<span class="p">])</span>
+
+<span class="c1"># construct RB</span>
+<span class="n">training_solutions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">solve_se</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">l</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">theta</span> <span class="ow">in</span> <span class="n">training_points</span><span class="p">]</span>
+<span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="c1"># add free wave soln to RB, subtract from other basis elements</span>
+<span class="n">phi_0</span> <span class="o">=</span> <span class="n">solve_se</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">l</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">training_solutions_sub</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">training_solutions</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">training_solutions</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">training_solutions_sub</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">training_solutions</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="o">-</span> <span class="n">phi_0</span>
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.15/x64/lib/python3.7/site-packages/ipykernel_launcher.py:3: RuntimeWarning: divide by zero encountered in double_scalars
+  This is separate from the ipykernel package so we can avoid doing imports until
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">training_solutions_sub</span><span class="p">:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\phi(s)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$s$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eim_30_0.png" src="../_images/eim_30_0.png" />
+</div>
+</div>
+<p>Now, let’s construct our RBM, selecting only the important information from our preliminary basis with PCA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">U_rb</span><span class="p">,</span> <span class="n">S_rb</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">training_solutions_sub</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">S_rb</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">S_rb</span><span class="o">/</span><span class="n">S_rb</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Singular Value Index ($i$)&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$S_i $ [%]&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eim_33_0.png" src="../_images/eim_33_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nbasis</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># we finally have our reduced basis</span>
+<span class="n">rb</span> <span class="o">=</span> <span class="n">U_rb</span><span class="p">[:,:</span><span class="n">nbasis</span><span class="p">]</span>
+
+<span class="c1"># as before, we choose this basis to be our Galerkin projectors</span>
+<span class="n">psi</span> <span class="o">=</span> <span class="n">rb</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbasis</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">rb</span><span class="p">[:,</span> <span class="n">i</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;i=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$s$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_{\rm train}^{({\rm SVD})}$&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7344069150&gt;
+</pre></div>
+</div>
+<img alt="../_images/eim_35_1.png" src="../_images/eim_35_1.png" />
+</div>
+</div>
+<p>Excellent! We have our reduced basis <span class="math notranslate nohighlight">\(\{ \psi_i \}\)</span>. We will use the reduced basis itself as our Galerkin projectors, so we would like to simply project our operator into the reduced basis, calculating the low-dimensional matrix <span class="math notranslate nohighlight">\(\mathbf{F}(S)\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-05a430bf-0daa-4e77-8740-1c83b350ad7a">
+<span class="eqno">()<a class="headerlink" href="#equation-05a430bf-0daa-4e77-8740-1c83b350ad7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+{F}(S)_{ij} =  \langle \psi_i | \left[ -\frac{d^2}{ds^2}+\frac{\ell(\ell+1)}{s^2}+U(s; S)-1 \right] | \psi_j \rangle,
+\end{equation}\]</div>
+<p>and solve the inhomogenous matrix equation:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-33caa785-aa6e-42d7-a029-933b17892532">
+<span class="eqno">()<a class="headerlink" href="#equation-33caa785-aa6e-42d7-a029-933b17892532" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\mathbf{F}(S) \vec{\phi} = 0,
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\vec{\phi}\)</span> holds the coefficients for expanding our solution in the reduced basis:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9cbfa66d-8029-4d67-bdf7-a34fdebbe9ed">
+<span class="eqno">()<a class="headerlink" href="#equation-9cbfa66d-8029-4d67-bdf7-a34fdebbe9ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+| \phi \rangle = \sum_i \vec{\phi}_i  \psi_i
+\end{equation}\]</div>
+<p>Now, however, instead of using Woods-Saxon <span class="math notranslate nohighlight">\(  U(s;S) \)</span> defined above, we have to use our affine decomposition <span class="math notranslate nohighlight">\(\tilde{U}(s; S)  = \sum_k^M \beta_k(S) U_k(s) \)</span>. We define <span class="math notranslate nohighlight">\(\tilde{\mathbf{F}}(S) \approx \mathbf{F}(S)\)</span> as follows:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6fcf0c6b-5f87-4df2-95ba-40cd58aa839f">
+<span class="eqno">()<a class="headerlink" href="#equation-6fcf0c6b-5f87-4df2-95ba-40cd58aa839f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\tilde{F}(S)_{ij} =  \langle \psi_i | \left[ -\frac{d^2}{ds^2}+\frac{\ell(\ell+1)}{s^2} + \sum_k^M \beta_k(S) U_k(s)-1 \right] | \psi_j \rangle.
+\end{equation}\]</div>
+<p>We need to calculate the matrix elements <span class="math notranslate nohighlight">\(\langle \psi_i | U_k(s) | \psi_j \rangle\)</span> . Then, for any value of <span class="math notranslate nohighlight">\(S\)</span>, we can simply grab our coefficients from the functions <span class="math notranslate nohighlight">\(\beta_k(S)\)</span> that we calculated, do the weighted sum, and we have our projected potential!</p>
+<p>Note: because we added <span class="math notranslate nohighlight">\(\phi_0\)</span>, the free solution, to our basis set, our projected equation approximating <span class="math notranslate nohighlight">\(\mathbf{F}(S) \vec{\phi} = 0\)</span> gets an inhomogenous term. We now have:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-e47a3c82-e152-4e2c-9fa6-240837e28fae">
+<span class="eqno">()<a class="headerlink" href="#equation-e47a3c82-e152-4e2c-9fa6-240837e28fae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\tilde{F}(S)_{ij} \psi_i = \langle \psi_j | F(S) | \phi_0 \rangle.
+\end{equation}\]</div>
+<p>In the code below, we make the definitions <span class="math notranslate nohighlight">\(A_{ij} = \tilde{F}(S)_{ij}\)</span> and <span class="math notranslate nohighlight">\(b_j = \langle \psi_j | F(S) | \phi_0 \rangle\)</span>, resulting in the matrix equation <span class="math notranslate nohighlight">\(\mathbf{A} \vec{\psi} = \vec{b}\)</span>, where the elements of <span class="math notranslate nohighlight">\(\vec{\psi}\)</span> are the coefficients of the emulated solution in the reduced basis.</p>
+<p>We will use the same affine decomposition on the RHS as we did on the LHS. Let’s see how that looks below:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pre-compute matrix elements of affinely-decomposed Woods-Saxon</span>
+<span class="c1"># NOTE: real application should use something like np.trapz to integrate over s -</span>
+<span class="c1"># not sure how to do that &#39;pythonically&#39;</span>
+
+<span class="c1"># U_proj[k,i,j]  == &lt;psi_i(s) | U_k(s) | psi_j(s) &gt; </span>
+<span class="n">U_proj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;si,sj,sk&#39;</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">rb</span><span class="p">)</span> <span class="p">,</span> <span class="n">rb</span><span class="p">)</span>
+
+
+<span class="c1"># matrix element for inhomogenous term</span>
+<span class="c1"># U_0[k,i]  == &lt;psi_i(s) | U_k(s) | phi_0(s) &gt;</span>
+<span class="n">U_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;si,sj,s&#39;</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">rb</span><span class="p">)</span> <span class="p">,</span> <span class="n">phi_0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also precompute the other terms in <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> and <span class="math notranslate nohighlight">\(\vec{b}\)</span> in the exact same way as the previous section:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pre-compute matrix elements of the rest of F, as in the previous section (leave out potential contribution for now)</span>
+<span class="c1"># matrix element of derivative, angular momentum, and norm/identity (e.g. &lt;psi_j | psi_i&gt; ) components</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">psi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span>
+             <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">rb</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">s</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  
+             <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;s,s...&#39;</span><span class="p">,</span> <span class="n">l</span><span class="o">*</span><span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">,</span> <span class="n">rb</span><span class="p">)</span> 
+             <span class="o">-</span> <span class="n">rb</span>
+            <span class="p">)</span>
+
+<span class="c1"># matrix element of inhomogenous term, minus the potential contribution</span>
+<span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="n">psi</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span>
+                <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">phi_0</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span> <span class="n">s</span><span class="p">)</span> 
+                <span class="o">+</span> <span class="n">l</span><span class="o">*</span><span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">s</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">*</span> <span class="n">phi_0</span> 
+                <span class="o">-</span> <span class="n">phi_0</span>
+             <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that all of our matrix elements are precomputed, given a value for <span class="math notranslate nohighlight">\(S\)</span> we care to find a solution for, we construct a matrix problem <span class="math notranslate nohighlight">\(\mathbf{A} \vec{x} = \vec{b}\)</span> in the reduced basis, and solve it!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rbm_emulator</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Given an S value, appropriately constructs the reduced basis operator from a weighted (by beta_k(S))</span>
+<span class="sd">    sum of the pre-computed matrix elements, and solved the A psi = b system. </span>
+<span class="sd">    Returns the coefficients of the emulated solution projected onto the reduced basis</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">betas</span> <span class="o">=</span> <span class="n">beta</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    
+    <span class="c1"># potential contributions to A and b</span>
+    <span class="n">A_pot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;k,k...&#39;</span><span class="p">,</span> <span class="n">betas</span> <span class="p">,</span> <span class="n">U_proj</span><span class="p">)</span>
+    <span class="n">b_pot</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">&#39;k,k...&#39;</span><span class="p">,</span> <span class="n">betas</span> <span class="p">,</span> <span class="n">U_0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">A</span> <span class="o">+</span> <span class="n">A_pot</span><span class="p">,</span> <span class="n">b</span> <span class="o">-</span> <span class="n">b_pot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># now let&#39;s test it out</span>
+<span class="n">R_test</span> <span class="o">=</span> <span class="mf">6.1</span>
+<span class="n">emu_proj</span> <span class="o">=</span> <span class="n">rbm_emulator</span><span class="p">(</span><span class="n">R_test</span><span class="o">*</span><span class="n">k</span><span class="p">)</span>
+<span class="n">emu_proj</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-40.2901254 ,  16.18813503,   8.78990777,  -1.31260377,
+         0.74662814])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># change of coordinates from the space of the reduced basis back into the coordinate space</span>
+<span class="n">emu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">emu_proj</span> <span class="o">*</span> <span class="n">rb</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">phi_0</span>
+
+<span class="c1"># exact solution of the exact Woods-Saxon potential</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="n">solve_se</span><span class="p">((</span><span class="n">V0</span><span class="p">,</span> <span class="n">R_test</span><span class="p">,</span> <span class="n">a</span><span class="p">),</span> <span class="n">l</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">emu</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi_{\rm emu}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">exact</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$\phi_{\rm exact}$&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$s$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\phi(s)$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eim_44_0.png" src="../_images/eim_44_0.png" />
+</div>
+</div>
+<p>Not bad!</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./scattering"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By RBM Team<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
