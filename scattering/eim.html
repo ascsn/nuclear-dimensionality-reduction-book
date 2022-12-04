@@ -54,6 +54,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributors" href="../contributors.html" />
+    <link rel="prev" title="Application 2: Two body single channel nuclear scattering" href="scattering.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -113,7 +115,7 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../introduction/introduction.html">
    Introduction
@@ -139,6 +141,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="scattering.html">
    Application 2: Two body single channel nuclear scattering
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Empirical Interpolation Method for a non-affine parameter in a potential
   </a>
  </li>
  <li class="toctree-l1">
@@ -422,26 +429,26 @@ title="Print to PDF"
   <section id="empirical-interpolation-method-for-a-non-affine-parameter-in-a-potential">
 <h1>Empirical Interpolation Method for a non-affine parameter in a potential<a class="headerlink" href="#empirical-interpolation-method-for-a-non-affine-parameter-in-a-potential" title="Permalink to this headline">#</a></h1>
 <p>Let’s consider the following potential with Woods-Saxon form:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fccf834e-b075-47e4-964c-6afa87a09c3a">
-<span class="eqno">()<a class="headerlink" href="#equation-fccf834e-b075-47e4-964c-6afa87a09c3a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-71c6121c-2fd5-4cd9-ab56-936a4994d0c2">
+<span class="eqno">(10)<a class="headerlink" href="#equation-71c6121c-2fd5-4cd9-ab56-936a4994d0c2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     V(r;R,a) = -\frac{V_0}{1 + \exp{\frac{r-R}{a}}}.
 \end{equation}\]</div>
 <p>We would like to vary <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, and/or the momentum; <span class="math notranslate nohighlight">\(p\)</span>. For now, let’s focus our attention on just <span class="math notranslate nohighlight">\(R\)</span>. First, let’s apply the scaling. We now have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d6e4a243-41bd-4ee0-a74f-34274a538bed">
-<span class="eqno">()<a class="headerlink" href="#equation-d6e4a243-41bd-4ee0-a74f-34274a538bed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-96f46545-e69c-4b57-997f-0b7e437fad4c">
+<span class="eqno">(11)<a class="headerlink" href="#equation-96f46545-e69c-4b57-997f-0b7e437fad4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
   U(s,p;S,z) = -\frac{ 2 \mu V_0 }{ p^2}  \frac{1}{ (1 + \exp{ \frac{s-S}{ z }})},
 \end{equation}\]</div>
 <p>where we’ve defined <span class="math notranslate nohighlight">\(S = R p\)</span> and <span class="math notranslate nohighlight">\(z = a p\)</span>.</p>
 <p>Notice how our parameters of interest are distincively non-affine; for example: <span class="math notranslate nohighlight">\(U(s,p; S + S', \tilde{a}) \neq U(s,p; S, \tilde{a}) + U(s,p; S', \tilde{a})\)</span>. If we want to construct an RBM with which we can perturb <span class="math notranslate nohighlight">\(S \rightarrow S'\)</span>, we will not be able to simply construct an affine space of scattering wavefunctions with a set of training points <span class="math notranslate nohighlight">\(T = \{ S_1, S_2, ..., S_N \}\)</span> as before. Unless perhaps we could find an approximation of <span class="math notranslate nohighlight">\(U\)</span> (let’s call it <span class="math notranslate nohighlight">\(\tilde{U}\)</span>), that was affine in <span class="math notranslate nohighlight">\(S\)</span> …</p>
-<div class="amsmath math notranslate nohighlight" id="equation-84440543-007b-4ef3-a8f0-913e9486c667">
-<span class="eqno">()<a class="headerlink" href="#equation-84440543-007b-4ef3-a8f0-913e9486c667" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c4e975e2-f08e-4fef-b804-06a64e96b833">
+<span class="eqno">(12)<a class="headerlink" href="#equation-c4e975e2-f08e-4fef-b804-06a64e96b833" title="Permalink to this equation">#</a></span>\[\begin{equation}
 U(s; S)  \approx \tilde{U}(s; S)  = \sum_k^M \beta_k(S) U_k(s) 
 \end{equation}\]</div>
 <p>… yeah, something like that! Here, we denote <span class="math notranslate nohighlight">\(U_k(s) = U(s,S_k)\)</span> as a “snapshot”, or training point, of <span class="math notranslate nohighlight">\(U(s; S)\)</span>, evaluated at particular values <span class="math notranslate nohighlight">\(S = S_k\)</span> (<span class="math notranslate nohighlight">\(z\)</span> and <span class="math notranslate nohighlight">\(p\)</span> will be fixed, so we will suppress dependence upon them going forward). <span class="math notranslate nohighlight">\(\tilde{U}(s;S)\)</span> should interpolate <span class="math notranslate nohighlight">\(U(s;S)\)</span> between the training points <span class="math notranslate nohighlight">\(T\)</span>.</p>
 <p>Already, we see an analogy with what we did before in the space of wavefunctions, but now in the space of operators <span class="math notranslate nohighlight">\(U(s;S)\)</span>: we will evaluate <span class="math notranslate nohighlight">\(N\)</span> snapshots of <span class="math notranslate nohighlight">\(U(s;S)\)</span>, with <span class="math notranslate nohighlight">\(S\)</span> evaluated at each value on the training space <span class="math notranslate nohighlight">\(T\)</span>, which we are free to choose. As before, we will then do PCA to find <span class="math notranslate nohighlight">\(M &lt; N\)</span> dimensions that suitably encapsulate the information content of <span class="math notranslate nohighlight">\(U(s;S)\)</span> as we vary <span class="math notranslate nohighlight">\(S \in T\)</span>.</p>
 <p>Then, we can simply plug our <span class="math notranslate nohighlight">\(M\)</span> snapshots, <span class="math notranslate nohighlight">\(U_k(s)\)</span> into the equation that enforces our desired interpolation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b1d73161-6e11-4676-b8da-856902e7bfc3">
-<span class="eqno">()<a class="headerlink" href="#equation-b1d73161-6e11-4676-b8da-856902e7bfc3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7a67fa54-d7a1-444b-bf6f-dbe33d8094ae">
+<span class="eqno">(13)<a class="headerlink" href="#equation-7a67fa54-d7a1-444b-bf6f-dbe33d8094ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 U(s; S) = \sum_k^M \beta_k(S) U_k(s).
 \end{equation}\]</div>
 <p>We’ll maybe not so simply, but we’ll burn that bridge when we get to it. For now, let’s build our training space.</p>
@@ -617,30 +624,30 @@ U(s; S) = \sum_k^M \beta_k(S) U_k(s).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.06345878, 6.53665058, 6.41560151, 3.93959792, 3.37837044,
-       3.89558008])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6.14049   , 6.10747662, 5.95341418, 5.70031159, 7.32897173,
+       5.05104842])
 </pre></div>
 </div>
 </div>
 </div>
 <p>Once we have chosen the sample points one way or another, we can simultaneously solve our interpolation equation at those points. We know want to solve an equation of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-19b98983-00b7-457d-9dd5-473c75eb7fcb">
-<span class="eqno">()<a class="headerlink" href="#equation-19b98983-00b7-457d-9dd5-473c75eb7fcb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-50af89c7-2d53-44b2-b8e8-23f4d50d74cc">
+<span class="eqno">(14)<a class="headerlink" href="#equation-50af89c7-2d53-44b2-b8e8-23f4d50d74cc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{A} \overline{x}(S) = \overline{b}(S),
 \end{equation}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df341aaf-bcd9-422a-a699-6349e18accde">
-<span class="eqno">()<a class="headerlink" href="#equation-df341aaf-bcd9-422a-a699-6349e18accde" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-836ccd69-4532-4735-8d0b-34d3789bac91">
+<span class="eqno">(15)<a class="headerlink" href="#equation-836ccd69-4532-4735-8d0b-34d3789bac91" title="Permalink to this equation">#</a></span>\[\begin{equation}
 {b}_{j} = U(s_j,S),
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4db8bea9-cef0-4dfe-9a09-db238dd02a4e">
-<span class="eqno">()<a class="headerlink" href="#equation-4db8bea9-cef0-4dfe-9a09-db238dd02a4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4f2e8416-d6c2-4916-8870-f50e3f21092e">
+<span class="eqno">(16)<a class="headerlink" href="#equation-4f2e8416-d6c2-4916-8870-f50e3f21092e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 {A}_{jk} = U_j(s_k),
 \end{equation}\]</div>
 <p>and our unkown coefficient functions,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-abb4522c-eea7-409a-a670-0367d1c3795b">
-<span class="eqno">()<a class="headerlink" href="#equation-abb4522c-eea7-409a-a670-0367d1c3795b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c413f0af-f54a-49a6-8e4f-c383437194ae">
+<span class="eqno">(17)<a class="headerlink" href="#equation-c413f0af-f54a-49a6-8e4f-c383437194ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 {x}_{k} = \beta_k(S).
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -865,36 +872,36 @@ U(s; S) = \sum_k^M \beta_k(S) U_k(s).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7344069150&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5d8bfb6410&gt;
 </pre></div>
 </div>
 <img alt="../_images/eim_35_1.png" src="../_images/eim_35_1.png" />
 </div>
 </div>
 <p>Excellent! We have our reduced basis <span class="math notranslate nohighlight">\(\{ \psi_i \}\)</span>. We will use the reduced basis itself as our Galerkin projectors, so we would like to simply project our operator into the reduced basis, calculating the low-dimensional matrix <span class="math notranslate nohighlight">\(\mathbf{F}(S)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05a430bf-0daa-4e77-8740-1c83b350ad7a">
-<span class="eqno">()<a class="headerlink" href="#equation-05a430bf-0daa-4e77-8740-1c83b350ad7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5fa6fe1b-caad-4edc-9b86-09703ecf64ed">
+<span class="eqno">(18)<a class="headerlink" href="#equation-5fa6fe1b-caad-4edc-9b86-09703ecf64ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
 {F}(S)_{ij} =  \langle \psi_i | \left[ -\frac{d^2}{ds^2}+\frac{\ell(\ell+1)}{s^2}+U(s; S)-1 \right] | \psi_j \rangle,
 \end{equation}\]</div>
 <p>and solve the inhomogenous matrix equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33caa785-aa6e-42d7-a029-933b17892532">
-<span class="eqno">()<a class="headerlink" href="#equation-33caa785-aa6e-42d7-a029-933b17892532" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a865b45b-58c0-45c9-a0aa-ded6d855092d">
+<span class="eqno">(19)<a class="headerlink" href="#equation-a865b45b-58c0-45c9-a0aa-ded6d855092d" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{F}(S) \vec{\phi} = 0,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\vec{\phi}\)</span> holds the coefficients for expanding our solution in the reduced basis:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9cbfa66d-8029-4d67-bdf7-a34fdebbe9ed">
-<span class="eqno">()<a class="headerlink" href="#equation-9cbfa66d-8029-4d67-bdf7-a34fdebbe9ed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-24eb906e-870e-4f74-af3b-c5ea2e3b8d79">
+<span class="eqno">(20)<a class="headerlink" href="#equation-24eb906e-870e-4f74-af3b-c5ea2e3b8d79" title="Permalink to this equation">#</a></span>\[\begin{equation}
 | \phi \rangle = \sum_i \vec{\phi}_i  \psi_i
 \end{equation}\]</div>
 <p>Now, however, instead of using Woods-Saxon <span class="math notranslate nohighlight">\(  U(s;S) \)</span> defined above, we have to use our affine decomposition <span class="math notranslate nohighlight">\(\tilde{U}(s; S)  = \sum_k^M \beta_k(S) U_k(s) \)</span>. We define <span class="math notranslate nohighlight">\(\tilde{\mathbf{F}}(S) \approx \mathbf{F}(S)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6fcf0c6b-5f87-4df2-95ba-40cd58aa839f">
-<span class="eqno">()<a class="headerlink" href="#equation-6fcf0c6b-5f87-4df2-95ba-40cd58aa839f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-8a0c6440-fddc-4b64-b279-d166b8adec05">
+<span class="eqno">(21)<a class="headerlink" href="#equation-8a0c6440-fddc-4b64-b279-d166b8adec05" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tilde{F}(S)_{ij} =  \langle \psi_i | \left[ -\frac{d^2}{ds^2}+\frac{\ell(\ell+1)}{s^2} + \sum_k^M \beta_k(S) U_k(s)-1 \right] | \psi_j \rangle.
 \end{equation}\]</div>
 <p>We need to calculate the matrix elements <span class="math notranslate nohighlight">\(\langle \psi_i | U_k(s) | \psi_j \rangle\)</span> . Then, for any value of <span class="math notranslate nohighlight">\(S\)</span>, we can simply grab our coefficients from the functions <span class="math notranslate nohighlight">\(\beta_k(S)\)</span> that we calculated, do the weighted sum, and we have our projected potential!</p>
 <p>Note: because we added <span class="math notranslate nohighlight">\(\phi_0\)</span>, the free solution, to our basis set, our projected equation approximating <span class="math notranslate nohighlight">\(\mathbf{F}(S) \vec{\phi} = 0\)</span> gets an inhomogenous term. We now have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e47a3c82-e152-4e2c-9fa6-240837e28fae">
-<span class="eqno">()<a class="headerlink" href="#equation-e47a3c82-e152-4e2c-9fa6-240837e28fae" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0443d012-531f-412b-8854-69b4165a7d22">
+<span class="eqno">(22)<a class="headerlink" href="#equation-0443d012-531f-412b-8854-69b4165a7d22" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tilde{F}(S)_{ij} \psi_i = \langle \psi_j | F(S) | \phi_0 \rangle.
 \end{equation}\]</div>
 <p>In the code below, we make the definitions <span class="math notranslate nohighlight">\(A_{ij} = \tilde{F}(S)_{ij}\)</span> and <span class="math notranslate nohighlight">\(b_j = \langle \psi_j | F(S) | \phi_0 \rangle\)</span>, resulting in the matrix equation <span class="math notranslate nohighlight">\(\mathbf{A} \vec{\psi} = \vec{b}\)</span>, where the elements of <span class="math notranslate nohighlight">\(\vec{\psi}\)</span> are the coefficients of the emulated solution in the reduced basis.</p>
@@ -967,8 +974,8 @@ U(s; S) = \sum_k^M \beta_k(S) U_k(s).
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-40.2901254 ,  16.18813503,   8.78990777,  -1.31260377,
-         0.74662814])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-14.87507456, -31.67307643, -10.76665404,  12.71740847,
+        -0.10349765])
 </pre></div>
 </div>
 </div>
@@ -1032,6 +1039,20 @@ U(s; S) = \sum_k^M \beta_k(S) U_k(s).
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="scattering.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Application 2: Two body single channel nuclear scattering</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../contributors.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contributors</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             </footer>
         </div>

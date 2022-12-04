@@ -54,7 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Contributors" href="../contributors.html" />
+    <link rel="next" title="Empirical Interpolation Method for a non-affine parameter in a potential" href="eim.html" />
     <link rel="prev" title="Application 1: The Quantum Harmonic Oscillator" href="../ho/1dHO.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -141,6 +141,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Application 2: Two body single channel nuclear scattering
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eim.html">
+   Empirical Interpolation Method for a non-affine parameter in a potential
   </a>
  </li>
  <li class="toctree-l1">
@@ -425,20 +430,20 @@ title="Print to PDF"
 <h1>Application 2: Two body single channel nuclear scattering<a class="headerlink" href="#application-2-two-body-single-channel-nuclear-scattering" title="Permalink to this headline">#</a></h1>
 <p>Contributed by: Daniel Odell, Pablo Giuliani.</p>
 <p>We have the following Hamiltonian as the radial part of the scattering equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-edd3ee1b-6b35-4a6c-8cdf-589e290e3c62">
-<span class="eqno">(5)<a class="headerlink" href="#equation-edd3ee1b-6b35-4a6c-8cdf-589e290e3c62" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9feb3d43-ca00-43a6-871e-e3a79875d4cd">
+<span class="eqno">(5)<a class="headerlink" href="#equation-9feb3d43-ca00-43a6-871e-e3a79875d4cd" title="Permalink to this equation">#</a></span>\[\begin{equation}
     F_\alpha(\phi)=\left(-\frac{d^2}{dr^2}+\frac{\ell(\ell+1)}{r^2}+U(r,\alpha)-p^2\right)\phi(r)=0,
 \end{equation}\]</div>
 <p>where a system with reduced mass <span class="math notranslate nohighlight">\(\mu\)</span> interacts through a potential <span class="math notranslate nohighlight">\(V(r,\alpha)=U(r,\alpha)/2\mu\)</span> with parameters <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\ell\)</span> is the angular momentum quantum number, and <span class="math notranslate nohighlight">\(p\)</span> is the asymptotic linear momentum. Using an optical potential for <span class="math notranslate nohighlight">\(V(r,\alpha)\)</span> this equation could model, for example, how neutrons interact with nuclei as we explained in the introduction section:
 <img alt="Fig. 1" src="scattering/Fig1Scatt.png" /></p>
 <p>We can re-scale this equation with the changes of variables <span class="math notranslate nohighlight">\(s=pr\)</span> making it possible for us to apply the RBM across energies. We obtain the following equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8e486253-e807-4f76-a92b-63f5dc7dfe2e">
-<span class="eqno">(6)<a class="headerlink" href="#equation-8e486253-e807-4f76-a92b-63f5dc7dfe2e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eb9a2525-2d23-4ff7-ac9b-c12d73d80515">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eb9a2525-2d23-4ff7-ac9b-c12d73d80515" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(-\frac{d^2}{ds^2}+\frac{\ell(\ell+1)}{s^2}+\tilde U(s,\alpha,p)-1\right)\phi_\alpha(s)=0,
 \end{equation}\]</div>
 <p>where the potential <span class="math notranslate nohighlight">\(\tilde U(s,\alpha,p)=V(s/p,\alpha)2\mu/p^2\)</span> is now momentum dependent. We now proceed to construct a high fidelity solver for this equation which we will use to build a Reduced Basis using Principal Component Analysis, and later project with the Galerkin equaitons. As a first implementation, we will use the <a class="reference external" href="https://linkinghub.elsevier.com/retrieve/pii/0375947477900070">Minnesota potential</a>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a03dddb2-788e-4b1d-bf4e-adba69c9bd30">
-<span class="eqno">(7)<a class="headerlink" href="#equation-a03dddb2-788e-4b1d-bf4e-adba69c9bd30" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7522406c-b9b1-4ea5-ae2c-8a570c243fe6">
+<span class="eqno">(7)<a class="headerlink" href="#equation-7522406c-b9b1-4ea5-ae2c-8a570c243fe6" title="Permalink to this equation">#</a></span>\[\begin{equation}
 U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
 \end{equation}\]</div>
 <p>where the parameters are <span class="math notranslate nohighlight">\(\alpha=[V_{0R},V_{0S}]\)</span>. We have kept the non-linear parameter dependence of the potential (the coefficients multiplying <span class="math notranslate nohighlight">\(r^2\)</span> on the exponentials) fixed on their original values. We will vary them in the next section when we explore the Empirical Interpolation Method (see chapter V of <a class="reference external" href="https://link.springer.com/book/10.1007/978-3-319-22470-1">this book</a>). We also work with the S wave (<span class="math notranslate nohighlight">\(l=0\)</span>) in this example.</p>
@@ -605,8 +610,8 @@ U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
 </div>
 <p>Very interestingly, if we were to now use this as our reduced basis, our projection equations will give us the solution constantly equal to zero <span class="math notranslate nohighlight">\(\hat \phi(r) =0\)</span> and <span class="math notranslate nohighlight">\(a_k=0\)</span>. The reason is that the scattering problem is homogeneous in the function <span class="math notranslate nohighlight">\(\phi\)</span> (the function zero is a valid solution). To get around this, we could impose a boundary condition, for example the asymptotic normalizations used in similar emulator papers (see <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0370269320305220">this one</a> and <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0370269321007176">this one</a>).</p>
 <p>Another way around it is to use the <span class="math notranslate nohighlight">\(\phi_0\)</span> component avaialble in the RB expansion (look <a class="reference external" href="https://arxiv.org/abs/2203.05284v2">here</a> for details):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-10459968-372e-4e39-b48e-d2dbea0bb90c">
-<span class="eqno">(8)<a class="headerlink" href="#equation-10459968-372e-4e39-b48e-d2dbea0bb90c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1f3e034-d1f8-478b-9f73-8c20d5b9b7e6">
+<span class="eqno">(8)<a class="headerlink" href="#equation-f1f3e034-d1f8-478b-9f73-8c20d5b9b7e6" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \phi \approx \hat\phi = \phi_0 + \sum_k^n a_k \phi_k
 \end{equation}\]</div>
 <p>We follow this approach by selecting <span class="math notranslate nohighlight">\(\phi_0\)</span> as the free solution in the abscence of any potential. We re-define our principal components as the differences between this free solution and the high fidelity solutions for the different parameter values.</p>
@@ -681,8 +686,8 @@ U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
 </div>
 </div>
 <p>Now our new RB has by construction a zero derivative at <span class="math notranslate nohighlight">\(s=0\)</span>, the normalization condition of <span class="math notranslate nohighlight">\(\phi'(s=0)=1\)</span> is entirely carried out by the <span class="math notranslate nohighlight">\(\phi_0\)</span> term. Our Galerkin equations look like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f3caa7a2-6735-47b3-891b-a622411898c6">
-<span class="eqno">(9)<a class="headerlink" href="#equation-f3caa7a2-6735-47b3-891b-a622411898c6" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d950370d-52db-4f9a-b769-bdfd34e14a5c">
+<span class="eqno">(9)<a class="headerlink" href="#equation-d950370d-52db-4f9a-b769-bdfd34e14a5c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \langle \psi_j | F(\hat\phi) \rangle = \langle \psi_j | F(\phi_0) \rangle + \sum_k ^n a_k\langle \psi_j | F(\phi_k) \rangle =0
 \end{equation}\]</div>
 <p>These <span class="math notranslate nohighlight">\(n\)</span> (<span class="math notranslate nohighlight">\(j\)</span> goes from 1 to <span class="math notranslate nohighlight">\(n\)</span>) equations can be written in a matrix form <span class="math notranslate nohighlight">\(Aa=b\)</span>, where <span class="math notranslate nohighlight">\(a=(a_1,a_2,...a_n)\)</span>, the matrix <span class="math notranslate nohighlight">\(A\)</span> is form by the inner products between the projectors <span class="math notranslate nohighlight">\(\langle\psi_k|\)</span> and the operator <span class="math notranslate nohighlight">\(F_\alpha\)</span> acting on each one of the basis <span class="math notranslate nohighlight">\(|\phi_k\rangle\)</span>, and <span class="math notranslate nohighlight">\(b\)</span> is the non-homogenous term obtaining from the projection of <span class="math notranslate nohighlight">\(F_\alpha(\phi_0)\)</span> onto the <span class="math notranslate nohighlight">\(\psi_j\)</span>. This last term acts, in some sense, as a “source” for creating the non-homogenous solution to the approximated differential scattering equation through <span class="math notranslate nohighlight">\(F_\alpha\)</span>, which has information on the parameters <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
@@ -774,10 +779,10 @@ U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
             <p class="prev-next-title">Application 1: The Quantum Harmonic Oscillator</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="../contributors.html" title="next page">
+    <a class='right-next' id="next-link" href="eim.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Contributors</p>
+        <p class="prev-next-title">Empirical Interpolation Method for a non-affine parameter in a potential</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
