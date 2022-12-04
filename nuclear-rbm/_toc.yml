@@ -9,6 +9,7 @@ chapters:
     - file: introduction/emulators
 - file: ho/1dHO
 - file: scattering/scattering
+- file: scattering/eim
 - file: contributors
 
 
