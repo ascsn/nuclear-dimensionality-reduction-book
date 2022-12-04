@@ -144,11 +144,6 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../scattering/eim.html">
-   Empirical Interpolation Method for a non-affine parameter in a potential
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../contributors.html">
    Contributors
   </a>
@@ -452,14 +447,14 @@ title="Print to PDF"
 <section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">#</a></h2>
 <p>Consider the Schrodinger equation for the 1-d Harmonic Oscillator:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0a1b67cd-c721-446a-9e66-fd3e99582432">
-<span class="eqno">(1)<a class="headerlink" href="#equation-0a1b67cd-c721-446a-9e66-fd3e99582432" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0df1428c-ee09-4bb1-b3ae-8d73bbb5a0c2">
+<span class="eqno">(1)<a class="headerlink" href="#equation-0df1428c-ee09-4bb1-b3ae-8d73bbb5a0c2" title="Permalink to this equation">#</a></span>\[\begin{align}
 &amp;\Big(- \frac{d^{2}}{dx^{2}} + \alpha x^{2}  - \lambda \Big) \phi = 0 \\
 &amp;F_{\alpha}\Big( \phi_{\alpha}(x) \Big) = 0 
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda = 2 m E\)</span> is the eigenvalue with energy <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(\alpha = m^{2} \omega^{2}\)</span> is the harmonic oscillator parameter. We want to find solutions to this equation for many values of <span class="math notranslate nohighlight">\(\alpha\)</span> without repeatly solving the Schrodinger equation directly. We do this by constructing an approximate solution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8dab3e63-74a4-4f19-9917-305375f2d379">
-<span class="eqno">(2)<a class="headerlink" href="#equation-8dab3e63-74a4-4f19-9917-305375f2d379" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3ac89310-7d3c-49b7-814e-abfd4d595a17">
+<span class="eqno">(2)<a class="headerlink" href="#equation-3ac89310-7d3c-49b7-814e-abfd4d595a17" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{\phi}_{\alpha_{k}}(x) = \sum_{i=1}^{n} a_{i} \phi_{i}(x) 
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi_{i}(x)\)</span> are exact solutions to the Schrodinger equation for chosen values of <span class="math notranslate nohighlight">\(\alpha\)</span>. The goal of this tutorial is to show how Galerkin projection can be used to construct an approximate solution <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_{k}}(x)\)</span> that is significantly cheaper to evaluate for any <span class="math notranslate nohighlight">\(\alpha\)</span> of interest and to quantify the error of  <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_{k}}(x)\)</span> and approximate eigenvalues <span class="math notranslate nohighlight">\(\hat{\lambda}_{\alpha_{k}}\)</span>.</p>
@@ -766,13 +761,13 @@ alpha = 15, exact lambda = 3.872983346207417
 <h2>Constructing the Basis and Comparing<a class="headerlink" href="#constructing-the-basis-and-comparing" title="Permalink to this headline">#</a></h2>
 <p>Now that we know RBM is applicable to our problem, we now construct a reduced basis for the Schrodinger equation.</p>
 <p>Here we explicitly construct <span class="math notranslate nohighlight">\( \hat{\phi}_{\alpha_{k}}= \sum_{i=1}^{n} a_{i} \phi_{i}\)</span> using the Galerkin method, that is, projecting <span class="math notranslate nohighlight">\(F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big)\)</span> over <span class="math notranslate nohighlight">\(n\)</span> linearly independent functions projecting functions <span class="math notranslate nohighlight">\(\{ \psi_{i}\}_{i=1}^{n}\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-76dc2ca4-3f57-4837-a08a-addc65f0eb1a">
-<span class="eqno">(3)<a class="headerlink" href="#equation-76dc2ca4-3f57-4837-a08a-addc65f0eb1a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9e131fbe-fc5a-4d39-8a5d-05c134c7f8a7">
+<span class="eqno">(3)<a class="headerlink" href="#equation-9e131fbe-fc5a-4d39-8a5d-05c134c7f8a7" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \psi_{i}, F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big) \rangle = 0 
 \end{align}\]</div>
 <p>We can interpret this as enforcing the orthogonality of <span class="math notranslate nohighlight">\(F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big)\)</span> to the subspace spanned by <span class="math notranslate nohighlight">\(\{\psi_{i}\}\)</span> that is, by finding <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha}\)</span> such that <span class="math notranslate nohighlight">\(F_{\alpha_{k}}(\hat{\psi}_{\alpha_{k}})\)</span> is approximately zero up to the ability of the set <span class="math notranslate nohighlight">\(\{\psi_{i}\}\)</span>. The choice of projecting functions <span class="math notranslate nohighlight">\(\{ \psi_{i} \}\)</span> is arbitrary, but is usually also informed by the solution manifold. Here we choose the solution set <span class="math notranslate nohighlight">\(\{ \phi_{i} \}\)</span> to be our projecting functions. This leads to an equation <span class="math notranslate nohighlight">\(n\)</span> equations for the coeffecients <span class="math notranslate nohighlight">\(a_{k}\)</span>. However, since <span class="math notranslate nohighlight">\(\lambda\)</span> is also unknown, we need an additional equation. This comes from the normalization conditions</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ff9fbad0-92aa-4214-a4de-9316ede06a09">
-<span class="eqno">(4)<a class="headerlink" href="#equation-ff9fbad0-92aa-4214-a4de-9316ede06a09" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-08353f97-762a-4a91-8a50-c8ff80d4eb54">
+<span class="eqno">(4)<a class="headerlink" href="#equation-08353f97-762a-4a91-8a50-c8ff80d4eb54" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \hat{\phi}_{\alpha_{k}},\hat{\phi}_{\alpha_{k}} \rangle  = 1
 \end{align}\]</div>
 <p>This results in <span class="math notranslate nohighlight">\(n +1\)</span> equations for the <span class="math notranslate nohighlight">\(n\)</span> unknown coeffecients <span class="math notranslate nohighlight">\(a_{k}\)</span> and eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
