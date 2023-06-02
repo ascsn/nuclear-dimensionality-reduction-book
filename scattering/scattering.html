@@ -167,6 +167,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Application 2: Two body single channel nuclear scattering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="eim.html">Application 3: The Empirical Interpolation Method</a></li>
 
+<li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
+
+
+
 <li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
 </ul>
 
@@ -427,19 +431,19 @@ document.write(`
 <h1>Application 2: Two body single channel nuclear scattering<a class="headerlink" href="#application-2-two-body-single-channel-nuclear-scattering" title="Permalink to this heading">#</a></h1>
 <p>Contributed by: Daniel Odell, Pablo Giuliani.</p>
 <p>We have the following Hamiltonian as the radial part of the scattering equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-019bc168-19e0-42f7-992e-b42043f75db0">
-<span class="eqno">(5)<a class="headerlink" href="#equation-019bc168-19e0-42f7-992e-b42043f75db0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5948d753-79ca-4487-8d93-637adf7db286">
+<span class="eqno">(5)<a class="headerlink" href="#equation-5948d753-79ca-4487-8d93-637adf7db286" title="Permalink to this equation">#</a></span>\[\begin{equation}
     F_\alpha(\phi)=\left(-\frac{d^2}{dr^2}+\frac{\ell(\ell+1)}{r^2}+U(r,\alpha)-p^2\right)\phi(r)=0,
 \end{equation}\]</div>
 <p>where a system with reduced mass <span class="math notranslate nohighlight">\(\mu\)</span> interacts through a potential <span class="math notranslate nohighlight">\(V(r,\alpha)=U(r,\alpha)/2\mu\)</span> with parameters <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\ell\)</span> is the angular momentum quantum number, and <span class="math notranslate nohighlight">\(p\)</span> is the asymptotic linear momentum. Using an optical potential for <span class="math notranslate nohighlight">\(V(r,\alpha)\)</span> this equation could model, for example, how neutrons interact with nuclei as we explained in the introduction section.</p>
 <p>We can re-scale this equation with the changes of variables <span class="math notranslate nohighlight">\(s=pr\)</span> making it possible for us to apply the RBM across energies. We obtain the following equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e93a13be-fd6e-4c40-824a-f0985f720833">
-<span class="eqno">(6)<a class="headerlink" href="#equation-e93a13be-fd6e-4c40-824a-f0985f720833" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f1612723-7bc7-40f5-b755-ac4c4a2ad04e">
+<span class="eqno">(6)<a class="headerlink" href="#equation-f1612723-7bc7-40f5-b755-ac4c4a2ad04e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(-\frac{d^2}{ds^2}+\frac{\ell(\ell+1)}{s^2}+\tilde U(s,\alpha,p)-1\right)\phi_\alpha(s)=0,
 \end{equation}\]</div>
 <p>where the potential <span class="math notranslate nohighlight">\(\tilde U(s,\alpha,p)=V(s/p,\alpha)2\mu/p^2\)</span> is now momentum dependent. We now proceed to construct a high fidelity solver for this equation which we will use to build a Reduced Basis using Principal Component Analysis, and later project with the Galerkin equaitons. As a first implementation, we will use the <a class="reference external" href="https://linkinghub.elsevier.com/retrieve/pii/0375947477900070">Minnesota potential</a>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b80df4ff-dcf0-46c0-b87f-da614cab3022">
-<span class="eqno">(7)<a class="headerlink" href="#equation-b80df4ff-dcf0-46c0-b87f-da614cab3022" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-19965e42-7ba5-49ed-9704-935867521b21">
+<span class="eqno">(7)<a class="headerlink" href="#equation-19965e42-7ba5-49ed-9704-935867521b21" title="Permalink to this equation">#</a></span>\[\begin{equation}
 U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
 \end{equation}\]</div>
 <p>where the parameters are <span class="math notranslate nohighlight">\(\alpha=[V_{0R},V_{0S}]\)</span>. We have kept the non-linear parameter dependence of the potential (the coefficients multiplying <span class="math notranslate nohighlight">\(r^2\)</span> on the exponentials) fixed on their original values. We will vary them in the next section when we explore the Empirical Interpolation Method (see chapter V of <a class="reference external" href="https://link.springer.com/book/10.1007/978-3-319-22470-1">this book</a>). We also work with the S wave (<span class="math notranslate nohighlight">\(l=0\)</span>) in this example.</p>
@@ -608,8 +612,8 @@ U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
 </div>
 <p>Very interestingly, if we were to now use this as our reduced basis, our projection equations will give us the solution constantly equal to zero <span class="math notranslate nohighlight">\(\hat \phi(r) =0\)</span> and <span class="math notranslate nohighlight">\(a_k=0\)</span>. The reason is that the scattering problem is homogeneous in the function <span class="math notranslate nohighlight">\(\phi\)</span> (the function zero is a valid solution). To get around this, we could impose a boundary condition, for example the asymptotic normalizations used in similar emulator papers (see <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0370269320305220">this one</a> and <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0370269321007176">this one</a>).</p>
 <p>Another way around it is to use the <span class="math notranslate nohighlight">\(\phi_0\)</span> component avaialble in the RB expansion (look <a class="reference external" href="https://arxiv.org/abs/2203.05284v2">here</a> for details):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cdc71f1c-d4a4-4fc3-8bff-2f660a4f5d3a">
-<span class="eqno">(8)<a class="headerlink" href="#equation-cdc71f1c-d4a4-4fc3-8bff-2f660a4f5d3a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ec865180-30fa-4fa1-8d94-a1425e0a69a4">
+<span class="eqno">(8)<a class="headerlink" href="#equation-ec865180-30fa-4fa1-8d94-a1425e0a69a4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \phi \approx \hat\phi = \phi_0 + \sum_k^n a_k \phi_k
 \end{equation}\]</div>
 <p>We follow this approach by selecting <span class="math notranslate nohighlight">\(\phi_0\)</span> as the free solution in the abscence of any potential. We re-define our principal components as the differences between this free solution and the high fidelity solutions for the different parameter values.</p>
@@ -692,8 +696,8 @@ U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
 </div>
 </div>
 <p>Now our new RB has by construction a zero derivative at <span class="math notranslate nohighlight">\(s=0\)</span>, the normalization condition of <span class="math notranslate nohighlight">\(\phi'(s=0)=1\)</span> is entirely carried out by the <span class="math notranslate nohighlight">\(\phi_0\)</span> term. Our Galerkin equations look like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-85353af7-ca69-4503-962a-3da49b6921dc">
-<span class="eqno">(9)<a class="headerlink" href="#equation-85353af7-ca69-4503-962a-3da49b6921dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bff48558-f4d9-4e4a-9852-8057138b4fb1">
+<span class="eqno">(9)<a class="headerlink" href="#equation-bff48558-f4d9-4e4a-9852-8057138b4fb1" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \langle \psi_j | F(\hat\phi) \rangle = \langle \psi_j | F(\phi_0) \rangle + \sum_k ^n a_k\langle \psi_j | F(\phi_k) \rangle =0
 \end{equation}\]</div>
 <p>These <span class="math notranslate nohighlight">\(n\)</span> (<span class="math notranslate nohighlight">\(j\)</span> goes from 1 to <span class="math notranslate nohighlight">\(n\)</span>) equations can be written in a matrix form <span class="math notranslate nohighlight">\(Aa=b\)</span>, where <span class="math notranslate nohighlight">\(a=(a_1,a_2,...a_n)\)</span>, the matrix <span class="math notranslate nohighlight">\(A\)</span> is form by the inner products between the projectors <span class="math notranslate nohighlight">\(\langle\psi_k|\)</span> and the operator <span class="math notranslate nohighlight">\(F_\alpha\)</span> acting on each one of the basis <span class="math notranslate nohighlight">\(|\phi_k\rangle\)</span>, and <span class="math notranslate nohighlight">\(b\)</span> is the non-homogenous term obtaining from the projection of <span class="math notranslate nohighlight">\(F_\alpha(\phi_0)\)</span> onto the <span class="math notranslate nohighlight">\(\psi_j\)</span>. This last term acts, in some sense, as a “source” for creating the non-homogenous solution to the approximated differential scattering equation through <span class="math notranslate nohighlight">\(F_\alpha\)</span>, which has information on the parameters <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>

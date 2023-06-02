@@ -22,10 +22,10 @@ Movie_Maker(RB_wf_movie,RB_rho_movie,Omega_Val0,'RB_solver')
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1774/877340278.py[0m in [0;36m<module>[0;34m[0m
+[0;32m/tmp/ipykernel_1833/877340278.py[0m in [0;36m<module>[0;34m[0m
 [0;32m----> 1[0;31m [0mMovie_Maker[0m[0;34m([0m[0mRB_wf_movie[0m[0;34m,[0m[0mRB_rho_movie[0m[0;34m,[0m[0mOmega_Val0[0m[0;34m,[0m[0;34m'RB_solver'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
-[0;32m/tmp/ipykernel_1774/2653633946.py[0m in [0;36mMovie_Maker[0;34m(wf_lists, rholists, Omega_Value, name)[0m
+[0;32m/tmp/ipykernel_1833/2653633946.py[0m in [0;36mMovie_Maker[0;34m(wf_lists, rholists, Omega_Value, name)[0m
 [1;32m     29[0m [0;34m[0m[0m
 [1;32m     30[0m     [0mFFwriter[0m [0;34m=[0m [0manimation[0m[0;34m.[0m[0mFFMpegWriter[0m[0;34m([0m[0mfps[0m[0;34m=[0m[0mframe_per_second[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0;32m---> 31[0;31m     [0manim[0m[0;34m.[0m[0msave[0m[0;34m([0m[0mname[0m[0;34m+[0m[0;34m'.mp4'[0m[0;34m,[0m [0mwriter[0m[0;34m=[0m[0mFFwriter[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
