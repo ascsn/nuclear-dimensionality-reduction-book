@@ -1,0 +1,1492 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Application 4: Time Dependent Systems (evolution in the reduced space) &#8212; Reduced Basis Methods in Nuclear Physics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'HO_Time/HO_Time_Dependent';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../landing.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing.html">
+                    Introduction to Reduced-Basis Methods in Nuclear Physics
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/emulators.html">Why emulators?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ho/1dHO.html">Application 1: The Quantum Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/kylegodbey/nuclear-rbm/main?urlpath=tree/nuclear-rbm/HO_Time/HO_Time_Dependent.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/kylegodbey/nuclear-rbm/blob/main/nuclear-rbm/HO_Time/HO_Time_Dependent.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kylegodbey/nuclear-rbm" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kylegodbey/nuclear-rbm/issues/new?title=Issue%20on%20page%20%2FHO_Time/HO_Time_Dependent.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/HO_Time/HO_Time_Dependent.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Application 4: Time Dependent Systems (evolution in the reduced space)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver-approach">High fidelity solver approach</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basis-method-approach">Reduced Basis Method Approach</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega">Comparing the RBM and the High Fidelity for a fixed value of <span class="math notranslate nohighlight">\(\omega\)</span></a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="application-4-time-dependent-systems-evolution-in-the-reduced-space">
+<h1>Application 4: Time Dependent Systems (evolution in the reduced space)<a class="headerlink" href="#application-4-time-dependent-systems-evolution-in-the-reduced-space" title="Permalink to this heading">#</a></h1>
+<p>Contributed by: Pablo Giuliani, Kyle Godbey, Edgard Bonilla</p>
+<p>In this section we are going to take a look at the time evolution of a quantum system using the reduced basis method (<a class="reference external" href="https://doi.org/10.1016/j.cma.2006.08.004">take a look here for an example practical and more complex non-quantum application</a>). We will focus on the harmonic oscillator for our first exploration (we will try a self interacting particle in the next chapter about non-linear systems). Our Hamiltonian is:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4b11774b-0573-4c2c-bf22-7d7d29b8a1b4">
+<span class="eqno">()<a class="headerlink" href="#equation-4b11774b-0573-4c2c-bf22-7d7d29b8a1b4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    H = -\frac{\partial^2}{\partial x^2} + \omega^2 x^2
+\end{equation}\]</div>
+<p>Let us drop the numerical constants to simplify notation (<span class="math notranslate nohighlight">\(\hbar=1\)</span>).</p>
+<p>The evolution of a quantum mechanical wave function is <a class="reference external" href="https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics)#Schr%C3%B6dinger_equation">described through Schrodinger equation as</a>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1b948214-3fe0-421e-9fc9-1ebf8bcdd4cc">
+<span class="eqno">()<a class="headerlink" href="#equation-1b948214-3fe0-421e-9fc9-1ebf8bcdd4cc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    H \left| \phi (t,x) \right\rangle = i  {\partial\over\partial t} \left| \phi (t,x) \right\rangle,
+\end{equation}\]</div>
+<p>which results in the evolution operator from an initial state:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1f442e37-b703-4287-9630-70ba4827b98a">
+<span class="eqno">()<a class="headerlink" href="#equation-1f442e37-b703-4287-9630-70ba4827b98a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \left| \phi (t,x) \right\rangle = e^{-iHt} | \phi (0,x) \rangle.
+\end{equation}\]</div>
+<p>To solve the problem numerically, the evolution operator is usually expanded in its Taylor approximation and a finite time step <span class="math notranslate nohighlight">\(\Delta t\)</span> is taken:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-99faea41-fc66-42eb-a8fe-5ed7ec8fa3c3">
+<span class="eqno">()<a class="headerlink" href="#equation-99faea41-fc66-42eb-a8fe-5ed7ec8fa3c3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \left| \phi (\Delta t,x) \right\rangle \approx \big(1 + (-iH\Delta t) + \frac{1}{2} (-iH\Delta t)^2 + ... \big) | \phi (0,x) \rangle.
+\end{equation}\]</div>
+<p>In this chapter, we will still use the evolution operator to study the dynamics of the system, but we will build it in the reduced space.  The state <span class="math notranslate nohighlight">\(\phi(x,t)\)</span> will be transformed into their reduced approximations:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3762eac8-356c-495f-ba64-09ceba7bc89f">
+<span class="eqno">()<a class="headerlink" href="#equation-3762eac8-356c-495f-ba64-09ceba7bc89f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \phi(x,t) \approx \hat \phi(x,t) = \sum_k^n a_k(t) \phi_k(x),
+\end{equation}\]</div>
+<p>where now the coefficients <span class="math notranslate nohighlight">\(a_k\)</span> explicitely depend on time (as well as any parameters of the system). The Hamiltonian will be transformed in a reduced version as well when substituting the reduced basis approximation and doing a Galerkin projection of the dynamic evolution equaiton. Using our previous notation we have:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4116463f-c916-4dd9-8d8d-f7fdc0303fb9">
+<span class="eqno">()<a class="headerlink" href="#equation-4116463f-c916-4dd9-8d8d-f7fdc0303fb9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   F_\alpha[ \phi(x,t) ]=  {\partial\over\partial t} \phi (t,x) +iH\phi (t,x) =0,
+\end{equation}\]</div>
+<p>we can substitude <span class="math notranslate nohighlight">\(\phi(x,t)\)</span> with <span class="math notranslate nohighlight">\(\hat \phi(x,t)\)</span> and project:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b8380c7c-5bc3-4fa4-ab62-9ffe79f44031">
+<span class="eqno">()<a class="headerlink" href="#equation-b8380c7c-5bc3-4fa4-ab62-9ffe79f44031" title="Permalink to this equation">#</a></span>\[\begin{equation}
+   \langle \phi_j(x) | F_\alpha[ \hat \phi(x,t) ] \rangle =0 \ \text{for j=1, ... n}.
+\end{equation}\]</div>
+<p>We will choose our <span class="math notranslate nohighlight">\(\phi_k\)</span> as the Pricinpal Components of several snapshots, meaning that <span class="math notranslate nohighlight">\(\langle \phi_j | \phi_k\rangle = \delta_j^k\)</span>, which leads to the dynamic equations for the coefficients:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-ab6713f5-85f7-48a8-8862-f9eb7381f52b">
+<span class="eqno">()<a class="headerlink" href="#equation-ab6713f5-85f7-48a8-8862-f9eb7381f52b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+ \frac{d}{dt}a_j(t) - i\hat H \boldsymbol{a}(t) =0,
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{a}(t) = \{a_1(t), ... a_n(t) \}\)</span> and the reduced Hamiltonian is computed as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6b36c86f-29dc-4fe4-b700-7ddfdbfa2d09">
+<span class="eqno">()<a class="headerlink" href="#equation-6b36c86f-29dc-4fe4-b700-7ddfdbfa2d09" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \hat H_{j,k} = \langle \phi_j | H | \phi_k \rangle.
+\end{equation}\]</div>
+<p>We now have to solve for the evolution of <span class="math notranslate nohighlight">\(n\)</span> (usually small) number of coefficients in time. The RBM solution will be much more efficient in time thanks to both the fact that <span class="math notranslate nohighlight">\(n\ll N\)</span> (<span class="math notranslate nohighlight">\(N\)</span> being the dimension of the traditional high fidelity solver), and that <span class="math notranslate nohighlight">\(\Delta t\)</span> can be taken appreciably bigger and still recover a stable solution.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">animation</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">expm</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">lstsq</span>
+
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">timeit</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="high-fidelity-solver-approach">
+<h1>High fidelity solver approach<a class="headerlink" href="#high-fidelity-solver-approach" title="Permalink to this heading">#</a></h1>
+<p>We beging by creating the derivative operator and the evolution equations in the high fidelity solver approach through a finite element method</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_second_derivative_matrix</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">dx</span><span class="p">):</span>
+    <span class="c1"># Generate the matrix for the second derivative using a five-point stencil</span>
+    <span class="n">main_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mf">5.0</span> <span class="o">/</span><span class="mi">2</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">off_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span> <span class="mi">4</span><span class="o">/</span><span class="mi">3</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">off_diag2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">12</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    
+    <span class="n">D2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">main_diag</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">off_diag</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">off_diag</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">off_diag2</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">off_diag2</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Modify the matrix for the Dirichlet boundary conditions</span>
+    <span class="n">D2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mf">15.0</span> <span class="o">/</span><span class="mi">12</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">D2</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">/</span><span class="mi">12</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">D2</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    
+    <span class="n">D2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">15</span> <span class="o">/</span><span class="mi">12</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">D2</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">/</span><span class="mi">12</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">D2</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span><span class="o">/</span><span class="mi">12</span><span class="o">/</span><span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    
+    <span class="k">return</span> <span class="n">D2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#delay in seconds for the movies, since we are going to produce a lot of them!</span>
+<span class="n">frame_per_second</span><span class="o">=</span><span class="mi">60</span>
+
+<span class="n">x_max</span> <span class="o">=</span> <span class="mf">10.0</span>  <span class="c1"># Maximum coordinate value for the grid</span>
+
+<span class="n">N_grid</span><span class="o">=</span><span class="mi">150</span>
+<span class="c1"># Set up the coordinate grid</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">N_grid</span><span class="p">)</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">D2</span> <span class="o">=</span> <span class="n">generate_second_derivative_matrix</span><span class="p">(</span><span class="n">N_grid</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+<span class="n">Omega_Val0</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#We will fix the initial state of our system, but you can chance it and see what happens</span>
+
+<span class="n">initial_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">harmonic_oscillator_time_evolution</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">time_steps</span><span class="p">,</span> <span class="n">omega</span><span class="p">,</span><span class="n">total_order</span><span class="p">,</span><span class="n">N_grid</span><span class="p">):</span>
+
+    
+    
+    <span class="n">time_step_size</span><span class="o">=</span><span class="n">total_time</span><span class="o">/</span><span class="n">time_steps</span>
+    
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">N_grid</span><span class="p">)</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">D2</span> <span class="o">=</span> <span class="n">generate_second_derivative_matrix</span><span class="p">(</span><span class="n">N_grid</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+    
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    
+    
+    <span class="c1"># Compute the potential energy term</span>
+    <span class="n">V</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">omega</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span>
+    
+    <span class="c1"># Set up the Hamiltonian matrix</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="o">-</span><span class="n">D2</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+
+
+
+    <span class="c1"># Compute the time evolution</span>
+    <span class="n">state_evolution</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">rho_evolution</span><span class="o">=</span><span class="p">[]</span>
+   
+    
+    <span class="n">current_state</span> <span class="o">=</span> <span class="n">initial_state</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">initial_state</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
+    
+    
+    <span class="n">state_evolution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_state</span><span class="p">)</span>
+    <span class="n">rho_evolution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">current_state</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">current_state</span><span class="p">)))</span>
+    
+    
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">time_steps</span><span class="p">):</span>
+
+        <span class="n">next_state</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">current_state</span><span class="p">)</span>
+    
+        <span class="n">current_correction</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">current_state</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">total_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">current_correction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">time_step_size</span><span class="o">*</span><span class="n">H</span><span class="p">,</span><span class="n">current_correction</span><span class="p">)</span>
+            <span class="n">next_state</span><span class="o">=</span> <span class="n">next_state</span> <span class="o">+</span> <span class="n">current_correction</span>
+        
+  
+        
+        
+        <span class="n">next_state</span> <span class="o">=</span> <span class="n">next_state</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">next_state</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">next_state</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">)</span>
+        
+        <span class="n">state_evolution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_state</span><span class="p">)</span>
+        <span class="n">rho_evolution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">next_state</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">next_state</span><span class="p">)))</span>
+        <span class="n">current_state</span> <span class="o">=</span> <span class="n">next_state</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">state_evolution</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rho_evolution</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">HF_results0</span><span class="o">=</span><span class="n">harmonic_oscillator_time_evolution</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">Omega_Val0</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">150</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.87 s, sys: 1.5 s, total: 6.37 s
+Wall time: 3.2 s
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seconds_total</span><span class="o">=</span><span class="mi">10</span>
+<span class="c1">#Approximately how long we want our movie to last</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho_HF0</span><span class="o">=</span><span class="n">HF_results0</span><span class="p">[</span><span class="mi">1</span><span class="p">][::</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">HF_results0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">frame_per_second</span><span class="o">*</span><span class="n">seconds_total</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wf_HF0</span><span class="o">=</span><span class="n">HF_results0</span><span class="p">[</span><span class="mi">0</span><span class="p">][::</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">HF_results0</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">frame_per_second</span><span class="o">*</span><span class="n">seconds_total</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Movie_Maker</span><span class="p">(</span><span class="n">wf_lists</span><span class="p">,</span><span class="n">rholists</span><span class="p">,</span><span class="n">Omega_Value</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Omega_Value</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">initial_state</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">initial_state</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">)),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">line2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">line3</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+        <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],</span> <span class="p">[])</span>
+        <span class="k">return</span> <span class="n">line</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+
+
+        <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">wf_lists</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">)</span>
+        <span class="n">line2</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">wf_lists</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">)</span>
+        <span class="n">line3</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rholists</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">line</span><span class="p">,</span>
+
+<span class="c1">#     anim = FuncAnimation(fig, animate, init_func=init,</span>
+<span class="c1">#                                    frames=len(wf_lists), interval=frame_delay*1000, blit=True)</span>
+
+    
+    <span class="n">anim</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">,</span>
+                                   <span class="n">frames</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">wf_lists</span><span class="p">),</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    
+    <span class="n">FFwriter</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FFMpegWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="n">frame_per_second</span><span class="p">)</span>
+    <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.mp4&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">FFwriter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you are running this notebook locally, the following command will produce a movie of the real and imaginary part of the wave function, together with the density, all across 10 units of time</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">Movie_Maker</span><span class="p">(</span><span class="n">wf_HF0</span><span class="p">,</span><span class="n">rho_HF0</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span><span class="s1">&#39;HF_solver&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">timed</span> <span class="nb">eval</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+
+<span class="nn">/tmp/ipykernel_1774/2653633946.py</span> in <span class="ni">Movie_Maker</span><span class="nt">(wf_lists, rholists, Omega_Value, name)</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> 
+<span class="g g-Whitespace">     </span><span class="mi">30</span>     <span class="n">FFwriter</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FFMpegWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="n">frame_per_second</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">31</span>     <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.mp4&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">FFwriter</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">save</span><span class="nt">(self, filename, writer, fps, dpi, codec, bitrate, extra_args, metadata, extra_anim, savefig_kwargs, progress_callback)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1070</span>         <span class="c1"># widget (both are likewise done in savefig()).</span>
+<span class="g g-Whitespace">   </span><span class="mi">1071</span>         <span class="k">with</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s1">&#39;savefig.bbox&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}),</span> \
+<span class="ne">-&gt; </span><span class="mi">1072</span>              <span class="n">writer</span><span class="o">.</span><span class="n">saving</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fig</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">dpi</span><span class="p">),</span> \
+<span class="g g-Whitespace">   </span><span class="mi">1073</span>              <span class="n">cbook</span><span class="o">.</span><span class="n">_setattr_cm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fig</span><span class="o">.</span><span class="n">canvas</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1074</span>                                <span class="n">_is_saving</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">manager</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/contextlib.py</span> in <span class="ni">__enter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span>         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">112</span>             <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>         <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;generator didn&#39;t yield&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">saving</span><span class="nt">(self, fig, outfile, dpi, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span><span class="s2">         # This particular sequence is what contextlib.contextmanager wants</span>
+<span class="ne">--&gt; </span><span class="mi">232</span><span class="s2">         self.setup(fig, outfile, dpi, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span><span class="s2">         try:</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span><span class="s2">             yield self</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">setup</span><span class="nt">(self, fig, outfile, dpi)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span><span class="s2">         # Run here so that grab_frame() can write the data to a pipe. This</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span><span class="s2">         # eliminates the need for temp files.</span>
+<span class="ne">--&gt; </span><span class="mi">321</span><span class="s2">         self._run()</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span><span class="s2">     def _run(self):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">_run</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span><span class="s2">         self._proc = subprocess.Popen(</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span><span class="s2">             command, stdin=PIPE, stdout=PIPE, stderr=PIPE,</span>
+<span class="ne">--&gt; </span><span class="mi">333</span><span class="s2">             creationflags=subprocess_creation_flags)</span>
+<span class="g g-Whitespace">    </span><span class="mi">334</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span><span class="s2">     def finish(self):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py</span> in <span class="ni">__init__</span><span class="nt">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">798</span><span class="s2">                                 c2pread, c2pwrite,</span>
+<span class="g g-Whitespace">    </span><span class="mi">799</span><span class="s2">                                 errread, errwrite,</span>
+<span class="ne">--&gt; </span><span class="mi">800</span><span class="s2">                                 restore_signals, start_new_session)</span>
+<span class="g g-Whitespace">    </span><span class="mi">801</span><span class="s2">         except:</span>
+<span class="g g-Whitespace">    </span><span class="mi">802</span><span class="s2">             # Cleanup if the child failed starting.</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py</span> in <span class="ni">_execute_child</span><span class="nt">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1549</span><span class="s2">                         if errno_num == errno.ENOENT:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1550</span><span class="s2">                             err_msg += &#39;: &#39; + repr(err_filename)</span>
+<span class="ne">-&gt; </span><span class="mi">1551</span><span class="s2">                     raise child_exception_type(errno_num, err_msg, err_filename)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1552</span><span class="s2">                 raise child_exception_type(err_msg)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1553</span><span class="s2"> </span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;ffmpeg&#39;: &#39;ffmpeg&#39;
+</pre></div>
+</div>
+<img alt="../_images/89334dc1a31f19445938dc11e113a44e4e6be6df2bdd5fd70d86b3421418a946.png" src="../_images/89334dc1a31f19445938dc11e113a44e4e6be6df2bdd5fd70d86b3421418a946.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mf">0.5</span> <span class="o">*</span> <span class="mi">1</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span>
+         <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Potential $\alpha x^2$&#39;</span> <span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rho_HF0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Intermediate states $\phi(x,t)$&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">ij</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">55</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rho_HF0</span><span class="p">[</span><span class="n">ij</span><span class="o">*</span><span class="mi">2</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rho_HF0</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;grey&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Initial state $\phi_0$&#39;</span> <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">rho_HF0</span><span class="p">[</span><span class="mi">110</span><span class="p">],</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Final state $\phi(x,t_f)$&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># plt.plot(x,initial_state*np.conj(initial_state)/(np.dot(initial_state,np.conj(initial_state))*dx),color=&#39;r&#39;,alpha=0.5)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/e20b7861bd7e735778a86f528bebd06ce1a6f04b1dfe2f33b829fea765122f95.png" src="../_images/e20b7861bd7e735778a86f528bebd06ce1a6f04b1dfe2f33b829fea765122f95.png" />
+</div>
+</div>
+<p>This plot shows the evolution of the system after some time, highlighting the initial and final states. We will use the final state later for comparing the accuracy of the RBM emulator</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="reduced-basis-method-approach">
+<h1>Reduced Basis Method Approach<a class="headerlink" href="#reduced-basis-method-approach" title="Permalink to this heading">#</a></h1>
+<p>In the first part we focus on a fixed value of the parameter <span class="math notranslate nohighlight">\(\omega\)</span> and see if our time system lives in a low dimensional manifold. We will then emulate the dynamics across different values of <span class="math notranslate nohighlight">\(\omega\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Function that finds the initial state of the system in the reduced space</span>
+<span class="k">def</span> <span class="nf">find_best_linear_combination</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">basis_functions</span><span class="p">):</span>
+
+    <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">basis_func</span> <span class="k">for</span> <span class="n">basis_func</span> <span class="ow">in</span> <span class="n">basis_functions</span><span class="p">])</span>
+    <span class="n">coefficients</span><span class="p">,</span> <span class="n">residuals</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">lstsq</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">coefficients</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Funciton that makes the RB and the equations</span>
+<span class="k">def</span> <span class="nf">Galerkin_Helper</span><span class="p">(</span><span class="n">wf_list</span><span class="p">,</span><span class="n">total_basis</span><span class="p">,</span><span class="n">N_grid</span><span class="p">):</span>
+
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">N_grid</span><span class="p">)</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">D2</span> <span class="o">=</span> <span class="n">generate_second_derivative_matrix</span><span class="p">(</span><span class="n">N_grid</span><span class="p">,</span> <span class="n">dx</span><span class="p">)</span>
+    
+    <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">wf_list</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+    <span class="n">initial_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+    
+    <span class="n">kinetic_ham</span><span class="o">=-</span><span class="n">D2</span>
+    
+    
+    <span class="c1">#The harmonic term is calculated for a potential strenght of 1, and then you multiply it by new strenghts</span>
+    <span class="n">pot_ham</span><span class="o">=</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">phi_basis</span><span class="o">=</span><span class="p">[</span><span class="n">Vt</span><span class="p">[</span><span class="n">l</span><span class="p">]</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Vt</span><span class="p">[</span><span class="n">l</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">Vt</span><span class="p">[</span><span class="n">l</span><span class="p">])</span><span class="o">*</span><span class="n">dx</span><span class="p">))</span>    <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_basis</span><span class="p">)</span>   <span class="p">]</span>
+    
+    <span class="n">reduced_K_ham</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">total_basis</span><span class="p">,</span><span class="n">total_basis</span><span class="p">),</span><span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;complex_&#39;</span><span class="p">)</span>
+
+    <span class="n">reduced_pot_ham</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">total_basis</span><span class="p">,</span><span class="n">total_basis</span><span class="p">),</span><span class="n">dtype</span> <span class="o">=</span> <span class="s1">&#39;complex_&#39;</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_basis</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">total_basis</span><span class="p">):</span>
+            <span class="n">reduced_K_ham</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">phi_basis</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="n">kinetic_ham</span>    <span class="p">,</span> <span class="n">phi_basis</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">)</span>   <span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+            <span class="n">reduced_pot_ham</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="o">=</span>   <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">phi_basis</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="n">pot_ham</span>    <span class="p">,</span> <span class="n">phi_basis</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="p">)</span>   <span class="p">)</span><span class="o">*</span><span class="n">dx</span>
+
+    
+    <span class="n">a0</span><span class="o">=</span><span class="n">find_best_linear_combination</span><span class="p">(</span><span class="n">initial_state</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">initial_state</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">)),</span><span class="n">phi_basis</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">[[</span><span class="n">reduced_K_ham</span><span class="p">,</span><span class="n">reduced_pot_ham</span><span class="p">],[</span><span class="n">x</span><span class="p">,</span><span class="n">phi_basis</span><span class="p">,</span><span class="n">a0</span><span class="p">],[</span><span class="n">Vt</span><span class="p">,</span><span class="n">S</span><span class="p">]]</span>
+    
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>Lets take a look at the first three principal components from the snapshots of the single movie we made</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RBM_stuff</span><span class="o">=</span><span class="n">Galerkin_Helper</span><span class="p">(</span><span class="n">wf_HF0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">150</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#We select three basis and obtain the following gorgeous functions:</span>
+<span class="n">nbasis</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+
+
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbasis</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">RBM_stuff</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span> <span class="p">,</span> <span class="p">:]))</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set_prop_cycle</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+    
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nbasis</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">RBM_stuff</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span> <span class="p">,</span> <span class="p">:]),</span><span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">)</span>    
+    
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$x$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$u_{\rm train}^{({\rm SVD})}$&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8a5baa2a475cfefc976eed4f347ddc788a77ae304d02f0a828ace1223d0f4142.png" src="../_images/8a5baa2a475cfefc976eed4f347ddc788a77ae304d02f0a828ace1223d0f4142.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Function that runs the time evolution of the system</span>
+<span class="k">def</span> <span class="nf">solve_linear_system_continuos</span><span class="p">(</span><span class="n">RBM_stuff</span><span class="p">,</span> <span class="n">Omega_Val</span><span class="p">,</span> <span class="n">total_time</span><span class="p">,</span> <span class="n">time_steps</span><span class="p">,</span><span class="n">total_order</span><span class="p">):</span>
+    
+    
+    <span class="n">A</span><span class="o">=-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="p">(</span><span class="n">RBM_stuff</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">Omega_Val</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">RBM_stuff</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">y0</span><span class="o">=</span><span class="n">RBM_stuff</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+
+    <span class="n">state_evolution</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">time_step_size</span><span class="o">=</span><span class="n">total_time</span><span class="o">/</span><span class="n">time_steps</span>
+    
+    <span class="n">current_state</span> <span class="o">=</span> <span class="n">y0</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">y0</span><span class="p">)</span>
+    
+    
+    <span class="n">state_evolution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_state</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">time_steps</span><span class="p">):</span>
+
+        <span class="n">next_state</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">current_state</span><span class="p">)</span>
+    
+        <span class="n">current_correction</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">current_state</span><span class="p">)</span>
+        
+                
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">total_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">current_correction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="mi">1</span><span class="o">/</span><span class="n">j</span><span class="o">*</span><span class="n">time_step_size</span><span class="o">*</span><span class="n">A</span><span class="p">,</span><span class="n">current_correction</span><span class="p">)</span>
+            <span class="n">next_state</span><span class="o">=</span> <span class="n">next_state</span> <span class="o">+</span> <span class="n">current_correction</span>
+      
+        
+        <span class="n">next_state</span> <span class="o">=</span> <span class="n">next_state</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">next_state</span><span class="p">)</span>
+        
+        <span class="n">state_evolution</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">next_state</span><span class="p">)</span>
+
+        <span class="n">current_state</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">next_state</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">state_evolution</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">sol_rbm</span><span class="o">=</span><span class="n">solve_linear_system_continuos</span><span class="p">(</span><span class="n">RBM_stuff</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 251 ms, sys: 157 µs, total: 251 ms
+Wall time: 251 ms
+</pre></div>
+</div>
+</div>
+</div>
+<p>Super fast for a specific case! We can also check how the wave function looks across the entire evolution</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">wf_rbms</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">sol_rbm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">RBM_stuff</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sol_rbm</span><span class="p">))]</span> <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rho_rbms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">wf_rbms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">wf_rbms</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sol_rbm</span><span class="p">))])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RB_rho_movie</span><span class="o">=</span><span class="n">rho_rbms</span><span class="p">[::</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rho_rbms</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">frame_per_second</span><span class="o">*</span><span class="n">seconds_total</span><span class="p">)))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RB_wf_movie</span><span class="o">=</span><span class="n">wf_rbms</span><span class="p">[::</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">wf_rbms</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">frame_per_second</span><span class="o">*</span><span class="n">seconds_total</span><span class="p">)))]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">RB_rho_movie</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">initial_state</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">initial_state</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># plt.xlim(-3,3)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/36a0fe524e3893b24dbe3de55d31753b998eeba24bf1661508e2747692faa288.png" src="../_images/36a0fe524e3893b24dbe3de55d31753b998eeba24bf1661508e2747692faa288.png" />
+</div>
+</div>
+<p>And lets also make a movie!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Movie_Maker</span><span class="p">(</span><span class="n">RB_wf_movie</span><span class="p">,</span><span class="n">RB_rho_movie</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span><span class="s1">&#39;RB_solver&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1774</span><span class="o">/</span><span class="mf">877340278.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Movie_Maker</span><span class="p">(</span><span class="n">RB_wf_movie</span><span class="p">,</span><span class="n">RB_rho_movie</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span><span class="s1">&#39;RB_solver&#39;</span><span class="p">)</span>
+
+<span class="nn">/tmp/ipykernel_1774/2653633946.py</span> in <span class="ni">Movie_Maker</span><span class="nt">(wf_lists, rholists, Omega_Value, name)</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span> 
+<span class="g g-Whitespace">     </span><span class="mi">30</span>     <span class="n">FFwriter</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FFMpegWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="n">frame_per_second</span><span class="p">)</span>
+<span class="ne">---&gt; </span><span class="mi">31</span>     <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.mp4&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">FFwriter</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">save</span><span class="nt">(self, filename, writer, fps, dpi, codec, bitrate, extra_args, metadata, extra_anim, savefig_kwargs, progress_callback)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1070</span>         <span class="c1"># widget (both are likewise done in savefig()).</span>
+<span class="g g-Whitespace">   </span><span class="mi">1071</span>         <span class="k">with</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s1">&#39;savefig.bbox&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}),</span> \
+<span class="ne">-&gt; </span><span class="mi">1072</span>              <span class="n">writer</span><span class="o">.</span><span class="n">saving</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fig</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">dpi</span><span class="p">),</span> \
+<span class="g g-Whitespace">   </span><span class="mi">1073</span>              <span class="n">cbook</span><span class="o">.</span><span class="n">_setattr_cm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fig</span><span class="o">.</span><span class="n">canvas</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1074</span>                                <span class="n">_is_saving</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">manager</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/contextlib.py</span> in <span class="ni">__enter__</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">110</span>         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span>
+<span class="g g-Whitespace">    </span><span class="mi">111</span>         <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">112</span>             <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">113</span>         <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">114</span>             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;generator didn&#39;t yield&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">saving</span><span class="nt">(self, fig, outfile, dpi, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">231</span><span class="s2">         # This particular sequence is what contextlib.contextmanager wants</span>
+<span class="ne">--&gt; </span><span class="mi">232</span><span class="s2">         self.setup(fig, outfile, dpi, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">233</span><span class="s2">         try:</span>
+<span class="g g-Whitespace">    </span><span class="mi">234</span><span class="s2">             yield self</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">setup</span><span class="nt">(self, fig, outfile, dpi)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span><span class="s2">         # Run here so that grab_frame() can write the data to a pipe. This</span>
+<span class="g g-Whitespace">    </span><span class="mi">320</span><span class="s2">         # eliminates the need for temp files.</span>
+<span class="ne">--&gt; </span><span class="mi">321</span><span class="s2">         self._run()</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">323</span><span class="s2">     def _run(self):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">_run</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">331</span><span class="s2">         self._proc = subprocess.Popen(</span>
+<span class="g g-Whitespace">    </span><span class="mi">332</span><span class="s2">             command, stdin=PIPE, stdout=PIPE, stderr=PIPE,</span>
+<span class="ne">--&gt; </span><span class="mi">333</span><span class="s2">             creationflags=subprocess_creation_flags)</span>
+<span class="g g-Whitespace">    </span><span class="mi">334</span><span class="s2"> </span>
+<span class="g g-Whitespace">    </span><span class="mi">335</span><span class="s2">     def finish(self):</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py</span> in <span class="ni">__init__</span><span class="nt">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
+<span class="g g-Whitespace">    </span><span class="mi">798</span><span class="s2">                                 c2pread, c2pwrite,</span>
+<span class="g g-Whitespace">    </span><span class="mi">799</span><span class="s2">                                 errread, errwrite,</span>
+<span class="ne">--&gt; </span><span class="mi">800</span><span class="s2">                                 restore_signals, start_new_session)</span>
+<span class="g g-Whitespace">    </span><span class="mi">801</span><span class="s2">         except:</span>
+<span class="g g-Whitespace">    </span><span class="mi">802</span><span class="s2">             # Cleanup if the child failed starting.</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py</span> in <span class="ni">_execute_child</span><span class="nt">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1549</span><span class="s2">                         if errno_num == errno.ENOENT:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1550</span><span class="s2">                             err_msg += &#39;: &#39; + repr(err_filename)</span>
+<span class="ne">-&gt; </span><span class="mi">1551</span><span class="s2">                     raise child_exception_type(errno_num, err_msg, err_filename)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1552</span><span class="s2">                 raise child_exception_type(err_msg)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1553</span><span class="s2"> </span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;ffmpeg&#39;: &#39;ffmpeg&#39;
+</pre></div>
+</div>
+<img alt="../_images/89334dc1a31f19445938dc11e113a44e4e6be6df2bdd5fd70d86b3421418a946.png" src="../_images/89334dc1a31f19445938dc11e113a44e4e6be6df2bdd5fd70d86b3421418a946.png" />
+</div>
+</div>
+<p>The next function creates a movie to compare two obtained densities. We can use it to check if the RBM is reproducing the evolution of the high fidelity density</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">Movie_Maker_densities</span><span class="p">(</span><span class="n">list_of_rhos1</span><span class="p">,</span><span class="n">list_of_rhos2</span><span class="p">,</span><span class="n">Omega_Value</span><span class="p">,</span><span class="n">name</span><span class="p">,</span><span class="n">legends</span><span class="p">):</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">Omega_Value</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,(</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span><span class="o">*</span><span class="n">initial_state</span><span class="p">)</span><span class="o">/</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">initial_state</span><span class="p">))</span><span class="o">*</span><span class="n">dx</span><span class="p">)),</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    
+    
+    <span class="n">line</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">legends</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">line2</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([],</span> <span class="p">[],</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;dashed&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">legends</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+        <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">([],</span> <span class="p">[])</span>
+        <span class="k">return</span> <span class="n">line</span><span class="p">,</span>
+    
+    
+    <span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+
+
+        <span class="n">line</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">list_of_rhos1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+        
+        
+        <span class="n">line2</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">list_of_rhos2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">)</span>
+<span class="c1">#         line3.set_data(x,rholists[i])</span>
+        <span class="k">return</span> <span class="n">line</span><span class="p">,</span>
+
+
+
+
+
+    <span class="n">anim</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">,</span>
+                                  <span class="n">frames</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_of_rhos1</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">list_of_rhos2</span><span class="p">)),</span>    <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+    <span class="n">FFwriter</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FFMpegWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="n">frame_per_second</span><span class="p">)</span>
+    <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;_Densities.mp4&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">FFwriter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Movie_Maker_densities</span><span class="p">(</span><span class="n">rho_HF0</span><span class="p">,</span><span class="n">RB_rho_movie</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span><span class="s1">&#39;RB-HF0&#39;</span><span class="p">,[</span><span class="s1">&#39;HF&#39;</span><span class="p">,</span><span class="s1">&#39;RBM&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/31cf5a06f9205bddfa79c21fd5a3605f5b92a85bfeeda0c7d9e1eb690334eefd.png" src="../_images/31cf5a06f9205bddfa79c21fd5a3605f5b92a85bfeeda0c7d9e1eb690334eefd.png" />
+</div>
+</div>
+<p>Looks good for this particular example</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega">
+<h1>Comparing the RBM and the High Fidelity for a fixed value of <span class="math notranslate nohighlight">\(\omega\)</span><a class="headerlink" href="#comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega" title="Permalink to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#This function defines a metric for us to judge how our methods work</span>
+<span class="k">def</span> <span class="nf">metric_function</span><span class="p">(</span><span class="n">true_list_full</span><span class="p">,</span><span class="n">calculated_list_full</span><span class="p">):</span>
+
+
+    <span class="n">x_calc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+    
+    <span class="n">dx</span><span class="o">=</span><span class="n">x_calc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x_calc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="n">x_true</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">true_list_full</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">x_calc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">calculated_list_full</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    
+    <span class="n">f_true</span><span class="o">=</span><span class="n">CubicSpline</span><span class="p">(</span><span class="n">x_true</span><span class="p">,</span> <span class="n">true_list_full</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">f_calc</span><span class="o">=</span><span class="n">CubicSpline</span><span class="p">(</span><span class="n">x_calc</span><span class="p">,</span> <span class="n">calculated_list_full</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">f_true</span><span class="p">(</span><span class="n">x_calc</span><span class="p">)</span><span class="o">-</span><span class="n">f_calc</span><span class="p">(</span><span class="n">x_calc</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">f_true</span><span class="p">(</span><span class="n">x_calc</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">metric_function</span><span class="p">(</span><span class="n">HF_results0</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">rho_rbms</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.017484555884774013
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the case we had before, it seems to be working well!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#central configuration:[time steps, total order, N_grid]</span>
+<span class="n">cent_config</span><span class="o">=</span><span class="p">[</span><span class="mi">10000</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">150</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#This is the &quot;truth&quot; that we will compare against</span>
+<span class="n">super_HF_config</span><span class="o">=</span><span class="p">[</span><span class="mi">20000</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">400</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
+<span class="n">HF_results_super</span><span class="o">=</span><span class="n">harmonic_oscillator_time_evolution</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">super_HF_config</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Omega_Val0</span><span class="p">,</span><span class="n">super_HF_config</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">super_HF_config</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14min 7s, sys: 34min 35s, total: 48min 42s
+Wall time: 2min 26s
+</pre></div>
+</div>
+</div>
+</div>
+<p>It takes a long time!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#This is how that very high resolution high fidelity solution looks like:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">HF_results_super</span><span class="p">[</span><span class="mi">1</span><span class="p">][::</span><span class="mi">100</span><span class="p">]</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7cec8b8c37e4960c8b7de6d178a118c9cfc088789c4b8f35d4ece1c22aa4ba55.png" src="../_images/7cec8b8c37e4960c8b7de6d178a118c9cfc088789c4b8f35d4ece1c22aa4ba55.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Different configurations for the high fidelity</span>
+
+<span class="n">HF_configs1</span><span class="o">=</span><span class="p">[</span>
+    
+    
+    <span class="p">[</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">2</span><span class="p">]],</span>
+     
+    <span class="p">[</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">40</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">60</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">80</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">100</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">200</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">cent_config</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">300</span><span class="p">],</span>
+ 
+    
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HF_res_conf1</span><span class="o">=</span><span class="p">[]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Lets compute how the different High Fidelity approaches are doing in comparison to the really precise one</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">HF_configs1</span><span class="p">)):</span>
+    
+    <span class="n">st</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">res_dummy</span><span class="o">=</span> <span class="n">harmonic_oscillator_time_evolution</span><span class="p">(</span><span class="n">initial_state</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">HF_configs1</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">Omega_Val0</span><span class="p">,</span><span class="n">HF_configs1</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">HF_configs1</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">et</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">HF_configs1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">et</span><span class="o">-</span><span class="n">st</span><span class="p">)</span>
+    <span class="n">HF_res_conf1</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">et</span><span class="o">-</span><span class="n">st</span><span class="p">,</span><span class="n">metric_function</span><span class="p">(</span><span class="n">HF_results_super</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">res_dummy</span><span class="p">[</span><span class="mi">1</span><span class="p">])])</span>
+    
+    
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[10000, 3, 150] 6.049285411834717
+[10000, 3, 40] 0.19251394271850586
+[10000, 3, 60] 0.22269678115844727
+[10000, 3, 80] 1.1031908988952637
+[10000, 3, 100] 1.5019428730010986
+[10000, 3, 200] 20.92787480354309
+[10000, 3, 300] 22.826255559921265
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">HF_res_conf1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">HF_res_conf1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The following funtion evaluates the RBM 100 times when computing the solution so we can have a better idea of how long it takes to evaluate</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">RBM_res_maker</span><span class="p">(</span><span class="n">rbm_config</span><span class="p">,</span><span class="n">HF_results_super</span><span class="p">):</span>
+    <span class="c1">#rbm_config = [numb basis, order, steps]</span>
+    <span class="n">numb_basis</span><span class="p">,</span> <span class="n">order</span><span class="p">,</span> <span class="n">steps</span> <span class="o">=</span><span class="n">rbm_config</span>
+
+    <span class="n">RBM_stuff_temp</span><span class="o">=</span><span class="n">Galerkin_Helper</span><span class="p">(</span><span class="n">HF_results_super</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">numb_basis</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">HF_results_super</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]))</span>
+    
+    <span class="n">st</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">sol_rbm</span><span class="o">=</span><span class="n">solve_linear_system_continuos</span><span class="p">(</span><span class="n">RBM_stuff_temp</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span><span class="n">steps</span><span class="p">,</span><span class="n">order</span><span class="p">)</span>
+    <span class="n">et</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    
+    <span class="n">number_calcs</span><span class="o">=</span><span class="mi">100</span>
+    
+    <span class="n">execution_time</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">timeit</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="n">solve_linear_system_continuos</span><span class="p">(</span><span class="n">RBM_stuff_temp</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span><span class="n">steps</span><span class="p">,</span><span class="n">order</span><span class="p">),</span> <span class="n">number</span><span class="o">=</span><span class="n">number_calcs</span><span class="p">)</span>
+    
+
+    <span class="n">wf_rbms</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">sol_rbm</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">RBM_stuff_temp</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sol_rbm</span><span class="p">))]</span> <span class="p">)</span>
+
+    <span class="n">rho_rbms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">wf_rbms</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">conj</span><span class="p">(</span><span class="n">wf_rbms</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sol_rbm</span><span class="p">))])</span>
+    
+    
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">execution_time</span><span class="o">/</span><span class="n">number_calcs</span><span class="p">,</span> <span class="n">metric_function</span><span class="p">(</span><span class="n">HF_results_super</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">rho_rbms</span><span class="p">)</span> <span class="p">]</span>
+
+    
+</pre></div>
+</div>
+</div>
+</div>
+<p>We create several configurations of the RB system. Note that now we can change not only the basis number <span class="math notranslate nohighlight">\(n\)</span>, but also the time step taken <span class="math notranslate nohighlight">\(\Delta t\)</span>, as well as the total order on the reduced Hamiltonian expansion.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">RBM_configs1</span><span class="o">=</span><span class="p">[</span>
+    
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">9</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">200</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">18</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">300</span><span class="p">],</span>
+    
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">50</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">70</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">70</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">100</span><span class="p">],</span>
+
+    
+<span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">res_rbm1</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">RBM_configs1</span><span class="p">)):</span>
+    
+    <span class="n">res_rb</span><span class="o">=</span><span class="n">RBM_res_maker</span><span class="p">(</span><span class="n">RBM_configs1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">HF_results_super</span><span class="p">)</span>
+    <span class="n">res_rbm1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">res_rb</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="n">RBM_configs1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">res_rb</span><span class="p">)</span>
+<span class="n">res_rbm1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">res_rbm1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[6, 6, 100] [0.002041093859988905, 0.0016046550153267945]
+[7, 6, 100] [0.00186289362000025, 0.00035783405861791864]
+[8, 6, 100] [0.002309614280002279, 0.0002148565946228041]
+[9, 6, 100] [0.0021074782799951207, 6.295439393898162e-05]
+[12, 6, 100] [0.0021446347699929902, 8.447686995178741e-06]
+[15, 6, 100] [0.0021209885200005373, 4.674995713984094e-05]
+[15, 6, 200] [0.003636440180016507, 3.4941366387066083e-07]
+[18, 6, 200] [0.003813176410003507, 3.026078519192635e-08]
+[18, 6, 300] [0.0054489675300101225, 7.585840713840379e-09]
+[2, 2, 50] [0.001217822039998282, 0.24715577041663786]
+[3, 3, 70] [0.0011377165500016417, 0.021654829164243102]
+[6, 4, 70] [0.0014645477900012338, 0.0021966204719722974]
+[6, 4, 100] [0.0017716050700073537, 0.001162328400873993]
+[7, 4, 100] [0.0017636181699890584, 0.0003315603863323719]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">total_rbms</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">res_rbm1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
+
+
+ 
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">HF_res_conf1</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">HF_res_conf1</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;High Fidelity&#39;</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">total_rbms</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">total_rbms</span><span class="o">.</span><span class="n">T</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">s</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;RBM&#39;</span><span class="p">)</span>
+
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Relative error final Density &#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">22</span><span class="p">,</span><span class="n">frameon</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;xtick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>    
+<span class="n">plt</span><span class="o">.</span><span class="n">rc</span><span class="p">(</span><span class="s1">&#39;ytick&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">),</span> <span class="mi">5</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">11</span><span class="p">),</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># show the plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/1cc4b555d3aedbd84c28f19e21754290bdbaff8269edecfa5e1f368faf1386fb.png" src="../_images/1cc4b555d3aedbd84c28f19e21754290bdbaff8269edecfa5e1f368faf1386fb.png" />
+</div>
+</div>
+<p>This Computational Accuracy vs Time plot (CAT plot) is an excellent way to compare the performance of the RB emulator with other methods like the high fidelity solver. Each method will trade accuracy for speed through some mechanism to control detail: the mesh size in the case of the finite element and the number of basis in the case of the RBM. Under these metrics the RBM is CATegorically different (for good) in this example when compare with the traditional way of solving the problem.</p>
+<p>We only observed the variation in time of the solution for a fixed value of the parameter <span class="math notranslate nohighlight">\(\omega\)</span>, but the generalization to emulate across <span class="math notranslate nohighlight">\(\omega\)</span> is straighforward (and indeed works well!). Give it a try, train the RB for several values of the parameters and create your own reduced order dynamical model. If you take a close look at each coefficient for different values of the parameter <span class="math notranslate nohighlight">\(\omega\)</span> you might find some patterns. What would happen if we run a Principal Component Analysis on those? Could we reduce the dimensionality of our system even further?</p>
+<p>Join us in the next chapter where we explore the time evolution of a more complicated nonlinear system!</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./HO_Time"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver-approach">High fidelity solver approach</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basis-method-approach">Reduced Basis Method Approach</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega">Comparing the RBM and the High Fidelity for a fixed value of <span class="math notranslate nohighlight">\(\omega\)</span></a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By RBM Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
