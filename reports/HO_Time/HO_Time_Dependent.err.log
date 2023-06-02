@@ -1,4 +1,15 @@
 Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/nbclient/client.py", line 730, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+  File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/nbclient/util.py", line 96, in ensure_async
+    result = await obj
+  File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/jupyter_client/channels.py", line 230, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
   File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/jupyter_cache/executors/utils.py", line 64, in single_nb_execution
     **kwargs,
   File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/nbclient/client.py", line 1204, in execute
@@ -11,74 +22,17 @@ Traceback (most recent call last):
     return future.result()
   File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/nbclient/client.py", line 664, in async_execute
     cell, index, execution_count=self.code_cells_executed + 1
-  File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/nbclient/client.py", line 965, in async_execute_cell
-    await self._check_raise_for_error(cell, cell_index, exec_reply)
-  File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
-    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
-nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
-------------------
-Movie_Maker(RB_wf_movie,RB_rho_movie,Omega_Val0,'RB_solver')
-------------------
-
-[0;31m---------------------------------------------------------------------------[0m
-[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1777/877340278.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mMovie_Maker[0m[0;34m([0m[0mRB_wf_movie[0m[0;34m,[0m[0mRB_rho_movie[0m[0;34m,[0m[0mOmega_Val0[0m[0;34m,[0m[0;34m'RB_solver'[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;32m/tmp/ipykernel_1777/2653633946.py[0m in [0;36mMovie_Maker[0;34m(wf_lists, rholists, Omega_Value, name)[0m
-[1;32m     29[0m [0;34m[0m[0m
-[1;32m     30[0m     [0mFFwriter[0m [0;34m=[0m [0manimation[0m[0;34m.[0m[0mFFMpegWriter[0m[0;34m([0m[0mfps[0m[0;34m=[0m[0mframe_per_second[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m---> 31[0;31m     [0manim[0m[0;34m.[0m[0msave[0m[0;34m([0m[0mname[0m[0;34m+[0m[0;34m'.mp4'[0m[0;34m,[0m [0mwriter[0m[0;34m=[0m[0mFFwriter[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m
-[0;32m/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py[0m in [0;36msave[0;34m(self, filename, writer, fps, dpi, codec, bitrate, extra_args, metadata, extra_anim, savefig_kwargs, progress_callback)[0m
-[1;32m   1070[0m         [0;31m# widget (both are likewise done in savefig()).[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   1071[0m         [0;32mwith[0m [0mmpl[0m[0;34m.[0m[0mrc_context[0m[0;34m([0m[0;34m{[0m[0;34m'savefig.bbox'[0m[0;34m:[0m [0;32mNone[0m[0;34m}[0m[0;34m)[0m[0;34m,[0m[0;31m [0m[0;31m\[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 1072[0;31m              [0mwriter[0m[0;34m.[0m[0msaving[0m[0;34m([0m[0mself[0m[0;34m.[0m[0m_fig[0m[0;34m,[0m [0mfilename[0m[0;34m,[0m [0mdpi[0m[0;34m)[0m[0;34m,[0m[0;31m [0m[0;31m\[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   1073[0m              cbook._setattr_cm(self._fig.canvas,
-[1;32m   1074[0m                                _is_saving=True, manager=None):
-
-[0;32m/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/contextlib.py[0m in [0;36m__enter__[0;34m(self)[0m
-[1;32m    110[0m         [0;32mdel[0m [0mself[0m[0;34m.[0m[0margs[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mkwds[0m[0;34m,[0m [0mself[0m[0;34m.[0m[0mfunc[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    111[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 112[0;31m             [0;32mreturn[0m [0mnext[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mgen[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    113[0m         [0;32mexcept[0m [0mStopIteration[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    114[0m             [0;32mraise[0m [0mRuntimeError[0m[0;34m([0m[0;34m"generator didn't yield"[0m[0;34m)[0m [0;32mfrom[0m [0;32mNone[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py[0m in [0;36msaving[0;34m(self, fig, outfile, dpi, *args, **kwargs)[0m
-[1;32m    230[0m         """
-[1;32m    231[0m         [0;31m# This particular sequence is what contextlib.contextmanager wants[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 232[0;31m         [0mself[0m[0;34m.[0m[0msetup[0m[0;34m([0m[0mfig[0m[0;34m,[0m [0moutfile[0m[0;34m,[0m [0mdpi[0m[0;34m,[0m [0;34m*[0m[0margs[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    233[0m         [0;32mtry[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    234[0m             [0;32myield[0m [0mself[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py[0m in [0;36msetup[0;34m(self, fig, outfile, dpi)[0m
-[1;32m    319[0m         [0;31m# Run here so that grab_frame() can write the data to a pipe. This[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    320[0m         [0;31m# eliminates the need for temp files.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 321[0;31m         [0mself[0m[0;34m.[0m[0m_run[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m    322[0m [0;34m[0m[0m
-[1;32m    323[0m     [0;32mdef[0m [0m_run[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py[0m in [0;36m_run[0;34m(self)[0m
-[1;32m    331[0m         self._proc = subprocess.Popen(
-[1;32m    332[0m             [0mcommand[0m[0;34m,[0m [0mstdin[0m[0;34m=[0m[0mPIPE[0m[0;34m,[0m [0mstdout[0m[0;34m=[0m[0mPIPE[0m[0;34m,[0m [0mstderr[0m[0;34m=[0m[0mPIPE[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 333[0;31m             creationflags=subprocess_creation_flags)
-[0m[1;32m    334[0m [0;34m[0m[0m
-[1;32m    335[0m     [0;32mdef[0m [0mfinish[0m[0;34m([0m[0mself[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py[0m in [0;36m__init__[0;34m(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)[0m
-[1;32m    798[0m                                 [0mc2pread[0m[0;34m,[0m [0mc2pwrite[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    799[0m                                 [0merrread[0m[0;34m,[0m [0merrwrite[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[0;32m--> 800[0;31m                                 restore_signals, start_new_session)
-[0m[1;32m    801[0m         [0;32mexcept[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m    802[0m             [0;31m# Cleanup if the child failed starting.[0m[0;34m[0m[0;34m[0m[0;34m[0m[0m
-
-[0;32m/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py[0m in [0;36m_execute_child[0;34m(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)[0m
-[1;32m   1549[0m                         [0;32mif[0m [0merrno_num[0m [0;34m==[0m [0merrno[0m[0;34m.[0m[0mENOENT[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   1550[0m                             [0merr_msg[0m [0;34m+=[0m [0;34m': '[0m [0;34m+[0m [0mrepr[0m[0;34m([0m[0merr_filename[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0;32m-> 1551[0;31m                     [0;32mraise[0m [0mchild_exception_type[0m[0;34m([0m[0merrno_num[0m[0;34m,[0m [0merr_msg[0m[0;34m,[0m [0merr_filename[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m   1552[0m                 [0;32mraise[0m [0mchild_exception_type[0m[0;34m([0m[0merr_msg[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-[1;32m   1553[0m [0;34m[0m[0m
-
-[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'ffmpeg': 'ffmpeg'
-FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg': 'ffmpeg'
+  File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/nbclient/client.py", line 949, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+  File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/nbclient/client.py", line 754, in _async_poll_for_reply
+    await self._async_handle_timeout(timeout, cell)
+  File "/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/nbclient/client.py", line 802, in _async_handle_timeout
+    "Cell execution timed out", timeout, cell
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
+%%time
+HF_results_super=harmonic_oscillator_time_evolution(initial_state, 10, super_HF_config[0], Omega_Val0,super_HF_config[1],super_HF_config[2])
+-------------------
 

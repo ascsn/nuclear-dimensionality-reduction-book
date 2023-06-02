@@ -434,49 +434,49 @@ document.write(`
 <h1>Application 4: Time Dependent Systems (evolution in the reduced space)<a class="headerlink" href="#application-4-time-dependent-systems-evolution-in-the-reduced-space" title="Permalink to this heading">#</a></h1>
 <p>Contributed by: Pablo Giuliani, Kyle Godbey, Edgard Bonilla</p>
 <p>In this section we are going to take a look at the time evolution of a quantum system using the reduced basis method (<a class="reference external" href="https://doi.org/10.1016/j.cma.2006.08.004">take a look here for an example practical and more complex non-quantum application</a>). We will focus on the harmonic oscillator for our first exploration (we will try a self interacting particle in the next chapter about non-linear systems). Our Hamiltonian is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-91838d7c-6e89-487f-9f13-5624406771f3">
-<span class="eqno">(23)<a class="headerlink" href="#equation-91838d7c-6e89-487f-9f13-5624406771f3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-00fe1797-7446-4f57-9b4d-6bf77d3fb810">
+<span class="eqno">(23)<a class="headerlink" href="#equation-00fe1797-7446-4f57-9b4d-6bf77d3fb810" title="Permalink to this equation">#</a></span>\[\begin{equation}
     H = -\frac{\partial^2}{\partial x^2} + \omega^2 x^2
 \end{equation}\]</div>
 <p>Let us drop the numerical constants to simplify notation (<span class="math notranslate nohighlight">\(\hbar=1\)</span>).</p>
 <p>The evolution of a quantum mechanical wave function is <a class="reference external" href="https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics)#Schr%C3%B6dinger_equation">described through Schrodinger equation as</a>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b136c2b6-3989-4432-b21e-db02806e1929">
-<span class="eqno">(24)<a class="headerlink" href="#equation-b136c2b6-3989-4432-b21e-db02806e1929" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a446fcb2-f863-4706-9319-c0632515b44d">
+<span class="eqno">(24)<a class="headerlink" href="#equation-a446fcb2-f863-4706-9319-c0632515b44d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     H \left| \phi (t,x) \right\rangle = i  {\partial\over\partial t} \left| \phi (t,x) \right\rangle,
 \end{equation}\]</div>
 <p>which results in the evolution operator from an initial state:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78af5bd8-f3f3-46e1-a425-d2c31062999a">
-<span class="eqno">(25)<a class="headerlink" href="#equation-78af5bd8-f3f3-46e1-a425-d2c31062999a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a54787c4-4296-4c5d-8f45-13072e98d688">
+<span class="eqno">(25)<a class="headerlink" href="#equation-a54787c4-4296-4c5d-8f45-13072e98d688" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left| \phi (t,x) \right\rangle = e^{-iHt} | \phi (0,x) \rangle.
 \end{equation}\]</div>
 <p>To solve the problem numerically, the evolution operator is usually expanded in its Taylor approximation and a finite time step <span class="math notranslate nohighlight">\(\Delta t\)</span> is taken:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2ca90d52-074c-4e22-b99d-8ab5f48c2dc5">
-<span class="eqno">(26)<a class="headerlink" href="#equation-2ca90d52-074c-4e22-b99d-8ab5f48c2dc5" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d2d2163b-d600-4855-8c4e-5ec3d6230f4e">
+<span class="eqno">(26)<a class="headerlink" href="#equation-d2d2163b-d600-4855-8c4e-5ec3d6230f4e" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left| \phi (\Delta t,x) \right\rangle \approx \big(1 + (-iH\Delta t) + \frac{1}{2} (-iH\Delta t)^2 + ... \big) | \phi (0,x) \rangle.
 \end{equation}\]</div>
 <p>In this chapter, we will still use the evolution operator to study the dynamics of the system, but we will build it in the reduced space.  The state <span class="math notranslate nohighlight">\(\phi(x,t)\)</span> will be transformed into their reduced approximations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-673954b6-d2ad-4f7f-bd3d-f9ddb3738ea7">
-<span class="eqno">(27)<a class="headerlink" href="#equation-673954b6-d2ad-4f7f-bd3d-f9ddb3738ea7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ab9542b2-788e-4526-8191-b8b4f13a4aa1">
+<span class="eqno">(27)<a class="headerlink" href="#equation-ab9542b2-788e-4526-8191-b8b4f13a4aa1" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \phi(x,t) \approx \hat \phi(x,t) = \sum_k^n a_k(t) \phi_k(x),
 \end{equation}\]</div>
 <p>where now the coefficients <span class="math notranslate nohighlight">\(a_k\)</span> explicitely depend on time (as well as any parameters of the system). The Hamiltonian will be transformed in a reduced version as well when substituting the reduced basis approximation and doing a Galerkin projection of the dynamic evolution equaiton. Using our previous notation we have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-de90555a-c63c-4b09-bec8-0a1a3d2f7d3f">
-<span class="eqno">(28)<a class="headerlink" href="#equation-de90555a-c63c-4b09-bec8-0a1a3d2f7d3f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-42b9199c-99be-4ba1-b803-31e72cd14751">
+<span class="eqno">(28)<a class="headerlink" href="#equation-42b9199c-99be-4ba1-b803-31e72cd14751" title="Permalink to this equation">#</a></span>\[\begin{equation}
    F_\alpha[ \phi(x,t) ]=  {\partial\over\partial t} \phi (t,x) +iH\phi (t,x) =0,
 \end{equation}\]</div>
 <p>we can substitude <span class="math notranslate nohighlight">\(\phi(x,t)\)</span> with <span class="math notranslate nohighlight">\(\hat \phi(x,t)\)</span> and project:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ccc01a67-6db4-413c-8314-a6cb415fa7d7">
-<span class="eqno">(29)<a class="headerlink" href="#equation-ccc01a67-6db4-413c-8314-a6cb415fa7d7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bc153d9e-6971-4667-a621-73e113383a9c">
+<span class="eqno">(29)<a class="headerlink" href="#equation-bc153d9e-6971-4667-a621-73e113383a9c" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \langle \phi_j(x) | F_\alpha[ \hat \phi(x,t) ] \rangle =0 \ \text{for j=1, ... n}.
 \end{equation}\]</div>
 <p>We will choose our <span class="math notranslate nohighlight">\(\phi_k\)</span> as the Pricinpal Components of several snapshots, meaning that <span class="math notranslate nohighlight">\(\langle \phi_j | \phi_k\rangle = \delta_j^k\)</span>, which leads to the dynamic equations for the coefficients:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-63f1b674-5405-4e57-900b-855bfec3226a">
-<span class="eqno">(30)<a class="headerlink" href="#equation-63f1b674-5405-4e57-900b-855bfec3226a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a22583f1-5349-4f8b-a6ec-c2c583be72a8">
+<span class="eqno">(30)<a class="headerlink" href="#equation-a22583f1-5349-4f8b-a6ec-c2c583be72a8" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \frac{d}{dt}a_j(t) - i\hat H \boldsymbol{a}(t) =0,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{a}(t) = \{a_1(t), ... a_n(t) \}\)</span> and the reduced Hamiltonian is computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0f2ebab1-954e-4f9f-b036-c1613224efe1">
-<span class="eqno">(31)<a class="headerlink" href="#equation-0f2ebab1-954e-4f9f-b036-c1613224efe1" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c8ea7754-959b-4e2f-bb7f-9ad87abb0a15">
+<span class="eqno">(31)<a class="headerlink" href="#equation-c8ea7754-959b-4e2f-bb7f-9ad87abb0a15" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat H_{j,k} = \langle \phi_j | H | \phi_k \rangle.
 \end{equation}\]</div>
 <p>We now have to solve for the evolution of <span class="math notranslate nohighlight">\(n\)</span> (usually small) number of coefficients in time. The RBM solution will be much more efficient in time thanks to both the fact that <span class="math notranslate nohighlight">\(n\ll N\)</span> (<span class="math notranslate nohighlight">\(N\)</span> being the dimension of the traditional high fidelity solver), and that <span class="math notranslate nohighlight">\(\Delta t\)</span> can be taken appreciably bigger and still recover a stable solution.</p>
@@ -620,8 +620,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.66 s, sys: 1.36 s, total: 6.02 s
-Wall time: 3.02 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.1 s, sys: 1.44 s, total: 6.55 s
+Wall time: 3.3 s
 </pre></div>
 </div>
 </div>
@@ -685,77 +685,13 @@ Wall time: 3.02 s
 </div>
 </div>
 </div>
-<p>If you are running this notebook locally, the following command will produce a movie of the real and imaginary part of the wave function, together with the density, all across 10 units of time</p>
+<p>If you are running this notebook locally, the following command will produce a movie of the real and imaginary part of the wave function, together with the density, all across 10 units of time. For the webpage version it is commented out to not break the book.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%time</span>
-<span class="n">Movie_Maker</span><span class="p">(</span><span class="n">wf_HF0</span><span class="p">,</span><span class="n">rho_HF0</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span><span class="s1">&#39;HF_solver&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># %%time</span>
+<span class="c1"># Movie_Maker(wf_HF0,rho_HF0,Omega_Val0,&#39;HF_solver&#39;)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">timed</span> <span class="nb">eval</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-
-<span class="nn">/tmp/ipykernel_1777/2653633946.py</span> in <span class="ni">Movie_Maker</span><span class="nt">(wf_lists, rholists, Omega_Value, name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> 
-<span class="g g-Whitespace">     </span><span class="mi">30</span>     <span class="n">FFwriter</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FFMpegWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="n">frame_per_second</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">31</span>     <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.mp4&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">FFwriter</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">save</span><span class="nt">(self, filename, writer, fps, dpi, codec, bitrate, extra_args, metadata, extra_anim, savefig_kwargs, progress_callback)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1070</span>         <span class="c1"># widget (both are likewise done in savefig()).</span>
-<span class="g g-Whitespace">   </span><span class="mi">1071</span>         <span class="k">with</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s1">&#39;savefig.bbox&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}),</span> \
-<span class="ne">-&gt; </span><span class="mi">1072</span>              <span class="n">writer</span><span class="o">.</span><span class="n">saving</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fig</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">dpi</span><span class="p">),</span> \
-<span class="g g-Whitespace">   </span><span class="mi">1073</span>              <span class="n">cbook</span><span class="o">.</span><span class="n">_setattr_cm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fig</span><span class="o">.</span><span class="n">canvas</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1074</span>                                <span class="n">_is_saving</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">manager</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/contextlib.py</span> in <span class="ni">__enter__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">112</span>             <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span>         <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;generator didn&#39;t yield&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">saving</span><span class="nt">(self, fig, outfile, dpi, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span><span class="s2">         # This particular sequence is what contextlib.contextmanager wants</span>
-<span class="ne">--&gt; </span><span class="mi">232</span><span class="s2">         self.setup(fig, outfile, dpi, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span><span class="s2">         try:</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span><span class="s2">             yield self</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">setup</span><span class="nt">(self, fig, outfile, dpi)</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span><span class="s2">         # Run here so that grab_frame() can write the data to a pipe. This</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span><span class="s2">         # eliminates the need for temp files.</span>
-<span class="ne">--&gt; </span><span class="mi">321</span><span class="s2">         self._run()</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span><span class="s2">     def _run(self):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">_run</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">331</span><span class="s2">         self._proc = subprocess.Popen(</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span><span class="s2">             command, stdin=PIPE, stdout=PIPE, stderr=PIPE,</span>
-<span class="ne">--&gt; </span><span class="mi">333</span><span class="s2">             creationflags=subprocess_creation_flags)</span>
-<span class="g g-Whitespace">    </span><span class="mi">334</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">335</span><span class="s2">     def finish(self):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py</span> in <span class="ni">__init__</span><span class="nt">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span><span class="s2">                                 c2pread, c2pwrite,</span>
-<span class="g g-Whitespace">    </span><span class="mi">799</span><span class="s2">                                 errread, errwrite,</span>
-<span class="ne">--&gt; </span><span class="mi">800</span><span class="s2">                                 restore_signals, start_new_session)</span>
-<span class="g g-Whitespace">    </span><span class="mi">801</span><span class="s2">         except:</span>
-<span class="g g-Whitespace">    </span><span class="mi">802</span><span class="s2">             # Cleanup if the child failed starting.</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py</span> in <span class="ni">_execute_child</span><span class="nt">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1549</span><span class="s2">                         if errno_num == errno.ENOENT:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1550</span><span class="s2">                             err_msg += &#39;: &#39; + repr(err_filename)</span>
-<span class="ne">-&gt; </span><span class="mi">1551</span><span class="s2">                     raise child_exception_type(errno_num, err_msg, err_filename)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1552</span><span class="s2">                 raise child_exception_type(err_msg)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1553</span><span class="s2"> </span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;ffmpeg&#39;: &#39;ffmpeg&#39;
-</pre></div>
-</div>
-<img alt="../_images/89334dc1a31f19445938dc11e113a44e4e6be6df2bdd5fd70d86b3421418a946.png" src="../_images/89334dc1a31f19445938dc11e113a44e4e6be6df2bdd5fd70d86b3421418a946.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -929,8 +865,8 @@ Wall time: 3.02 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 260 ms, sys: 0 ns, total: 260 ms
-Wall time: 260 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 254 ms, sys: 484 µs, total: 254 ms
+Wall time: 254 ms
 </pre></div>
 </div>
 </div>
@@ -980,74 +916,9 @@ Wall time: 260 ms
 <p>And lets also make a movie!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Movie_Maker</span><span class="p">(</span><span class="n">RB_wf_movie</span><span class="p">,</span><span class="n">RB_rho_movie</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span><span class="s1">&#39;RB_solver&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Movie_Maker(RB_wf_movie,RB_rho_movie,Omega_Val0,&#39;RB_solver&#39;)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1777</span><span class="o">/</span><span class="mf">877340278.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">Movie_Maker</span><span class="p">(</span><span class="n">RB_wf_movie</span><span class="p">,</span><span class="n">RB_rho_movie</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span><span class="s1">&#39;RB_solver&#39;</span><span class="p">)</span>
-
-<span class="nn">/tmp/ipykernel_1777/2653633946.py</span> in <span class="ni">Movie_Maker</span><span class="nt">(wf_lists, rholists, Omega_Value, name)</span>
-<span class="g g-Whitespace">     </span><span class="mi">29</span> 
-<span class="g g-Whitespace">     </span><span class="mi">30</span>     <span class="n">FFwriter</span> <span class="o">=</span> <span class="n">animation</span><span class="o">.</span><span class="n">FFMpegWriter</span><span class="p">(</span><span class="n">fps</span><span class="o">=</span><span class="n">frame_per_second</span><span class="p">)</span>
-<span class="ne">---&gt; </span><span class="mi">31</span>     <span class="n">anim</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39;.mp4&#39;</span><span class="p">,</span> <span class="n">writer</span><span class="o">=</span><span class="n">FFwriter</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">save</span><span class="nt">(self, filename, writer, fps, dpi, codec, bitrate, extra_args, metadata, extra_anim, savefig_kwargs, progress_callback)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1070</span>         <span class="c1"># widget (both are likewise done in savefig()).</span>
-<span class="g g-Whitespace">   </span><span class="mi">1071</span>         <span class="k">with</span> <span class="n">mpl</span><span class="o">.</span><span class="n">rc_context</span><span class="p">({</span><span class="s1">&#39;savefig.bbox&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">}),</span> \
-<span class="ne">-&gt; </span><span class="mi">1072</span>              <span class="n">writer</span><span class="o">.</span><span class="n">saving</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fig</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">dpi</span><span class="p">),</span> \
-<span class="g g-Whitespace">   </span><span class="mi">1073</span>              <span class="n">cbook</span><span class="o">.</span><span class="n">_setattr_cm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fig</span><span class="o">.</span><span class="n">canvas</span><span class="p">,</span>
-<span class="g g-Whitespace">   </span><span class="mi">1074</span>                                <span class="n">_is_saving</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">manager</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/contextlib.py</span> in <span class="ni">__enter__</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">110</span>         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kwds</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span>
-<span class="g g-Whitespace">    </span><span class="mi">111</span>         <span class="k">try</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">112</span>             <span class="k">return</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gen</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">113</span>         <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">114</span>             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;generator didn&#39;t yield&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="kc">None</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">saving</span><span class="nt">(self, fig, outfile, dpi, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="s2">&quot;&quot;&quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">231</span><span class="s2">         # This particular sequence is what contextlib.contextmanager wants</span>
-<span class="ne">--&gt; </span><span class="mi">232</span><span class="s2">         self.setup(fig, outfile, dpi, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span><span class="s2">         try:</span>
-<span class="g g-Whitespace">    </span><span class="mi">234</span><span class="s2">             yield self</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">setup</span><span class="nt">(self, fig, outfile, dpi)</span>
-<span class="g g-Whitespace">    </span><span class="mi">319</span><span class="s2">         # Run here so that grab_frame() can write the data to a pipe. This</span>
-<span class="g g-Whitespace">    </span><span class="mi">320</span><span class="s2">         # eliminates the need for temp files.</span>
-<span class="ne">--&gt; </span><span class="mi">321</span><span class="s2">         self._run()</span>
-<span class="g g-Whitespace">    </span><span class="mi">322</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">323</span><span class="s2">     def _run(self):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/site-packages/matplotlib/animation.py</span> in <span class="ni">_run</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">331</span><span class="s2">         self._proc = subprocess.Popen(</span>
-<span class="g g-Whitespace">    </span><span class="mi">332</span><span class="s2">             command, stdin=PIPE, stdout=PIPE, stderr=PIPE,</span>
-<span class="ne">--&gt; </span><span class="mi">333</span><span class="s2">             creationflags=subprocess_creation_flags)</span>
-<span class="g g-Whitespace">    </span><span class="mi">334</span><span class="s2"> </span>
-<span class="g g-Whitespace">    </span><span class="mi">335</span><span class="s2">     def finish(self):</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py</span> in <span class="ni">__init__</span><span class="nt">(self, args, bufsize, executable, stdin, stdout, stderr, preexec_fn, close_fds, shell, cwd, env, universal_newlines, startupinfo, creationflags, restore_signals, start_new_session, pass_fds, encoding, errors, text)</span>
-<span class="g g-Whitespace">    </span><span class="mi">798</span><span class="s2">                                 c2pread, c2pwrite,</span>
-<span class="g g-Whitespace">    </span><span class="mi">799</span><span class="s2">                                 errread, errwrite,</span>
-<span class="ne">--&gt; </span><span class="mi">800</span><span class="s2">                                 restore_signals, start_new_session)</span>
-<span class="g g-Whitespace">    </span><span class="mi">801</span><span class="s2">         except:</span>
-<span class="g g-Whitespace">    </span><span class="mi">802</span><span class="s2">             # Cleanup if the child failed starting.</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.16/x64/lib/python3.7/subprocess.py</span> in <span class="ni">_execute_child</span><span class="nt">(self, args, executable, preexec_fn, close_fds, pass_fds, cwd, env, startupinfo, creationflags, shell, p2cread, p2cwrite, c2pread, c2pwrite, errread, errwrite, restore_signals, start_new_session)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1549</span><span class="s2">                         if errno_num == errno.ENOENT:</span>
-<span class="g g-Whitespace">   </span><span class="mi">1550</span><span class="s2">                             err_msg += &#39;: &#39; + repr(err_filename)</span>
-<span class="ne">-&gt; </span><span class="mi">1551</span><span class="s2">                     raise child_exception_type(errno_num, err_msg, err_filename)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1552</span><span class="s2">                 raise child_exception_type(err_msg)</span>
-<span class="g g-Whitespace">   </span><span class="mi">1553</span><span class="s2"> </span>
-
-<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;ffmpeg&#39;: &#39;ffmpeg&#39;
-</pre></div>
-</div>
-<img alt="../_images/89334dc1a31f19445938dc11e113a44e4e6be6df2bdd5fd70d86b3421418a946.png" src="../_images/89334dc1a31f19445938dc11e113a44e4e6be6df2bdd5fd70d86b3421418a946.png" />
 </div>
 </div>
 <p>The next function creates a movie to compare two obtained densities. We can use it to check if the RBM is reproducing the evolution of the high fidelity density</p>
@@ -1096,12 +967,9 @@ Wall time: 260 ms
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Movie_Maker_densities</span><span class="p">(</span><span class="n">rho_HF0</span><span class="p">,</span><span class="n">RB_rho_movie</span><span class="p">,</span><span class="n">Omega_Val0</span><span class="p">,</span><span class="s1">&#39;RB-HF0&#39;</span><span class="p">,[</span><span class="s1">&#39;HF&#39;</span><span class="p">,</span><span class="s1">&#39;RBM&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Movie_Maker_densities(rho_HF0,RB_rho_movie,Omega_Val0,&#39;RB-HF0&#39;,[&#39;HF&#39;,&#39;RBM&#39;])</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/31cf5a06f9205bddfa79c21fd5a3605f5b92a85bfeeda0c7d9e1eb690334eefd.png" src="../_images/31cf5a06f9205bddfa79c21fd5a3605f5b92a85bfeeda0c7d9e1eb690334eefd.png" />
 </div>
 </div>
 <p>Looks good for this particular example</p>
@@ -1136,7 +1004,7 @@ Wall time: 260 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.017484555884774013
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01748455588477281
 </pre></div>
 </div>
 </div>
@@ -1166,8 +1034,20 @@ Wall time: 260 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 14min 7s, sys: 34min 35s, total: 48min 42s
-Wall time: 2min 26s
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">timed</span> <span class="n">exec</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+
+<span class="nn">/tmp/ipykernel_1760/4199485357.py</span> in <span class="ni">harmonic_oscillator_time_evolution</span><span class="nt">(initial_state, total_time, time_steps, omega, total_order, N_grid)</span>
+<span class="g g-Whitespace">     </span><span class="mi">40</span> 
+<span class="g g-Whitespace">     </span><span class="mi">41</span>         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">total_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">42</span>             <span class="n">current_correction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">time_step_size</span><span class="o">*</span><span class="n">H</span><span class="p">,</span><span class="n">current_correction</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">43</span>             <span class="n">next_state</span><span class="o">=</span> <span class="n">next_state</span> <span class="o">+</span> <span class="n">current_correction</span>
+<span class="g g-Whitespace">     </span><span class="mi">44</span> 
+
+<span class="nn">&lt;__array_function__ internals&gt;</span> in <span class="ni">dot</span><span class="nt">(*args, **kwargs)</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>
