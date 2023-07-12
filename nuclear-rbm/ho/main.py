@@ -4,263 +4,307 @@ import scipy
 import matplotlib.pyplot as plt
 import time
 from scipy.optimize import minimize
+from scipy.linalg import eigh
 
-def make_wavefunction(n,k):
-    '''
-    Definition of exact HO wavefunction taken from Zettili page 240.
-    
+def exact_wavefunction(n,alpha):
+    """
+    Exact wavefunction, from 
+    https://en.wikipedia.org/wiki/Quantum_harmonic_oscillator#Hamiltonian_and_energy_eigenstates
+    modified for our notation.
+
     Parameters
     ----------
-    n : TYPE
-        principle quantum number for SE equation
-    k : TYPE
-        harmonic oscillator parameter (mass*omega)^2 from the potential term \mu^2 \omega^{2} x^{2} in the SE.
+    n : int
+        Order of the solution.
+    alpha : float
+        The HO parameter.
 
     Returns
     -------
     wf : function
-        1-d wavefunction for the 1d-harmonic oscillator as a function of position x. 
-    '''
+        The exact wavefunction.
+
+    """
+    norm = 1/np.sqrt(2.**n * np.math.factorial(n))*(np.sqrt(alpha)/np.pi)**(1/4)
     herm = special.hermite(n)
     def wf(x):
-        result = (1/np.sqrt(np.sqrt(np.pi)*2**(n)*np.math.factorial(n)*(k)**(.25)))*np.exp(-x**(2)*np.sqrt(k)/2)*herm(x*k**(.25))
-        return result
+        return norm*np.exp(-np.sqrt(alpha)*x**2/2)*herm(x)
     return wf
 
-def get_eigenvalue(n,mass,alpha):
-    '''
-    Exact eigenvalues of the HO equation. -f''(x) + k x^2 f(x) = 2 m E f(x)
-    Lambda = 2 m E  
-    E = (n + .5) \omega 
-    \alpha = m^2 \omega^2 
-    \omega = \sqrt{alpha/m^2}
+def exact_eigenvalue(n,alpha):
+    """
+    Exact eigenvalue $\lambda$ of the ODE
+    
+    $$ -f''(x) + alpha x^2f(x) = \lambda f(x) $$
+    
+    We assume throughout that $m = \hbar = 1$. Then, $\lambda$ is related to the
+    energy as $\lambda = 2E$.
+
     Parameters
     ----------
-    n : float
-        principle quantum number. float integers
-    omega : float
-        oscillator frequency.
+    n : int
+        Order of the solution.
+    alpha : float
+        The HO parameter.
 
     Returns
     -------
     float
-        oscillator energy 2mE. 
-    '''
-    return 2*mass*(.5 + n)*np.sqrt(alpha/mass**2)
+        The eigenvalue.
 
-def V(x,alpha):
-    '''
-    1-d harmonic Oscillator potential
-
-    Parameters
-    ----------
-    x : float or nd array
-        position.
-    alpha : float
-        oscillator length parameter.
-
-    Returns
-    -------
-    float or ndarray
-        value of potential evaluated at x.
-
-    '''
-    return alpha*x**2
-
-def construct_H(V,grid,mass,alpha):
-    '''
-    Uses 2nd order finite difference scheme to construct a discretized differential H operator
-    Note: mass is fixed to 1 for this demo.
-
-    Parameters
-    ----------
-    V : TYPE
-        DESCRIPTION.
-        
-    alpha : TYPE
-        oscillator parameter alpha used in V(x) = alpha*x**2.
-
-    Returns
-    -------
-    H : ndarray
-        2d numpy array
-    '''
-    dim = len(grid)
-    off_diag = np.zeros(dim)
-    off_diag[1] = 1
-    H = -1*(-2*np.identity(dim) + scipy.linalg.toeplitz(off_diag))/(mass*h**2) + np.diag(V(grid,alpha))
-    return H
-
-def get_original_solution(H,grid,h):
-    '''
-    Parameters
-    ----------
-    H : 2d ndarray
-        Hamiltonian Matrix.
-    grid : ndarray
-        Discretized 1d domain.
-    h : float
-        grid spacing.
-
-    Returns
-    -------
-    evals : ndarray
-        returns nd array of eigenvalues of H. 
-    evects : ndarray
-        returns ndarray of eigenvectors of H.
-    Eigenvalues and eigenvectors are ordered in ascending order. 
-    '''
-    evals,evects = np.linalg.eigh(H)
-    evects = evects.T
-    for i,evect in enumerate(evects):
-        #norm = np.sqrt(1/sci.integrate.simpson(evect*evect,grid))
-        norm = 1/(np.linalg.norm(np.dot(evect,evect)))
-        evects[i] = evects[i]*norm
-    return evals,evects
-
-def matrix_component_1(psi1,psi2):
-    #Derivative bit
-    dim = len(psi1)
-    off_diag = np.zeros(dim)
-    off_diag[1] = 1
-    H = -1*(-2*np.identity(dim) + scipy.linalg.toeplitz(off_diag))/(mass*h**2)
+    """
     
-    return psi1@H@psi2
+    return np.sqrt(alpha)*(n+0.5)
 
-def matrix_component_2(psi1,psi2,grid):
-    #The potential bit, without alpha
-    return np.sum(psi1*psi2*grid**2)
-
-def matrix_component_3(psi1,psi2):
-    return psi1@psi2
-
-def f1(a,alpha):
-    return a@(m1+alpha*m2)@a
-
-def f2(a):
-    return a@m3@a
-
-def energy(a,alpha):
-    return a@(m1+alpha*m2)@a/(a@m3@a)
-
-def energy_grad(a,alpha):
-    f1Eval = f1(a,alpha)
-    f2Eval = f2(a)
-    return 2*(m1+alpha*m2)@a/f2Eval - 2*f1Eval/f2Eval**2 * m3@a
-
-def gradient_descent(a0,alpha,params={'maxIters':1000,'eta':0.1}):
-    enegVals = np.zeros(params['maxIters'])
-    a = a0.copy()
-    for i in range(params['maxIters']):
-        enegVals[i] = energy(a,alpha)
-        grad = energy_grad(a,alpha)
-        a -= params['eta']*grad
+class FiniteDifferenceSolver:
+    def __init__(self,alpha,regularGrid,h):
+        self.alpha = alpha
+        self.grid = regularGrid
         
-    return a, enegVals
+        self.H = self.make_Hamiltonian_matrix()
+        
+    def make_kinetic_term(self):
+        size = len(self.grid)
+        offDiag = np.zeros(size)
+        offDiag[1] = 1
+        
+        #Kinetic term
+        H = -1*(-2*np.identity(size) + scipy.linalg.toeplitz(offDiag))/h**2
+        return H
+        
+    def make_potential_term(self):
+        H = np.diag(self.alpha*self.grid**2)
+        return H
+        
+    def make_Hamiltonian_matrix(self):
+        return self.make_kinetic_term() + self.make_potential_term()
+    
+    def solve(self):
+        t0 = time.time()
+        evals, evects = np.linalg.eigh(self.H)
+                    
+        t1 = time.time()
+        
+        solveTime = t1 - t0
+        return evals, evects, solveTime
+    
+class StandardRBM:
+    def __init__(self,psiMat,kineticTerm,potentialTerm):
+        #potentialTerm should not be multiplied by alpha
+        self.psiMat = psiMat
+        self.kineticTerm = kineticTerm
+        self.potentialTerm = potentialTerm
+        self.matrixDim = psiMat.shape[0]
+        
+        self.kinProj, self.potProj = self.compute_projections()
+        self.overlaps = self.compute_overlaps()
+        
+    def compute_projections(self):
+        kinProj = np.zeros(2*(self.matrixDim,))
+        potProj = np.zeros(2*(self.matrixDim,))
+        for i in range(self.matrixDim):
+            for j in range(i,self.matrixDim):
+                kinProj[i,j] = self.psiMat[i] @ self.kineticTerm @ self.psiMat[j]
+                kinProj[j,i] = kinProj[i,j]
+                
+                potProj[i,j] = self.psiMat[i] @ self.potentialTerm @ self.psiMat[j]
+                potProj[j,i] = potProj[i,j]
+                    
+        return kinProj, potProj
+    
+    def compute_overlaps(self):
+        overlapMatrix = np.zeros(2*(self.matrixDim,))
+        for i in range(self.matrixDim):
+            for j in range(i,self.matrixDim):
+                overlapMatrix[i,j] = self.psiMat[i] @ self.psiMat[j]
+                overlapMatrix[j,i] = overlapMatrix[i,j]
+        return overlapMatrix
+        
+    def solve(self,alpha):
+        mat = self.kinProj + alpha*self.potProj
+            
+        vals, vecs = eigh(mat,b=self.overlaps)
+        
+        a = vecs[:,0]
+        
+        wf = a @ self.psiMat
+        wf /= np.linalg.norm(wf)
+        
+        return vals[0], wf, a
+    
+class VariationalRBM:
+    def __init__(self,psiMat,h,regularGrid):
+        self.psiMat = psiMat
+        self.h = h
+        self.grid = regularGrid
+        
+        self.m1, self.m2, self.m3 = self.matrix_components()
+        
+    def matrix_components(self):
+        nComps, vecSize = self.psiMat.shape
+        
+        offDiag = np.zeros(vecSize)
+        offDiag[1] = 1
+        
+        kinTerm = -1*(-2*np.identity(vecSize) + scipy.linalg.toeplitz(offDiag))/self.h**2
+        
+        m1 = np.zeros((nComps,nComps))
+        m2 = np.zeros((nComps,nComps))
+        m3 = np.zeros((nComps,nComps))
+        for i in range(nComps):
+            for j in range(i+1):
+                #Kinetic energy
+                m1[i,j] = self.psiMat[i] @ kinTerm @ self.psiMat[j]
+                m1[j,i] = m1[i,j]
+                
+                #Potential energy
+                m2[i,j] = np.sum(self.psiMat[i]*self.psiMat[j]*self.grid**2)
+                m2[j,i] = m2[i,j]
+                
+                #Normalization
+                m3[i,j] = self.psiMat[i] @ self.psiMat[j]
+                m3[j,i] = m3[i,j]
+        return m1, m2, m3
+    
+    def energy(self,a,alpha):
+        return a @ (self.m1+alpha*self.m2) @ a/(a @ self.m3 @ a)
+
+    def energy_grad(self,a,alpha):
+        f1Eval = a @ (self.m1+alpha*self.m2) @ a
+        f2Eval = a @ self.m3 @ a
+        return 2*(self.m1+alpha*self.m2) @ a/f2Eval - 2*f1Eval/f2Eval**2 * self.m3 @ a
+    
+    def solve(self,alpha,a0):
+        t0 = time.time()
+        opt = minimize(self.energy,a0,args=(alpha,),jac=self.energy_grad)
+        
+        #Normalize total wavefunction
+        a = opt.x
+        wf = a@T
+        wf /= np.linalg.norm(wf)
+        
+        eigenvalue = self.energy(a,alpha)
+        
+        t1 = time.time()
+        
+        return eigenvalue, wf, t1-t0, a
+    
+class InferHamiltonian:
+    def __init__(self,psiMat,arrOfHamiltonians,alphaVals):
+        self.psiMat = psiMat
+        self.arrOfHamiltonians = arrOfHamiltonians
+        self.alphaVals = alphaVals
+        self.matrixDim = len(alphaVals)
+        
+        self.projections = self.compute_projections()
+        self.overlaps = self.compute_overlaps()
+        
+    def compute_projections(self):
+        projections = np.zeros(3*(self.matrixDim,))
+        for k in range(self.matrixDim):
+            for i in range(self.matrixDim):
+                for j in range(i,self.matrixDim):
+                    projections[k,i,j] = self.psiMat[i] @ self.arrOfHamiltonians[k] @ self.psiMat[j]
+                    projections[k,j,i] = projections[k,i,j]
+                    
+        return projections
+    
+    def compute_overlaps(self):
+        overlapMatrix = np.zeros(2*(self.matrixDim,))
+        for i in range(self.matrixDim):
+            for j in range(i,self.matrixDim):
+                overlapMatrix[i,j] = self.psiMat[i] @ self.psiMat[j]
+                overlapMatrix[j,i] = overlapMatrix[i,j]
+        return overlapMatrix
+    
+    def fit_matrices(self,polyDegree=1):
+        #Note that minCoeffs is indexed backwards - the first element is
+        #the coefficient of the highest degree term in the polynomial
+        minCoeffs = np.zeros((polyDegree+1,self.matrixDim,self.matrixDim,),)
+        for i in range(self.matrixDim):
+            for j in range(i,self.matrixDim):
+                minCoeffs[:,i,j] = np.polyfit(self.alphaVals,
+                                              self.projections[:,i,j],
+                                              polyDegree)
+                minCoeffs[:,j,i] = minCoeffs[:,i,j]
+        return minCoeffs
+        
+    def solve(self,alpha,coeffs):
+        mat = np.zeros(2*(self.matrixDim,))
+        maxPolyDim = coeffs.shape[0] - 1
+        for (coeffIter,coeff) in enumerate(coeffs):
+            mat += alpha**(maxPolyDim - coeffIter) * coeff
+            
+        vals, vecs = eigh(mat,b=self.overlaps)
+        
+        a = vecs[:,0]
+        
+        wf = a @ self.psiMat
+        wf /= np.linalg.norm(wf)
+        
+        return vals[0], wf, a
 
 #First define global variables
 h = 10**(-2) ### grid spacing for domain (Warning around 10**(-3) it starts to get slow).
 ### HO global parameters 
 n = 0 # principle quantum number to solve in HO
-mass = 1.0 # mass for the HO system
 # define the domain boundaries
-x_a = -10 # left boundary 
-x_b = 10 # right boundary 
-x_array = np.arange(x_a,x_b+h,h)
-m = len(x_array) 
+xLims = [-10,10]
+grid = np.arange(xLims[0],xLims[1]+h,h)
+m = len(grid)
 print('Number of grid points: ',m)
 
 # Select alpha values to use to solve SE exactly.
-alpha_vals = [.5,5,10,15]  #Here, we choose 3 values of alpha to solve exactly. This results in 3 basis functions
-# initialize solution arrays. T is the matrix that will hold wavefunction solutions. 
-# T has the form T[i][j], i = alpha, j = solution components
-T = np.zeros((len(alpha_vals),m)) 
-# T_evals holds the eigenvalues for each evect in T. 
-T_evals = np.zeros(len(alpha_vals))
+alphaVals = [.5,5,10,15]
+#Here, we choose values of alpha to solve exactly. The solutions are the basis functions
+#to be used with the RBM
+T = np.zeros((len(alphaVals),m)) 
 
-for i,alpha_sample in enumerate(alpha_vals):
-    H = construct_H(V,x_array,mass,alpha_sample) # construct the Hamiltonian matrix for given alpha_sample.
-    evals, evects = get_original_solution(H,x_array,h) # solve the system for evals and evects.
-    T[i] = evects[n]/np.linalg.norm(evects[n]) # assign the nth evect to solution array T
-    T_evals[i] = evals[n] # assign the nth eigenvalue to the eigenvalue array T_eval.
-    print(f'alpha = {alpha_sample}, lambda = {evals[n]}')
-    print(f'alpha = {alpha_sample}, exact lambda = {get_eigenvalue(n,mass,alpha_sample)}')
+listOfHamiltonians = []
 
-#%%
-m1 = np.zeros((len(alpha_vals),len(alpha_vals)))
-m2 = np.zeros(m1.shape)
-m3 = np.zeros(m1.shape)
-for i in range(len(alpha_vals)):
-    for j in range(i+1):
-        m1[i,j] = matrix_component_1(T[i],T[j])
-        m1[j,i] = m1[i,j]
-        
-        m2[i,j] = matrix_component_2(T[i],T[j],x_array)
-        m2[j,i] = m2[i,j]
-        
-        m3[i,j] = matrix_component_3(T[i],T[j])
-        m3[j,i] = m3[i,j]
-        
-     
-a0 = np.array([1.33380471, -1.50572164, 2.22572807, -1.06054276])
-# a0 = np.array([1.,0,0,0])
+for i,alpha in enumerate(alphaVals):
+    fdSolver = FiniteDifferenceSolver(alpha,grid,h)
+    evals, evecs, runTime = fdSolver.solve()
+    print('FD time: %.3e s'%runTime)
+    listOfHamiltonians.append(fdSolver.make_Hamiltonian_matrix())
+    kinTerm = fdSolver.make_kinetic_term()
+    potTerm = fdSolver.make_potential_term()/alpha
+    T[i] = evecs[:,n]
+    
+a0 = np.array([1.,1,1,1])
 alphaTest = 0.3
 
-opt = minimize(energy,a0,args=(alphaTest,))
-a = opt.x
-
-print('My energy: %.3f'%opt.fun)
-print('Exact eigenvalue: %.3f'%get_eigenvalue(0,1,alphaTest))
-# t0 = time.time()
-# a, enegVsIter = gradient_descent(a0,alphaTest)
-# t1 = time.time()
-# print('RBM time: %.3e s'%(t1-t0))
-
-# fig, ax = plt.subplots()
-# ax.plot(enegVsIter)
-
-# H = construct_H(V,x_array,mass,alphaTest) # construct the Hamiltonian matrix for given alpha_sample.
-# t0 = time.time()
-# evals, evects = get_original_solution(H,x_array,h) # solve the system for evals and evects.
-# t1 = time.time()
-# print('Finite difference time: %.3e s'%(t1-t0))
-# ax.axhline(evals[0])
-# ax.axhline(get_eigenvalue(0,1,alphaTest),ls='--',color='red')
-
-newWavefunction = a@T
-print(newWavefunction@newWavefunction)
-# newWavefunction /= newWavefunction@newWavefunction
-
 fig, ax = plt.subplots()
-ax.plot(x_array,newWavefunction)
+fdSol = FiniteDifferenceSolver(alphaTest,grid,h)
+t0 = time.time()
+evals, evecs, _ = fdSol.solve()
+t1 = time.time()
+ax.plot(grid,evecs[:,0],label='FD')
+print('Finite Difference time: %.3e s'%(t1-t0))
 
-psi_real = make_wavefunction(0,alphaTest)
-psiArr = psi_real(x_array)
-psiArr /= np.sqrt(psiArr@psiArr)
-print(psiArr@psiArr)
+rbm = StandardRBM(T,kinTerm,potTerm)
+t0 = time.time()
+val, wf, a = rbm.solve(alphaTest)
+t1 = time.time()
+ax.plot(grid,wf,label='RBM')
+print('Standard RBM time: %.3e s'%(t1-t0))
 
-ax.plot(x_array,psiArr)
+rbm = VariationalRBM(T,h,grid)
+eigenvalue, wfRBM, runTime, a = rbm.solve(alphaTest,a0)
+ax.plot(grid,wfRBM,label='Variational RBM',ls='--')
+print('Variational RBM time: %.3e s'%runTime)
 
-# print(energy_grad(np.array([1,0,0,0]),0.2))
-# ## Checks to make sure numerical solutions are accurate:
-# # Make plots comparing the numerical wavefunction to the exact wavefunction
-# fig, ax = plt.subplots(1,2,figsize=(10,3))
-# for i in range(len(alpha_vals)):
-#     wf = make_wavefunction(n,alpha_vals[i])
-#     wf_vals = wf(x_array)/np.linalg.norm(wf(x_array))
-#     diff = np.abs(wf_vals - T[i])
-#     ax[0].plot(x_array,np.abs(T[i]),label=r'$\alpha$ = '+str(alpha_vals[i]))
-#     ax[1].semilogy(x_array,diff,label=r'$\alpha$='+str(alpha_vals[i]))
-# ax[0].set_title('Numerical solutions')
-# ax[1].set_title('Comparison of exact and numerical sols')
-# ax[0].legend()
-# ax[1].legend()
-# ax[1].set_ylabel(r'$||\phi-\phi^{*}||$')
-# fig.tight_layout()
-# plt.show()
+inferObj = InferHamiltonian(T,listOfHamiltonians,alphaVals)
+coeffs = inferObj.fit_matrices()
+t0 = time.time()
+val, wf, a = inferObj.solve(alphaTest,coeffs)
+t1 = time.time()
+ax.plot(grid,wf,label='Infer Matrix',ls=':')
+print('Inferred Matrix time: %.3e s'%(t1-t0))
 
-# # print error of eigenvalue 
-# for i in range(len(alpha_vals)):
-#     diff = np.abs(get_eigenvalue(n,mass,alpha_vals[i]) - T_evals[i])
-#     print(f'|lambda - lambda_exact| = {diff}')
+
+ax.legend()
+
+# exactEig = 2*exact_eigenvalue(n,alphaTest) #Convert from energy to eigenvalue
+# print('Eigenvalue relative difference: %.3e'%((eigenvalue-exactEig)/exactEig))
 
