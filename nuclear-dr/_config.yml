@@ -1,8 +1,8 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-title: Reduced Basis Methods in Nuclear Physics
-author: RBM Team
+title: Dimensionality Reduction in Nuclear Physics
+author: Advanced Scientific Computing and Statistics Network
 logo: logo.png
 
 # Force re-execution of notebooks on each build.
@@ -21,8 +21,8 @@ bibtex_bibfiles:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/kylegodbey/nuclear-rbm
-  path_to_book: nuclear-rbm  # Optional path to your book, relative to the repository root
+  url: https://github.com/ascsn/nuclear-dimensionality-reduction-book
+  path_to_book: nuclear-dr  # Optional path to your book, relative to the repository root
   branch: main  # Which branch of the repository should be used when creating links (optional)
 
 # Add GitHub buttons to your book
