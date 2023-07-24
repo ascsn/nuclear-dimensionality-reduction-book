@@ -11,6 +11,8 @@ chapters:
 - file: scattering/scattering
 - file: scattering/eim
 - file: HO_Time/HO_Time_Dependent
+- file: blackbox_galerkin/Introduction
+  sections:
+      - file: blackbox_galerkin/SECAR
+      - file: blackbox_galerkin/DFT_Toy_Model
 - file: contributors
-
-
