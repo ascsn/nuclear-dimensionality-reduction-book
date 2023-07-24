@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Application 2: Two body single channel nuclear scattering &#8212; Reduced Basis Methods in Nuclear Physics</title>
+    <title>Application 2: Two body single channel nuclear scattering &#8212; Dimensionality Reduction in Nuclear Physics</title>
   
   
   
@@ -154,7 +154,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../landing.html">
-                    Introduction to Reduced-Basis Methods in Nuclear Physics
+                    Introduction to Dimensionality Reduction in Nuclear Physics
                 </a>
             </li>
         </ul>
@@ -228,7 +228,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/kylegodbey/nuclear-rbm/main?urlpath=tree/nuclear-rbm/scattering/scattering.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/ascsn/nuclear-dimensionality-reduction-book/main?urlpath=tree/nuclear-dr/scattering/scattering.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onBinder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -246,7 +246,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/kylegodbey/nuclear-rbm/blob/main/nuclear-rbm/scattering/scattering.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ascsn/nuclear-dimensionality-reduction-book/blob/main/nuclear-dr/scattering/scattering.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -277,7 +277,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/kylegodbey/nuclear-rbm" target="_blank"
+      <li><a href="https://github.com/ascsn/nuclear-dimensionality-reduction-book" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -294,7 +294,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/kylegodbey/nuclear-rbm/issues/new?title=Issue%20on%20page%20%2Fscattering/scattering.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ascsn/nuclear-dimensionality-reduction-book/issues/new?title=Issue%20on%20page%20%2Fscattering/scattering.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -433,19 +433,19 @@ document.write(`
 <h1>Application 2: Two body single channel nuclear scattering<a class="headerlink" href="#application-2-two-body-single-channel-nuclear-scattering" title="Permalink to this heading">#</a></h1>
 <p>Contributed by: Daniel Odell, Pablo Giuliani.</p>
 <p>We have the following Hamiltonian as the radial part of the scattering equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-61a8cd8b-005e-4021-bd6d-b785cffd5e25">
-<span class="eqno">(5)<a class="headerlink" href="#equation-61a8cd8b-005e-4021-bd6d-b785cffd5e25" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1b562864-3ef3-4689-8688-423c75d0b9e4">
+<span class="eqno">(5)<a class="headerlink" href="#equation-1b562864-3ef3-4689-8688-423c75d0b9e4" title="Permalink to this equation">#</a></span>\[\begin{equation}
     F_\alpha(\phi)=\left(-\frac{d^2}{dr^2}+\frac{\ell(\ell+1)}{r^2}+U(r,\alpha)-p^2\right)\phi(r)=0,
 \end{equation}\]</div>
 <p>where a system with reduced mass <span class="math notranslate nohighlight">\(\mu\)</span> interacts through a potential <span class="math notranslate nohighlight">\(V(r,\alpha)=U(r,\alpha)/2\mu\)</span> with parameters <span class="math notranslate nohighlight">\(\alpha\)</span>, <span class="math notranslate nohighlight">\(\ell\)</span> is the angular momentum quantum number, and <span class="math notranslate nohighlight">\(p\)</span> is the asymptotic linear momentum. Using an optical potential for <span class="math notranslate nohighlight">\(V(r,\alpha)\)</span> this equation could model, for example, how neutrons interact with nuclei as we explained in the introduction section.</p>
 <p>We can re-scale this equation with the changes of variables <span class="math notranslate nohighlight">\(s=pr\)</span> making it possible for us to apply the RBM across energies. We obtain the following equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e0d43084-55cc-4b78-8ebe-8e689ee1cd2d">
-<span class="eqno">(6)<a class="headerlink" href="#equation-e0d43084-55cc-4b78-8ebe-8e689ee1cd2d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5d966ca5-a976-4c2e-851f-895c89ff97ba">
+<span class="eqno">(6)<a class="headerlink" href="#equation-5d966ca5-a976-4c2e-851f-895c89ff97ba" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(-\frac{d^2}{ds^2}+\frac{\ell(\ell+1)}{s^2}+\tilde U(s,\alpha,p)-1\right)\phi_\alpha(s)=0,
 \end{equation}\]</div>
 <p>where the potential <span class="math notranslate nohighlight">\(\tilde U(s,\alpha,p)=V(s/p,\alpha)2\mu/p^2\)</span> is now momentum dependent. We now proceed to construct a high fidelity solver for this equation which we will use to build a Reduced Basis using Principal Component Analysis, and later project with the Galerkin equaitons. As a first implementation, we will use the <a class="reference external" href="https://linkinghub.elsevier.com/retrieve/pii/0375947477900070">Minnesota potential</a>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2486ee14-db2f-4feb-bd96-09b3bd56f484">
-<span class="eqno">(7)<a class="headerlink" href="#equation-2486ee14-db2f-4feb-bd96-09b3bd56f484" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ec75a01e-15eb-41f6-ad35-2d35d7d59ed0">
+<span class="eqno">(7)<a class="headerlink" href="#equation-ec75a01e-15eb-41f6-ad35-2d35d7d59ed0" title="Permalink to this equation">#</a></span>\[\begin{equation}
 U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
 \end{equation}\]</div>
 <p>where the parameters are <span class="math notranslate nohighlight">\(\alpha=[V_{0R},V_{0S}]\)</span>. We have kept the non-linear parameter dependence of the potential (the coefficients multiplying <span class="math notranslate nohighlight">\(r^2\)</span> on the exponentials) fixed on their original values. We will vary them in the next section when we explore the Empirical Interpolation Method (see chapter V of <a class="reference external" href="https://link.springer.com/book/10.1007/978-3-319-22470-1">this book</a>). We also work with the S wave (<span class="math notranslate nohighlight">\(l=0\)</span>) in this example.</p>
@@ -614,8 +614,8 @@ U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
 </div>
 <p>Very interestingly, if we were to now use this as our reduced basis, our projection equations will give us the solution constantly equal to zero <span class="math notranslate nohighlight">\(\hat \phi(r) =0\)</span> and <span class="math notranslate nohighlight">\(a_k=0\)</span>. The reason is that the scattering problem is homogeneous in the function <span class="math notranslate nohighlight">\(\phi\)</span> (the function zero is a valid solution). To get around this, we could impose a boundary condition, for example the asymptotic normalizations used in similar emulator papers (see <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0370269320305220">this one</a> and <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0370269321007176">this one</a>).</p>
 <p>Another way around it is to use the <span class="math notranslate nohighlight">\(\phi_0\)</span> component avaialble in the RB expansion (look <a class="reference external" href="https://arxiv.org/abs/2203.05284v2">here</a> for details):</p>
-<div class="amsmath math notranslate nohighlight" id="equation-259a5c1d-54e4-4399-9bbd-922099a4392c">
-<span class="eqno">(8)<a class="headerlink" href="#equation-259a5c1d-54e4-4399-9bbd-922099a4392c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-84da4c10-b0b5-4355-93ab-8a5c25db8b38">
+<span class="eqno">(8)<a class="headerlink" href="#equation-84da4c10-b0b5-4355-93ab-8a5c25db8b38" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \phi \approx \hat\phi = \phi_0 + \sum_k^n a_k \phi_k
 \end{equation}\]</div>
 <p>We follow this approach by selecting <span class="math notranslate nohighlight">\(\phi_0\)</span> as the free solution in the abscence of any potential. We re-define our principal components as the differences between this free solution and the high fidelity solutions for the different parameter values.</p>
@@ -698,8 +698,8 @@ U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
 </div>
 </div>
 <p>Now our new RB has by construction a zero derivative at <span class="math notranslate nohighlight">\(s=0\)</span>, the normalization condition of <span class="math notranslate nohighlight">\(\phi'(s=0)=1\)</span> is entirely carried out by the <span class="math notranslate nohighlight">\(\phi_0\)</span> term. Our Galerkin equations look like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-966a0d6e-e378-4f1b-b437-d5d7e014b638">
-<span class="eqno">(9)<a class="headerlink" href="#equation-966a0d6e-e378-4f1b-b437-d5d7e014b638" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-93c9c8fb-dd2c-43e9-8f70-e8de34cfefb9">
+<span class="eqno">(9)<a class="headerlink" href="#equation-93c9c8fb-dd2c-43e9-8f70-e8de34cfefb9" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \langle \psi_j | F(\hat\phi) \rangle = \langle \psi_j | F(\phi_0) \rangle + \sum_k ^n a_k\langle \psi_j | F(\phi_k) \rangle =0
 \end{equation}\]</div>
 <p>These <span class="math notranslate nohighlight">\(n\)</span> (<span class="math notranslate nohighlight">\(j\)</span> goes from 1 to <span class="math notranslate nohighlight">\(n\)</span>) equations can be written in a matrix form <span class="math notranslate nohighlight">\(Aa=b\)</span>, where <span class="math notranslate nohighlight">\(a=(a_1,a_2,...a_n)\)</span>, the matrix <span class="math notranslate nohighlight">\(A\)</span> is form by the inner products between the projectors <span class="math notranslate nohighlight">\(\langle\psi_k|\)</span> and the operator <span class="math notranslate nohighlight">\(F_\alpha\)</span> acting on each one of the basis <span class="math notranslate nohighlight">\(|\phi_k\rangle\)</span>, and <span class="math notranslate nohighlight">\(b\)</span> is the non-homogenous term obtaining from the projection of <span class="math notranslate nohighlight">\(F_\alpha(\phi_0)\)</span> onto the <span class="math notranslate nohighlight">\(\psi_j\)</span>. This last term acts, in some sense, as a “source” for creating the non-homogenous solution to the approximated differential scattering equation through <span class="math notranslate nohighlight">\(F_\alpha\)</span>, which has information on the parameters <span class="math notranslate nohighlight">\(\alpha\)</span>.</p>
@@ -846,7 +846,7 @@ U(r,V_{0R},V_{0S})=2\mu\left(V_{0R}e^{-1.487r^2}+ V_{0S}e^{-0.465r^2}\right),
   <div class="footer-item">
     
 <p class="component-author">
-By RBM Team
+By Advanced Scientific Computing and Statistics Network
 </p>
 
   </div>
