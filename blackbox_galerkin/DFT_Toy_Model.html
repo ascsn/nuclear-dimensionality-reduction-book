@@ -1,0 +1,1054 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Density Functional Theory (DFT): A Toy Model &#8212; Reduced Basis Methods in Nuclear Physics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blackbox_galerkin/DFT_Toy_Model';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Contributors" href="../contributors.html" />
+    <link rel="prev" title="Efficient Emulation of SECAR Beam" href="SECAR.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../landing.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing.html">
+                    Introduction to Reduced-Basis Methods in Nuclear Physics
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/emulators.html">Why emulators?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ho/1dHO.html">Application 1: The Quantum Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
+
+<li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
+
+
+
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Introduction.html">Aplication 5: Black-Box Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="SECAR.html">Efficient Emulation of SECAR Beam</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Density Functional Theory (DFT): A Toy Model</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/kylegodbey/nuclear-rbm/main?urlpath=tree/nuclear-rbm/blackbox_galerkin/DFT_Toy_Model.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/kylegodbey/nuclear-rbm/blob/main/nuclear-rbm/blackbox_galerkin/DFT_Toy_Model.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/kylegodbey/nuclear-rbm" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/kylegodbey/nuclear-rbm/issues/new?title=Issue%20on%20page%20%2Fblackbox_galerkin/DFT_Toy_Model.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/blackbox_galerkin/DFT_Toy_Model.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Density Functional Theory (DFT): A Toy Model</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-we-load-some-high-fidelity-solutions">First we load some high-fidelity solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-fitting-frobenius-norm-fitting">Operator fitting: Frobenius norm fitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-are-ready-to-write-some-code">Now we are ready to write some code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-frobenius-one-for-all">Global Frobenius: One for All</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-test-these-models">Let’s test these models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-approach-one-for-each">Local Approach: One for Each</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="density-functional-theory-dft-a-toy-model">
+<h1>Density Functional Theory (DFT): A Toy Model<a class="headerlink" href="#density-functional-theory-dft-a-toy-model" title="Permalink to this heading">#</a></h1>
+<p>Contributed by: Diógenes Figueroa and Pablo Giuliani</p>
+<p>This kind of Black-Box Galerkin emulators are a intermediate between a galerkian rbm emulator like the one we built for the harmonic oscillaotr and a full black-box dynamical system like SECAR. The idea here is that although we have the dynamical equations that govern the system, these equations are so complicated that even a galerkian approach has trouble improving the timings as compared to the high-fidelity solvers.</p>
+<p>In this section we explore a toy model which exhibits the main challanges that one faces when attampting to use the Galerkin method for DFT. In DFT one models the wavefunctions of protons and neutrons as interacting through the cumulative density of all the nucleons, the Hamiltonian looks like:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9e98a067-4f01-4b07-a13b-aaf60babb296">
+<span class="eqno">(33)<a class="headerlink" href="#equation-9e98a067-4f01-4b07-a13b-aaf60babb296" title="Permalink to this equation">#</a></span>\[\begin{equation}
+    \left(-\frac{d^2}{dx^2}+\kappa x^2+q \rho(x)^\alpha\right)\phi_i(x) = \lambda_i \phi_i(x)
+\end{equation}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\displaystyle \rho(x) = \sum_{i}|\phi_i(r)|^2\)</span> is the cumulative density. the main problem one faces when trying to use the Galerkin method in this case is that the dependence on the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> is non-affine. This reduces the time advantage provided by the emulators since coefficients of the Galerkin equations cannot be precomputed in this case and need to be done at runtime. We will concentrate on two observables the total energy and the radius:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2fe1d491-927e-44b8-926f-be623eb8b38b">
+<span class="eqno">(34)<a class="headerlink" href="#equation-2fe1d491-927e-44b8-926f-be623eb8b38b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+E = \sum \lambda_i
+\end{equation}\]</div>
+<div class="amsmath math notranslate nohighlight" id="equation-e0e9b2ed-a673-490e-a0f1-c40225be9a25">
+<span class="eqno">(35)<a class="headerlink" href="#equation-e0e9b2ed-a673-490e-a0f1-c40225be9a25" title="Permalink to this equation">#</a></span>\[\begin{equation}
+R = \int  dx\hskip0.1cmx^2 \rho(x)
+\end{equation}\]</div>
+<p>The main idea of this section is to try an emulate the Galerkin equations directly.</p>
+<section id="first-we-load-some-high-fidelity-solutions">
+<h2>First we load some high-fidelity solutions<a class="headerlink" href="#first-we-load-some-high-fidelity-solutions" title="Permalink to this heading">#</a></h2>
+<p>In the interest of time we do not solve the high-fidelity equation here, a full comprehensive solution can be found here: <span class="xref myst"></span>. All the high-fidelity solutions have been pre-computed and we simply load them. We also define all the discretized versions of the operators that compose the Hamiltonian.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1851</span><span class="o">/</span><span class="mf">2162656668.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_test</span>  <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;ToyMdelData/test.json&quot;</span><span class="p">)</span>
+<span class="n">df_train</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s2">&quot;ToyMdelData/train.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In order to save some space the dataframes do not have the Hamiltonians themselves, for this reason we need to build the numerical Hamiltonians at runtime.</p>
+<p><strong>Some helpers to build the Hamiltonians</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_second_derivative_matrix</span><span class="p">(</span><span class="n">xgrid</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">xgrid</span><span class="p">)</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="n">xgrid</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">xgrid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="c1"># Generate the matrix for the second derivative using a five-point stencil</span>
+    <span class="n">main_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mf">5.0</span> <span class="o">/</span><span class="mi">2</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">off_diag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">*</span> <span class="mi">4</span><span class="o">/</span><span class="mi">3</span> <span class="o">/</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">off_diag2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">12</span> <span class="o">*</span> <span class="n">dx</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">D2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">main_diag</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">off_diag</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">off_diag</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">off_diag2</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">off_diag2</span><span class="p">,</span> <span class="n">k</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">D2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">harmonic_potential_matrix</span><span class="p">(</span><span class="n">xgrid</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">xgrid</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">self_interaction_potential</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">rho</span><span class="o">**</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rho_maker</span><span class="p">(</span><span class="n">wf_list</span><span class="p">):</span>
+    <span class="n">sq_list</span><span class="o">=</span><span class="p">[</span><span class="n">wf</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">wf</span> <span class="ow">in</span> <span class="n">wf_list</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sq_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x_max</span> <span class="o">=</span> <span class="mf">15.0</span>  <span class="c1"># Maximum coordinate value for the grid</span>
+<span class="n">N_grid</span><span class="o">=</span><span class="mi">300</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">x_max</span><span class="p">,</span> <span class="n">x_max</span><span class="p">,</span> <span class="n">N_grid</span><span class="p">)</span>
+<span class="n">dx</span><span class="o">=</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">D2</span><span class="o">=</span><span class="n">generate_second_derivative_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">harmonic_matrix</span><span class="o">=</span><span class="n">harmonic_potential_matrix</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">high_fid_hamil</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">rho</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">kappa</span><span class="p">,</span><span class="n">q</span> <span class="p">:</span> <span class="o">-</span><span class="n">D2</span> <span class="o">+</span> <span class="n">kappa</span><span class="o">*</span><span class="n">harmonic_matrix</span> <span class="o">+</span> <span class="n">q</span><span class="o">*</span><span class="n">self_interaction_potential</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>   
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we are ready to extend the dataframes to include the Hamiltonians</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">extend_dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; High fidelity Hamiltonian &#39;&#39;&#39;</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">]</span>     <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">rho_maker</span><span class="p">([</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;wave_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span> <span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hamiltonian&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span> <span class="k">lambda</span> <span class="n">row</span> <span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">high_fid_hamil</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;density&#39;</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;alpha&#39;</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;kappa&#39;</span><span class="p">],</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;q&#39;</span><span class="p">])),</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">extend_dataframe</span><span class="p">(</span><span class="n">df_train</span><span class="p">)</span>
+<span class="n">extend_dataframe</span><span class="p">(</span><span class="n">df_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="operator-fitting-frobenius-norm-fitting">
+<h2>Operator fitting: Frobenius norm fitting<a class="headerlink" href="#operator-fitting-frobenius-norm-fitting" title="Permalink to this heading">#</a></h2>
+<p>We are now ready to discuss an implementation to fit the Galerkin equations themselves. The approach we take here is as follows:</p>
+<ul class="simple">
+<li><p>Compute some high-fidelity solutions</p></li>
+<li><p>Perform PCA on the wavefunctions, here we are faced with an alternative: either we do all states at once or we do one emulator per state. We will present both.</p></li>
+<li><p>Project the Hamiltonian onpo PC space.</p></li>
+<li><p>Minimize the Frobenius norm between some model for our operator and the numerical hamiltonian.</p></li>
+</ul>
+<p>Since all other points should be familiar by now we will concentrate on the last one. The model we will have for our Hamiltonian is a polynomial feature model on the parameters <span class="math notranslate nohighlight">\(\alpha_i\)</span> of the data:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-44f87cb0-68d2-40df-939f-2c96b4e10556">
+<span class="eqno">(36)<a class="headerlink" href="#equation-44f87cb0-68d2-40df-939f-2c96b4e10556" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+\mathcal H_{ij} = (H_0)_{ij} + (H_1)^k_{ij}\alpha_k + (H_2)^{kl}_{ij}\alpha_k\alpha_l + (H_3)^{klm}_{ij} \alpha_k\alpha_l\alpha_m+\cdots 
+\end{equation}\]</div>
+<p>this model has the disadvantage that the number of parameters grows exponentially on the order that one wishes to use. The minimization problem is then:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7c2dcff8-994e-4411-90bd-ba518493fc8b">
+<span class="eqno">(37)<a class="headerlink" href="#equation-7c2dcff8-994e-4411-90bd-ba518493fc8b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F
+\end{equation}\]</div>
+<p>It is important to note that in this approach the minimization problem factorizes into component-wise quadratic programming minimization porblems, which can be solved in parallel and analytically.</p>
+<p>Because we might be interested in allowing for high order polynomial features we also consider the LASSO regularized minimization problem:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3c8af5c3-5c16-4c86-8d62-4bae9d914cca">
+<span class="eqno">(38)<a class="headerlink" href="#equation-3c8af5c3-5c16-4c86-8d62-4bae9d914cca" title="Permalink to this equation">#</a></span>\[\begin{equation}
+\min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F + \lambda ||\mathcal H_{model}||_1
+\end{equation}\]</div>
+<p>as a means to promote sparsity on the coefficients <span class="math notranslate nohighlight">\(H_I\)</span>.</p>
+<section id="now-we-are-ready-to-write-some-code">
+<h3>Now we are ready to write some code<a class="headerlink" href="#now-we-are-ready-to-write-some-code" title="Permalink to this heading">#</a></h3>
+<p>We will be using <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">sklearn.liear_models.LinearRegression()</a> to solve the first optimization problem, and <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LassoLarsCV.html#sklearn.linear_model.LassoLarsCV">sklearn.linear_models.LassoLarsCV()</a> to solve the regularized problem.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FitterNotImplemented</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Fitter</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hamiltonians</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;hamiltonians&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pars</span>         <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;pars&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dim</span>          <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hamiltonians</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nPars</span>        <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">NotImplemented</span>
+    
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+        <span class="bp">NotImplemented</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span> <span class="nc">FitterNotImplemented</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Sklearn</span><span class="p">(</span><span class="n">Fitter</span><span class="p">):</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Sklearn fitter wrapper &#39;&#39;&#39;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ord</span>    <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;order&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fitter</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;fitter&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;LeastSquares&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fitter</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;fitter&#39;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;Lasso&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fitter</span> <span class="o">=</span> <span class="n">LassoLarsCV</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">FitterNotImplemented</span><span class="p">()</span>
+            
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Allocate space for all the tensors H0, H1, H2, ... &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">poly</span>      <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="n">degree</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">ord</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">poly_feat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hs</span>        <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">poly_feat</span><span class="p">[</span><span class="mi">0</span><span class="p">]))]</span>
+        
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">):</span>
+<span class="w">                </span><span class="sd">&#39;&#39;&#39; We now build a new vector out of the features &#39;&#39;&#39;</span>
+                <span class="n">y_axis</span> <span class="o">=</span> <span class="p">[</span> <span class="bp">self</span><span class="o">.</span><span class="n">hamiltonians</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nPars</span><span class="p">)</span> <span class="p">]</span>
+            
+                <span class="bp">self</span><span class="o">.</span><span class="n">fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">poly_feat</span><span class="p">,</span><span class="n">y_axis</span><span class="p">)</span>
+<span class="w">                </span>
+<span class="w">                </span><span class="sd">&#39;&#39;&#39; Sklearn stores the order zero under a different name &#39;&#39;&#39;</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">hs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitter</span><span class="o">.</span><span class="n">intercept_</span>
+<span class="w">                </span>
+<span class="w">                </span><span class="sd">&#39;&#39;&#39; All others are together &#39;&#39;&#39;</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">poly_feat</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">hs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fitter</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Create the polynomial features of the data &#39;&#39;&#39;</span>
+        <span class="n">poly_feat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">([</span><span class="n">pars</span><span class="p">])</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Build the Hamiltonian &#39;&#39;&#39;</span>
+        <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hs</span><span class="p">):</span>
+            <span class="n">hamiltonian</span> <span class="o">+=</span> <span class="n">h</span><span class="o">*</span><span class="n">poly_feat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">hamiltonian</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="global-frobenius-one-for-all">
+<h2>Global Frobenius: One for All<a class="headerlink" href="#global-frobenius-one-for-all" title="Permalink to this heading">#</a></h2>
+<p>This is the main object which interfaces the high-fidelity data with the underlying fitters</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Frobenius</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">waves</span>  <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;waves&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hamils</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;hamiltonian&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pars</span>   <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;pars&#39;</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">nWaves</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">waves</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nPars</span>  <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">waves</span><span class="p">))</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">type</span>            <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span>
+    
+    <span class="k">def</span> <span class="nf">predict_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Function to predict both eigenvalues and eigenfucntions &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fitter</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pars</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="nf">predict_rsp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Predict wavefunctions in real, high-fidelity space &#39;&#39;&#39;</span>
+        <span class="n">evl</span><span class="p">,</span><span class="n">evc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_all</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
+        <span class="n">waves</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">evc</span><span class="p">[:,:</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">waves</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">nWaves</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">predict_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Predict the radius &#39;&#39;&#39;</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">rho_maker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predict_rsp</span><span class="p">(</span><span class="n">pars</span><span class="p">))</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):]</span>
+        <span class="n">R</span>   <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rho</span><span class="p">):</span>
+            <span class="n">R</span> <span class="o">+=</span> <span class="n">rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">R</span>
+    
+    <span class="k">def</span> <span class="nf">predict_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigvalsh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fitter</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">pars</span><span class="p">))[:</span><span class="bp">self</span><span class="o">.</span><span class="n">nWaves</span><span class="p">])</span>
+    
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">dim</span>    <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;dimension&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ord</span>    <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;order&#39;</span><span class="p">]</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Fisrt we build the local basis &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">basis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">]</span>  <span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; We now build a reduced Hamiltonian to set as the target for minimization &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hamiltonians</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">pars</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">):</span>
+            
+            <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+<span class="w">            </span>
+<span class="w">            </span><span class="sd">&#39;&#39;&#39; Project onto pc space &#39;&#39;&#39;</span>
+            <span class="n">hamiltonian</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hamils</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">basis</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">hamiltonians</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hamiltonian</span><span class="p">)</span>
+            
+        <span class="bp">self</span><span class="o">.</span><span class="n">hamiltonians</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hamiltonians</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Build the fitter &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fitter</span> <span class="o">=</span> <span class="n">Sklearn</span><span class="p">(</span><span class="n">hamiltonians</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hamiltonians</span><span class="p">,</span>
+                              <span class="n">pars</span>         <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">,</span>
+                              <span class="n">fitter</span>       <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;fitter&#39;</span><span class="p">],</span>
+                              <span class="n">order</span>        <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ord</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We also need some helpers to visialize the results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">test_set</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">label</span><span class="p">):</span>
+    <span class="n">corrs</span>  <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">errors</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">pars</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span><span class="s1">&#39;kappa&#39;</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
+        <span class="n">evl</span><span class="p">,</span><span class="n">evc</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_all</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
+        <span class="n">corrs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;pars&quot;</span><span class="p">:</span><span class="n">pars</span><span class="p">,</span><span class="s2">&quot;errors&quot;</span><span class="p">:</span><span class="n">evl</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;eigenvalues&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])})</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">evl</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;eigenvalues&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]))</span>
+    
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">item</span> <span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;E&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;: &quot;</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="si">:</span><span class="s1">.1e</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="si">:</span><span class="s1">.1e</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">label</span><span class="o">+</span><span class="s2">&quot; set error&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Configuration #&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">errors</span><span class="p">,</span><span class="n">corrs</span>
+
+<span class="k">def</span> <span class="nf">show_error_correlation</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span><span class="n">label</span><span class="p">):</span>
+
+    <span class="n">mins</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1E16</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+    <span class="n">maxs</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1E16</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">corr</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="n">mins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">mins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">point</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">maxs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">point</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+<span class="w">        </span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Colorful error plots &#39;&#39;&#39;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr</span><span class="p">)):</span>
+            <span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">zs</span> <span class="o">=</span> <span class="n">corr_test</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;pars&#39;</span><span class="p">]</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">rgb</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="n">corr</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;errors&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; for &quot;</span><span class="o">+</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\alpha$&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\kappa$&#39;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$q$&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="let-s-test-these-models">
+<h3>Let’s test these models<a class="headerlink" href="#let-s-test-these-models" title="Permalink to this heading">#</a></h3>
+<p>First we build them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">frobenius</span> <span class="o">=</span> <span class="n">Frobenius</span><span class="p">(</span><span class="n">waves</span>        <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;wave_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">],</span>
+                      <span class="n">hamiltonian</span>  <span class="o">=</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;hamiltonian&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+                      <span class="n">pars</span>         <span class="o">=</span> <span class="n">df_train</span><span class="p">[[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span><span class="s1">&#39;kappa&#39;</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dimension</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">order</span>     <span class="o">=</span> <span class="mi">3</span>
+<span class="n">fitter</span>    <span class="o">=</span> <span class="s2">&quot;LeastSquares&quot;</span>
+
+<span class="n">frobenius</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="n">dimension</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span><span class="n">fitter</span><span class="o">=</span><span class="n">fitter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we test them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">error_test</span> <span class="p">,</span><span class="n">corr_test</span>  <span class="o">=</span> <span class="n">test_set</span><span class="p">(</span><span class="n">frobenius</span><span class="p">,</span><span class="n">df_test</span> <span class="p">,</span><span class="s2">&quot;Test&quot;</span> <span class="p">)</span>
+<span class="n">error_train</span><span class="p">,</span><span class="n">corr_train</span> <span class="o">=</span> <span class="n">test_set</span><span class="p">(</span><span class="n">frobenius</span><span class="p">,</span><span class="n">df_train</span><span class="p">,</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/cc8214432619962fc5edae33e7839383157d9d86420b2ef667c4264ce48232a6.png" src="../_images/cc8214432619962fc5edae33e7839383157d9d86420b2ef667c4264ce48232a6.png" />
+<img alt="../_images/9764841aa20db769a022519dfbf3b32debcfe6eeb57f0b52a61916edffd273c0.png" src="../_images/9764841aa20db769a022519dfbf3b32debcfe6eeb57f0b52a61916edffd273c0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="local-approach-one-for-each">
+<h2>Local Approach: One for Each<a class="headerlink" href="#local-approach-one-for-each" title="Permalink to this heading">#</a></h2>
+<p>This fitter is a special case of the prvious one, we simply add a wrapper to handle the correct splicing of the data into each of the underlying Frobenius fitters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SequentialFrobenius</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">waves</span>     <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;waves&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pars</span>      <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;pars&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hamil</span>     <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;hamiltonian&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nWaves</span>    <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">waves</span><span class="p">)</span>
+<span class="w">        </span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Splices the data and feeds it to several Frobenius &#39;&#39;&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">emulators</span> <span class="o">=</span> <span class="p">[</span> <span class="n">Frobenius</span><span class="p">(</span><span class="n">waves</span><span class="o">=</span><span class="p">[</span><span class="n">wave</span><span class="p">],</span>
+                                     <span class="n">hamiltonian</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hamil</span><span class="p">,</span>
+                                     <span class="n">pars</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pars</span><span class="p">)</span> <span class="k">for</span> <span class="n">wave</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">waves</span> <span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dimension</span><span class="p">,</span><span class="n">order</span><span class="p">,</span><span class="n">fitter</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Build each fitter &#39;&#39;&#39;</span>
+        <span class="k">for</span> <span class="n">emul</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">emulators</span><span class="p">:</span>
+            <span class="n">emul</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">dimension</span> <span class="o">=</span> <span class="n">dimension</span><span class="p">,</span>
+                       <span class="n">order</span>     <span class="o">=</span> <span class="n">order</span><span class="p">,</span>
+                       <span class="n">fitter</span>    <span class="o">=</span> <span class="n">fitter</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">predict_energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Collect each prediction and add them all up &#39;&#39;&#39;</span>
+        <span class="n">evl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nWaves</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">emul</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">emulators</span><span class="p">):</span>
+            <span class="n">evl</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">emul</span><span class="o">.</span><span class="n">predict_all</span><span class="p">(</span><span class="n">pars</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">evl</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">predict_all</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Return all energies and wavefunctions &#39;&#39;&#39;</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="p">[</span> <span class="n">emul</span><span class="o">.</span><span class="n">predict_all</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span> <span class="k">for</span> <span class="n">emul</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">emulators</span> <span class="p">]</span>
+        <span class="n">energies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">sol</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">res</span> <span class="p">])</span>
+        <span class="n">waves</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span> <span class="n">sol</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">sol</span> <span class="ow">in</span> <span class="n">res</span> <span class="p">])</span>
+        <span class="k">return</span> <span class="n">energies</span><span class="p">,</span><span class="n">waves</span>
+    
+    <span class="k">def</span> <span class="nf">predict_rsp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Returns the real space wavefunctions &#39;&#39;&#39;</span>
+        <span class="n">waves</span> <span class="o">=</span> <span class="p">[</span> <span class="n">emul</span><span class="o">.</span><span class="n">predict_rsp</span><span class="p">(</span><span class="n">pars</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">emul</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">emulators</span> <span class="p">]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">waves</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">predict_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">pars</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; Computes the radius &#39;&#39;&#39;</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">rho_maker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predict_rsp</span><span class="p">(</span><span class="n">pars</span><span class="p">))</span>
+        <span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rho</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):]</span>
+        <span class="n">R</span>   <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rho</span><span class="p">):</span>
+            <span class="n">R</span> <span class="o">+=</span> <span class="n">rho</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">R</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We are ready to test these</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seq_frobenius</span> <span class="o">=</span> <span class="n">SequentialFrobenius</span><span class="p">(</span><span class="n">waves</span>         <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;wave_&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">],</span>
+                                    <span class="n">hamiltonian</span>   <span class="o">=</span> <span class="n">df_train</span><span class="p">[</span><span class="s1">&#39;hamiltonian&#39;</span><span class="p">],</span>
+                                    <span class="n">pars</span>          <span class="o">=</span> <span class="n">df_train</span><span class="p">[[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span><span class="s1">&#39;kappa&#39;</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Build them</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dimension</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">order</span>     <span class="o">=</span> <span class="mi">6</span>
+<span class="n">fitter</span>    <span class="o">=</span> <span class="s2">&quot;Lasso&quot;</span>
+
+<span class="n">seq_frobenius</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">dimension</span><span class="o">=</span><span class="n">dimension</span><span class="p">,</span><span class="n">order</span><span class="o">=</span><span class="n">order</span><span class="p">,</span><span class="n">fitter</span><span class="o">=</span><span class="n">fitter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Display their errors</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">seq_error_test</span> <span class="p">,</span><span class="n">seq_corr_test</span>  <span class="o">=</span> <span class="n">test_set</span><span class="p">(</span><span class="n">seq_frobenius</span><span class="p">,</span><span class="n">df_test</span> <span class="p">,</span><span class="s2">&quot;Test&quot;</span> <span class="p">)</span>
+<span class="n">seq_error_train</span><span class="p">,</span><span class="n">seq_corr_train</span> <span class="o">=</span> <span class="n">test_set</span><span class="p">(</span><span class="n">seq_frobenius</span><span class="p">,</span><span class="n">df_train</span><span class="p">,</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b8f1c29045b594f05519ddf5c66dd1200ec9a5d944596fb6fa3f10bf86f63868.png" src="../_images/b8f1c29045b594f05519ddf5c66dd1200ec9a5d944596fb6fa3f10bf86f63868.png" />
+<img alt="../_images/a7f1d1471a26b2aae1fb8ae02acb87bf3db7ddf0bcd0784387d0173296616107.png" src="../_images/a7f1d1471a26b2aae1fb8ae02acb87bf3db7ddf0bcd0784387d0173296616107.png" />
+</div>
+</div>
+<p>From these experiments we can conclude that this approach is capable of providing us with good approximations to the Galerkin equations which, unlike the real Galerkin equations, can be found once and for all. Many avenues and interesting ideas can be explored out of the ones here presented.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./blackbox_galerkin"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="SECAR.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Efficient Emulation of SECAR Beam</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../contributors.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Contributors</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-we-load-some-high-fidelity-solutions">First we load some high-fidelity solutions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operator-fitting-frobenius-norm-fitting">Operator fitting: Frobenius norm fitting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#now-we-are-ready-to-write-some-code">Now we are ready to write some code</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#global-frobenius-one-for-all">Global Frobenius: One for All</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#let-s-test-these-models">Let’s test these models</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-approach-one-for-each">Local Approach: One for Each</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By RBM Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

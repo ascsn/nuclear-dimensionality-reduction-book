@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>The RBM Approach &#8212; Reduced Basis Methods in Nuclear Physics</title>
+    <title>Aplication 5: Black-Box Methods &#8212; Reduced Basis Methods in Nuclear Physics</title>
   
   
   
@@ -61,9 +61,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'ho/ho-rbm';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'blackbox_galerkin/Introduction';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Efficient Emulation of SECAR Beam" href="SECAR.html" />
+    <link rel="prev" title="Application 4: Time Dependent Systems (evolution in the reduced space)" href="../HO_Time/HO_Time_Dependent.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -154,12 +156,12 @@ const thebe_selector_output = ".output, .cell_output"
                 </a>
             </li>
         </ul>
-        <ul class="nav bd-sidenav">
+        <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/emulators.html">Why emulators?</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="1dHO.html">Application 1: The Quantum Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ho/1dHO.html">Application 1: The Quantum Harmonic Oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
 
@@ -167,9 +169,9 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
-<li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Aplication 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/SECAR.html">Efficient Emulation of SECAR Beam</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/DFT_Toy_Model.html">Density Functional Theory (DFT): A Toy Model</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Aplication 5: Black-Box Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="SECAR.html">Efficient Emulation of SECAR Beam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DFT_Toy_Model.html">Density Functional Theory (DFT): A Toy Model</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
@@ -244,7 +246,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/kylegodbey/nuclear-rbm/issues/new?title=Issue%20on%20page%20%2Fho/ho-rbm.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/kylegodbey/nuclear-rbm/issues/new?title=Issue%20on%20page%20%2Fblackbox_galerkin/Introduction.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -274,7 +276,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/ho/ho-rbm.md" target="_blank"
+      <li><a href="../_sources/blackbox_galerkin/Introduction.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -354,7 +356,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>The RBM Approach</h1>
+    <h1>Aplication 5: Black-Box Methods</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -368,8 +370,11 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="the-rbm-approach">
-<h1>The RBM Approach<a class="headerlink" href="#the-rbm-approach" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="aplication-5-black-box-methods">
+<h1>Aplication 5: Black-Box Methods<a class="headerlink" href="#aplication-5-black-box-methods" title="Permalink to this heading">#</a></h1>
+<p>The power of reduced basis methods lies in their ability to capture the directions of maximal variation of some high-dimensional representation of our objects of interest, by concentrating on the most relevant of those directions one obtains a low-dimensional representation (the reduced coordinates) of the problem which, although not perfect, can capture a lot of the dynamics of the system to a sufficiently good degree. In all the examples that have been discussed we first found the reduced coordinates and then took the analytical expression governing the dynamics of our system and built the Galerkin projections using these reduced coordinates. But what if we don’t know the governing equations for our system? Can we build an approximation of these equations from the data itself? It would make sense that it is so, since the solutions all have in common the governing equation. This is what we explore in this chapter.</p>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -385,7 +390,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./ho"
+            path: "./blackbox_galerkin"
         },
         predefinedOutput: true
     }
@@ -403,6 +408,24 @@ document.write(`
   
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="../HO_Time/HO_Time_Dependent.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Application 4: Time Dependent Systems (evolution in the reduced space)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="SECAR.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Efficient Emulation of SECAR Beam</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div></div>
   
 </div>
