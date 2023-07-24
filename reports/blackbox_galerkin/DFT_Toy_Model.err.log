@@ -17,16 +17,66 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-import pandas as pd
-import numpy as np
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.linear_model import *
+
+class FitterNotImplemented(BaseException):
+    pass
+
+class Sklearn(Fitter):
+    
+    ''' Sklearn fitter wrapper '''
+    
+    def __init__(self,**kwargs):
+        super().__init__(**kwargs)
+        self.ord    = kwargs["order"]
+        self.fitter = None
+        if kwargs['fitter']=="LeastSquares":
+            self.fitter = LinearRegression()
+        elif kwargs['fitter']=="Lasso":
+            self.fitter = LassoLarsCV()
+        else:
+            raise FitterNotImplemented()
+            
+    def fit(self):
+        ''' Allocate space for all the tensors H0, H1, H2, ... '''
+        self.poly      = PolynomialFeatures(degree=self.ord)
+        self.poly_feat = self.poly.fit_transform(self.pars)
+        self.hs        = [ np.zeros((self.dim,self.dim)) for i in range(len(self.poly_feat[0]))]
+        
+        for j in range(self.dim):
+            for k in range(self.dim):
+                ''' We now build a new vector out of the features '''
+                y_axis = [ self.hamiltonians[i][j,k] for i in range(self.nPars) ]
+            
+                self.fitter.fit(self.poly_feat,y_axis)
+                
+                ''' Sklearn stores the order zero under a different name '''
+                self.hs[0][j,k] = self.fitter.intercept_
+                
+                ''' All others are together '''
+                for i in range(1,len(self.poly_feat[0])):
+                    self.hs[i][j,k] = self.fitter.coef_[i]
+    
+    def predict(self,pars):
+        ''' Create the polynomial features of the data '''
+        poly_feat = self.poly.fit_transform([pars])
+        ''' Build the Hamiltonian '''
+        hamiltonian = np.zeros((self.dim,self.dim))
+        for i,h in enumerate(self.hs):
+            hamiltonian += h*poly_feat[0][i]
+        return hamiltonian
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1851/2162656668.py[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0;32mimport[0m [0mpandas[0m [0;32mas[0m [0mpd[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      2[0m [0;32mimport[0m [0mnumpy[0m [0;32mas[0m [0mnp[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/tmp/ipykernel_1929/1558835872.py[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mpreprocessing[0m [0;32mimport[0m [0mPolynomialFeatures[0m[0;34m[0m[0;34m[0m[0m
+[0m[1;32m      2[0m [0;32mfrom[0m [0msklearn[0m[0;34m.[0m[0mlinear_model[0m [0;32mimport[0m [0;34m*[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      3[0m [0;34m[0m[0m
+[1;32m      4[0m [0;32mclass[0m [0mFitterNotImplemented[0m[0;34m([0m[0mBaseException[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      5[0m     [0;32mpass[0m[0;34m[0m[0;34m[0m[0m
 
-[0;31mModuleNotFoundError[0m: No module named 'pandas'
-ModuleNotFoundError: No module named 'pandas'
+[0;31mModuleNotFoundError[0m: No module named 'sklearn'
+ModuleNotFoundError: No module named 'sklearn'
 

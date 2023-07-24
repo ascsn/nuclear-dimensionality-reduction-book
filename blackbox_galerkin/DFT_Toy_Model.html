@@ -445,17 +445,17 @@ document.write(`
 <p>Contributed by: Diógenes Figueroa and Pablo Giuliani</p>
 <p>This kind of Black-Box Galerkin emulators are a intermediate between a galerkian rbm emulator like the one we built for the harmonic oscillaotr and a full black-box dynamical system like SECAR. The idea here is that although we have the dynamical equations that govern the system, these equations are so complicated that even a galerkian approach has trouble improving the timings as compared to the high-fidelity solvers.</p>
 <p>In this section we explore a toy model which exhibits the main challanges that one faces when attampting to use the Galerkin method for DFT. In DFT one models the wavefunctions of protons and neutrons as interacting through the cumulative density of all the nucleons, the Hamiltonian looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9e98a067-4f01-4b07-a13b-aaf60babb296">
-<span class="eqno">(33)<a class="headerlink" href="#equation-9e98a067-4f01-4b07-a13b-aaf60babb296" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2072b0d2-e4e4-464e-afa0-2f1fa82ba750">
+<span class="eqno">(33)<a class="headerlink" href="#equation-2072b0d2-e4e4-464e-afa0-2f1fa82ba750" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(-\frac{d^2}{dx^2}+\kappa x^2+q \rho(x)^\alpha\right)\phi_i(x) = \lambda_i \phi_i(x)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\displaystyle \rho(x) = \sum_{i}|\phi_i(r)|^2\)</span> is the cumulative density. the main problem one faces when trying to use the Galerkin method in this case is that the dependence on the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> is non-affine. This reduces the time advantage provided by the emulators since coefficients of the Galerkin equations cannot be precomputed in this case and need to be done at runtime. We will concentrate on two observables the total energy and the radius:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2fe1d491-927e-44b8-926f-be623eb8b38b">
-<span class="eqno">(34)<a class="headerlink" href="#equation-2fe1d491-927e-44b8-926f-be623eb8b38b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d68ea032-3d3d-4db7-9a69-be883813a166">
+<span class="eqno">(34)<a class="headerlink" href="#equation-d68ea032-3d3d-4db7-9a69-be883813a166" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E = \sum \lambda_i
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-e0e9b2ed-a673-490e-a0f1-c40225be9a25">
-<span class="eqno">(35)<a class="headerlink" href="#equation-e0e9b2ed-a673-490e-a0f1-c40225be9a25" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5fca8587-42a6-415e-ab67-8d1df381285f">
+<span class="eqno">(35)<a class="headerlink" href="#equation-5fca8587-42a6-415e-ab67-8d1df381285f" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R = \int  dx\hskip0.1cmx^2 \rho(x)
 \end{equation}\]</div>
 <p>The main idea of this section is to try an emulate the Galerkin equations directly.</p>
@@ -466,17 +466,6 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1851</span><span class="o">/</span><span class="mf">2162656668.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
 </pre></div>
 </div>
 </div>
@@ -571,19 +560,19 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <li><p>Minimize the Frobenius norm between some model for our operator and the numerical hamiltonian.</p></li>
 </ul>
 <p>Since all other points should be familiar by now we will concentrate on the last one. The model we will have for our Hamiltonian is a polynomial feature model on the parameters <span class="math notranslate nohighlight">\(\alpha_i\)</span> of the data:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-44f87cb0-68d2-40df-939f-2c96b4e10556">
-<span class="eqno">(36)<a class="headerlink" href="#equation-44f87cb0-68d2-40df-939f-2c96b4e10556" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-514564e9-12cc-4723-afcf-0052c4690418">
+<span class="eqno">(36)<a class="headerlink" href="#equation-514564e9-12cc-4723-afcf-0052c4690418" title="Permalink to this equation">#</a></span>\[\begin{equation} 
 \mathcal H_{ij} = (H_0)_{ij} + (H_1)^k_{ij}\alpha_k + (H_2)^{kl}_{ij}\alpha_k\alpha_l + (H_3)^{klm}_{ij} \alpha_k\alpha_l\alpha_m+\cdots 
 \end{equation}\]</div>
 <p>this model has the disadvantage that the number of parameters grows exponentially on the order that one wishes to use. The minimization problem is then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7c2dcff8-994e-4411-90bd-ba518493fc8b">
-<span class="eqno">(37)<a class="headerlink" href="#equation-7c2dcff8-994e-4411-90bd-ba518493fc8b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9a32c90d-acbd-451c-9dc9-b4c3edee64fc">
+<span class="eqno">(37)<a class="headerlink" href="#equation-9a32c90d-acbd-451c-9dc9-b4c3edee64fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F
 \end{equation}\]</div>
 <p>It is important to note that in this approach the minimization problem factorizes into component-wise quadratic programming minimization porblems, which can be solved in parallel and analytically.</p>
 <p>Because we might be interested in allowing for high order polynomial features we also consider the LASSO regularized minimization problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3c8af5c3-5c16-4c86-8d62-4bae9d914cca">
-<span class="eqno">(38)<a class="headerlink" href="#equation-3c8af5c3-5c16-4c86-8d62-4bae9d914cca" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bbd0c0b5-1dd5-4dd8-97bb-c1e0e8aa9687">
+<span class="eqno">(38)<a class="headerlink" href="#equation-bbd0c0b5-1dd5-4dd8-97bb-c1e0e8aa9687" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F + \lambda ||\mathcal H_{model}||_1
 \end{equation}\]</div>
 <p>as a means to promote sparsity on the coefficients <span class="math notranslate nohighlight">\(H_I\)</span>.</p>
@@ -662,6 +651,20 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">h</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hs</span><span class="p">):</span>
             <span class="n">hamiltonian</span> <span class="o">+=</span> <span class="n">h</span><span class="o">*</span><span class="n">poly_feat</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">hamiltonian</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1929</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">class</span> <span class="nc">FitterNotImplemented</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">pass</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
 </pre></div>
 </div>
 </div>
