@@ -9,5 +9,5 @@ A list of contributors can be found [here](contributors.md).
 ```
 
 
-For the code that generated the results on the [training and projecting paper](https://journals.aps.org/prc/abstract/10.1103/PhysRevC.106.054322) see: [https://github.com/ascsn/nuclear-dimensionality-reduction-book/tree/paperarchive](https://github.com/kylegodbey/nuclear-rbm/tree/paperarchive)
+For the code that generated the results on the [training and projecting paper](https://journals.aps.org/prc/abstract/10.1103/PhysRevC.106.054322) see: [https://github.com/ascsn/nuclear-dimensionality-reduction-book/tree/paperarchive](https://github.com/ascsn/nuclear-dimensionality-reduction-book/tree/paperarchive)
 

@@ -25,10 +25,10 @@ jobs:
     # Build the book
     - name: Build the book
       run: |
-        jupyter-book build nuclear-rbm/
+        jupyter-book build nuclear-dr/
     # Push the book's HTML to github-pages
     - name: GitHub Pages action
       uses: peaceiris/actions-gh-pages@v3.5.9
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: nuclear-rbm/_build/html
+        publish_dir: nuclear-dr/_build/html
