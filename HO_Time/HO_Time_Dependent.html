@@ -168,9 +168,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
 
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-
-
-
 <li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Aplication 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/SECAR.html">Efficient Emulation of SECAR Beam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/DFT_Toy_Model.html">Density Functional Theory (DFT): A Toy Model</a></li>
@@ -419,12 +416,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver-approach">High fidelity solver approach</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basis-method-approach">Reduced Basis Method Approach</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega">Comparing the RBM and the High Fidelity for a fixed value of <span class="math notranslate nohighlight">\(\omega\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver-approach">High fidelity solver approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basis-method-approach">Reduced Basis Method Approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega">Comparing the RBM and the High Fidelity for a fixed value of <span class="math notranslate nohighlight">\(\omega\)</span></a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -439,49 +434,49 @@ document.write(`
 <h1>Application 4: Time Dependent Systems (evolution in the reduced space)<a class="headerlink" href="#application-4-time-dependent-systems-evolution-in-the-reduced-space" title="Permalink to this heading">#</a></h1>
 <p>Contributed by: Pablo Giuliani, Kyle Godbey, Edgard Bonilla</p>
 <p>In this section we are going to take a look at the time evolution of a quantum system using the reduced basis method (<a class="reference external" href="https://doi.org/10.1016/j.cma.2006.08.004">take a look here for an example practical and more complex non-quantum application</a>). We will focus on the harmonic oscillator for our first exploration (we will try a self interacting particle in the next chapter about non-linear systems). Our Hamiltonian is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-96ab146f-7020-4339-9fcd-0cfd05654945">
-<span class="eqno">(23)<a class="headerlink" href="#equation-96ab146f-7020-4339-9fcd-0cfd05654945" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-19ceed6e-b19a-4d17-bd20-8b9cf12e2448">
+<span class="eqno">(23)<a class="headerlink" href="#equation-19ceed6e-b19a-4d17-bd20-8b9cf12e2448" title="Permalink to this equation">#</a></span>\[\begin{equation}
     H = -\frac{\partial^2}{\partial x^2} + \omega^2 x^2
 \end{equation}\]</div>
 <p>Let us drop the numerical constants to simplify notation (<span class="math notranslate nohighlight">\(\hbar=1\)</span>).</p>
 <p>The evolution of a quantum mechanical wave function is <a class="reference external" href="https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics)#Schr%C3%B6dinger_equation">described through Schrodinger equation as</a>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df5a4a10-887d-43a5-9779-c865cdc6d18b">
-<span class="eqno">(24)<a class="headerlink" href="#equation-df5a4a10-887d-43a5-9779-c865cdc6d18b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b5561ec9-84d4-4a8b-b850-5a3dc5ee369b">
+<span class="eqno">(24)<a class="headerlink" href="#equation-b5561ec9-84d4-4a8b-b850-5a3dc5ee369b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     H \left| \phi (t,x) \right\rangle = i  {\partial\over\partial t} \left| \phi (t,x) \right\rangle,
 \end{equation}\]</div>
 <p>which results in the evolution operator from an initial state:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-676453c9-1260-4c60-93e1-1c4e8fdf7388">
-<span class="eqno">(25)<a class="headerlink" href="#equation-676453c9-1260-4c60-93e1-1c4e8fdf7388" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4ab4493d-8d1d-4e43-94bb-087136c52b8a">
+<span class="eqno">(25)<a class="headerlink" href="#equation-4ab4493d-8d1d-4e43-94bb-087136c52b8a" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left| \phi (t,x) \right\rangle = e^{-iHt} | \phi (0,x) \rangle.
 \end{equation}\]</div>
 <p>To solve the problem numerically, the evolution operator is usually expanded in its Taylor approximation and a finite time step <span class="math notranslate nohighlight">\(\Delta t\)</span> is taken:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b26bd33-4a12-43b8-bd30-59825f22aece">
-<span class="eqno">(26)<a class="headerlink" href="#equation-3b26bd33-4a12-43b8-bd30-59825f22aece" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6a2d1507-d3cc-46a1-a2dd-26d1f2e7bde2">
+<span class="eqno">(26)<a class="headerlink" href="#equation-6a2d1507-d3cc-46a1-a2dd-26d1f2e7bde2" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left| \phi (\Delta t,x) \right\rangle \approx \big(1 + (-iH\Delta t) + \frac{1}{2} (-iH\Delta t)^2 + ... \big) | \phi (0,x) \rangle.
 \end{equation}\]</div>
 <p>In this chapter, we will still use the evolution operator to study the dynamics of the system, but we will build it in the reduced space.  The state <span class="math notranslate nohighlight">\(\phi(x,t)\)</span> will be transformed into their reduced approximations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e079f42a-2d6f-452e-962c-cb27e8b51834">
-<span class="eqno">(27)<a class="headerlink" href="#equation-e079f42a-2d6f-452e-962c-cb27e8b51834" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-34b8a2fe-fb7e-4d21-b098-96a24b23d75a">
+<span class="eqno">(27)<a class="headerlink" href="#equation-34b8a2fe-fb7e-4d21-b098-96a24b23d75a" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \phi(x,t) \approx \hat \phi(x,t) = \sum_k^n a_k(t) \phi_k(x),
 \end{equation}\]</div>
 <p>where now the coefficients <span class="math notranslate nohighlight">\(a_k\)</span> explicitely depend on time (as well as any parameters of the system). The Hamiltonian will be transformed in a reduced version as well when substituting the reduced basis approximation and doing a Galerkin projection of the dynamic evolution equaiton. Using our previous notation we have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0a71ac1f-2829-4ac1-b222-c119c64d6956">
-<span class="eqno">(28)<a class="headerlink" href="#equation-0a71ac1f-2829-4ac1-b222-c119c64d6956" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-77d2be37-a9d0-49e4-97bc-ee70f4391c18">
+<span class="eqno">(28)<a class="headerlink" href="#equation-77d2be37-a9d0-49e4-97bc-ee70f4391c18" title="Permalink to this equation">#</a></span>\[\begin{equation}
    F_\alpha[ \phi(x,t) ]=  {\partial\over\partial t} \phi (t,x) +iH\phi (t,x) =0,
 \end{equation}\]</div>
 <p>we can substitude <span class="math notranslate nohighlight">\(\phi(x,t)\)</span> with <span class="math notranslate nohighlight">\(\hat \phi(x,t)\)</span> and project:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-29f09a6e-ad08-4afe-bfda-aabc79cec49c">
-<span class="eqno">(29)<a class="headerlink" href="#equation-29f09a6e-ad08-4afe-bfda-aabc79cec49c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-219db785-69a0-43fd-9d52-3f0ac1316ee8">
+<span class="eqno">(29)<a class="headerlink" href="#equation-219db785-69a0-43fd-9d52-3f0ac1316ee8" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \langle \phi_j(x) | F_\alpha[ \hat \phi(x,t) ] \rangle =0 \ \text{for j=1, ... n}.
 \end{equation}\]</div>
 <p>We will choose our <span class="math notranslate nohighlight">\(\phi_k\)</span> as the Pricinpal Components of several snapshots, meaning that <span class="math notranslate nohighlight">\(\langle \phi_j | \phi_k\rangle = \delta_j^k\)</span>, which leads to the dynamic equations for the coefficients:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dbc8a6b4-f4f9-4dd1-9307-2f973e72b5d3">
-<span class="eqno">(30)<a class="headerlink" href="#equation-dbc8a6b4-f4f9-4dd1-9307-2f973e72b5d3" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b4371e3d-ff4b-4595-a6ce-beb04cfc9424">
+<span class="eqno">(30)<a class="headerlink" href="#equation-b4371e3d-ff4b-4595-a6ce-beb04cfc9424" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \frac{d}{dt}a_j(t) - i\hat H \boldsymbol{a}(t) =0,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{a}(t) = \{a_1(t), ... a_n(t) \}\)</span> and the reduced Hamiltonian is computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d97aeb77-028f-4109-a472-a139492f950d">
-<span class="eqno">(31)<a class="headerlink" href="#equation-d97aeb77-028f-4109-a472-a139492f950d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-67878ed3-d8d3-42ce-acf5-45a64f7ac537">
+<span class="eqno">(31)<a class="headerlink" href="#equation-67878ed3-d8d3-42ce-acf5-45a64f7ac537" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat H_{j,k} = \langle \phi_j | H | \phi_k \rangle.
 \end{equation}\]</div>
 <p>We now have to solve for the evolution of <span class="math notranslate nohighlight">\(n\)</span> (usually small) number of coefficients in time. The RBM solution will be much more efficient in time thanks to both the fact that <span class="math notranslate nohighlight">\(n\ll N\)</span> (<span class="math notranslate nohighlight">\(N\)</span> being the dimension of the traditional high fidelity solver), and that <span class="math notranslate nohighlight">\(\Delta t\)</span> can be taken appreciably bigger and still recover a stable solution.</p>
@@ -502,15 +497,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matplotlib is building the font cache; this may take a moment.
-</pre></div>
 </div>
-</div>
-</div>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="high-fidelity-solver-approach">
-<h1>High fidelity solver approach<a class="headerlink" href="#high-fidelity-solver-approach" title="Permalink to this heading">#</a></h1>
+<section id="high-fidelity-solver-approach">
+<h2>High fidelity solver approach<a class="headerlink" href="#high-fidelity-solver-approach" title="Permalink to this heading">#</a></h2>
 <p>We beging by creating the derivative operator and the evolution equations in the high fidelity solver approach through a finite element method</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -630,8 +619,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 4.7 s, sys: 1.39 s, total: 6.08 s
-Wall time: 3.05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 7.95 s, sys: 2.34 s, total: 10.3 s
+Wall time: 5.22 s
 </pre></div>
 </div>
 </div>
@@ -733,8 +722,8 @@ Wall time: 3.05 s
 </div>
 <p>This plot shows the evolution of the system after some time, highlighting the initial and final states. We will use the final state later for comparing the accuracy of the RBM emulator</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="reduced-basis-method-approach">
-<h1>Reduced Basis Method Approach<a class="headerlink" href="#reduced-basis-method-approach" title="Permalink to this heading">#</a></h1>
+<section id="reduced-basis-method-approach">
+<h2>Reduced Basis Method Approach<a class="headerlink" href="#reduced-basis-method-approach" title="Permalink to this heading">#</a></h2>
 <p>In the first part we focus on a fixed value of the parameter <span class="math notranslate nohighlight">\(\omega\)</span> and see if our time system lives in a low dimensional manifold. We will then emulate the dynamics across different values of <span class="math notranslate nohighlight">\(\omega\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -824,7 +813,7 @@ Wall time: 3.05 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8a5baa2a475cfefc976eed4f347ddc788a77ae304d02f0a828ace1223d0f4142.png" src="../_images/8a5baa2a475cfefc976eed4f347ddc788a77ae304d02f0a828ace1223d0f4142.png" />
+<img alt="../_images/2b88cf546ff43507635c048f04d9b58df9c0a09b3f71580373844ece8b3e1c75.png" src="../_images/2b88cf546ff43507635c048f04d9b58df9c0a09b3f71580373844ece8b3e1c75.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -875,8 +864,8 @@ Wall time: 3.05 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 269 ms, sys: 324 µs, total: 269 ms
-Wall time: 269 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 287 ms, sys: 162 µs, total: 288 ms
+Wall time: 287 ms
 </pre></div>
 </div>
 </div>
@@ -984,8 +973,8 @@ Wall time: 269 ms
 </div>
 <p>Looks good for this particular example</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega">
-<h1>Comparing the RBM and the High Fidelity for a fixed value of <span class="math notranslate nohighlight">\(\omega\)</span><a class="headerlink" href="#comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega" title="Permalink to this heading">#</a></h1>
+<section id="comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega">
+<h2>Comparing the RBM and the High Fidelity for a fixed value of <span class="math notranslate nohighlight">\(\omega\)</span><a class="headerlink" href="#comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#This function defines a metric for us to judge how our methods work</span>
@@ -1014,7 +1003,7 @@ Wall time: 269 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01748455588477281
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01748455588477405
 </pre></div>
 </div>
 </div>
@@ -1048,7 +1037,7 @@ Wall time: 269 ms
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="o">&lt;</span><span class="n">timed</span> <span class="n">exec</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 
-<span class="nn">/tmp/ipykernel_1890/4199485357.py</span> in <span class="ni">harmonic_oscillator_time_evolution</span><span class="nt">(initial_state, total_time, time_steps, omega, total_order, N_grid)</span>
+<span class="nn">/tmp/ipykernel_1806/4199485357.py</span> in <span class="ni">harmonic_oscillator_time_evolution</span><span class="nt">(initial_state, total_time, time_steps, omega, total_order, N_grid)</span>
 <span class="g g-Whitespace">     </span><span class="mi">40</span> 
 <span class="g g-Whitespace">     </span><span class="mi">41</span>         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">total_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">42</span>             <span class="n">current_correction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">time_step_size</span><span class="o">*</span><span class="n">H</span><span class="p">,</span><span class="n">current_correction</span><span class="p">)</span>
@@ -1277,6 +1266,7 @@ Wall time: 269 ms
 <p>We only observed the variation in time of the solution for a fixed value of the parameter <span class="math notranslate nohighlight">\(\omega\)</span>, but the generalization to emulate across <span class="math notranslate nohighlight">\(\omega\)</span> is straighforward (and indeed works well!). Give it a try, train the RB for several values of the parameters and create your own reduced order dynamical model. If you take a close look at each coefficient for different values of the parameter <span class="math notranslate nohighlight">\(\omega\)</span> you might find some patterns. What would happen if we run a Principal Component Analysis on those? Could we reduce the dimensionality of our system even further?</p>
 <p>Join us in the next chapter where we explore the time evolution of a more complicated nonlinear system!</p>
 </section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1345,12 +1335,10 @@ Wall time: 269 ms
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver-approach">High fidelity solver approach</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basis-method-approach">Reduced Basis Method Approach</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega">Comparing the RBM and the High Fidelity for a fixed value of <span class="math notranslate nohighlight">\(\omega\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver-approach">High fidelity solver approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basis-method-approach">Reduced Basis Method Approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-rbm-and-the-high-fidelity-for-a-fixed-value-of-omega">Comparing the RBM and the High Fidelity for a fixed value of <span class="math notranslate nohighlight">\(\omega\)</span></a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

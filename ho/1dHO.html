@@ -168,9 +168,6 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
 
 <li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-
-
-
 <li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Aplication 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/SECAR.html">Efficient Emulation of SECAR Beam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/DFT_Toy_Model.html">Density Functional Theory (DFT): A Toy Model</a></li>
@@ -440,14 +437,14 @@ document.write(`
 <section id="background">
 <h2>Background<a class="headerlink" href="#background" title="Permalink to this heading">#</a></h2>
 <p>Consider the Schrodinger equation for the 1-d Harmonic Oscillator:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7cb5519e-4b2f-4a5f-8cb3-9793053d392a">
-<span class="eqno">(1)<a class="headerlink" href="#equation-7cb5519e-4b2f-4a5f-8cb3-9793053d392a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-16b33d6a-77e3-4aed-85db-07051e7d826d">
+<span class="eqno">(1)<a class="headerlink" href="#equation-16b33d6a-77e3-4aed-85db-07051e7d826d" title="Permalink to this equation">#</a></span>\[\begin{align}
 &amp;\Big(- \frac{d^{2}}{dx^{2}} + \alpha x^{2}  - \lambda \Big) \phi = 0 \\
 &amp;F_{\alpha}\Big( \phi_{\alpha}(x) \Big) = 0 
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\lambda = 2 m E\)</span> is the eigenvalue with energy <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(\alpha = m^{2} \omega^{2}\)</span> is the harmonic oscillator parameter. We want to find solutions to this equation for many values of <span class="math notranslate nohighlight">\(\alpha\)</span> without repeatly solving the Schrodinger equation directly. We do this by constructing an approximate solution</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7b8412a0-8411-43d2-914a-5ed9048c2723">
-<span class="eqno">(2)<a class="headerlink" href="#equation-7b8412a0-8411-43d2-914a-5ed9048c2723" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-26b4aae1-86e3-4c37-b452-f1237a674464">
+<span class="eqno">(2)<a class="headerlink" href="#equation-26b4aae1-86e3-4c37-b452-f1237a674464" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{\phi}_{\alpha_{k}}(x) = \sum_{i=1}^{n} a_{i} \phi_{i}(x) 
 \end{align}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\phi_{i}(x)\)</span> are exact solutions to the Schrodinger equation for chosen values of <span class="math notranslate nohighlight">\(\alpha\)</span>. The goal of this tutorial is to show how Galerkin projection can be used to construct an approximate solution <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_{k}}(x)\)</span> that is significantly cheaper to evaluate for any <span class="math notranslate nohighlight">\(\alpha\)</span> of interest and to quantify the error of  <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_{k}}(x)\)</span> and approximate eigenvalues <span class="math notranslate nohighlight">\(\hat{\lambda}_{\alpha_{k}}\)</span>.</p>
@@ -699,11 +696,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 0.5, lambda = 0.707103656172208
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 0.5, lambda = 0.7071036561722082
 alpha = 0.5, exact lambda = 0.7071067811865476
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 5, lambda = 2.236036727063779
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>alpha = 5, lambda = 2.236036727063778
 alpha = 5, exact lambda = 2.23606797749979
 </pre></div>
 </div>
@@ -715,9 +712,9 @@ alpha = 10, exact lambda = 3.1622776601683795
 alpha = 15, exact lambda = 3.872983346207417
 </pre></div>
 </div>
-<img alt="../_images/b7c38ef7cea05c4bb8650db31c3e142dc9b7dc25e58ad645f11ef29a662b0009.png" src="../_images/b7c38ef7cea05c4bb8650db31c3e142dc9b7dc25e58ad645f11ef29a662b0009.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|lambda - lambda_exact| = 3.1250143395222807e-06
-|lambda - lambda_exact| = 3.125043601093225e-05
+<img alt="../_images/54e960eafd445e6f0b25d121d58ac262b8bae33ab146148833ab31b15be33827.png" src="../_images/54e960eafd445e6f0b25d121d58ac262b8bae33ab146148833ab31b15be33827.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>|lambda - lambda_exact| = 3.1250143394112584e-06
+|lambda - lambda_exact| = 3.1250436011820426e-05
 |lambda - lambda_exact| = 6.250123597917323e-05
 |lambda - lambda_exact| = 9.375226888597155e-05
 </pre></div>
@@ -754,13 +751,13 @@ alpha = 15, exact lambda = 3.872983346207417
 <h2>Constructing the Basis and Comparing<a class="headerlink" href="#constructing-the-basis-and-comparing" title="Permalink to this heading">#</a></h2>
 <p>Now that we know RBM is applicable to our problem, we now construct a reduced basis for the Schrodinger equation.</p>
 <p>Here we explicitly construct <span class="math notranslate nohighlight">\( \hat{\phi}_{\alpha_{k}}= \sum_{i=1}^{n} a_{i} \phi_{i}\)</span> using the Galerkin method, that is, projecting <span class="math notranslate nohighlight">\(F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big)\)</span> over <span class="math notranslate nohighlight">\(n\)</span> linearly independent functions projecting functions <span class="math notranslate nohighlight">\(\{ \psi_{i}\}_{i=1}^{n}\)</span>.</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a211360c-fa22-44e3-b8f4-9f539b9d2b90">
-<span class="eqno">(3)<a class="headerlink" href="#equation-a211360c-fa22-44e3-b8f4-9f539b9d2b90" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-598faabc-5557-47ba-8df1-800fd7c79585">
+<span class="eqno">(3)<a class="headerlink" href="#equation-598faabc-5557-47ba-8df1-800fd7c79585" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \psi_{i}, F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big) \rangle = 0 
 \end{align}\]</div>
 <p>We can interpret this as enforcing the orthogonality of <span class="math notranslate nohighlight">\(F_{\alpha_{k}}\big( \hat{\phi}_{\alpha_{k}}(x) \big)\)</span> to the subspace spanned by <span class="math notranslate nohighlight">\(\{\psi_{i}\}\)</span> that is, by finding <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha}\)</span> such that <span class="math notranslate nohighlight">\(F_{\alpha_{k}}(\hat{\psi}_{\alpha_{k}})\)</span> is approximately zero up to the ability of the set <span class="math notranslate nohighlight">\(\{\psi_{i}\}\)</span>. The choice of projecting functions <span class="math notranslate nohighlight">\(\{ \psi_{i} \}\)</span> is arbitrary, but is usually also informed by the solution manifold. Here we choose the solution set <span class="math notranslate nohighlight">\(\{ \phi_{i} \}\)</span> to be our projecting functions. This leads to an equation <span class="math notranslate nohighlight">\(n\)</span> equations for the coeffecients <span class="math notranslate nohighlight">\(a_{k}\)</span>. However, since <span class="math notranslate nohighlight">\(\lambda\)</span> is also unknown, we need an additional equation. This comes from the normalization conditions</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e789c64-4de7-4096-95dc-b050e5851a3f">
-<span class="eqno">(4)<a class="headerlink" href="#equation-5e789c64-4de7-4096-95dc-b050e5851a3f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-6ae2ff5a-1bd0-4471-8d12-ee6151b45ce5">
+<span class="eqno">(4)<a class="headerlink" href="#equation-6ae2ff5a-1bd0-4471-8d12-ee6151b45ce5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle \hat{\phi}_{\alpha_{k}},\hat{\phi}_{\alpha_{k}} \rangle  = 1
 \end{align}\]</div>
 <p>This results in <span class="math notranslate nohighlight">\(n +1\)</span> equations for the <span class="math notranslate nohighlight">\(n\)</span> unknown coeffecients <span class="math notranslate nohighlight">\(a_{k}\)</span> and eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
@@ -808,12 +805,12 @@ alpha = 15, exact lambda = 3.872983346207417
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coeffecients a_k: [-0.02001628  0.72240374 -3.01421624  3.31046244]
-Appproximate lambda: 5.001175561288746
+Appproximate lambda: 5.00117556128781
 Exact lambda: 5.0
-lambda difference: 0.0011755612887460742
+lambda difference: 0.0011755612878099342
 </pre></div>
 </div>
-<img alt="../_images/827422f31b9b7896c03dfd5c4ae1ef08e1e1dea25faa72924ec776348f5c3d7d.png" src="../_images/827422f31b9b7896c03dfd5c4ae1ef08e1e1dea25faa72924ec776348f5c3d7d.png" />
+<img alt="../_images/82d8bff343fb75087b1edb7dd4478f857fda73d4f1aba5ed3aa8e689c63eecd9.png" src="../_images/82d8bff343fb75087b1edb7dd4478f857fda73d4f1aba5ed3aa8e689c63eecd9.png" />
 </div>
 </div>
 </section>
