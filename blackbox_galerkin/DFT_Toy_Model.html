@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Density Functional Theory (DFT): A Toy Model &#8212; Dimensionality Reduction in Nuclear Physics</title>
+    <title>Non-linear and non-affine problem &#8212; Dimensionality Reduction in Nuclear Physics</title>
   
   
   
@@ -169,7 +169,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="Introduction.html">Aplication 5: Black-Box Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="SECAR.html">Efficient Emulation of SECAR Beam</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Density Functional Theory (DFT): A Toy Model</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Non-linear and non-affine problem</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
@@ -405,7 +405,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Density Functional Theory (DFT): A Toy Model</h1>
+    <h1>Non-linear and non-affine problem</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -436,25 +436,27 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="density-functional-theory-dft-a-toy-model">
-<h1>Density Functional Theory (DFT): A Toy Model<a class="headerlink" href="#density-functional-theory-dft-a-toy-model" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="non-linear-and-non-affine-problem">
+<h1>Non-linear and non-affine problem<a class="headerlink" href="#non-linear-and-non-affine-problem" title="Permalink to this heading">#</a></h1>
 <p>Contributed by: Diógenes Figueroa and Pablo Giuliani</p>
-<p>This kind of Black-Box Galerkin emulators are a intermediate between a galerkian rbm emulator like the one we built for the harmonic oscillaotr and a full black-box dynamical system like SECAR. The idea here is that although we have the dynamical equations that govern the system, these equations are so complicated that even a galerkian approach has trouble improving the timings as compared to the high-fidelity solvers.</p>
-<p>In this section we explore a toy model which exhibits the main challanges that one faces when attampting to use the Galerkin method for DFT. In DFT one models the wavefunctions of protons and neutrons as interacting through the cumulative density of all the nucleons, the Hamiltonian looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e33afa50-453b-448c-8ca7-dc56dae63dfa">
-<span class="eqno">(34)<a class="headerlink" href="#equation-e33afa50-453b-448c-8ca7-dc56dae63dfa" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>In this subsection we explore an approach to obtain the effective dynamical equations for the reduced coordinates of a system in which the traditional Galerkin projection can’t be done efficiently. This is the case for non-linear and non-affine systems, such as Skyrme-type Density Functional Theory (DFT).</p>
+<p>These “Black-Box Galerkin” emulators are an intermediate between the Galerkin-RBM emulator we built for the harmonic oscillaotr, and a full black-box dynamical system like SECAR. The idea here is that although we have the dynamical equations that govern the system, these equations are so complicated that even the Galerkin projection approach has trouble improving the timings as compared to the high-fidelity solvers.</p>
+<p>In this section we explore a toy model which exhibits the main challanges that one faces when attampting to use the Galerkin method for non-linear DFT. We model the <span class="math notranslate nohighlight">\(M\)</span> wavefunctions as interacting through cumulative densities of all the nucleons, the Hamiltonian looks like:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-37d22394-9f29-43b9-a8df-cd46503c71de">
+<span class="eqno">(34)<a class="headerlink" href="#equation-37d22394-9f29-43b9-a8df-cd46503c71de" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(-\frac{d^2}{dx^2}+\kappa x^2+q \rho(x)^\alpha\right)\phi_i(x) = \lambda_i \phi_i(x)
 \end{equation}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\displaystyle \rho(x) = \sum_{i}|\phi_i(r)|^2\)</span> is the cumulative density. the main problem one faces when trying to use the Galerkin method in this case is that the dependence on the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> is non-affine. This reduces the time advantage provided by the emulators since coefficients of the Galerkin equations cannot be precomputed in this case and need to be done at runtime. We will concentrate on two observables the total energy and the radius:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-66ae6a32-7ad3-45a4-a19c-400f565333fc">
-<span class="eqno">(35)<a class="headerlink" href="#equation-66ae6a32-7ad3-45a4-a19c-400f565333fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
-E = \sum \lambda_i
+<p>where <span class="math notranslate nohighlight">\(\displaystyle \rho(x) = \sum_{i}^M|\phi_i(r)|^2\)</span> is the cumulative density, and the parameters are <span class="math notranslate nohighlight">\(\{\kappa,q,\alpha\}\)</span>. The main problem we face when trying to use the Galerkin projection method in this case is that the dependence on the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> is non-affine as well as non-linear, since <span class="math notranslate nohighlight">\(\rho\)</span> explicitely depends on the solution. This reduces the time advantage provided by the emulators since the reduced equations cannot be precomputed and need to be done at runtime.</p>
+<p>For our illustrations in this subsection we will concentrate on two observables of interest, the total energy and the radius:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-dfc3f846-5f80-4208-988d-736b0f346362">
+<span class="eqno">(35)<a class="headerlink" href="#equation-dfc3f846-5f80-4208-988d-736b0f346362" title="Permalink to this equation">#</a></span>\[\begin{equation}
+E = \sum_i^M \lambda_i
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-dab26161-d773-4e0e-9887-95ec53f39e60">
-<span class="eqno">(36)<a class="headerlink" href="#equation-dab26161-d773-4e0e-9887-95ec53f39e60" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f4f6169c-9672-4707-be21-0ac800358601">
+<span class="eqno">(36)<a class="headerlink" href="#equation-f4f6169c-9672-4707-be21-0ac800358601" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R = \int  dx\hskip0.1cmx^2 \rho(x)
 \end{equation}\]</div>
-<p>The main idea of this section is to try an emulate the Galerkin equations directly.</p>
+<p>We will attempt at learning the reduced equations directly from high fidelity runs.</p>
 <section id="first-we-load-some-high-fidelity-solutions">
 <h2>First we load some high-fidelity solutions<a class="headerlink" href="#first-we-load-some-high-fidelity-solutions" title="Permalink to this heading">#</a></h2>
 <p>In the interest of time we do not solve the high-fidelity equation here, a full comprehensive solution can be found here: <span class="xref myst"></span>. All the high-fidelity solutions have been pre-computed and we simply load them. We also define all the discretized versions of the operators that compose the Hamiltonian.</p>
@@ -556,19 +558,19 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <li><p>Minimize the Frobenius norm between some model for our operator and the numerical hamiltonian.</p></li>
 </ul>
 <p>Since all other points should be familiar by now we will concentrate on the last one. The model we will have for our Hamiltonian is a polynomial feature model on the parameters <span class="math notranslate nohighlight">\(\alpha_i\)</span> of the data:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9d6cfac9-7572-4c63-9690-868df155634f">
-<span class="eqno">(37)<a class="headerlink" href="#equation-9d6cfac9-7572-4c63-9690-868df155634f" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-14cb14de-1166-486b-b5c0-97b725e2e0e5">
+<span class="eqno">(37)<a class="headerlink" href="#equation-14cb14de-1166-486b-b5c0-97b725e2e0e5" title="Permalink to this equation">#</a></span>\[\begin{equation} 
 \mathcal H_{ij} = (H_0)_{ij} + (H_1)^k_{ij}\alpha_k + (H_2)^{kl}_{ij}\alpha_k\alpha_l + (H_3)^{klm}_{ij} \alpha_k\alpha_l\alpha_m+\cdots 
 \end{equation}\]</div>
 <p>this model has the disadvantage that the number of parameters grows exponentially on the order that one wishes to use. The minimization problem is then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-253981d3-3aa9-47f8-99b3-2337a8b4d790">
-<span class="eqno">(38)<a class="headerlink" href="#equation-253981d3-3aa9-47f8-99b3-2337a8b4d790" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-649f959b-ae39-4251-9044-8c662c3fdd4a">
+<span class="eqno">(38)<a class="headerlink" href="#equation-649f959b-ae39-4251-9044-8c662c3fdd4a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F
 \end{equation}\]</div>
 <p>It is important to note that in this approach the minimization problem factorizes into component-wise quadratic programming minimization porblems, which can be solved in parallel and analytically.</p>
 <p>Because we might be interested in allowing for high order polynomial features we also consider the LASSO regularized minimization problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5bb7deed-0241-4d37-8d16-d371ef7ba661">
-<span class="eqno">(39)<a class="headerlink" href="#equation-5bb7deed-0241-4d37-8d16-d371ef7ba661" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-da65d5d0-9d71-42e2-bcfb-fff7caeb2b62">
+<span class="eqno">(39)<a class="headerlink" href="#equation-da65d5d0-9d71-42e2-bcfb-fff7caeb2b62" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F + \lambda ||\mathcal H_{model}||_1
 \end{equation}\]</div>
 <p>as a means to promote sparsity on the coefficients <span class="math notranslate nohighlight">\(H_I\)</span>.</p>
@@ -653,7 +655,7 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1854</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1847</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
