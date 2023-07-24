@@ -441,17 +441,17 @@ document.write(`
 <p>Contributed by: Diógenes Figueroa and Pablo Giuliani</p>
 <p>This kind of Black-Box Galerkin emulators are a intermediate between a galerkian rbm emulator like the one we built for the harmonic oscillaotr and a full black-box dynamical system like SECAR. The idea here is that although we have the dynamical equations that govern the system, these equations are so complicated that even a galerkian approach has trouble improving the timings as compared to the high-fidelity solvers.</p>
 <p>In this section we explore a toy model which exhibits the main challanges that one faces when attampting to use the Galerkin method for DFT. In DFT one models the wavefunctions of protons and neutrons as interacting through the cumulative density of all the nucleons, the Hamiltonian looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ece7a447-73ab-4908-a5d9-fd858233c8dc">
-<span class="eqno">(33)<a class="headerlink" href="#equation-ece7a447-73ab-4908-a5d9-fd858233c8dc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e33afa50-453b-448c-8ca7-dc56dae63dfa">
+<span class="eqno">(34)<a class="headerlink" href="#equation-e33afa50-453b-448c-8ca7-dc56dae63dfa" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(-\frac{d^2}{dx^2}+\kappa x^2+q \rho(x)^\alpha\right)\phi_i(x) = \lambda_i \phi_i(x)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\displaystyle \rho(x) = \sum_{i}|\phi_i(r)|^2\)</span> is the cumulative density. the main problem one faces when trying to use the Galerkin method in this case is that the dependence on the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> is non-affine. This reduces the time advantage provided by the emulators since coefficients of the Galerkin equations cannot be precomputed in this case and need to be done at runtime. We will concentrate on two observables the total energy and the radius:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3a582d83-7db5-49ba-ad47-3d40319561eb">
-<span class="eqno">(34)<a class="headerlink" href="#equation-3a582d83-7db5-49ba-ad47-3d40319561eb" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-66ae6a32-7ad3-45a4-a19c-400f565333fc">
+<span class="eqno">(35)<a class="headerlink" href="#equation-66ae6a32-7ad3-45a4-a19c-400f565333fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E = \sum \lambda_i
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-7dfcb762-7d33-49ab-b3ef-ee3f7d3046a9">
-<span class="eqno">(35)<a class="headerlink" href="#equation-7dfcb762-7d33-49ab-b3ef-ee3f7d3046a9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-dab26161-d773-4e0e-9887-95ec53f39e60">
+<span class="eqno">(36)<a class="headerlink" href="#equation-dab26161-d773-4e0e-9887-95ec53f39e60" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R = \int  dx\hskip0.1cmx^2 \rho(x)
 \end{equation}\]</div>
 <p>The main idea of this section is to try an emulate the Galerkin equations directly.</p>
@@ -556,19 +556,19 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <li><p>Minimize the Frobenius norm between some model for our operator and the numerical hamiltonian.</p></li>
 </ul>
 <p>Since all other points should be familiar by now we will concentrate on the last one. The model we will have for our Hamiltonian is a polynomial feature model on the parameters <span class="math notranslate nohighlight">\(\alpha_i\)</span> of the data:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-8708c29c-6248-467f-a1f9-bbee56218bc2">
-<span class="eqno">(36)<a class="headerlink" href="#equation-8708c29c-6248-467f-a1f9-bbee56218bc2" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-9d6cfac9-7572-4c63-9690-868df155634f">
+<span class="eqno">(37)<a class="headerlink" href="#equation-9d6cfac9-7572-4c63-9690-868df155634f" title="Permalink to this equation">#</a></span>\[\begin{equation} 
 \mathcal H_{ij} = (H_0)_{ij} + (H_1)^k_{ij}\alpha_k + (H_2)^{kl}_{ij}\alpha_k\alpha_l + (H_3)^{klm}_{ij} \alpha_k\alpha_l\alpha_m+\cdots 
 \end{equation}\]</div>
 <p>this model has the disadvantage that the number of parameters grows exponentially on the order that one wishes to use. The minimization problem is then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-966d2866-d65b-488f-9df1-49a5ba770da4">
-<span class="eqno">(37)<a class="headerlink" href="#equation-966d2866-d65b-488f-9df1-49a5ba770da4" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-253981d3-3aa9-47f8-99b3-2337a8b4d790">
+<span class="eqno">(38)<a class="headerlink" href="#equation-253981d3-3aa9-47f8-99b3-2337a8b4d790" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F
 \end{equation}\]</div>
 <p>It is important to note that in this approach the minimization problem factorizes into component-wise quadratic programming minimization porblems, which can be solved in parallel and analytically.</p>
 <p>Because we might be interested in allowing for high order polynomial features we also consider the LASSO regularized minimization problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-88e15ee2-1e33-4aad-bb9f-b9eacf03acf0">
-<span class="eqno">(38)<a class="headerlink" href="#equation-88e15ee2-1e33-4aad-bb9f-b9eacf03acf0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-5bb7deed-0241-4d37-8d16-d371ef7ba661">
+<span class="eqno">(39)<a class="headerlink" href="#equation-5bb7deed-0241-4d37-8d16-d371ef7ba661" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F + \lambda ||\mathcal H_{model}||_1
 \end{equation}\]</div>
 <p>as a means to promote sparsity on the coefficients <span class="math notranslate nohighlight">\(H_I\)</span>.</p>
@@ -653,7 +653,7 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1853</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1854</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
