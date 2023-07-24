@@ -11,12 +11,7 @@ chapters:
 - file: scattering/scattering
 - file: scattering/eim
 - file: HO_Time/HO_Time_Dependent
-#- file: non_affinity/Introduction
-#  sections:
-#      -file: non_affinity/ToyModel
-#      -file: non_affinity/DFT
 - file: blackbox_galerkin/Introduction
   sections:
-      -file: blackbox_galerkin/SECAR
-#      -file: blackbox_galerkin/ToyModel
+      - file: blackbox_galerkin/SECAR
 - file: contributors
