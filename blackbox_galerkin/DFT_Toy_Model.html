@@ -442,18 +442,18 @@ document.write(`
 <p>In this subsection we explore an approach to obtain the effective dynamical equations for the reduced coordinates of a system in which the traditional Galerkin projection can’t be done efficiently. This is the case for non-linear and non-affine systems, such as Skyrme-type Density Functional Theory (DFT).</p>
 <p>These “Black-Box Galerkin” emulators are an intermediate between the Galerkin-RBM emulator we built for the harmonic oscillaotr, and a full black-box dynamical system like SECAR. The idea here is that although we have the dynamical equations that govern the system, these equations are so complicated that even the Galerkin projection approach has trouble improving the timings as compared to the high-fidelity solvers.</p>
 <p>In this section we explore a toy model which exhibits the main challanges that one faces when attampting to use the Galerkin method for non-linear DFT. We model the <span class="math notranslate nohighlight">\(M\)</span> wavefunctions as interacting through cumulative densities of all the nucleons, the Hamiltonian looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37d22394-9f29-43b9-a8df-cd46503c71de">
-<span class="eqno">(34)<a class="headerlink" href="#equation-37d22394-9f29-43b9-a8df-cd46503c71de" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-beda498b-8098-4bc7-916e-ad918c71c5ad">
+<span class="eqno">(34)<a class="headerlink" href="#equation-beda498b-8098-4bc7-916e-ad918c71c5ad" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left(-\frac{d^2}{dx^2}+\kappa x^2+q \rho(x)^\alpha\right)\phi_i(x) = \lambda_i \phi_i(x)
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\displaystyle \rho(x) = \sum_{i}^M|\phi_i(r)|^2\)</span> is the cumulative density, and the parameters are <span class="math notranslate nohighlight">\(\{\kappa,q,\alpha\}\)</span>. The main problem we face when trying to use the Galerkin projection method in this case is that the dependence on the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> is non-affine as well as non-linear, since <span class="math notranslate nohighlight">\(\rho\)</span> explicitely depends on the solution. This reduces the time advantage provided by the emulators since the reduced equations cannot be precomputed and need to be done at runtime.</p>
 <p>For our illustrations in this subsection we will concentrate on two observables of interest, the total energy and the radius:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dfc3f846-5f80-4208-988d-736b0f346362">
-<span class="eqno">(35)<a class="headerlink" href="#equation-dfc3f846-5f80-4208-988d-736b0f346362" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-03c4ac19-5d77-4168-8881-a70eee3f3355">
+<span class="eqno">(35)<a class="headerlink" href="#equation-03c4ac19-5d77-4168-8881-a70eee3f3355" title="Permalink to this equation">#</a></span>\[\begin{equation}
 E = \sum_i^M \lambda_i
 \end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-f4f6169c-9672-4707-be21-0ac800358601">
-<span class="eqno">(36)<a class="headerlink" href="#equation-f4f6169c-9672-4707-be21-0ac800358601" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-24dde9dc-6c1a-47a8-ac82-cf38bda6748e">
+<span class="eqno">(36)<a class="headerlink" href="#equation-24dde9dc-6c1a-47a8-ac82-cf38bda6748e" title="Permalink to this equation">#</a></span>\[\begin{equation}
 R = \int  dx\hskip0.1cmx^2 \rho(x)
 \end{equation}\]</div>
 <p>We will attempt at learning the reduced equations directly from high fidelity runs.</p>
@@ -558,19 +558,19 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <li><p>Minimize the Frobenius norm between some model for our operator and the numerical hamiltonian.</p></li>
 </ul>
 <p>Since all other points should be familiar by now we will concentrate on the last one. The model we will have for our Hamiltonian is a polynomial feature model on the parameters <span class="math notranslate nohighlight">\(\alpha_i\)</span> of the data:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-14cb14de-1166-486b-b5c0-97b725e2e0e5">
-<span class="eqno">(37)<a class="headerlink" href="#equation-14cb14de-1166-486b-b5c0-97b725e2e0e5" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-e09b80ef-9f9a-4524-8bc5-614671c7f273">
+<span class="eqno">(37)<a class="headerlink" href="#equation-e09b80ef-9f9a-4524-8bc5-614671c7f273" title="Permalink to this equation">#</a></span>\[\begin{equation} 
 \mathcal H_{ij} = (H_0)_{ij} + (H_1)^k_{ij}\alpha_k + (H_2)^{kl}_{ij}\alpha_k\alpha_l + (H_3)^{klm}_{ij} \alpha_k\alpha_l\alpha_m+\cdots 
 \end{equation}\]</div>
 <p>this model has the disadvantage that the number of parameters grows exponentially on the order that one wishes to use. The minimization problem is then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-649f959b-ae39-4251-9044-8c662c3fdd4a">
-<span class="eqno">(38)<a class="headerlink" href="#equation-649f959b-ae39-4251-9044-8c662c3fdd4a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cc08acc5-cd5c-4d22-b76a-d374a9fac724">
+<span class="eqno">(38)<a class="headerlink" href="#equation-cc08acc5-cd5c-4d22-b76a-d374a9fac724" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F
 \end{equation}\]</div>
 <p>It is important to note that in this approach the minimization problem factorizes into component-wise quadratic programming minimization porblems, which can be solved in parallel and analytically.</p>
 <p>Because we might be interested in allowing for high order polynomial features we also consider the LASSO regularized minimization problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-da65d5d0-9d71-42e2-bcfb-fff7caeb2b62">
-<span class="eqno">(39)<a class="headerlink" href="#equation-da65d5d0-9d71-42e2-bcfb-fff7caeb2b62" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3b2d7869-8345-488e-854f-35cd20ffe8fc">
+<span class="eqno">(39)<a class="headerlink" href="#equation-3b2d7869-8345-488e-854f-35cd20ffe8fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F + \lambda ||\mathcal H_{model}||_1
 \end{equation}\]</div>
 <p>as a means to promote sparsity on the coefficients <span class="math notranslate nohighlight">\(H_I\)</span>.</p>
@@ -655,7 +655,7 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1847</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1859</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
