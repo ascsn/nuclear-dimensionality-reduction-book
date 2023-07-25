@@ -440,13 +440,13 @@ document.write(`
 <h1>Non-linear and non-affine problem<a class="headerlink" href="#non-linear-and-non-affine-problem" title="Permalink to this heading">#</a></h1>
 <p>Contributed by: Diógenes Figueroa and Pablo Giuliani</p>
 <p>In this subsection we explore an approach to obtain the effective dynamical equations for the reduced coordinates of a system in which the traditional Galerkin projection can’t be done efficiently. This is the case for non-linear and non-affine systems, such as Skyrme-type Density Functional Theory (DFT).</p>
-<p>These “Black-Box Galerkin” emulators are an intermediate between the Galerkin-RBM emulator we built for the harmonic oscillaotr, and a full black-box dynamical system like SECAR. The idea here is that although we have the dynamical equations that govern the system, these equations are so complicated that even the Galerkin projection approach has trouble improving the timings as compared to the high-fidelity solvers.</p>
+<p>These “Black-Box Galerkin” emulators are an intermediate between the Galerkin-RBM emulator we built for the harmonic oscillator, and a full black-box dynamical system like SECAR. The idea here is that although we have the dynamical equations that govern the system, these equations are so complicated that even the Galerkin projection approach has trouble improving the timings as compared to the high-fidelity solvers.</p>
 <p>In this section we explore a toy model which exhibits the main challanges that one faces when attampting to use the Galerkin method for non-linear DFT. We model the <span class="math notranslate nohighlight">\(M\)</span> wavefunctions as interacting through cumulative densities of all the nucleons, the Hamiltonian looks like:</p>
 <div class="math notranslate nohighlight">
 \[
     \left(-\frac{d^2}{dx^2}+\kappa x^2+q \rho(x)^\alpha\right)\phi_i(x) = \lambda_i \phi_i(x)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\displaystyle \rho(x) = \sum_{i}^M|\phi_i(r)|^2\)</span> is the cumulative density, and the parameters are <span class="math notranslate nohighlight">\(\{\kappa,q,\alpha\}\)</span>. The main problem we face when trying to use the Galerkin projection method in this case is that the dependence on the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> is non-affine as well as non-linear, since <span class="math notranslate nohighlight">\(\rho\)</span> explicitely depends on the solution. This reduces the time advantage provided by the emulators since the reduced equations cannot be precomputed and need to be done at runtime.</p>
+<p>where <span class="math notranslate nohighlight">\(\displaystyle \rho(x) = \sum_{i}^M|\phi_i(r)|^2\)</span> is the cumulative density, and the parameters are <span class="math notranslate nohighlight">\(\{\kappa,q,\alpha\}\)</span>. The main problem we face when trying to use the Galerkin projection method in this case is that the dependence on the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> is non-affine as well as non-linear, since <span class="math notranslate nohighlight">\(\rho\)</span> explicitly depends on the solution. This reduces the time advantage provided by the emulators since the reduced equations cannot be precomputed and need to be done at runtime.</p>
 <p>For our illustrations in this subsection we will concentrate on two observables of interest, the total energy and the radius:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -558,19 +558,19 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <li><p>Minimize the <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_norm">Frobenius norm</a> between some model for our operator and the numerical hamiltonian. The Frobenius norm is the generalization of the regular euclidian norm between vectors (or L2 norm in the case of functions).</p></li>
 </ul>
 <p>Since all other points should be familiar by now we will concentrate on the last one. The model we will have for our Hamiltonian is a polynomial feature model on the parameters <span class="math notranslate nohighlight">\(\alpha_i\)</span> of the data:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b4215c67-1ec5-48a6-9490-a62d5421956e">
-<span class="eqno">(34)<a class="headerlink" href="#equation-b4215c67-1ec5-48a6-9490-a62d5421956e" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-c028e34d-cc9c-4230-b7aa-d33cff5bc2ec">
+<span class="eqno">(34)<a class="headerlink" href="#equation-c028e34d-cc9c-4230-b7aa-d33cff5bc2ec" title="Permalink to this equation">#</a></span>\[\begin{equation} 
 \mathcal H_{ij} = (H_0)_{ij} + (H_1)^k_{ij}\alpha_k + (H_2)^{kl}_{ij}\alpha_k\alpha_l + (H_3)^{klm}_{ij} \alpha_k\alpha_l\alpha_m+\cdots 
 \end{equation}\]</div>
 <p>The minimization problem is then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03a24e8b-3e64-4728-8f0f-82fde214ea4c">
-<span class="eqno">(35)<a class="headerlink" href="#equation-03a24e8b-3e64-4728-8f0f-82fde214ea4c" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0acc176d-5b6b-4c77-b7c7-b96fa9af4aef">
+<span class="eqno">(35)<a class="headerlink" href="#equation-0acc176d-5b6b-4c77-b7c7-b96fa9af4aef" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F
 \end{equation}\]</div>
 <p>It is important to note that in this approach the minimization problem factorizes into component-wise quadratic programming minimization porblems, which can be solved in parallel and analytically.</p>
 <p>This model has the disadvantage that the number of parameters grows exponentially on the order that one wishes to use. Sparsity promoting approaches, such an L1 or <a class="reference external" href="https://en.wikipedia.org/wiki/Lasso_(statistics)">Lasso regularization</a> is a good choice to deal with a situation where we have more coefficients than data values. Because we might be interested in allowing for high order polynomial features we also consider the LASSO regularized minimization problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9a93f753-d8dd-43c4-b7d9-473fc5c1c14d">
-<span class="eqno">(36)<a class="headerlink" href="#equation-9a93f753-d8dd-43c4-b7d9-473fc5c1c14d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a2211770-182a-4c60-bf51-1bda5d6bca91">
+<span class="eqno">(36)<a class="headerlink" href="#equation-a2211770-182a-4c60-bf51-1bda5d6bca91" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F + \lambda ||\mathcal H_{model}||_1
 \end{equation}\]</div>
 <p>as a means to promote sparsity on the coefficients <span class="math notranslate nohighlight">\(H_I\)</span>.</p>
@@ -602,9 +602,6 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="k">class</span> <span class="nc">FitterNotImplemented</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
-    <span class="k">pass</span>
 
 <span class="k">class</span> <span class="nc">Sklearn</span><span class="p">(</span><span class="n">Fitter</span><span class="p">):</span>
 <span class="w">    </span>
@@ -655,12 +652,12 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1863</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1851</span><span class="o">/</span><span class="mf">3198946366.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">class</span> <span class="nc">FitterNotImplemented</span><span class="p">(</span><span class="ne">BaseException</span><span class="p">):</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="k">pass</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="k">class</span> <span class="nc">Sklearn</span><span class="p">(</span><span class="n">Fitter</span><span class="p">):</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> 
 
 <span class="ne">ModuleNotFoundError</span>: No module named &#39;sklearn&#39;
 </pre></div>
@@ -747,47 +744,22 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="k">def</span> <span class="nf">test_set</span><span class="p">(</span><span class="n">model</span><span class="p">,</span><span class="n">df</span><span class="p">,</span><span class="n">label</span><span class="p">):</span>
-    <span class="n">corrs</span>  <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">errors</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
-    
+    <span class="n">errors</span> <span class="o">=</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">nWaves</span><span class="p">)]</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">pars</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span><span class="s1">&#39;kappa&#39;</span><span class="p">,</span><span class="s1">&#39;q&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">):</span>
         <span class="n">evl</span><span class="p">,</span><span class="n">evc</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict_all</span><span class="p">(</span><span class="n">pars</span><span class="p">)</span>
-        <span class="n">corrs</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;pars&quot;</span><span class="p">:</span><span class="n">pars</span><span class="p">,</span><span class="s2">&quot;errors&quot;</span><span class="p">:</span><span class="n">evl</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;eigenvalues&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">])})</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">nWaves</span><span class="p">):</span>
             <span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">evl</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;eigenvalues&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]))</span>
     
     <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
     <span class="n">fig</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">nWaves</span><span class="p">):</span>
         <span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span> <span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">item</span> <span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="p">)</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;E&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;: &quot;</span><span class="o">+</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="nb">min</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="si">:</span><span class="s1">.1e</span><span class="si">}</span><span class="s1">,</span><span class="si">{</span><span class="nb">max</span><span class="p">(</span><span class="n">errors</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="si">:</span><span class="s1">.1e</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">label</span><span class="o">+</span><span class="s2">&quot; set error&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Configuration #&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">errors</span><span class="p">,</span><span class="n">corrs</span>
-
-<span class="k">def</span> <span class="nf">show_error_correlation</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span><span class="n">label</span><span class="p">):</span>
-
-    <span class="n">mins</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1E16</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
-    <span class="n">maxs</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">1E16</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
-    <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">corr</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-            <span class="n">mins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">mins</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">point</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
-            <span class="n">maxs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">point</span><span class="p">[</span><span class="s2">&quot;errors&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
-<span class="w">        </span>
-<span class="w">    </span><span class="sd">&#39;&#39;&#39; Colorful error plots &#39;&#39;&#39;</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
-        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">dpi</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">corr</span><span class="p">)):</span>
-            <span class="n">xs</span><span class="p">,</span><span class="n">ys</span><span class="p">,</span><span class="n">zs</span> <span class="o">=</span> <span class="n">corr_test</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;pars&#39;</span><span class="p">]</span>
-            <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="p">[</span><span class="n">rgb</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="n">corr</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s1">&#39;errors&#39;</span><span class="p">][</span><span class="n">i</span><span class="p">])],</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;E&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; for &quot;</span><span class="o">+</span><span class="n">label</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\alpha$&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\kappa$&#39;</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$q$&#39;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">errors</span>
 </pre></div>
 </div>
 </div>
@@ -825,7 +797,15 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 </div>
 <div class="cell_output docutils container">
 <img alt="../_images/cc8214432619962fc5edae33e7839383157d9d86420b2ef667c4264ce48232a6.png" src="../_images/cc8214432619962fc5edae33e7839383157d9d86420b2ef667c4264ce48232a6.png" />
-<img alt="../_images/9764841aa20db769a022519dfbf3b32debcfe6eeb57f0b52a61916edffd273c0.png" src="../_images/9764841aa20db769a022519dfbf3b32debcfe6eeb57f0b52a61916edffd273c0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="nn">Input In [15],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">error_test</span> <span class="p">,</span><span class="n">corr_test</span>  <span class="o">=</span> <span class="n">test_set</span><span class="p">(</span><span class="n">frobenius</span><span class="p">,</span><span class="n">df_test</span> <span class="p">,</span><span class="s2">&quot;Test&quot;</span> <span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">error_train</span><span class="p">,</span><span class="n">corr_train</span> <span class="o">=</span> <span class="n">test_set</span><span class="p">(</span><span class="n">frobenius</span><span class="p">,</span><span class="n">df_train</span><span class="p">,</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
+
+<span class="ne">ValueError</span>: too many values to unpack (expected 2)
+</pre></div>
+</div>
 </div>
 </div>
 </section>
@@ -916,10 +896,6 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <span class="n">seq_error_train</span><span class="p">,</span><span class="n">seq_corr_train</span> <span class="o">=</span> <span class="n">test_set</span><span class="p">(</span><span class="n">seq_frobenius</span><span class="p">,</span><span class="n">df_train</span><span class="p">,</span><span class="s2">&quot;Train&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="cell_output docutils container">
-<img alt="../_images/b8f1c29045b594f05519ddf5c66dd1200ec9a5d944596fb6fa3f10bf86f63868.png" src="../_images/b8f1c29045b594f05519ddf5c66dd1200ec9a5d944596fb6fa3f10bf86f63868.png" />
-<img alt="../_images/a7f1d1471a26b2aae1fb8ae02acb87bf3db7ddf0bcd0784387d0173296616107.png" src="../_images/a7f1d1471a26b2aae1fb8ae02acb87bf3db7ddf0bcd0784387d0173296616107.png" />
 </div>
 </div>
 <p>From these experiments we can conclude that this approach is capable of providing us with good approximations to the reduced equations which, unlike the usual Galerkin projecting equations, can be found once and for all. Many avenues and interesting ideas can be explored out of the ones here presented, such as a direct application to non-linear and non-affine Density Functional Theory.</p>
