@@ -442,24 +442,24 @@ document.write(`
 <p>In this subsection we explore an approach to obtain the effective dynamical equations for the reduced coordinates of a system in which the traditional Galerkin projection can’t be done efficiently. This is the case for non-linear and non-affine systems, such as Skyrme-type Density Functional Theory (DFT).</p>
 <p>These “Black-Box Galerkin” emulators are an intermediate between the Galerkin-RBM emulator we built for the harmonic oscillaotr, and a full black-box dynamical system like SECAR. The idea here is that although we have the dynamical equations that govern the system, these equations are so complicated that even the Galerkin projection approach has trouble improving the timings as compared to the high-fidelity solvers.</p>
 <p>In this section we explore a toy model which exhibits the main challanges that one faces when attampting to use the Galerkin method for non-linear DFT. We model the <span class="math notranslate nohighlight">\(M\)</span> wavefunctions as interacting through cumulative densities of all the nucleons, the Hamiltonian looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-beda498b-8098-4bc7-916e-ad918c71c5ad">
-<span class="eqno">(34)<a class="headerlink" href="#equation-beda498b-8098-4bc7-916e-ad918c71c5ad" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="math notranslate nohighlight">
+\[
     \left(-\frac{d^2}{dx^2}+\kappa x^2+q \rho(x)^\alpha\right)\phi_i(x) = \lambda_i \phi_i(x)
-\end{equation}\]</div>
+\]</div>
 <p>where <span class="math notranslate nohighlight">\(\displaystyle \rho(x) = \sum_{i}^M|\phi_i(r)|^2\)</span> is the cumulative density, and the parameters are <span class="math notranslate nohighlight">\(\{\kappa,q,\alpha\}\)</span>. The main problem we face when trying to use the Galerkin projection method in this case is that the dependence on the parameter <span class="math notranslate nohighlight">\(\alpha\)</span> is non-affine as well as non-linear, since <span class="math notranslate nohighlight">\(\rho\)</span> explicitely depends on the solution. This reduces the time advantage provided by the emulators since the reduced equations cannot be precomputed and need to be done at runtime.</p>
 <p>For our illustrations in this subsection we will concentrate on two observables of interest, the total energy and the radius:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03c4ac19-5d77-4168-8881-a70eee3f3355">
-<span class="eqno">(35)<a class="headerlink" href="#equation-03c4ac19-5d77-4168-8881-a70eee3f3355" title="Permalink to this equation">#</a></span>\[\begin{equation}
-E = \sum_i^M \lambda_i
-\end{equation}\]</div>
-<div class="amsmath math notranslate nohighlight" id="equation-24dde9dc-6c1a-47a8-ac82-cf38bda6748e">
-<span class="eqno">(36)<a class="headerlink" href="#equation-24dde9dc-6c1a-47a8-ac82-cf38bda6748e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="math notranslate nohighlight">
+\[
+E = \sum_{i=1}^M \lambda_i,
+\]</div>
+<div class="math notranslate nohighlight">
+\[
 R = \int  dx\hskip0.1cmx^2 \rho(x)
-\end{equation}\]</div>
+\]</div>
 <p>We will attempt at learning the reduced equations directly from high fidelity runs.</p>
 <section id="first-we-load-some-high-fidelity-solutions">
 <h2>First we load some high-fidelity solutions<a class="headerlink" href="#first-we-load-some-high-fidelity-solutions" title="Permalink to this heading">#</a></h2>
-<p>In the interest of time we do not solve the high-fidelity equation here, a full comprehensive solution can be found here: <span class="xref myst"></span>. All the high-fidelity solutions have been pre-computed and we simply load them. We also define all the discretized versions of the operators that compose the Hamiltonian.</p>
+<p>In the interest of time we do not solve the high-fidelity equation here, a full comprehensive solution <a class="reference external" href="https://github.com/ascsn/nuclear-dimensionality-reduction-book/tree/main/nuclear-dr/blackbox_galerkin/ToyMdelData">can be found here</a>. All the high-fidelity solutions have been pre-computed and we simply load them. We also define all the discretized versions of the operators that compose the Hamiltonian.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -552,25 +552,25 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <h2>Operator fitting: Frobenius norm fitting<a class="headerlink" href="#operator-fitting-frobenius-norm-fitting" title="Permalink to this heading">#</a></h2>
 <p>We are now ready to discuss an implementation to fit the Galerkin equations themselves. The approach we take here is as follows:</p>
 <ul class="simple">
-<li><p>Compute some high-fidelity solutions</p></li>
+<li><p>Compute some high-fidelity solutions.</p></li>
 <li><p>Perform PCA on the wavefunctions, here we are faced with an alternative: either we do all states at once or we do one emulator per state. We will present both.</p></li>
-<li><p>Project the Hamiltonian onpo PC space.</p></li>
-<li><p>Minimize the Frobenius norm between some model for our operator and the numerical hamiltonian.</p></li>
+<li><p>Project the Hamiltonian onto PC space.</p></li>
+<li><p>Minimize the <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_norm">Frobenius norm</a> between some model for our operator and the numerical hamiltonian. The Frobenius norm is the generalization of the regular euclidian norm between vectors (or L2 norm in the case of functions).</p></li>
 </ul>
 <p>Since all other points should be familiar by now we will concentrate on the last one. The model we will have for our Hamiltonian is a polynomial feature model on the parameters <span class="math notranslate nohighlight">\(\alpha_i\)</span> of the data:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e09b80ef-9f9a-4524-8bc5-614671c7f273">
-<span class="eqno">(37)<a class="headerlink" href="#equation-e09b80ef-9f9a-4524-8bc5-614671c7f273" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-1c4c5a6b-998f-46b4-8be0-cbf9dcea2a66">
+<span class="eqno">(34)<a class="headerlink" href="#equation-1c4c5a6b-998f-46b4-8be0-cbf9dcea2a66" title="Permalink to this equation">#</a></span>\[\begin{equation} 
 \mathcal H_{ij} = (H_0)_{ij} + (H_1)^k_{ij}\alpha_k + (H_2)^{kl}_{ij}\alpha_k\alpha_l + (H_3)^{klm}_{ij} \alpha_k\alpha_l\alpha_m+\cdots 
 \end{equation}\]</div>
-<p>this model has the disadvantage that the number of parameters grows exponentially on the order that one wishes to use. The minimization problem is then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cc08acc5-cd5c-4d22-b76a-d374a9fac724">
-<span class="eqno">(38)<a class="headerlink" href="#equation-cc08acc5-cd5c-4d22-b76a-d374a9fac724" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>The minimization problem is then:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8be7c549-3c48-40f4-aa1e-2147a4334479">
+<span class="eqno">(35)<a class="headerlink" href="#equation-8be7c549-3c48-40f4-aa1e-2147a4334479" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F
 \end{equation}\]</div>
 <p>It is important to note that in this approach the minimization problem factorizes into component-wise quadratic programming minimization porblems, which can be solved in parallel and analytically.</p>
-<p>Because we might be interested in allowing for high order polynomial features we also consider the LASSO regularized minimization problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b2d7869-8345-488e-854f-35cd20ffe8fc">
-<span class="eqno">(39)<a class="headerlink" href="#equation-3b2d7869-8345-488e-854f-35cd20ffe8fc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<p>This model has the disadvantage that the number of parameters grows exponentially on the order that one wishes to use. Sparsity promoting approaches, such an L1 or <a class="reference external" href="https://en.wikipedia.org/wiki/Lasso_(statistics)">Lasso regularization</a> is a good choice to deal with a situation where we have more coefficients than data values. Because we might be interested in allowing for high order polynomial features we also consider the LASSO regularized minimization problem:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-487bd55f-5c09-494e-9919-075fea5cadae">
+<span class="eqno">(36)<a class="headerlink" href="#equation-487bd55f-5c09-494e-9919-075fea5cadae" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F + \lambda ||\mathcal H_{model}||_1
 \end{equation}\]</div>
 <p>as a means to promote sparsity on the coefficients <span class="math notranslate nohighlight">\(H_I\)</span>.</p>
@@ -655,7 +655,7 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1859</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1931</span><span class="o">/</span><span class="mf">1558835872.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
@@ -671,6 +671,7 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 </section>
 <section id="global-frobenius-one-for-all">
 <h2>Global Frobenius: One for All<a class="headerlink" href="#global-frobenius-one-for-all" title="Permalink to this heading">#</a></h2>
+<p>We build a reduced Hamiltonian from which we expect to obtain all the wave functions at the same time.</p>
 <p>This is the main object which interfaces the high-fidelity data with the underlying fitters</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -830,6 +831,7 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 </section>
 <section id="local-approach-one-for-each">
 <h2>Local Approach: One for Each<a class="headerlink" href="#local-approach-one-for-each" title="Permalink to this heading">#</a></h2>
+<p>We build one Hamiltonian per wave function, interestingly this procedure basically decouples the problem!</p>
 <p>This fitter is a special case of the prvious one, we simply add a wrapper to handle the correct splicing of the data into each of the underlying Frobenius fitters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
