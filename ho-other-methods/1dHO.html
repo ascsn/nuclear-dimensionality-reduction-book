@@ -1,0 +1,1307 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>The Quantum Harmonic Oscillator &#8212; Dimensionality Reduction in Nuclear Physics</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ho-other-methods/1dHO';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Application 2: Two body single channel nuclear scattering" href="../scattering/scattering.html" />
+    <link rel="prev" title="Application 1: The Quantum Harmonic Oscillator" href="../ho/1dHO.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../landing.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing.html">
+                    Introduction to Dimensionality Reduction in Nuclear Physics
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../introduction/emulators.html">Why emulators?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ho/1dHO.html">Application 1: The Quantum Harmonic Oscillator</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">The Quantum Harmonic Oscillator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Aplication 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/SECAR.html">Efficient Emulation of SECAR Beam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/DFT_Toy_Model.html">Non-linear and non-affine problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/ascsn/nuclear-dimensionality-reduction-book/main?urlpath=tree/nuclear-dr/ho-other-methods/1dHO.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ascsn/nuclear-dimensionality-reduction-book/blob/main/nuclear-dr/ho-other-methods/1dHO.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ascsn/nuclear-dimensionality-reduction-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ascsn/nuclear-dimensionality-reduction-book/issues/new?title=Issue%20on%20page%20%2Fho-other-methods/1dHO.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ho-other-methods/1dHO.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>The Quantum Harmonic Oscillator</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-rbm">“Traditional” RBM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-slight-reformulation">A Slight Reformulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-rbm">Variational RBM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferring-the-reduced-hamiltonian">Inferring the Reduced Hamiltonian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cat-plot">The CAT Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-remarks">Final Remarks</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="the-quantum-harmonic-oscillator">
+<h1>The Quantum Harmonic Oscillator<a class="headerlink" href="#the-quantum-harmonic-oscillator" title="Permalink to this heading">#</a></h1>
+<p>Contributed by: Daniel Lay (based on E. Flynn’s initial contribution)</p>
+<p>The Schrodinger equation for the 1d harmonic oscillator (HO) is usually written as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7825ab74-aed4-4940-afed-6de8fe5b3e2d">
+<span class="eqno">(5)<a class="headerlink" href="#equation-7825ab74-aed4-4940-afed-6de8fe5b3e2d" title="Permalink to this equation">#</a></span>\[\begin{align}
+H_\alpha\phi(x)\equiv \bigg(-\frac{d^2}{dx^2}+\alpha x^2\bigg)\phi(x)=\lambda\phi(x),\quad \langle\phi|\phi\rangle=1,
+\end{align}\]</div>
+<p>where, for comparison with textbooks, the eigenvalue is <span class="math notranslate nohighlight">\(\lambda=2mE/\hbar^2\)</span> and the HO parameter is <span class="math notranslate nohighlight">\(\alpha=(m\omega/\hbar)^2\)</span>. A useful distinction is the kinetic and potential energy terms:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fe60ccf6-74c7-4347-a55e-d8b515df1b8d">
+<span class="eqno">(6)<a class="headerlink" href="#equation-fe60ccf6-74c7-4347-a55e-d8b515df1b8d" title="Permalink to this equation">#</a></span>\[\begin{align}
+T\phi(x)=-\frac{d^2}{dx^2}\phi(x),\quad V_\alpha(x)\phi(x)=\alpha x^2\phi(x),\quad H_\alpha(x)=T+V(x).
+\end{align}\]</div>
+<p>Technically, all of <span class="math notranslate nohighlight">\(T,V_\alpha\)</span>, and <span class="math notranslate nohighlight">\(H_\alpha\)</span> are operators, but if we discretize our wavefunction (in order to, say, put it on a computer), they are just matrices.</p>
+<section id="traditional-rbm">
+<h2>“Traditional” RBM<a class="headerlink" href="#traditional-rbm" title="Permalink to this heading">#</a></h2>
+<p>To use the traditional RBM approach, one option is to rewrite the Schrodinger equation as</p>
+<div class="amsmath math notranslate nohighlight" id="equation-881275e2-d747-4d41-8c59-b89dd65c57c2">
+<span class="eqno">(7)<a class="headerlink" href="#equation-881275e2-d747-4d41-8c59-b89dd65c57c2" title="Permalink to this equation">#</a></span>\[\begin{align}
+\bigg(-\frac{d^2}{dx^2}+\alpha x^2-\lambda\bigg)\phi(x)\equiv F_\alpha(\phi(x))=0,
+\end{align}\]</div>
+<p>defining the operator <span class="math notranslate nohighlight">\(F_\alpha\)</span>, and solving the system</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7a151cf6-fa88-45a9-abc1-50df65416c06">
+<span class="eqno">(8)<a class="headerlink" href="#equation-7a151cf6-fa88-45a9-abc1-50df65416c06" title="Permalink to this equation">#</a></span>\[\begin{align}
+F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
+\end{align}\]</div>
+<p>We then solve this for a set of parameters <span class="math notranslate nohighlight">\(\{\alpha_i\}_{i=1}^n\)</span>, and for any arbitrary parameter <span class="math notranslate nohighlight">\(\alpha_k\)</span>, take as our ansatz</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4cfe9f7b-4678-43df-8a7c-9e8ff4f453a2">
+<span class="eqno">(9)<a class="headerlink" href="#equation-4cfe9f7b-4678-43df-8a7c-9e8ff4f453a2" title="Permalink to this equation">#</a></span>\[\begin{align}
+	\hat{\phi}_{\alpha_{k}}(x) = \sum_{i=1}^{n} a_{i} \phi_{i}(x) .
+\end{align}\]</div>
+<p>This is a nice form, as it is straightforward to generalize to non-eigenvalue problems. To see this form implemented, check out Eric’s notebook, http://rbm.ascsn.net/ho/1dHO.html. Throughout, it will be assumed that you understand this formulation of RBMs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">special</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">eigh</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exact_wavefunction</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exact wavefunction, from </span>
+<span class="sd">    https://en.wikipedia.org/wiki/Quantum_harmonic_oscillator#Hamiltonian_and_energy_eigenstates</span>
+<span class="sd">    modified for our notation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n : int</span>
+<span class="sd">        Order of the solution.</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        The HO parameter.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    wf : function</span>
+<span class="sd">        The exact wavefunction.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">norm</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">herm</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">hermite</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">norm</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">herm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">wf</span>
+
+<span class="k">def</span> <span class="nf">exact_eigenvalue</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exact eigenvalue $\lambda$ of the ODE</span>
+<span class="sd">    </span>
+<span class="sd">    $$ -f&#39;&#39;(x) + alpha x^2f(x) = \lambda f(x) $$</span>
+<span class="sd">    </span>
+<span class="sd">    We assume throughout that $m = \hbar = 1$. Then, $\lambda$ is related to the</span>
+<span class="sd">    energy as $\lambda = 2E$.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    n : int</span>
+<span class="sd">        Order of the solution.</span>
+<span class="sd">    alpha : float</span>
+<span class="sd">        The HO parameter.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        The eigenvalue.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">FiniteDifferenceSolver</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">regularGrid</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">regularGrid</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_Hamiltonian_matrix</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">make_kinetic_term</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
+        <span class="n">offDiag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">offDiag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="c1">#Kinetic term</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">toeplitz</span><span class="p">(</span><span class="n">offDiag</span><span class="p">))</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">return</span> <span class="n">H</span>
+        
+    <span class="k">def</span> <span class="nf">make_potential_term</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">H</span>
+        
+    <span class="k">def</span> <span class="nf">make_Hamiltonian_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_kinetic_term</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_potential_term</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="p">,</span><span class="n">subset_by_index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="c1"># evals, evects = np.linalg.eigh(self.H)</span>
+                    
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        
+        <span class="n">solveTime</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
+        <span class="k">return</span> <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span><span class="p">,</span> <span class="n">solveTime</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1">### grid spacing for domain (Warning around 10**(-3) it starts to get slow).</span>
+<span class="c1">### HO global parameters </span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># principle quantum number to solve in HO</span>
+<span class="c1"># define the domain boundaries</span>
+<span class="n">xLims</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">xLims</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">xLims</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Number of grid points: &#39;</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+<span class="n">nRepeatsForTiming</span> <span class="o">=</span> <span class="mi">250</span>
+
+<span class="c1"># Select alpha values to use to solve SE exactly.</span>
+<span class="n">alphaVals</span> <span class="o">=</span> <span class="p">[</span><span class="mf">.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of grid points:  2001
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="a-slight-reformulation">
+<h2>A Slight Reformulation<a class="headerlink" href="#a-slight-reformulation" title="Permalink to this heading">#</a></h2>
+<p>Because we are solving an eigenvalue problem, we can arrive at a set of different-looking equations, using the same set of judges <span class="math notranslate nohighlight">\(\{\psi_i(x)\}_{i=1}^n\)</span> as before. We can simply plug <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_k}\)</span> into the Schrodinger equation and project both sides onto the judges, writing</p>
+<div class="amsmath math notranslate nohighlight" id="equation-1ead9438-02c8-4b17-ac43-d2f4b00ea0da">
+<span class="eqno">(10)<a class="headerlink" href="#equation-1ead9438-02c8-4b17-ac43-d2f4b00ea0da" title="Permalink to this equation">#</a></span>\[\begin{align}
+\sum_{i=1}^na_i\langle \psi_j|H_{\alpha_k}|\phi_i\rangle=\lambda\sum_{i=1}^na_i\langle\psi_j|\phi_i\rangle.
+\end{align}\]</div>
+<p>Define now two matrices:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fee89822-4811-494d-9bfc-8b2e3ba746cc">
+<span class="eqno">(11)<a class="headerlink" href="#equation-fee89822-4811-494d-9bfc-8b2e3ba746cc" title="Permalink to this equation">#</a></span>\[\begin{align}
+M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,\quad N_{ij}\equiv\langle\psi_j|\phi_i\rangle.
+\end{align}\]</div>
+<p>These are both <span class="math notranslate nohighlight">\(n\times n\)</span> matrices, and we now have a generalized eigenvalue problem for <span class="math notranslate nohighlight">\(\vec{a}\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8765a944-df14-446b-bfab-b45eaca4fe2a">
+<span class="eqno">(12)<a class="headerlink" href="#equation-8765a944-df14-446b-bfab-b45eaca4fe2a" title="Permalink to this equation">#</a></span>\[\begin{align}
+M(\alpha)\vec{a}=\lambda N\vec{a}.
+\end{align}\]</div>
+<p>Situationally, this may be quicker to solve than finding the roots of the nonlinear system that results from the “traditional” RBM approach.</p>
+<p>As with traditional RBM approaches, this is only helpful if we can evaluate <span class="math notranslate nohighlight">\(M(\alpha)\)</span> quickly for different <span class="math notranslate nohighlight">\(\alpha\)</span> values. For the HO, this is not too hard: we can write</p>
+<div class="amsmath math notranslate nohighlight" id="equation-95beef9e-db2f-4924-b304-63b0353d674f">
+<span class="eqno">(13)<a class="headerlink" href="#equation-95beef9e-db2f-4924-b304-63b0353d674f" title="Permalink to this equation">#</a></span>\[\begin{align}
+\langle\psi_j|H_\alpha|\phi_i\rangle=\langle\psi_j|T|\phi_i\rangle+\alpha\langle \psi_j|x^2|\phi_i\rangle\equiv M_{ij}^{(0)}+\alpha M_{ij}^{(1)}.
+\end{align}\]</div>
+<p>Our eigenvalue equation is then</p>
+<div class="amsmath math notranslate nohighlight" id="equation-d7e24cd1-8b9e-491c-bf80-1c178ff1b5d8">
+<span class="eqno">(14)<a class="headerlink" href="#equation-d7e24cd1-8b9e-491c-bf80-1c178ff1b5d8" title="Permalink to this equation">#</a></span>\[\begin{align}
+[M^{(0)}+\alpha M^{(1)}]\vec{a}=\lambda N\vec{a},
+\end{align}\]</div>
+<p>and all of <span class="math notranslate nohighlight">\(M^{(0)},M^{(1)}\)</span> and <span class="math notranslate nohighlight">\(N\)</span> can be precomputed.</p>
+<p>As one would hope, this reproduces the exact same results as the “traditional” RBM approach. A code implementation is given below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">StandardRBM</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">psiMat</span><span class="p">,</span><span class="n">kineticTerm</span><span class="p">,</span><span class="n">potentialTerm</span><span class="p">,</span><span class="n">judges</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1">#potentialTerm should not be multiplied by alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">=</span> <span class="n">psiMat</span>
+        <span class="k">if</span> <span class="n">judges</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">judges</span> <span class="o">=</span> <span class="n">psiMat</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">judges</span> <span class="o">=</span> <span class="n">judges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kineticTerm</span> <span class="o">=</span> <span class="n">kineticTerm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">potentialTerm</span> <span class="o">=</span> <span class="n">potentialTerm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span> <span class="o">=</span> <span class="n">psiMat</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">kinProj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">potProj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_projections</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_overlaps</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">compute_projections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">kinProj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
+        <span class="n">potProj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+                <span class="n">kinProj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">judges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">kineticTerm</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">kinProj</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">kinProj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+                
+                <span class="n">potProj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">judges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">potentialTerm</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">potProj</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">potProj</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+                    
+        <span class="k">return</span> <span class="n">kinProj</span><span class="p">,</span> <span class="n">potProj</span>
+    
+    <span class="k">def</span> <span class="nf">compute_overlaps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">overlapMatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+                <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">judges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">overlapMatrix</span>
+        
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+        <span class="n">mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinProj</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">potProj</span>
+            
+        <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span><span class="p">)</span>
+        
+        <span class="n">a</span> <span class="o">=</span> <span class="n">vecs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="n">wf</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span>
+        <span class="n">wf</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">),</span><span class="n">m</span><span class="p">))</span> 
+
+<span class="c1">#Getting high-fidelity solutions</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">):</span>
+    <span class="n">fdSolver</span> <span class="o">=</span> <span class="n">FiniteDifferenceSolver</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">runTime</span> <span class="o">=</span> <span class="n">fdSolver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">kinTerm</span> <span class="o">=</span> <span class="n">fdSolver</span><span class="o">.</span><span class="n">make_kinetic_term</span><span class="p">()</span>
+    <span class="n">potTerm</span> <span class="o">=</span> <span class="n">fdSolver</span><span class="o">.</span><span class="n">make_potential_term</span><span class="p">()</span><span class="o">/</span><span class="n">alpha</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">evecs</span><span class="p">[:,</span><span class="n">n</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">alphaTest</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">exactEigenvalue</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">exact_eigenvalue</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alphaTest</span><span class="p">)</span>
+
+<span class="c1">#Solving with finite difference</span>
+<span class="n">fdSol</span> <span class="o">=</span> <span class="n">FiniteDifferenceSolver</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">fdSol</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finite Difference time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">))</span>
+
+<span class="n">err</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(((</span><span class="n">evals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finite Difference relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">err</span>)
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">evecs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Finite Difference&#39;</span><span class="p">)</span>
+
+<span class="c1">#Solving with RBM</span>
+<span class="n">rbm</span> <span class="o">=</span> <span class="n">StandardRBM</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">kinTerm</span><span class="p">,</span><span class="n">potTerm</span><span class="p">)</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
+    <span class="n">val</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standard RBM time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RBM relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">val</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">wf</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;RBM&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 4.062e-01 s
+Finite Difference relative error: 3.423e-06
+Standard RBM time: 7.718e-05 s
+RBM relative error: 6.042e-04
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f19d8680690&gt;
+</pre></div>
+</div>
+<img alt="../_images/fdaf8616290e776a155634186b095b50efd4867450da4369e17674da32b6a315.png" src="../_images/fdaf8616290e776a155634186b095b50efd4867450da4369e17674da32b6a315.png" />
+</div>
+</div>
+</section>
+<section id="variational-rbm">
+<h2>Variational RBM<a class="headerlink" href="#variational-rbm" title="Permalink to this heading">#</a></h2>
+<p>For many physicists, the first thing to try is the variational approach to solving the Schrodinger equation. We can attempt the same thing, except using the expansion coefficients <span class="math notranslate nohighlight">\(\vec{a}\)</span> as variational coefficients. This, as far as I am aware, is what is known as “eigenvector continuation,” although different people mean different things when mentioning eigenvector continuation. In general, the variational energy is</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6ce1858f-689c-49e9-ab89-b92088b06731">
+<span class="eqno">(15)<a class="headerlink" href="#equation-6ce1858f-689c-49e9-ab89-b92088b06731" title="Permalink to this equation">#</a></span>\[\begin{align}
+	E_\alpha(\vec{a})=\frac{\langle \phi_{\vec{a}}|H_\alpha|\phi_{\vec{a}}\rangle}{\langle \phi_{\vec{a}}|\phi_{\vec{a}}\rangle},
+\end{align}\]</div>
+<p>and by minimizing this energy with respect to the parameters <span class="math notranslate nohighlight">\(\vec{a}\)</span>, we approximate the ground state energy.</p>
+<p>For the HO, this is again fairly simple to write out, using the matrices from the previous section:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-447a4b89-99a8-4cfe-bd5f-3d618a621719">
+<span class="eqno">(16)<a class="headerlink" href="#equation-447a4b89-99a8-4cfe-bd5f-3d618a621719" title="Permalink to this equation">#</a></span>\[\begin{align}
+E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec{a}}.
+\end{align}\]</div>
+<p>To speed this up, we can also write out the gradient (and even the Hessian). While I will not write out either here, the code implementation below utilizes the gradient to speed up the calculation.</p>
+<p>Note that now, we are solving a minimization problem for a nonlinear function of <span class="math notranslate nohighlight">\(\vec{a}\)</span>. I find it tricky to imagine this being faster than solving an eigenvalue problem, and (at least for the straightforward implementation below), we will see that it does, indeed, take longer to run.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VariationalRBM</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">psiMat</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">regularGrid</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">=</span> <span class="n">psiMat</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">regularGrid</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix_components</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">matrix_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">nComps</span><span class="p">,</span> <span class="n">vecSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="o">.</span><span class="n">shape</span>
+        
+        <span class="n">offDiag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">vecSize</span><span class="p">)</span>
+        <span class="n">offDiag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        
+        <span class="n">kinTerm</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">vecSize</span><span class="p">)</span> <span class="o">+</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">toeplitz</span><span class="p">(</span><span class="n">offDiag</span><span class="p">))</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span>
+        
+        <span class="n">m1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nComps</span><span class="p">,</span><span class="n">nComps</span><span class="p">))</span>
+        <span class="n">m2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nComps</span><span class="p">,</span><span class="n">nComps</span><span class="p">))</span>
+        <span class="n">m3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nComps</span><span class="p">,</span><span class="n">nComps</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nComps</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+                <span class="c1">#Kinetic energy</span>
+                <span class="n">m1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="n">kinTerm</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">m1</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">m1</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+                
+                <span class="c1">#Potential energy</span>
+                <span class="n">m2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">m2</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">m2</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+                
+                <span class="c1">#Normalization</span>
+                <span class="n">m3</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">m3</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">m3</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">m3</span>
+    
+    <span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">)</span> <span class="o">@</span> <span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">@</span> <span class="n">a</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">energy_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+        <span class="n">f1Eval</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">)</span> <span class="o">@</span> <span class="n">a</span>
+        <span class="n">f2Eval</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">@</span> <span class="n">a</span>
+        <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">)</span> <span class="o">@</span> <span class="n">a</span><span class="o">/</span><span class="n">f2Eval</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">f1Eval</span><span class="o">/</span><span class="n">f2Eval</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">@</span> <span class="n">a</span>
+    
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">a0</span><span class="p">):</span>
+        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">opt</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span><span class="n">a0</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">alpha</span><span class="p">,),</span><span class="n">jac</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">energy_grad</span><span class="p">)</span>
+        
+        <span class="c1">#Normalize total wavefunction</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">x</span>
+        <span class="n">wf</span> <span class="o">=</span> <span class="n">a</span><span class="nd">@T</span>
+        <span class="n">wf</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
+        
+        <span class="n">eigenvalue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>
+        
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        
+        <span class="k">return</span> <span class="n">eigenvalue</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">),</span><span class="n">m</span><span class="p">))</span> 
+
+<span class="c1">#Getting high-fidelity solutions</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">):</span>
+    <span class="n">fdSolver</span> <span class="o">=</span> <span class="n">FiniteDifferenceSolver</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">runTime</span> <span class="o">=</span> <span class="n">fdSolver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">evecs</span><span class="p">[:,</span><span class="n">n</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">alphaTest</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">exactEigenvalue</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">exact_eigenvalue</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alphaTest</span><span class="p">)</span>
+
+<span class="c1">#Solving with finite difference</span>
+<span class="n">fdSol</span> <span class="o">=</span> <span class="n">FiniteDifferenceSolver</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">fdSol</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finite Difference time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">))</span>
+
+<span class="n">err</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(((</span><span class="n">evals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finite Difference relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">err</span>)
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">evecs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Finite Difference&#39;</span><span class="p">)</span>
+
+<span class="c1">#Solving with variational RBM</span>
+<span class="n">rbm</span> <span class="o">=</span> <span class="n">VariationalRBM</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">))</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
+    <span class="n">eigenvalue</span><span class="p">,</span> <span class="n">wfRBM</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">a0</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standard RBM time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RBM relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">val</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">wf</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Variational RBM&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 4.083e-01 s
+Finite Difference relative error: 3.423e-06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 7.052e-03 s
+RBM relative error: 6.042e-04
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f19d873b590&gt;
+</pre></div>
+</div>
+<img alt="../_images/501db691c8dbafaecef3467f70d3bfa5d7236bcc1d0bd231a299cee8a9895869.png" src="../_images/501db691c8dbafaecef3467f70d3bfa5d7236bcc1d0bd231a299cee8a9895869.png" />
+</div>
+</div>
+</section>
+<section id="inferring-the-reduced-hamiltonian">
+<h2>Inferring the Reduced Hamiltonian<a class="headerlink" href="#inferring-the-reduced-hamiltonian" title="Permalink to this heading">#</a></h2>
+<p>All of the above is fantastic: it speeds up the code versus a standard finite difference solver, without losing basically any accuracy. But, we are always required to compute overlaps of the form</p>
+<div class="amsmath math notranslate nohighlight" id="equation-b58203b2-6d81-41d9-ae73-940060f7fcaf">
+<span class="eqno">(17)<a class="headerlink" href="#equation-b58203b2-6d81-41d9-ae73-940060f7fcaf" title="Permalink to this equation">#</a></span>\[\begin{align}
+M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
+\end{align}\]</div>
+<p>in a manner that is <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> without much accuracy loss. Even for problems in which the parameter(s) appear in an affine manner (such as the HO), this can be time-consuming, especially given many parameters in the problem. It is even worse when parameters are not affine, and so to apply this to any particular problem uses a lot of development time thinking about implementation details.</p>
+<p>One work-around is to attempt to infer a simple form of <span class="math notranslate nohighlight">\(M(\alpha)\)</span>, say, <span class="math notranslate nohighlight">\(\hat{M}(\alpha)\)</span>, just based on the overlaps themselves. As an example, suppose we assume a quadratic polynomial in <span class="math notranslate nohighlight">\(\alpha\)</span>,</p>
+<div class="amsmath math notranslate nohighlight" id="equation-fe99240f-cafd-4bd6-aa1e-9b5d30f14788">
+<span class="eqno">(18)<a class="headerlink" href="#equation-fe99240f-cafd-4bd6-aa1e-9b5d30f14788" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{M}(\alpha)\equiv M^{(0)}+\alpha M^{(1)}+\alpha^2M^{(2)}.
+\end{align}\]</div>
+<p>We can use our high-fidelity solutions <span class="math notranslate nohighlight">\(\{\phi_i\}\)</span> and judges <span class="math notranslate nohighlight">\(\{\psi_i\}\)</span>, compute the overlaps <span class="math notranslate nohighlight">\(M_{ij}(\alpha_k)\)</span> for <span class="math notranslate nohighlight">\(\alpha_k=\alpha_1,\ldots,\alpha_n\)</span>, and fit the coefficients of <span class="math notranslate nohighlight">\(\hat{M}\)</span> such that</p>
+<div class="amsmath math notranslate nohighlight" id="equation-7be9c535-9f3e-4fc8-8367-704ab2893093">
+<span class="eqno">(19)<a class="headerlink" href="#equation-7be9c535-9f3e-4fc8-8367-704ab2893093" title="Permalink to this equation">#</a></span>\[\begin{align}
+\hat{M}(\alpha_k)\approx M(\alpha_k),\quad k=1,\ldots,n.
+\end{align}\]</div>
+<p>This can be done coefficient-by-coefficient, to minimize the residual</p>
+<div class="amsmath math notranslate nohighlight" id="equation-4fd0d26c-3504-4ec9-87b5-051ec50fbaec">
+<span class="eqno">(20)<a class="headerlink" href="#equation-4fd0d26c-3504-4ec9-87b5-051ec50fbaec" title="Permalink to this equation">#</a></span>\[\begin{align}
+\sum_{k=1}^n[\hat{M}_{ij}(\alpha_k)-M_{ij}(\alpha_k)]^2.
+\end{align}\]</div>
+<p>No longer do you have to attempt to make the division made above (although it is simpler for the HO).</p>
+<p>For affine parameters, the form of <span class="math notranslate nohighlight">\(\hat{M}\)</span> can be chosen to be affine as well; for others, literally any parametric form is allowed. One option, if you really don’t know what to choose, is to take a parametric form with many terms, but solve a sparse optimization problem for the coefficients instead [CITE SOMETHING]. And, this is not too tricky to generalize for multiple parameters (although choosing the form is still somewhat up-in-the-air).</p>
+<p>This is implemented for the HO below, with just a linear polynomial in <span class="math notranslate nohighlight">\(\alpha\)</span>. Since we know the correct form already, this example can be taken as guidance if you wish to apply it to your own problem. And, it can be extended to non-eigenvalue problems in the same way “traditional” RBM approaches have been.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InferHamiltonian</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">psiMat</span><span class="p">,</span><span class="n">arrOfHamiltonians</span><span class="p">,</span><span class="n">alphaVals</span><span class="p">,</span><span class="n">judges</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">=</span> <span class="n">psiMat</span>
+        <span class="k">if</span> <span class="n">judges</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">judges</span> <span class="o">=</span> <span class="n">psiMat</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">judges</span> <span class="o">=</span> <span class="n">judges</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arrOfHamiltonians</span> <span class="o">=</span> <span class="n">arrOfHamiltonians</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alphaVals</span> <span class="o">=</span> <span class="n">alphaVals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">projections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_projections</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_overlaps</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">compute_projections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">projections</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+                    <span class="n">projections</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">judges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrOfHamiltonians</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                    <span class="n">projections</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">projections</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+                    
+        <span class="k">return</span> <span class="n">projections</span>
+    
+    <span class="k">def</span> <span class="nf">compute_overlaps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">overlapMatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+                <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">judges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">overlapMatrix</span>
+    
+    <span class="k">def</span> <span class="nf">fit_matrices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">polyDegree</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="c1">#Note that minCoeffs is indexed backwards - the first element is</span>
+        <span class="c1">#the coefficient of the highest degree term in the polynomial</span>
+        <span class="n">minCoeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">polyDegree</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,),)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
+                <span class="n">minCoeffs</span><span class="p">[:,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alphaVals</span><span class="p">,</span>
+                                              <span class="bp">self</span><span class="o">.</span><span class="n">projections</span><span class="p">[:,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">],</span>
+                                              <span class="n">polyDegree</span><span class="p">)</span>
+                <span class="n">minCoeffs</span><span class="p">[:,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">minCoeffs</span><span class="p">[:,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">minCoeffs</span>
+        
+    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">coeffs</span><span class="p">):</span>
+        <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
+        <span class="n">maxPolyDim</span> <span class="o">=</span> <span class="n">coeffs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">coeffIter</span><span class="p">,</span><span class="n">coeff</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coeffs</span><span class="p">):</span>
+            <span class="n">mat</span> <span class="o">+=</span> <span class="n">alpha</span><span class="o">**</span><span class="p">(</span><span class="n">maxPolyDim</span> <span class="o">-</span> <span class="n">coeffIter</span><span class="p">)</span> <span class="o">*</span> <span class="n">coeff</span>
+            
+        <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span><span class="p">)</span>
+        
+        <span class="n">a</span> <span class="o">=</span> <span class="n">vecs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+        
+        <span class="n">wf</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span>
+        <span class="n">wf</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">),</span><span class="n">m</span><span class="p">))</span> 
+
+<span class="c1">#Getting high-fidelity solutions - note that we save the Hamiltonians for this case</span>
+<span class="n">listOfHamiltonians</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">):</span>
+    <span class="n">fdSolver</span> <span class="o">=</span> <span class="n">FiniteDifferenceSolver</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">runTime</span> <span class="o">=</span> <span class="n">fdSolver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+    <span class="n">listOfHamiltonians</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fdSolver</span><span class="o">.</span><span class="n">make_Hamiltonian_matrix</span><span class="p">())</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">evecs</span><span class="p">[:,</span><span class="n">n</span><span class="p">]</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">alphaTest</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">exactEigenvalue</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">exact_eigenvalue</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alphaTest</span><span class="p">)</span>
+
+<span class="c1">#Solving with finite difference</span>
+<span class="n">fdSol</span> <span class="o">=</span> <span class="n">FiniteDifferenceSolver</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">fdSol</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finite Difference time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">))</span>
+
+<span class="n">err</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(((</span><span class="n">evals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finite Difference relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">err</span>)
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">evecs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Finite Difference&#39;</span><span class="p">)</span>
+
+<span class="c1">#Solving with RBM</span>
+<span class="n">inferObj</span> <span class="o">=</span> <span class="n">InferHamiltonian</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">listOfHamiltonians</span><span class="p">,</span><span class="n">alphaVals</span><span class="p">)</span>
+<span class="n">coeffs</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">fit_matrices</span><span class="p">()</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
+    <span class="n">val</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">coeffs</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
+<span class="c1"># ax.plot(grid,wf,label=&#39;Infer Matrix&#39;,ls=&#39;:&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Inferred Matrix time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">val</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span><span class="n">wf</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Inferred Matrix RBM&#39;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 4.079e-01 s
+Finite Difference relative error: 3.423e-06
+Inferred Matrix time: 8.949e-05 s
+Relative error: 6.042e-04
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f19d0e87b90&gt;
+</pre></div>
+</div>
+<img alt="../_images/8f4fbca2391b7ff1fd76ff09ba37d2281e0bf621c42974f37f1c26054e1567a3.png" src="../_images/8f4fbca2391b7ff1fd76ff09ba37d2281e0bf621c42974f37f1c26054e1567a3.png" />
+</div>
+</div>
+</section>
+<section id="the-cat-plot">
+<h2>The CAT Plot<a class="headerlink" href="#the-cat-plot" title="Permalink to this heading">#</a></h2>
+<p>There are many concerns when choosing which method to use to solve your problem. While there are many considerations, including development time, one useful diagnostic tool is the so-called CAT plot, which shows the accuracy vs run time of your method. This is created below for the methods described above. For each method, the run time is averaged over multiple runs. Additionally, multiple different sets of training solutions are used.</p>
+<p>As can be seen, including more <span class="math notranslate nohighlight">\(\alpha\)</span> values improves performance, with little runtime increase, almost up to the high-fidelity solution’s performance. Additionally, it is clear that the finite difference solver is incredibly slow relative to other methods, and even the variational RBM fails to compete with the standard RBM case.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">catFig</span><span class="p">,</span> <span class="n">catAx</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="n">alphaValsList</span> <span class="o">=</span> <span class="p">[[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">25</span><span class="p">],</span>
+                 <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">25</span><span class="p">]]</span>
+
+<span class="n">alphaTest</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="n">exactEigenvalue</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">exact_eigenvalue</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alphaTest</span><span class="p">)</span>
+
+<span class="c1">#Independent of alphaVals, so only do this once</span>
+<span class="n">fdSol</span> <span class="o">=</span> <span class="n">FiniteDifferenceSolver</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">fdSol</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Finite Difference time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">))</span>
+<span class="n">err</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(((</span><span class="n">evals</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="k">err</span>)
+<span class="n">catAx</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span><span class="n">err</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span>
+              <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FD&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">alphaIter</span><span class="p">,</span><span class="n">alphaVals</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphaValsList</span><span class="p">):</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">),</span><span class="n">m</span><span class="p">))</span> 
+    
+    <span class="n">listOfHamiltonians</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">alpha</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">):</span>
+        <span class="n">fdSolver</span> <span class="o">=</span> <span class="n">FiniteDifferenceSolver</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">grid</span><span class="p">,</span><span class="n">h</span><span class="p">)</span>
+        <span class="n">evals</span><span class="p">,</span> <span class="n">evecs</span><span class="p">,</span> <span class="n">runTime</span> <span class="o">=</span> <span class="n">fdSolver</span><span class="o">.</span><span class="n">solve</span><span class="p">()</span>
+        <span class="n">listOfHamiltonians</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fdSolver</span><span class="o">.</span><span class="n">make_Hamiltonian_matrix</span><span class="p">())</span>
+        <span class="n">kinTerm</span> <span class="o">=</span> <span class="n">fdSolver</span><span class="o">.</span><span class="n">make_kinetic_term</span><span class="p">()</span>
+        <span class="n">potTerm</span> <span class="o">=</span> <span class="n">fdSolver</span><span class="o">.</span><span class="n">make_potential_term</span><span class="p">()</span><span class="o">/</span><span class="n">alpha</span>
+        <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">evecs</span><span class="p">[:,</span><span class="n">n</span><span class="p">]</span>
+    
+    <span class="n">rbm</span> <span class="o">=</span> <span class="n">StandardRBM</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">kinTerm</span><span class="p">,</span><span class="n">potTerm</span><span class="p">)</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
+        <span class="n">val</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standard RBM time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">val</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+    
+    <span class="n">catAx</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">runTime</span><span class="p">,(</span><span class="n">val</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+                  <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;RBM&#39;</span><span class="p">)</span>
+    
+    <span class="n">rbm</span> <span class="o">=</span> <span class="n">VariationalRBM</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">grid</span><span class="p">)</span>
+    <span class="n">a0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">))</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
+        <span class="n">eigenvalue</span><span class="p">,</span> <span class="n">wfRBM</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">a0</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Variational RBM time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">eigenvalue</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+    
+    <span class="n">catAx</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">runTime</span><span class="p">,(</span><span class="n">eigenvalue</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span>
+                  <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Variational RBM&#39;</span><span class="p">)</span>
+    
+    <span class="n">inferObj</span> <span class="o">=</span> <span class="n">InferHamiltonian</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">listOfHamiltonians</span><span class="p">,</span><span class="n">alphaVals</span><span class="p">)</span>
+    <span class="n">coeffs</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">fit_matrices</span><span class="p">()</span>
+    <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
+        <span class="n">val</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">coeffs</span><span class="p">)</span>
+    <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Inferred Matrix time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">val</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
+    
+    <span class="n">catAx</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">runTime</span><span class="p">,(</span><span class="n">val</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;brown&#39;</span><span class="p">,</span>
+                  <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Inferred RBM&#39;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">alphaIter</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">catAx</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">catAx</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span><span class="n">yscale</span><span class="o">=</span><span class="s1">&#39;log&#39;</span><span class="p">,</span>
+          <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (s)&#39;</span><span class="p">,</span><span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Eigenvalue Relative Error&#39;</span><span class="p">,</span>
+          <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">),</span><span class="mi">10</span><span class="o">**</span><span class="mi">1</span><span class="p">),</span><span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">),</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 4.044e-01 s
+Relative error: 3.423e-06
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 6.352e-05 s
+Relative error: 5.696e-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 4.029e-03 s
+Relative error: 5.696e-03
+Inferred Matrix time: 7.489e-05 s
+Relative error: 5.696e-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 7.200e-05 s
+Relative error: 1.292e-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.822e-03 s
+Relative error: 1.292e-03
+Inferred Matrix time: 8.316e-05 s
+Relative error: 1.292e-03
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 7.849e-05 s
+Relative error: 8.799e-04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.996e-03 s
+Relative error: 1.647e-03
+Inferred Matrix time: 9.043e-05 s
+Relative error: 8.799e-04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 8.868e-05 s
+Relative error: 7.248e-05
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 9.497e-03 s
+Relative error: 1.441e-04
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Inferred Matrix time: 1.097e-04 s
+Relative error: 7.248e-05
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[None,
+ None,
+ Text(0.5, 0, &#39;Time (s)&#39;),
+ Text(0, 0.5, &#39;Eigenvalue Relative Error&#39;),
+ (1e-05, 10),
+ (1e-06, 0.1)]
+</pre></div>
+</div>
+<img alt="../_images/0ef0a670c22b2ea8215bb180bf2bb0646402ff5096d98582fedaaf48e7fd60bb.png" src="../_images/0ef0a670c22b2ea8215bb180bf2bb0646402ff5096d98582fedaaf48e7fd60bb.png" />
+</div>
+</div>
+</section>
+<section id="final-remarks">
+<h2>Final Remarks<a class="headerlink" href="#final-remarks" title="Permalink to this heading">#</a></h2>
+<p>If you look closely, nowhere in this code have I used the principal components of a set of solutions. While it may help, it is not strictly necessary for any of this. Additionally, the code has been implemented such that one can use any judges desired - again, while it works well to use the high-fidelity solutions as judges, that is not strictly necessary, and is worth exploring on a problem-by-problem basis.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./ho-other-methods"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../ho/1dHO.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Application 1: The Quantum Harmonic Oscillator</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../scattering/scattering.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Application 2: Two body single channel nuclear scattering</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-rbm">“Traditional” RBM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-slight-reformulation">A Slight Reformulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variational-rbm">Variational RBM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inferring-the-reduced-hamiltonian">Inferring the Reduced Hamiltonian</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-cat-plot">The CAT Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-remarks">Final Remarks</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Advanced Scientific Computing and Statistics Network
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

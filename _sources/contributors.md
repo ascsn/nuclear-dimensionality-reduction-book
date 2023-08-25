@@ -6,6 +6,7 @@
 - Daniel Odell | Content
 - Ruchi Garg | Content
 - Kyle Beyer | Content
+- Daniel Lay | Content
 - Diógenes Figueroa | Content
 - Kyle Godbey | Content, Webmaster
 
