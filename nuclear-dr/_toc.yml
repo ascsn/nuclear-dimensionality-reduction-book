@@ -7,8 +7,8 @@ chapters:
 - file: introduction/introduction
   sections:
     - file: introduction/emulators
+# - file: ho/1dHO
 - file: ho/1dHO
-- file: ho-other-methods/1dHO
 - file: scattering/scattering
 - file: scattering/eim
 - file: HO_Time/HO_Time_Dependent
