@@ -436,31 +436,31 @@ document.write(`
 <h1>Application 1: The Quantum Harmonic Oscillator<a class="headerlink" href="#application-1-the-quantum-harmonic-oscillator" title="Permalink to this heading">#</a></h1>
 <p>Contributed by: Daniel Lay, Eric Flynn</p>
 <p>The Schrodinger equation for the 1d harmonic oscillator (HO) is usually written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-06aa0c8a-ca6f-4aef-a36a-49001dfa75f2">
-<span class="eqno">(1)<a class="headerlink" href="#equation-06aa0c8a-ca6f-4aef-a36a-49001dfa75f2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f9f8cc4f-9c4d-4514-824d-817afdbb100f">
+<span class="eqno">(1)<a class="headerlink" href="#equation-f9f8cc4f-9c4d-4514-824d-817afdbb100f" title="Permalink to this equation">#</a></span>\[\begin{align}
 H_\alpha\phi(x)\equiv \bigg(-\frac{d^2}{dx^2}+\alpha x^2\bigg)\phi(x)=\lambda\phi(x),\quad \langle\phi|\phi\rangle=1,
 \end{align}\]</div>
 <p>where, for comparison with textbooks, the eigenvalue is <span class="math notranslate nohighlight">\(\lambda=2mE/\hbar^2\)</span> and the HO parameter is <span class="math notranslate nohighlight">\(\alpha=(m\omega/\hbar)^2\)</span>. A useful distinction is the kinetic and potential energy terms:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3048c360-bf2d-4bf9-aee2-46acf5f8e349">
-<span class="eqno">(2)<a class="headerlink" href="#equation-3048c360-bf2d-4bf9-aee2-46acf5f8e349" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-19893754-cb7d-4627-97e6-a559d61d84cd">
+<span class="eqno">(2)<a class="headerlink" href="#equation-19893754-cb7d-4627-97e6-a559d61d84cd" title="Permalink to this equation">#</a></span>\[\begin{align}
 T\phi(x)=-\frac{d^2}{dx^2}\phi(x),\quad V_\alpha(x)\phi(x)=\alpha x^2\phi(x),\quad H_\alpha(x)=T+V(x).
 \end{align}\]</div>
 <p>Technically, all of <span class="math notranslate nohighlight">\(T,V_\alpha\)</span>, and <span class="math notranslate nohighlight">\(H_\alpha\)</span> are operators, but if we discretize our wavefunction (in order to, say, put it on a computer), they are just matrices.</p>
 <section id="traditional-rbm">
 <h2>“Traditional” RBM<a class="headerlink" href="#traditional-rbm" title="Permalink to this heading">#</a></h2>
 <p>To use the traditional RBM approach, one option is to rewrite the Schrodinger equation as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4b12728e-59ff-4ac8-8e41-dd97c26d7d44">
-<span class="eqno">(3)<a class="headerlink" href="#equation-4b12728e-59ff-4ac8-8e41-dd97c26d7d44" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-163dc058-0be9-496c-adcd-f6d8bc3a8c1d">
+<span class="eqno">(3)<a class="headerlink" href="#equation-163dc058-0be9-496c-adcd-f6d8bc3a8c1d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \bigg(-\frac{d^2}{dx^2}+\alpha x^2-\lambda\bigg)\phi(x)\equiv F_\alpha(\phi(x))=0,
 \end{align}\]</div>
 <p>defining the operator <span class="math notranslate nohighlight">\(F_\alpha\)</span>, and solving the system</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c7b5c2d9-30a6-45f4-a327-132e0e436e3e">
-<span class="eqno">(4)<a class="headerlink" href="#equation-c7b5c2d9-30a6-45f4-a327-132e0e436e3e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-24fb9640-4018-4b1f-8317-44dcb7e76715">
+<span class="eqno">(4)<a class="headerlink" href="#equation-24fb9640-4018-4b1f-8317-44dcb7e76715" title="Permalink to this equation">#</a></span>\[\begin{align}
 F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
 \end{align}\]</div>
 <p>We then solve this for a set of parameters <span class="math notranslate nohighlight">\(\{\alpha_i\}_{i=1}^n\)</span>, and for any arbitrary parameter <span class="math notranslate nohighlight">\(\alpha_k\)</span>, take as our ansatz</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f2382721-c6e7-424e-a7e6-8662418b55a2">
-<span class="eqno">(5)<a class="headerlink" href="#equation-f2382721-c6e7-424e-a7e6-8662418b55a2" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d14f7d5c-c7ed-43ef-ad22-78de6e6c516d">
+<span class="eqno">(5)<a class="headerlink" href="#equation-d14f7d5c-c7ed-43ef-ad22-78de6e6c516d" title="Permalink to this equation">#</a></span>\[\begin{align}
 	\hat{\phi}_{\alpha_{k}}(x) = \sum_{i=1}^{n} a_{i} \phi_{i}(x) .
 \end{align}\]</div>
 <p>This is a nice form, as it is straightforward to generalize to non-eigenvalue problems.</p>
@@ -592,29 +592,29 @@ F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
 <section id="a-slight-reformulation">
 <h2>A Slight Reformulation<a class="headerlink" href="#a-slight-reformulation" title="Permalink to this heading">#</a></h2>
 <p>Because we are solving an eigenvalue problem, we can arrive at a set of different-looking equations, using the same set of judges <span class="math notranslate nohighlight">\(\{\psi_i(x)\}_{i=1}^n\)</span> as before. We can simply plug <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_k}\)</span> into the Schrodinger equation and project both sides onto the judges, writing</p>
-<div class="amsmath math notranslate nohighlight" id="equation-450fd8d8-feec-4d5f-b975-b8d2337da076">
-<span class="eqno">(6)<a class="headerlink" href="#equation-450fd8d8-feec-4d5f-b975-b8d2337da076" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ad20181f-7272-4e54-b95e-d2cda6d0e83e">
+<span class="eqno">(6)<a class="headerlink" href="#equation-ad20181f-7272-4e54-b95e-d2cda6d0e83e" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{i=1}^na_i\langle \psi_j|H_{\alpha_k}|\phi_i\rangle=\lambda\sum_{i=1}^na_i\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>Define now two matrices:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-649ce714-68a8-44d6-bda5-bbd44f85d8b5">
-<span class="eqno">(7)<a class="headerlink" href="#equation-649ce714-68a8-44d6-bda5-bbd44f85d8b5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fa3a2bea-4d03-493a-b1c9-00f9945f7cad">
+<span class="eqno">(7)<a class="headerlink" href="#equation-fa3a2bea-4d03-493a-b1c9-00f9945f7cad" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,\quad N_{ij}\equiv\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>These are both <span class="math notranslate nohighlight">\(n\times n\)</span> matrices, and we now have a generalized eigenvalue problem for <span class="math notranslate nohighlight">\(\vec{a}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4b61cc47-e995-4318-a2ef-acbef42f2930">
-<span class="eqno">(8)<a class="headerlink" href="#equation-4b61cc47-e995-4318-a2ef-acbef42f2930" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-722a90fe-3030-47a0-9bb0-36043ee52cfd">
+<span class="eqno">(8)<a class="headerlink" href="#equation-722a90fe-3030-47a0-9bb0-36043ee52cfd" title="Permalink to this equation">#</a></span>\[\begin{align}
 M(\alpha)\vec{a}=\lambda N\vec{a}.
 \end{align}\]</div>
 <p>Situationally, this may be quicker to solve than finding the roots of the nonlinear system that results from the “traditional” RBM approach.</p>
 <p>As with traditional RBM approaches, this is only helpful if we can evaluate <span class="math notranslate nohighlight">\(M(\alpha)\)</span> quickly for different <span class="math notranslate nohighlight">\(\alpha\)</span> values. For the HO, this is not too hard: we can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-df366dd5-c87d-4f88-9294-ca09bb3b351f">
-<span class="eqno">(9)<a class="headerlink" href="#equation-df366dd5-c87d-4f88-9294-ca09bb3b351f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-30655f88-d2d6-4163-b7b5-a7d9d3411806">
+<span class="eqno">(9)<a class="headerlink" href="#equation-30655f88-d2d6-4163-b7b5-a7d9d3411806" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle\psi_j|H_\alpha|\phi_i\rangle=\langle\psi_j|T|\phi_i\rangle+\alpha\langle \psi_j|x^2|\phi_i\rangle\equiv M_{ij}^{(0)}+\alpha M_{ij}^{(1)}.
 \end{align}\]</div>
 <p>Our eigenvalue equation is then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3c81eba7-6dbd-4655-9a7b-aeb88f2b84f4">
-<span class="eqno">(10)<a class="headerlink" href="#equation-3c81eba7-6dbd-4655-9a7b-aeb88f2b84f4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bd3940e5-5242-42f5-ad34-d4088698c74c">
+<span class="eqno">(10)<a class="headerlink" href="#equation-bd3940e5-5242-42f5-ad34-d4088698c74c" title="Permalink to this equation">#</a></span>\[\begin{align}
 [M^{(0)}+\alpha M^{(1)}]\vec{a}=\lambda N\vec{a},
 \end{align}\]</div>
 <p>and all of <span class="math notranslate nohighlight">\(M^{(0)},M^{(1)}\)</span> and <span class="math notranslate nohighlight">\(N\)</span> can be precomputed.</p>
@@ -657,17 +657,15 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
                 <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">overlapMatrix</span>
         
+    <span class="k">def</span> <span class="nf">return_wf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
         <span class="n">mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinProj</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">potProj</span>
             
-        <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span><span class="p">)</span>
-        
-        <span class="n">a</span> <span class="o">=</span> <span class="n">vecs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-        
-        <span class="n">wf</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span>
-        <span class="n">wf</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span>
+        <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span><span class="p">,</span><span class="n">check_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vecs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>   
 </pre></div>
 </div>
 </div>
@@ -706,9 +704,10 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
 <span class="n">rbm</span> <span class="o">=</span> <span class="n">StandardRBM</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">kinTerm</span><span class="p">,</span><span class="n">potTerm</span><span class="p">)</span>
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
-    <span class="n">val</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">)</span>
-<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">val</span><span class="p">,</span>  <span class="n">a</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">)</span>
 
+<span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">return_wf</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standard RBM time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RBM relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">val</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
@@ -720,13 +719,13 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 4.237e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.372e-01 s
 Finite Difference relative error: 3.423e-06
-Standard RBM time: 7.341e-05 s
+Standard RBM time: 3.402e-05 s
 RBM relative error: 6.042e-04
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f3e94328150&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5e28f5b9d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/fdaf8616290e776a155634186b095b50efd4867450da4369e17674da32b6a315.png" src="../_images/fdaf8616290e776a155634186b095b50efd4867450da4369e17674da32b6a315.png" />
@@ -736,14 +735,14 @@ RBM relative error: 6.042e-04
 <section id="variational-rbm">
 <h2>Variational RBM<a class="headerlink" href="#variational-rbm" title="Permalink to this heading">#</a></h2>
 <p>For many physicists, the first thing to try is the variational approach to solving the Schrodinger equation. We can attempt the same thing, except using the expansion coefficients <span class="math notranslate nohighlight">\(\vec{a}\)</span> as variational coefficients. This, as far as I am aware, is what is known as “eigenvector continuation,” although different people mean different things when mentioning eigenvector continuation. In general, the variational energy is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65e3f8ba-9603-43f3-b466-5228d80fbbe4">
-<span class="eqno">(11)<a class="headerlink" href="#equation-65e3f8ba-9603-43f3-b466-5228d80fbbe4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-660d2fe4-5aa0-466d-9607-472b9b03bfdc">
+<span class="eqno">(11)<a class="headerlink" href="#equation-660d2fe4-5aa0-466d-9607-472b9b03bfdc" title="Permalink to this equation">#</a></span>\[\begin{align}
 	E_\alpha(\vec{a})=\frac{\langle \phi_{\vec{a}}|H_\alpha|\phi_{\vec{a}}\rangle}{\langle \phi_{\vec{a}}|\phi_{\vec{a}}\rangle},
 \end{align}\]</div>
 <p>and by minimizing this energy with respect to the parameters <span class="math notranslate nohighlight">\(\vec{a}\)</span>, we approximate the ground state energy.</p>
 <p>For the HO, this is again fairly simple to write out, using the matrices from the previous section:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ad80e19b-48ac-4fae-9461-8c2cbebc67ee">
-<span class="eqno">(12)<a class="headerlink" href="#equation-ad80e19b-48ac-4fae-9461-8c2cbebc67ee" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d6f632bd-4ee8-4055-a00a-dbab99ee7c62">
+<span class="eqno">(12)<a class="headerlink" href="#equation-d6f632bd-4ee8-4055-a00a-dbab99ee7c62" title="Permalink to this equation">#</a></span>\[\begin{align}
 E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec{a}}.
 \end{align}\]</div>
 <p>To speed this up, we can also write out the gradient (and even the Hessian). While I will not write out either here, the code implementation below utilizes the gradient to speed up the calculation.</p>
@@ -792,20 +791,19 @@ E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec
         <span class="n">f2Eval</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">@</span> <span class="n">a</span>
         <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">)</span> <span class="o">@</span> <span class="n">a</span><span class="o">/</span><span class="n">f2Eval</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">f1Eval</span><span class="o">/</span><span class="n">f2Eval</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">@</span> <span class="n">a</span>
     
+    <span class="k">def</span> <span class="nf">return_wf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">a0</span><span class="p">):</span>
-        <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span><span class="n">a0</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">alpha</span><span class="p">,),</span><span class="n">jac</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">energy_grad</span><span class="p">)</span>
         
         <span class="c1">#Normalize total wavefunction</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">opt</span><span class="o">.</span><span class="n">x</span>
-        <span class="n">wf</span> <span class="o">=</span> <span class="n">a</span><span class="nd">@T</span>
-        <span class="n">wf</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
+
         
         <span class="n">eigenvalue</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>
-        
-        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-        
-        <span class="k">return</span> <span class="n">eigenvalue</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">,</span> <span class="n">a</span>
+                
+        <span class="k">return</span> <span class="n">eigenvalue</span><span class="p">,</span> <span class="n">a</span>
 </pre></div>
 </div>
 </div>
@@ -843,8 +841,11 @@ E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec
 <span class="n">a0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">))</span>
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
-    <span class="n">eigenvalue</span><span class="p">,</span> <span class="n">wfRBM</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">a0</span><span class="p">)</span>
+    <span class="n">eigenvalue</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">a0</span><span class="p">)</span>
 <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">wf</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">return_wf</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
 <span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standard RBM time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;RBM relative error: </span><span class="si">%.3e</span><span class="s1">&#39;</span><span class="o">%</span><span class="p">((</span><span class="n">val</span><span class="o">-</span><span class="n">exactEigenvalue</span><span class="p">)</span><span class="o">/</span><span class="n">exactEigenvalue</span><span class="p">))</span>
@@ -856,42 +857,42 @@ E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 3.968e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.394e-01 s
 Finite Difference relative error: 3.423e-06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 6.926e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 5.201e-03 s
 RBM relative error: 6.042e-04
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f3e8de73a90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5e303c9110&gt;
 </pre></div>
 </div>
-<img alt="../_images/501db691c8dbafaecef3467f70d3bfa5d7236bcc1d0bd231a299cee8a9895869.png" src="../_images/501db691c8dbafaecef3467f70d3bfa5d7236bcc1d0bd231a299cee8a9895869.png" />
+<img alt="../_images/b3cf780e6801d68360e5b576a25238a37be67e773cae1c82bb83ea18568a6e14.png" src="../_images/b3cf780e6801d68360e5b576a25238a37be67e773cae1c82bb83ea18568a6e14.png" />
 </div>
 </div>
 </section>
 <section id="inferring-the-reduced-hamiltonian">
 <h2>Inferring the Reduced Hamiltonian<a class="headerlink" href="#inferring-the-reduced-hamiltonian" title="Permalink to this heading">#</a></h2>
 <p>All of the above is fantastic: it speeds up the code versus a standard finite difference solver, without losing basically any accuracy. But, we are always required to compute overlaps of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-37506da9-3190-4875-9b50-2fe54c6dfcce">
-<span class="eqno">(13)<a class="headerlink" href="#equation-37506da9-3190-4875-9b50-2fe54c6dfcce" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9cb79d86-269c-4ece-850d-0373dac3da90">
+<span class="eqno">(13)<a class="headerlink" href="#equation-9cb79d86-269c-4ece-850d-0373dac3da90" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
 \end{align}\]</div>
 <p>in a manner that is <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> without much accuracy loss. Even for problems in which the parameter(s) appear in an affine manner (such as the HO), this can be time-consuming, especially given many parameters in the problem. It is even worse when parameters are not affine, and so to apply this to any particular problem uses a lot of development time thinking about implementation details.</p>
 <p>One work-around is to attempt to infer a simple form of <span class="math notranslate nohighlight">\(M(\alpha)\)</span>, say, <span class="math notranslate nohighlight">\(\hat{M}(\alpha)\)</span>, just based on the overlaps themselves. As an example, suppose we assume a quadratic polynomial in <span class="math notranslate nohighlight">\(\alpha\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-490dd24b-c64c-4a9d-8e79-a0868f502620">
-<span class="eqno">(14)<a class="headerlink" href="#equation-490dd24b-c64c-4a9d-8e79-a0868f502620" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7a110418-a996-46c0-a785-f025ae22b32a">
+<span class="eqno">(14)<a class="headerlink" href="#equation-7a110418-a996-46c0-a785-f025ae22b32a" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{M}(\alpha)\equiv M^{(0)}+\alpha M^{(1)}+\alpha^2M^{(2)}.
 \end{align}\]</div>
 <p>We can use our high-fidelity solutions <span class="math notranslate nohighlight">\(\{\phi_i\}\)</span> and judges <span class="math notranslate nohighlight">\(\{\psi_i\}\)</span>, compute the overlaps <span class="math notranslate nohighlight">\(M_{ij}(\alpha_k)\)</span> for <span class="math notranslate nohighlight">\(\alpha_k=\alpha_1,\ldots,\alpha_n\)</span>, and fit the coefficients of <span class="math notranslate nohighlight">\(\hat{M}\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6d8e0511-1aff-4b95-a84c-6314a7cca56b">
-<span class="eqno">(15)<a class="headerlink" href="#equation-6d8e0511-1aff-4b95-a84c-6314a7cca56b" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f6586385-29c7-4ca2-9fe5-5062c4253748">
+<span class="eqno">(15)<a class="headerlink" href="#equation-f6586385-29c7-4ca2-9fe5-5062c4253748" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{M}(\alpha_k)\approx M(\alpha_k),\quad k=1,\ldots,n.
 \end{align}\]</div>
 <p>This can be done coefficient-by-coefficient, to minimize the residual</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5d29904f-2789-4df7-8aab-81d391e399bc">
-<span class="eqno">(16)<a class="headerlink" href="#equation-5d29904f-2789-4df7-8aab-81d391e399bc" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-8c3f8195-6c02-449b-8566-0c204d2b90da">
+<span class="eqno">(16)<a class="headerlink" href="#equation-8c3f8195-6c02-449b-8566-0c204d2b90da" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{k=1}^n[\hat{M}_{ij}(\alpha_k)-M_{ij}(\alpha_k)]^2.
 \end{align}\]</div>
 <p>No longer do you have to attempt to make the division made above (although it is simpler for the HO).</p>
@@ -943,20 +944,18 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
                 <span class="n">minCoeffs</span><span class="p">[:,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">minCoeffs</span><span class="p">[:,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">minCoeffs</span>
         
+    <span class="k">def</span> <span class="nf">return_wf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">coeffs</span><span class="p">):</span>
         <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
         <span class="n">maxPolyDim</span> <span class="o">=</span> <span class="n">coeffs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">coeffIter</span><span class="p">,</span><span class="n">coeff</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coeffs</span><span class="p">):</span>
             <span class="n">mat</span> <span class="o">+=</span> <span class="n">alpha</span><span class="o">**</span><span class="p">(</span><span class="n">maxPolyDim</span> <span class="o">-</span> <span class="n">coeffIter</span><span class="p">)</span> <span class="o">*</span> <span class="n">coeff</span>
             
-        <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span><span class="p">)</span>
+        <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span><span class="p">,</span><span class="n">check_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         
-        <span class="n">a</span> <span class="o">=</span> <span class="n">vecs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-        
-        <span class="n">wf</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span>
-        <span class="n">wf</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
-        
-        <span class="k">return</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span>
+        <span class="k">return</span> <span class="n">vals</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">vecs</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -997,8 +996,11 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
 <span class="n">coeffs</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">fit_matrices</span><span class="p">()</span>
 <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
-    <span class="n">val</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">coeffs</span><span class="p">)</span>
+    <span class="n">val</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">coeffs</span><span class="p">)</span>
 <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+<span class="n">wf</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">return_wf</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
 <span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
 <span class="c1"># ax.plot(grid,wf,label=&#39;Infer Matrix&#39;,ls=&#39;:&#39;)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Inferred Matrix time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
@@ -1011,13 +1013,13 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 4.577e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.398e-01 s
 Finite Difference relative error: 3.423e-06
-Inferred Matrix time: 8.346e-05 s
+Inferred Matrix time: 4.351e-05 s
 Relative error: 6.042e-04
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f3e94b84710&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f5e28bb10d0&gt;
 </pre></div>
 </div>
 <img alt="../_images/8f4fbca2391b7ff1fd76ff09ba37d2281e0bf621c42974f37f1c26054e1567a3.png" src="../_images/8f4fbca2391b7ff1fd76ff09ba37d2281e0bf621c42974f37f1c26054e1567a3.png" />
@@ -1068,7 +1070,7 @@ Relative error: 6.042e-04
     <span class="n">rbm</span> <span class="o">=</span> <span class="n">StandardRBM</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">kinTerm</span><span class="p">,</span><span class="n">potTerm</span><span class="p">)</span>
     <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
-        <span class="n">val</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">)</span>
+        <span class="n">val</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Standard RBM time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
@@ -1081,7 +1083,7 @@ Relative error: 6.042e-04
     <span class="n">a0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphaVals</span><span class="p">))</span>
     <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
-        <span class="n">eigenvalue</span><span class="p">,</span> <span class="n">wfRBM</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">a0</span><span class="p">)</span>
+        <span class="n">eigenvalue</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rbm</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">a0</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Variational RBM time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
@@ -1094,7 +1096,7 @@ Relative error: 6.042e-04
     <span class="n">coeffs</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">fit_matrices</span><span class="p">()</span>
     <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nRepeatsForTiming</span><span class="p">):</span>
-        <span class="n">val</span><span class="p">,</span> <span class="n">wf</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">coeffs</span><span class="p">)</span>
+        <span class="n">val</span><span class="p">,</span> <span class="n">a</span> <span class="o">=</span> <span class="n">inferObj</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">alphaTest</span><span class="p">,</span><span class="n">coeffs</span><span class="p">)</span>
     <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">runTime</span> <span class="o">=</span> <span class="p">(</span><span class="n">t1</span><span class="o">-</span><span class="n">t0</span><span class="p">)</span><span class="o">/</span><span class="n">nRepeatsForTiming</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Inferred Matrix time: </span><span class="si">%.3e</span><span class="s1"> s&#39;</span><span class="o">%</span><span class="k">runTime</span>)
@@ -1113,47 +1115,47 @@ Relative error: 6.042e-04
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 4.139e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.302e-01 s
 Relative error: 3.423e-06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 6.318e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 2.651e-05 s
 Relative error: 5.696e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 4.029e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 3.214e-03 s
 Relative error: 5.696e-03
-Inferred Matrix time: 7.387e-05 s
+Inferred Matrix time: 3.595e-05 s
 Relative error: 5.696e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 6.888e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 2.959e-05 s
 Relative error: 1.292e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.786e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 5.290e-03 s
 Relative error: 1.292e-03
-Inferred Matrix time: 8.337e-05 s
+Inferred Matrix time: 3.853e-05 s
 Relative error: 1.292e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 7.541e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.303e-05 s
 Relative error: 8.799e-04
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.757e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 5.075e-03 s
 Relative error: 1.647e-03
-Inferred Matrix time: 8.248e-05 s
+Inferred Matrix time: 4.267e-05 s
 Relative error: 8.799e-04
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 8.028e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.825e-05 s
 Relative error: 7.248e-05
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 8.528e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.277e-03 s
 Relative error: 1.441e-04
-Inferred Matrix time: 9.268e-05 s
+Inferred Matrix time: 4.844e-05 s
 Relative error: 7.248e-05
 </pre></div>
 </div>
@@ -1165,7 +1167,7 @@ Relative error: 7.248e-05
  (1e-06, 0.1)]
 </pre></div>
 </div>
-<img alt="../_images/de701fb1b846d97c2320054c91456dc418064fa36283e252d0b26d96a8dc4dc5.png" src="../_images/de701fb1b846d97c2320054c91456dc418064fa36283e252d0b26d96a8dc4dc5.png" />
+<img alt="../_images/df73033065e8d84f48c3e38ea33252ea8424dd2b2ca4d17381e971c1f8decab2.png" src="../_images/df73033065e8d84f48c3e38ea33252ea8424dd2b2ca4d17381e971c1f8decab2.png" />
 </div>
 </div>
 </section>

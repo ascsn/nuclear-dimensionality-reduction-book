@@ -433,49 +433,49 @@ document.write(`
 <h1>Application 4: Time Dependent Systems (evolution in the reduced space)<a class="headerlink" href="#application-4-time-dependent-systems-evolution-in-the-reduced-space" title="Permalink to this heading">#</a></h1>
 <p>Contributed by: Pablo Giuliani, Kyle Godbey, Edgard Bonilla</p>
 <p>In this section we are going to take a look at the time evolution of a quantum system using the reduced basis method (<a class="reference external" href="https://doi.org/10.1016/j.cma.2006.08.004">take a look here for an example practical and more complex non-quantum application</a>). We will focus on the harmonic oscillator for our first exploration (we will try a self interacting particle in the next chapter about non-linear systems). Our Hamiltonian is:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5caf9056-325d-46dc-82e5-7ec1393a49f7">
-<span class="eqno">(35)<a class="headerlink" href="#equation-5caf9056-325d-46dc-82e5-7ec1393a49f7" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3166bb7b-32e3-4545-aa68-92d0e7a8a99d">
+<span class="eqno">(35)<a class="headerlink" href="#equation-3166bb7b-32e3-4545-aa68-92d0e7a8a99d" title="Permalink to this equation">#</a></span>\[\begin{equation}
     H = -\frac{\partial^2}{\partial x^2} + \omega^2 x^2
 \end{equation}\]</div>
 <p>Let us drop the numerical constants to simplify notation (<span class="math notranslate nohighlight">\(\hbar=1\)</span>).</p>
 <p>The evolution of a quantum mechanical wave function is <a class="reference external" href="https://en.wikipedia.org/wiki/Hamiltonian_(quantum_mechanics)#Schr%C3%B6dinger_equation">described through Schrodinger equation as</a>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-78e47c23-90f6-4339-9dcd-3d4c21d0bb97">
-<span class="eqno">(36)<a class="headerlink" href="#equation-78e47c23-90f6-4339-9dcd-3d4c21d0bb97" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-75d76928-d230-4475-b8d4-a83b98b8e800">
+<span class="eqno">(36)<a class="headerlink" href="#equation-75d76928-d230-4475-b8d4-a83b98b8e800" title="Permalink to this equation">#</a></span>\[\begin{equation}
     H \left| \phi (t,x) \right\rangle = i  {\partial\over\partial t} \left| \phi (t,x) \right\rangle,
 \end{equation}\]</div>
 <p>which results in the evolution operator from an initial state:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5fb06678-e7a6-4bda-b8e0-375a46f5c2bf">
-<span class="eqno">(37)<a class="headerlink" href="#equation-5fb06678-e7a6-4bda-b8e0-375a46f5c2bf" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a524902e-335f-4676-ba47-0f5549bcf66c">
+<span class="eqno">(37)<a class="headerlink" href="#equation-a524902e-335f-4676-ba47-0f5549bcf66c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left| \phi (t,x) \right\rangle = e^{-iHt} | \phi (0,x) \rangle.
 \end{equation}\]</div>
 <p>To solve the problem numerically, the evolution operator is usually expanded in its Taylor approximation and a finite time step <span class="math notranslate nohighlight">\(\Delta t\)</span> is taken:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-1f5f2327-8462-48c4-b9e4-305b648ea97a">
-<span class="eqno">(38)<a class="headerlink" href="#equation-1f5f2327-8462-48c4-b9e4-305b648ea97a" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b87630e9-e59b-48bb-94e9-3315505b34ae">
+<span class="eqno">(38)<a class="headerlink" href="#equation-b87630e9-e59b-48bb-94e9-3315505b34ae" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \left| \phi (\Delta t,x) \right\rangle \approx \big(1 + (-iH\Delta t) + \frac{1}{2} (-iH\Delta t)^2 + ... \big) | \phi (0,x) \rangle.
 \end{equation}\]</div>
 <p>In this chapter, we will still use the evolution operator to study the dynamics of the system, but we will build it in the reduced space.  The state <span class="math notranslate nohighlight">\(\phi(x,t)\)</span> will be transformed into their reduced approximations:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9a05d69a-6e31-445e-9d1c-0676498d368b">
-<span class="eqno">(39)<a class="headerlink" href="#equation-9a05d69a-6e31-445e-9d1c-0676498d368b" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-60027e15-1a0a-4c53-8ffe-35d973f3630c">
+<span class="eqno">(39)<a class="headerlink" href="#equation-60027e15-1a0a-4c53-8ffe-35d973f3630c" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \phi(x,t) \approx \hat \phi(x,t) = \sum_k^n a_k(t) \phi_k(x),
 \end{equation}\]</div>
 <p>where now the coefficients <span class="math notranslate nohighlight">\(a_k\)</span> explicitely depend on time (as well as any parameters of the system). The Hamiltonian will be transformed in a reduced version as well when substituting the reduced basis approximation and doing a Galerkin projection of the dynamic evolution equaiton. Using our previous notation we have:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cc22bc19-0fa5-4384-87a8-c02f44e6c3e2">
-<span class="eqno">(40)<a class="headerlink" href="#equation-cc22bc19-0fa5-4384-87a8-c02f44e6c3e2" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-69b7a665-7ae4-4e90-8733-e1f1fece911c">
+<span class="eqno">(40)<a class="headerlink" href="#equation-69b7a665-7ae4-4e90-8733-e1f1fece911c" title="Permalink to this equation">#</a></span>\[\begin{equation}
    F_\alpha[ \phi(x,t) ]=  {\partial\over\partial t} \phi (t,x) +iH\phi (t,x) =0,
 \end{equation}\]</div>
 <p>we can substitude <span class="math notranslate nohighlight">\(\phi(x,t)\)</span> with <span class="math notranslate nohighlight">\(\hat \phi(x,t)\)</span> and project:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-373a65de-a0b3-4e22-801c-440dda5cffed">
-<span class="eqno">(41)<a class="headerlink" href="#equation-373a65de-a0b3-4e22-801c-440dda5cffed" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2adcdb12-01fb-47a4-839c-a5bc4268f5fe">
+<span class="eqno">(41)<a class="headerlink" href="#equation-2adcdb12-01fb-47a4-839c-a5bc4268f5fe" title="Permalink to this equation">#</a></span>\[\begin{equation}
    \langle \phi_j(x) | F_\alpha[ \hat \phi(x,t) ] \rangle =0 \ \text{for j=1, ... n}.
 \end{equation}\]</div>
 <p>We will choose our <span class="math notranslate nohighlight">\(\phi_k\)</span> as the Pricinpal Components of several snapshots, meaning that <span class="math notranslate nohighlight">\(\langle \phi_j | \phi_k\rangle = \delta_j^k\)</span>, which leads to the dynamic equations for the coefficients:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02c3bcb7-2924-4809-9e20-4ab6106a7e30">
-<span class="eqno">(42)<a class="headerlink" href="#equation-02c3bcb7-2924-4809-9e20-4ab6106a7e30" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b29bf53c-fbbd-4c29-85e8-8a5385b43b5d">
+<span class="eqno">(42)<a class="headerlink" href="#equation-b29bf53c-fbbd-4c29-85e8-8a5385b43b5d" title="Permalink to this equation">#</a></span>\[\begin{equation}
  \frac{d}{dt}a_j(t) - i\hat H \boldsymbol{a}(t) =0,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\boldsymbol{a}(t) = \{a_1(t), ... a_n(t) \}\)</span> and the reduced Hamiltonian is computed as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-03f82865-de33-42b9-b929-f2ff9670542e">
-<span class="eqno">(43)<a class="headerlink" href="#equation-03f82865-de33-42b9-b929-f2ff9670542e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-0f145cf1-544c-4b6b-812b-53c6f40b7655">
+<span class="eqno">(43)<a class="headerlink" href="#equation-0f145cf1-544c-4b6b-812b-53c6f40b7655" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \hat H_{j,k} = \langle \phi_j | H | \phi_k \rangle.
 \end{equation}\]</div>
 <p>We now have to solve for the evolution of <span class="math notranslate nohighlight">\(n\)</span> (usually small) number of coefficients in time. The RBM solution will be much more efficient in time thanks to both the fact that <span class="math notranslate nohighlight">\(n\ll N\)</span> (<span class="math notranslate nohighlight">\(N\)</span> being the dimension of the traditional high fidelity solver), and that <span class="math notranslate nohighlight">\(\Delta t\)</span> can be taken appreciably bigger and still recover a stable solution.</p>
@@ -618,8 +618,8 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.61 s, sys: 2 s, total: 7.61 s
-Wall time: 3.85 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 5.25 s, sys: 8.2 s, total: 13.4 s
+Wall time: 3.38 s
 </pre></div>
 </div>
 </div>
@@ -812,7 +812,7 @@ Wall time: 3.85 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8a5baa2a475cfefc976eed4f347ddc788a77ae304d02f0a828ace1223d0f4142.png" src="../_images/8a5baa2a475cfefc976eed4f347ddc788a77ae304d02f0a828ace1223d0f4142.png" />
+<img alt="../_images/2b88cf546ff43507635c048f04d9b58df9c0a09b3f71580373844ece8b3e1c75.png" src="../_images/2b88cf546ff43507635c048f04d9b58df9c0a09b3f71580373844ece8b3e1c75.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -863,8 +863,8 @@ Wall time: 3.85 s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 311 ms, sys: 0 ns, total: 311 ms
-Wall time: 311 ms
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 211 ms, sys: 6.9 ms, total: 218 ms
+Wall time: 217 ms
 </pre></div>
 </div>
 </div>
@@ -1002,7 +1002,7 @@ Wall time: 311 ms
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01748455588477281
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.01748455588477442
 </pre></div>
 </div>
 </div>
@@ -1036,7 +1036,7 @@ Wall time: 311 ms
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
 <span class="o">&lt;</span><span class="n">timed</span> <span class="n">exec</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 
-<span class="nn">/tmp/ipykernel_2001/4199485357.py</span> in <span class="ni">harmonic_oscillator_time_evolution</span><span class="nt">(initial_state, total_time, time_steps, omega, total_order, N_grid)</span>
+<span class="nn">/tmp/ipykernel_1912/4199485357.py</span> in <span class="ni">harmonic_oscillator_time_evolution</span><span class="nt">(initial_state, total_time, time_steps, omega, total_order, N_grid)</span>
 <span class="g g-Whitespace">     </span><span class="mi">40</span> 
 <span class="g g-Whitespace">     </span><span class="mi">41</span>         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">total_order</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
 <span class="ne">---&gt; </span><span class="mi">42</span>             <span class="n">current_correction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">/</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="n">time_step_size</span><span class="o">*</span><span class="n">H</span><span class="p">,</span><span class="n">current_correction</span><span class="p">)</span>
