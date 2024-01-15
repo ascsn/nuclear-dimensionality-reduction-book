@@ -558,19 +558,19 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <li><p>Minimize the <a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_norm">Frobenius norm</a> between some model for our operator and the numerical hamiltonian. The Frobenius norm is the generalization of the regular euclidian norm between vectors (or L2 norm in the case of functions).</p></li>
 </ul>
 <p>Since all other points should be familiar by now we will concentrate on the last one. The model we will have for our Hamiltonian is a polynomial feature model on the parameters <span class="math notranslate nohighlight">\(\alpha_i\)</span> of the data:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6c054d6a-44a9-4edb-8b58-472b516cbf91">
-<span class="eqno">(46)<a class="headerlink" href="#equation-6c054d6a-44a9-4edb-8b58-472b516cbf91" title="Permalink to this equation">#</a></span>\[\begin{equation} 
+<div class="amsmath math notranslate nohighlight" id="equation-fa215ccc-5ace-404f-a66d-80654419d984">
+<span class="eqno">(46)<a class="headerlink" href="#equation-fa215ccc-5ace-404f-a66d-80654419d984" title="Permalink to this equation">#</a></span>\[\begin{equation} 
 \mathcal H_{ij} = (H_0)_{ij} + (H_1)^k_{ij}\alpha_k + (H_2)^{kl}_{ij}\alpha_k\alpha_l + (H_3)^{klm}_{ij} \alpha_k\alpha_l\alpha_m+\cdots 
 \end{equation}\]</div>
 <p>The minimization problem is then:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-30bf6326-8efd-4454-8f5f-c0da3a58e035">
-<span class="eqno">(47)<a class="headerlink" href="#equation-30bf6326-8efd-4454-8f5f-c0da3a58e035" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ebbca4be-c810-4733-83d8-357a835e1f9a">
+<span class="eqno">(47)<a class="headerlink" href="#equation-ebbca4be-c810-4733-83d8-357a835e1f9a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F
 \end{equation}\]</div>
 <p>It is important to note that in this approach the minimization problem factorizes into component-wise quadratic programming minimization porblems, which can be solved in parallel and analytically.</p>
 <p>This model has the disadvantage that the number of parameters grows exponentially on the order that one wishes to use. Sparsity promoting approaches, such an L1 or <a class="reference external" href="https://en.wikipedia.org/wiki/Lasso_(statistics)">Lasso regularization</a> is a good choice to deal with a situation where we have more coefficients than data values. Because we might be interested in allowing for high order polynomial features we also consider the LASSO regularized minimization problem:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-faa9b41b-59e4-4f5a-aeed-cecd9048b41e">
-<span class="eqno">(48)<a class="headerlink" href="#equation-faa9b41b-59e4-4f5a-aeed-cecd9048b41e" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-2d2f9f08-af43-40cd-b6c9-bd8bff7b5f7a">
+<span class="eqno">(48)<a class="headerlink" href="#equation-2d2f9f08-af43-40cd-b6c9-bd8bff7b5f7a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \min_{H_I}|| \mathcal H_{model} - \mathcal H_{data} ||_F + \lambda ||\mathcal H_{model}||_1
 \end{equation}\]</div>
 <p>as a means to promote sparsity on the coefficients <span class="math notranslate nohighlight">\(H_I\)</span>.</p>
@@ -652,7 +652,7 @@ R = \int  dx\hskip0.1cmx^2 \rho(x)
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1951</span><span class="o">/</span><span class="mf">3198946366.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1922</span><span class="o">/</span><span class="mf">3198946366.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="g g-Whitespace">      </span><span class="mi">3</span> 
