@@ -168,8 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Application 3: The Empirical Interpolation Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Aplication 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/SECAR.html">Efficient Emulation of SECAR Beam</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/DFT_Toy_Model.html">Non-linear and non-affine problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../In-progress/HarmonicIntro.html">Harmonic Introduction</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
@@ -432,32 +431,32 @@ document.write(`
 <p>Contributed by: Kyle Beyer, Pablo Giuliani</p>
 <p>In this section we explain the application of the Empirical Inteprolation Method (known as EIM in the Reduced Basis Method literature) to emulate problems with more interesting (non-affine) dependence on their parameters. For further reading on this topic see chapter V of <a class="reference external" href="https://link.springer.com/book/10.1007/978-3-319-22470-1">this book</a>.</p>
 <p>Continuing from the previous section, we have the same Hamiltonian as the radial part of the scattering equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65c2432b-b45f-4180-a53b-2e45830e72ea">
-<span class="eqno">(22)<a class="headerlink" href="#equation-65c2432b-b45f-4180-a53b-2e45830e72ea" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-76708f29-cfb7-4dae-ab23-b0a601523a35">
+<span class="eqno">(22)<a class="headerlink" href="#equation-76708f29-cfb7-4dae-ab23-b0a601523a35" title="Permalink to this equation">#</a></span>\[\begin{equation}
     F_\alpha(\phi)=\left(-\frac{d^2}{dr^2}+\frac{\ell(\ell+1)}{r^2}+U(r,\alpha)-p^2\right)\phi(r)=0,
 \end{equation}\]</div>
 <p>Let’s now consider the following potential with Woods-Saxon form:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-09eb3281-bab7-4cbf-a72c-dd0d6aed39d9">
-<span class="eqno">(23)<a class="headerlink" href="#equation-09eb3281-bab7-4cbf-a72c-dd0d6aed39d9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-fb73036a-6e8e-4a9e-83c9-be36315d2afe">
+<span class="eqno">(23)<a class="headerlink" href="#equation-fb73036a-6e8e-4a9e-83c9-be36315d2afe" title="Permalink to this equation">#</a></span>\[\begin{equation}
     U(r;R,a) = -2\mu V_0\frac{1}{1 + \exp{\frac{r-R}{a}}}.
 \end{equation}\]</div>
 <p>We would like our Reduced Basis to correlty approximate our solution when we vary <span class="math notranslate nohighlight">\(R\)</span>, <span class="math notranslate nohighlight">\(a\)</span>, and/or the momentum <span class="math notranslate nohighlight">\(p\)</span>. First, let’s apply the scaling to eliminate the <span class="math notranslate nohighlight">\(p\)</span> dependence on the equation and have it only in the effective potential:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4ade7de9-5552-447a-977a-0d620e409935">
-<span class="eqno">(24)<a class="headerlink" href="#equation-4ade7de9-5552-447a-977a-0d620e409935" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c8bfbc9e-259f-4979-9bbf-452d1e0ac3f5">
+<span class="eqno">(24)<a class="headerlink" href="#equation-c8bfbc9e-259f-4979-9bbf-452d1e0ac3f5" title="Permalink to this equation">#</a></span>\[\begin{equation}
   \tilde U(s;p,S,z) = -\frac{ 2 \mu V_0 }{ p^2}  \frac{1}{ 1 + \exp{ \frac{s-S}{ z }}},
 \end{equation}\]</div>
 <p>where we’ve defined <span class="math notranslate nohighlight">\(S = R p\)</span> and <span class="math notranslate nohighlight">\(z = a p\)</span>.</p>
 <p>Notice how our parameters of interest are distincively non-affine, we can’t separate the potential as a product of only a function of <span class="math notranslate nohighlight">\(s\)</span> and a function of only <span class="math notranslate nohighlight">\(\{V_0,S,z,p\}\)</span>. A Reduced Basis informed on a set high fidelity solutions for varios sets of parameters <span class="math notranslate nohighlight">\(\alpha_i=\{V_{0,i},S_i,z_i,p_i\}\)</span> could still in principle be a good approximation for a new target parameter <span class="math notranslate nohighlight">\(\alpha_t\)</span>. The problem is that the Galerkin projection equations we used in the previous sections would have to be re-constructed every time, involving opperations in the high fidelity space (integrals in the variable <span class="math notranslate nohighlight">\(s\)</span>).</p>
 <p>The clever idea behind the Empirical Interpolation Method is to find an approximation of <span class="math notranslate nohighlight">\(\tilde U\)</span>, which we will call <span class="math notranslate nohighlight">\(\tilde U_\text{EIM}\)</span>, that is indeed affine in the parameters:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f393be09-57f5-4a23-be4b-bd2127c3a549">
-<span class="eqno">(25)<a class="headerlink" href="#equation-f393be09-57f5-4a23-be4b-bd2127c3a549" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-b8410ff9-6a5f-4f93-840f-9bee71727ef2">
+<span class="eqno">(25)<a class="headerlink" href="#equation-b8410ff9-6a5f-4f93-840f-9bee71727ef2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tilde U(s; \alpha)  \approx \tilde{U}_\text{EIM} (s; \alpha)  = \sum_k^M \beta_k(\alpha) U_k(s),
 \end{equation}\]</div>
 <p>where the coefficients <span class="math notranslate nohighlight">\(\beta_k\)</span> depend on <span class="math notranslate nohighlight">\(\alpha\)</span> and need to be determined somehow, while the functions <span class="math notranslate nohighlight">\(U_k(s)\)</span> are informed on exact forms of the potential for several values of the parameters <span class="math notranslate nohighlight">\(\alpha\)</span>. To explain the method, we will only focus on changing the potential radius <span class="math notranslate nohighlight">\(R\)</span> (<span class="math notranslate nohighlight">\(S\)</span> in the re-scaled notation), <span class="math notranslate nohighlight">\(z\)</span> and <span class="math notranslate nohighlight">\(p\)</span> will be fixed, so we will ommit them going forward.</p>
 <p>We can see an analogy with what we did before in the space of wavefunctions, but now in the space of operators <span class="math notranslate nohighlight">\(\tilde U(s;S)\)</span>: we will evaluate <span class="math notranslate nohighlight">\(N\)</span> snapshots of <span class="math notranslate nohighlight">\(U(s;S)\)</span>, with <span class="math notranslate nohighlight">\(S\)</span> evaluated at each value on the training space <span class="math notranslate nohighlight">\(T\equiv \{S_i\}\)</span> for <span class="math notranslate nohighlight">\(i=1,...N\)</span>, which we are free to choose. As before, we will then do a Principal Component Analysis to find <span class="math notranslate nohighlight">\(M &lt; N\)</span> dimensions that suitably encapsulate the information content of <span class="math notranslate nohighlight">\(U(s;S)\)</span> as we vary <span class="math notranslate nohighlight">\(S \in T\)</span>.</p>
 <p>In the previous section, the associated coefficients <span class="math notranslate nohighlight">\(a_k\)</span> for the reduced basis approximation of the wave function were obtained by the Galerkin projection on the residual of the differential equation <span class="math notranslate nohighlight">\(F(\hat \phi)\)</span>. This is done because we don’t have access to the exact solution <span class="math notranslate nohighlight">\(\phi\)</span> for a given parameter target <span class="math notranslate nohighlight">\(\alpha\)</span>, so we use the information content of the residual to inform our reduced basis approximation. In this section, however, we can compute the exact operator <span class="math notranslate nohighlight">\(U(s;S)\)</span> at any value of <span class="math notranslate nohighlight">\(s\)</span> without incurring into a big computational cost. Therefore, the <span class="math notranslate nohighlight">\(M\)</span> coefficients <span class="math notranslate nohighlight">\(\beta(S)\)</span> are obtained by enforcing that the approximation <span class="math notranslate nohighlight">\(\tilde{U}_\text{EIM} (s; S)\)</span> must be exactly equal to the original potential <span class="math notranslate nohighlight">\(\tilde{U}(s;S)\)</span> at some selected locations <span class="math notranslate nohighlight">\(s_j\)</span> for <span class="math notranslate nohighlight">\(j=1,...,M\)</span> for any value of the parameter <span class="math notranslate nohighlight">\(S\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ca39e870-d98f-4fde-9a40-1c991f956c8d">
-<span class="eqno">(26)<a class="headerlink" href="#equation-ca39e870-d98f-4fde-9a40-1c991f956c8d" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-38c8e71b-b7d3-4819-abdd-fab782cc14a2">
+<span class="eqno">(26)<a class="headerlink" href="#equation-38c8e71b-b7d3-4819-abdd-fab782cc14a2" title="Permalink to this equation">#</a></span>\[\begin{equation}
 U(s_j; S) - \sum_k^M \beta_k(S) U_k(s_j)=0, \ \text{for } j=1, ... , M
 \end{equation}\]</div>
 <p>These equations represent an interpolation scheme, since our approximation <span class="math notranslate nohighlight">\(\tilde{U}_\text{EIM} (s; S)\)</span> is expected to interpolate the true potential between the fixed locations <span class="math notranslate nohighlight">\(s_j\)</span>. Here is the reason for the name of the method: empirical interpolation.</p>
@@ -634,30 +633,30 @@ U(s_j; S) - \sum_k^M \beta_k(S) U_k(s_j)=0, \ \text{for } j=1, ... , M
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([5.01803504, 4.04964253, 3.34535706, 2.76212066, 7.24093604,
-       4.98502166])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4.19270051, 3.53243289, 2.42098239, 3.8625667 , 4.84196368,
+       7.38399403])
 </pre></div>
 </div>
 </div>
 </div>
 <p>Once we have chosen the sample points one way or another, we can simultaneously solve our interpolation equation at those points. We know want to solve an equation of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af0de118-90a1-43b2-9ae2-256dada68f92">
-<span class="eqno">(27)<a class="headerlink" href="#equation-af0de118-90a1-43b2-9ae2-256dada68f92" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-18ef67ee-026b-4ca0-8237-06755410fe9b">
+<span class="eqno">(27)<a class="headerlink" href="#equation-18ef67ee-026b-4ca0-8237-06755410fe9b" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{A} \overline{x}(S) = \overline{b}(S),
 \end{equation}\]</div>
 <p>where</p>
-<div class="amsmath math notranslate nohighlight" id="equation-69f11d9f-dbf1-4fab-a6a2-2f302fd24f13">
-<span class="eqno">(28)<a class="headerlink" href="#equation-69f11d9f-dbf1-4fab-a6a2-2f302fd24f13" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-c7428174-eaef-4cfe-a9bd-99cb2a0c5c23">
+<span class="eqno">(28)<a class="headerlink" href="#equation-c7428174-eaef-4cfe-a9bd-99cb2a0c5c23" title="Permalink to this equation">#</a></span>\[\begin{equation}
 {b}_{j} = U(s_j,S),
 \end{equation}\]</div>
 <p>and</p>
-<div class="amsmath math notranslate nohighlight" id="equation-d197bb1c-ad13-4deb-b38b-7c9d791461e8">
-<span class="eqno">(29)<a class="headerlink" href="#equation-d197bb1c-ad13-4deb-b38b-7c9d791461e8" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-7d6f3585-b5a6-4cf0-9543-8e11694e79d8">
+<span class="eqno">(29)<a class="headerlink" href="#equation-7d6f3585-b5a6-4cf0-9543-8e11694e79d8" title="Permalink to this equation">#</a></span>\[\begin{equation}
 {A}_{jk} = U_j(s_k),
 \end{equation}\]</div>
 <p>and our unkown coefficient functions,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-bedfad47-a174-4d5d-8bf4-9684359bbb08">
-<span class="eqno">(30)<a class="headerlink" href="#equation-bedfad47-a174-4d5d-8bf4-9684359bbb08" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-a16eb5a3-15d3-4e49-9042-7f54053bf058">
+<span class="eqno">(30)<a class="headerlink" href="#equation-a16eb5a3-15d3-4e49-9042-7f54053bf058" title="Permalink to this equation">#</a></span>\[\begin{equation}
 {x}_{k} = \beta_k(S).
 \end{equation}\]</div>
 <div class="cell docutils container">
@@ -685,7 +684,7 @@ U(s_j; S) - \sum_k^M \beta_k(S) U_k(s_j)=0, \ \text{for } j=1, ... , M
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/ffe9f1e15bb1c1f9b9e70f9bca4c4aacc81d4da95d7e90548154e1f08210a7b2.png" src="../_images/ffe9f1e15bb1c1f9b9e70f9bca4c4aacc81d4da95d7e90548154e1f08210a7b2.png" />
+<img alt="../_images/c2aba29b01a64809fd02db7fb8a086bd7344a3953b9ac188455bebbd508b6f43.png" src="../_images/c2aba29b01a64809fd02db7fb8a086bd7344a3953b9ac188455bebbd508b6f43.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -708,7 +707,7 @@ U(s_j; S) - \sum_k^M \beta_k(S) U_k(s_j)=0, \ \text{for } j=1, ... , M
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/14a1afb76afe22dcce11b12a37d4d1d6c4d87729c39126dd89321968fd56a825.png" src="../_images/14a1afb76afe22dcce11b12a37d4d1d6c4d87729c39126dd89321968fd56a825.png" />
+<img alt="../_images/3769d374a220f35865f503ea7b171051ddf8b5ac9aa99b055eeeed7131c88ca0.png" src="../_images/3769d374a220f35865f503ea7b171051ddf8b5ac9aa99b055eeeed7131c88ca0.png" />
 </div>
 </div>
 <p>Intuitively, we see that the coefficients generally decrease in magnitude with the singular value, which is a good sanity check. Now let’s put it all together to test our affine decomposition of the potential.</p>
@@ -749,7 +748,7 @@ U(s_j; S) - \sum_k^M \beta_k(S) U_k(s_j)=0, \ \text{for } j=1, ... , M
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5b450aa62b88c597559bc5989004e197ca126d418cabc39cf6799915c55da17d.png" src="../_images/5b450aa62b88c597559bc5989004e197ca126d418cabc39cf6799915c55da17d.png" />
+<img alt="../_images/895b5cf98011f3be2db32cec04b42f500fcf206d93454f9ef979fee7b76b4875.png" src="../_images/895b5cf98011f3be2db32cec04b42f500fcf206d93454f9ef979fee7b76b4875.png" />
 </div>
 </div>
 <p>Nice! By messing with the choice of sample points, we can see this method is very sensitive to the choice. This motivates the need for a greedy algorithm that can optimally choose the next sample point to maximize the variance, conditional on the initial set. We will explore this choice in the next section.</p>
@@ -876,31 +875,31 @@ U(s_j; S) - \sum_k^M \beta_k(S) U_k(s_j)=0, \ \text{for } j=1, ... , M
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6e3ff8b550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f7b58159f90&gt;
 </pre></div>
 </div>
 <img alt="../_images/3c734cda921a31c418381ac21d304e9349c2c6848190901f0a6a2306c8f8c7f0.png" src="../_images/3c734cda921a31c418381ac21d304e9349c2c6848190901f0a6a2306c8f8c7f0.png" />
 </div>
 </div>
 <p>Excellent! We have our reduced basis <span class="math notranslate nohighlight">\(\{ \phi_i \}\)</span>. We will use the reduced basis itself as our Galerkin projectors <span class="math notranslate nohighlight">\(\psi_i=\phi_i\)</span>, so we would like to simply project our operator into the reduced basis:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-740246ea-7a24-4e49-9e44-537d2495d6cc">
-<span class="eqno">(31)<a class="headerlink" href="#equation-740246ea-7a24-4e49-9e44-537d2495d6cc" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-082439a8-0e10-40fd-8a49-5ea6e5c60542">
+<span class="eqno">(31)<a class="headerlink" href="#equation-082439a8-0e10-40fd-8a49-5ea6e5c60542" title="Permalink to this equation">#</a></span>\[\begin{equation}
     \langle \psi_j | F(\hat\phi) \rangle = \langle \psi_j | F(\phi_0) \rangle + \sum_k ^n a_k\langle \psi_j | F(\phi_k) \rangle =0,\ \text{for } j, ... n 
 \end{equation}\]</div>
 <p>We can calculate  the low-dimensional matrix <span class="math notranslate nohighlight">\(\mathbf{F}(S)\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-4bc24fbe-95e4-433a-aa56-21a9ddff0a87">
-<span class="eqno">(32)<a class="headerlink" href="#equation-4bc24fbe-95e4-433a-aa56-21a9ddff0a87" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-6ea46e3a-b08c-4065-adf0-d5f8b9db2290">
+<span class="eqno">(32)<a class="headerlink" href="#equation-6ea46e3a-b08c-4065-adf0-d5f8b9db2290" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{F}(S)_{jk} =  \langle \phi_j | \left[ -\frac{d^2}{ds^2}+\frac{\ell(\ell+1)}{s^2}+\tilde U(s; S)-1 \right] | \phi_k \rangle,
 \end{equation}\]</div>
 <p>and solve the inhomogenous matrix equation:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a9835d5a-887b-4b5b-b1db-5ef459b856c0">
-<span class="eqno">(33)<a class="headerlink" href="#equation-a9835d5a-887b-4b5b-b1db-5ef459b856c0" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f8036e79-4ec2-4444-80d1-03427ec16d22">
+<span class="eqno">(33)<a class="headerlink" href="#equation-f8036e79-4ec2-4444-80d1-03427ec16d22" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \mathbf{F}(S) \vec{a} = \Phi_0,
 \end{equation}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\Phi_0\)</span> is a short-hand notation for the list of projections of opperator acting on the free solution <span class="math notranslate nohighlight">\(\Phi_0=\{ \langle \psi_1 | F(S)|\phi_0 \rangle, \langle \psi_2 | F(S)|\phi_0 \rangle , ... \langle \psi_n | F(S)|\phi_0 \rangle\} \)</span>, an <span class="math notranslate nohighlight">\(\vec{a}=\{a_1,a_2,...a_n\}\)</span> holds the coefficients for expanding our solution in the reduced basis.</p>
 <p>Now, however, instead of using Woods-Saxon <span class="math notranslate nohighlight">\( \tilde  U(s;S) \)</span> defined above, we use our affine decomposition <span class="math notranslate nohighlight">\(\tilde{U}_\text{EIM}(s; S)  = \sum_\kappa^M \beta_\kappa(S) U_\kappa(s) \)</span>. We define <span class="math notranslate nohighlight">\(\tilde{\mathbf{F}}(S) \approx \mathbf{F}(S)\)</span> as follows:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2090e08e-eb0e-4d11-aa6c-3333162b07f9">
-<span class="eqno">(34)<a class="headerlink" href="#equation-2090e08e-eb0e-4d11-aa6c-3333162b07f9" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d23e526b-c040-4478-917f-ffb6bb3bf08a">
+<span class="eqno">(34)<a class="headerlink" href="#equation-d23e526b-c040-4478-917f-ffb6bb3bf08a" title="Permalink to this equation">#</a></span>\[\begin{equation}
 \tilde{F}(S)_{jk} =  \langle \phi_j | \left[ -\frac{d^2}{ds^2}+\frac{\ell(\ell+1)}{s^2} + \sum_\kappa^M \beta_\kappa (S) U_\kappa(s)-1 \right] | \phi_k \rangle.
 \end{equation}\]</div>
 <p>We just need then to calculate the matrix elements <span class="math notranslate nohighlight">\(\langle \phi_j | U_\kappa(s) | \phi_k \rangle\)</span> . Then, for any value of <span class="math notranslate nohighlight">\(S\)</span>, we can simply grab our coefficients from the functions <span class="math notranslate nohighlight">\(\beta_\kappa(S)\)</span> that we calculated, do the weighted sum, and we have our projected potential!</p>
@@ -978,8 +977,8 @@ U(s_j; S) - \sum_k^M \beta_k(S) U_k(s_j)=0, \ \text{for } j=1, ... , M
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-18.91551343,  -6.96132489,  -6.34562388,  -0.39425648,
-         0.09392458])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-19.11228799,  -7.21713353,  -6.16759873,  -0.40067183,
+         0.09054954])
 </pre></div>
 </div>
 </div>
@@ -1010,7 +1009,7 @@ U(s_j; S) - \sum_k^M \beta_k(S) U_k(s_j)=0, \ \text{for } j=1, ... , M
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/889a011cb0c0aec9c6187f640f910d23f286f74c4f6b82f37bd9861d1d41310f.png" src="../_images/889a011cb0c0aec9c6187f640f910d23f286f74c4f6b82f37bd9861d1d41310f.png" />
+<img alt="../_images/22f28821b06aeeedaba842542ec983895262e1dd6563594d62bc0acac8a5ead8.png" src="../_images/22f28821b06aeeedaba842542ec983895262e1dd6563594d62bc0acac8a5ead8.png" />
 </div>
 </div>
 <p>Not bad!</p>
