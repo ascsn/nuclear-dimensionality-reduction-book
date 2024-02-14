@@ -1,5 +1,6 @@
-# Aplication 5: Black-Box Methods
+# Application 5: Black-Box Methods
 Contributed by: Diogenes Figueroa
+Edited by: Kyle Godbey
 
 The power of reduced basis methods lies in their ability to capture the directions of maximal variation of some high-dimensional representation of our objects of interest. By concentrating on the most relevant of those directions we can obtain a low-dimensional representation (the reduced coordinates) of the problem which, although not perfect, can capture a lot of the dynamics of the system to a sufficiently good degree. 
 
