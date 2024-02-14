@@ -16,6 +16,7 @@ chapters:
   sections:
       - file: blackbox_galerkin/SECAR
       - file: blackbox_galerkin/DFT_Toy_Model
+- file: in-progress/introduction
   sections:
-      - file: In-progress/HarmonicIntro
+      - file: in-progress/HarmonicIntro
 - file: contributors
