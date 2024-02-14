@@ -63,11 +63,11 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'In-progress/HarmonicIntro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'in-progress/HarmonicIntro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Contributors" href="../contributors.html" />
-    <link rel="prev" title="Aplication 5: Black-Box Methods" href="../blackbox_galerkin/Introduction.html" />
+    <link rel="prev" title="In-Progress Additions" href="introduction.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -167,7 +167,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Aplication 5: Black-Box Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Aplication 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/SECAR.html">Efficient Emulation of SECAR Beam</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/DFT_Toy_Model.html">Non-linear and non-affine problem</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="introduction.html">In-Progress Additions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Harmonic Introduction</a></li>
 </ul>
 </li>
@@ -226,7 +231,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://mybinder.org/v2/gh/ascsn/nuclear-dimensionality-reduction-book/main?urlpath=tree/nuclear-dr/In-progress/HarmonicIntro.ipynb" target="_blank"
+      <li><a href="https://mybinder.org/v2/gh/ascsn/nuclear-dimensionality-reduction-book/main?urlpath=tree/nuclear-dr/in-progress/HarmonicIntro.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onBinder"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -244,7 +249,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/ascsn/nuclear-dimensionality-reduction-book/blob/main/nuclear-dr/In-progress/HarmonicIntro.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ascsn/nuclear-dimensionality-reduction-book/blob/main/nuclear-dr/in-progress/HarmonicIntro.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -292,7 +297,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ascsn/nuclear-dimensionality-reduction-book/issues/new?title=Issue%20on%20page%20%2FIn-progress/HarmonicIntro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ascsn/nuclear-dimensionality-reduction-book/issues/new?title=Issue%20on%20page%20%2Fin-progress/HarmonicIntro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -322,7 +327,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/In-progress/HarmonicIntro.ipynb" target="_blank"
+      <li><a href="../_sources/in-progress/HarmonicIntro.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -414,29 +419,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-quantum-harmonic-oscillator">Introduction to Quantum Harmonic Oscillator</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver">High Fidelity Solver</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-method">- Finite Difference Method</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-to-exact">- Comparison to Exact</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basic-method">Reduced Basic Method</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#m0-m1-and-n-matrices">- M0, M1, and N Matrices</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-solutions">- Compare Solutions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Introduction to Quantum Harmonic Oscillator</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">High Fidelity Solver</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Finite Difference Method</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Comparison to Exact</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-quantum-harmonic-oscillator">Introduction to Quantum Harmonic Oscillator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver">High Fidelity Solver</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-method">Finite Difference Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-to-exact">Comparison to Exact</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basis-method">Reduced Basis Method</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">M0, M1, and N Matrices</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Compare Solutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m0-m1-and-n-matrices">M0, M1, and N Matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-solutions">Compare Solutions</a></li>
 </ul>
 </li>
 </ul>
@@ -452,33 +443,9 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="harmonic-introduction">
 <h1>Harmonic Introduction<a class="headerlink" href="#harmonic-introduction" title="Permalink to this heading">#</a></h1>
-<p>Contributed by: Megan Campbell, Pablo Giuliani</p>
-<section id="table-of-contents">
-<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">#</a></h2>
+<p>Contributed by: Megan Campbell, Pablo Giuliani, Kyle Godbey</p>
 <section id="introduction-to-quantum-harmonic-oscillator">
-<h3>Introduction to Quantum Harmonic Oscillator<a class="headerlink" href="#introduction-to-quantum-harmonic-oscillator" title="Permalink to this heading">#</a></h3>
-</section>
-<section id="high-fidelity-solver">
-<h3>High Fidelity Solver<a class="headerlink" href="#high-fidelity-solver" title="Permalink to this heading">#</a></h3>
-<section id="finite-difference-method">
-<h4>- Finite Difference Method<a class="headerlink" href="#finite-difference-method" title="Permalink to this heading">#</a></h4>
-</section>
-<section id="comparison-to-exact">
-<h4>- Comparison to Exact<a class="headerlink" href="#comparison-to-exact" title="Permalink to this heading">#</a></h4>
-</section>
-</section>
-<section id="reduced-basic-method">
-<h3>Reduced Basic Method<a class="headerlink" href="#reduced-basic-method" title="Permalink to this heading">#</a></h3>
-<section id="m0-m1-and-n-matrices">
-<h4>- M0, M1, and N Matrices<a class="headerlink" href="#m0-m1-and-n-matrices" title="Permalink to this heading">#</a></h4>
-</section>
-<section id="compare-solutions">
-<h4>- Compare Solutions<a class="headerlink" href="#compare-solutions" title="Permalink to this heading">#</a></h4>
-</section>
-</section>
-</section>
-<section id="id1">
-<h2>Introduction to Quantum Harmonic Oscillator<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<h2>Introduction to Quantum Harmonic Oscillator<a class="headerlink" href="#introduction-to-quantum-harmonic-oscillator" title="Permalink to this heading">#</a></h2>
 <p>The quantum harmomic oscillator is a widely studied model in quantum mechanics that describes the behavior of a particle undergoing harmonic motion. In classical physics, this would be simple harmonic motion. However, quantum mechanics complicates this behavior. The function takes in a parameter alpha, which is a constant.</p>
 <p>In the context of the Schrödinger Equation, the quantum harmonic oscillator is a formulation of it. It can be represented mathematically in the equation below:</p>
 <div class="math notranslate nohighlight">
@@ -509,10 +476,10 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id2">
-<h2>High Fidelity Solver<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h2>
-<section id="id3">
-<h3>Finite Difference Method<a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<section id="high-fidelity-solver">
+<h2>High Fidelity Solver<a class="headerlink" href="#high-fidelity-solver" title="Permalink to this heading">#</a></h2>
+<section id="finite-difference-method">
+<h3>Finite Difference Method<a class="headerlink" href="#finite-difference-method" title="Permalink to this heading">#</a></h3>
 <p>Finite difference method discretizes the space and divides the wavefunction of the particle into some amount of points. We can use this to simplify the wavefunction and treat it as a collection of points. This method is meant to find the high fidelity solution to the system. We do not need to use the finite difference method as our high fidelity solver, but it works pretty well</p>
 <p>Here are the libraries we will use in the following code</p>
 <p>The FDM class is used for solving the system with the finite difference method. It involves creating the kinetic energy term, the potential energy term, adding them together, and solving for the eigenvalues and eigenvectors. Take a look at the following code and the corresponding comments.</p>
@@ -666,28 +633,28 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1871</span><span class="o">/</span><span class="mf">3003995391.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1987</span><span class="o">/</span><span class="mf">3003995391.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">h_list</span><span class="p">:</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="c1"># We only need one instance of the class, but we will solve for different alpha values</span>
 <span class="ne">---&gt; </span><span class="mi">14</span>     <span class="n">times</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">HF_solutions</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">15</span> 
 <span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="c1"># We need these values for the limits on the graph</span>
 
-<span class="nn">/tmp/ipykernel_1871/1244451009.py</span> in <span class="ni">HF_solutions</span><span class="nt">(h)</span>
+<span class="nn">/tmp/ipykernel_1987/1244451009.py</span> in <span class="ni">HF_solutions</span><span class="nt">(h)</span>
 <span class="g g-Whitespace">     </span><span class="mi">10</span>         <span class="n">alpha</span> <span class="o">=</span> <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="g g-Whitespace">     </span><span class="mi">11</span>         <span class="c1"># We used the classes&#39; function HO_solver() to solve the equation for different alpha values</span>
 <span class="ne">---&gt; </span><span class="mi">12</span>         <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span><span class="p">,</span> <span class="n">t1me</span><span class="p">,</span> <span class="n">m_val</span> <span class="o">=</span> <span class="n">fdm_instance</span><span class="o">.</span><span class="n">HO_solver</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span> 
 <span class="g g-Whitespace">     </span><span class="mi">14</span>         <span class="c1"># We use our exact solution to compare to the calculated eigenvalue</span>
 
-<span class="nn">/tmp/ipykernel_1871/2581557196.py</span> in <span class="ni">HO_solver</span><span class="nt">(self, alpha)</span>
+<span class="nn">/tmp/ipykernel_1987/2581557196.py</span> in <span class="ni">HO_solver</span><span class="nt">(self, alpha)</span>
 <span class="g g-Whitespace">     </span><span class="mi">59</span>         <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">HO_creator</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">60</span>         <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">61</span>         <span class="n">solveTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">62</span>         <span class="n">evects</span><span class="o">=</span> <span class="n">evects</span><span class="o">.</span><span class="n">T</span>
 <span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="n">m_val</span> <span class="o">=</span> <span class="n">evects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">evects</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">evects</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span>  <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">])</span>
 
-<span class="nn">/tmp/ipykernel_1871/2581557196.py</span> in <span class="ni">timing</span><span class="nt">(self, H)</span>
+<span class="nn">/tmp/ipykernel_1987/2581557196.py</span> in <span class="ni">timing</span><span class="nt">(self, H)</span>
 <span class="g g-Whitespace">     </span><span class="mi">49</span>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timingInt</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">50</span>             <span class="n">time0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="ne">---&gt; </span><span class="mi">51</span>             <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
@@ -743,8 +710,8 @@ document.write(`
 </div>
 </div>
 </section>
-<section id="id4">
-<h3>Comparison to Exact<a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<section id="comparison-to-exact">
+<h3>Comparison to Exact<a class="headerlink" href="#comparison-to-exact" title="Permalink to this heading">#</a></h3>
 <p>In the code below, we will graph the data we collected for the times and errors of solving with the high fidelity solution.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -796,36 +763,36 @@ document.write(`
 <section id="reduced-basis-method">
 <h2>Reduced Basis Method<a class="headerlink" href="#reduced-basis-method" title="Permalink to this heading">#</a></h2>
 <p>FDM is super cool, and it’s great that we were able to do that. But, what if we can make it faster? In a simple system like this, speed isn’t the biggest deal in the world. However, in more complicated systems, time becomes much more important, and speeding up the system is neccesary. The purpose of this chapter and overall book is to demonstrate a way of formulating the equation such that the time to solve the equation is reduced.</p>
-<section id="id5">
-<h3>M0, M1, and N Matrices<a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<section id="m0-m1-and-n-matrices">
+<h3>M0, M1, and N Matrices<a class="headerlink" href="#m0-m1-and-n-matrices" title="Permalink to this heading">#</a></h3>
 <p>We already have worked with the system represented by the following function:</p>
 <div class="math notranslate nohighlight">
 \[ (\frac{d^2}{dx^2} + \alpha x^2 - \lambda )\phi(x) = 0 \]</div>
 <p>However, we can put forth a reformulation of the math.</p>
 <p>Because we are solving an eigenvalue problem, we can arrive at a set of different-looking equations, using the same set of judges <span class="math notranslate nohighlight">\(\{\psi_i(x)\}_{i=1}^n\)</span> as before. We can simply plug <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_k}\)</span> into the Schrodinger equation and project both sides onto the judges, writing</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9855e571-e751-44c9-a064-5552555d2075">
-<span class="eqno">(44)<a class="headerlink" href="#equation-9855e571-e751-44c9-a064-5552555d2075" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9bac57bc-aa34-4f36-98bd-10e8c901e171">
+<span class="eqno">(49)<a class="headerlink" href="#equation-9bac57bc-aa34-4f36-98bd-10e8c901e171" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{i=1}^na_i\langle \psi_j|H_{\alpha_k}|\phi_i\rangle=\lambda\sum_{i=1}^na_i\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>Define now two matrices:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-022b9c1c-3ee1-461d-be39-583eb9642bf0">
-<span class="eqno">(45)<a class="headerlink" href="#equation-022b9c1c-3ee1-461d-be39-583eb9642bf0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-618da78f-2a25-4a72-b2b1-1f06cdf76c30">
+<span class="eqno">(50)<a class="headerlink" href="#equation-618da78f-2a25-4a72-b2b1-1f06cdf76c30" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,\quad N_{ij}\equiv\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>These are both <span class="math notranslate nohighlight">\(n\times n\)</span> matrices, and we now have a generalized eigenvalue problem for <span class="math notranslate nohighlight">\(\vec{a}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-363e71b4-0fe8-4e9c-b7c0-925e82aa851d">
-<span class="eqno">(46)<a class="headerlink" href="#equation-363e71b4-0fe8-4e9c-b7c0-925e82aa851d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7ebd70c3-594f-4695-a24c-742385e2209a">
+<span class="eqno">(51)<a class="headerlink" href="#equation-7ebd70c3-594f-4695-a24c-742385e2209a" title="Permalink to this equation">#</a></span>\[\begin{align}
 M(\alpha)\vec{a}=\lambda N\vec{a}.
 \end{align}\]</div>
 <p>Situationally, this may be quicker to solve than finding the roots of the nonlinear system that results from the “traditional” RBM approach.</p>
 <p>As with traditional RBM approaches, this is only helpful if we can evaluate <span class="math notranslate nohighlight">\(M(\alpha)\)</span> quickly for different <span class="math notranslate nohighlight">\(\alpha\)</span> values. For the HO, this is not too hard: we can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6306f904-c52e-4069-ae7f-4e3445d2b2b0">
-<span class="eqno">(47)<a class="headerlink" href="#equation-6306f904-c52e-4069-ae7f-4e3445d2b2b0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9a09b315-6b2d-405d-bde8-ef6bc80f754d">
+<span class="eqno">(52)<a class="headerlink" href="#equation-9a09b315-6b2d-405d-bde8-ef6bc80f754d" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle\psi_j|H_\alpha|\phi_i\rangle=\langle\psi_j|T|\phi_i\rangle+\alpha\langle \psi_j|x^2|\phi_i\rangle\equiv M_{ij}^{(0)}+\alpha M_{ij}^{(1)}.
 \end{align}\]</div>
 <p>Our eigenvalue equation is then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fcfec793-00ce-4461-8980-f17a0771173f">
-<span class="eqno">(48)<a class="headerlink" href="#equation-fcfec793-00ce-4461-8980-f17a0771173f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c36e2969-a8ef-4525-a666-1f4a55dc46ee">
+<span class="eqno">(53)<a class="headerlink" href="#equation-c36e2969-a8ef-4525-a666-1f4a55dc46ee" title="Permalink to this equation">#</a></span>\[\begin{align}
 [M^{(0)}+\alpha M^{(1)}]\vec{a}=\lambda N\vec{a},
 \end{align}\]</div>
 <p>and all of <span class="math notranslate nohighlight">\(M^{(0)},M^{(1)}\)</span> and <span class="math notranslate nohighlight">\(N\)</span> can be precomputed.</p>
@@ -947,8 +914,8 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
 </div>
 <p>Amazing that just a handful of these are able to reproduce the entire set of solution with great accuracy.</p>
 </section>
-<section id="id6">
-<h3>Compare Solutions<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<section id="compare-solutions">
+<h3>Compare Solutions<a class="headerlink" href="#compare-solutions" title="Permalink to this heading">#</a></h3>
 <p>We now compare the high fidelity solutions to the RBM solutions in terms of time and error. If all goes as planned, the high fidelity solutions should take more time and have a lower error, while the RBM solutions should have higher error and take less time. We will provide a comparison between the calculated eigenvalues and the exact eigenvalue created from our analytical solution. The graph of the solutions includes the number of components for the RBM solutions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1056,7 +1023,7 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
         },
         kernelOptions: {
             name: "python3",
-            path: "./In-progress"
+            path: "./in-progress"
         },
         predefinedOutput: true
     }
@@ -1075,12 +1042,12 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../blackbox_galerkin/Introduction.html"
+       href="introduction.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Aplication 5: Black-Box Methods</p>
+        <p class="prev-next-title">In-Progress Additions</p>
       </div>
     </a>
     <a class="right-next"
@@ -1110,29 +1077,15 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-quantum-harmonic-oscillator">Introduction to Quantum Harmonic Oscillator</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver">High Fidelity Solver</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-method">- Finite Difference Method</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-to-exact">- Comparison to Exact</a></li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basic-method">Reduced Basic Method</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#m0-m1-and-n-matrices">- M0, M1, and N Matrices</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-solutions">- Compare Solutions</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Introduction to Quantum Harmonic Oscillator</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">High Fidelity Solver</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Finite Difference Method</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Comparison to Exact</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-quantum-harmonic-oscillator">Introduction to Quantum Harmonic Oscillator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-fidelity-solver">High Fidelity Solver</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#finite-difference-method">Finite Difference Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-to-exact">Comparison to Exact</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reduced-basis-method">Reduced Basis Method</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">M0, M1, and N Matrices</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Compare Solutions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#m0-m1-and-n-matrices">M0, M1, and N Matrices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-solutions">Compare Solutions</a></li>
 </ul>
 </li>
 </ul>
