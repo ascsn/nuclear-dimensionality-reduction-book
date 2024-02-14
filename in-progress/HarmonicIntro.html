@@ -167,7 +167,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Aplication 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Application 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/SECAR.html">Efficient Emulation of SECAR Beam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/DFT_Toy_Model.html">Non-linear and non-affine problem</a></li>
 </ul>
@@ -633,28 +633,28 @@ document.write(`
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1987</span><span class="o">/</span><span class="mf">3003995391.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_2071</span><span class="o">/</span><span class="mf">3003995391.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
 <span class="g g-Whitespace">     </span><span class="mi">12</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">h_list</span><span class="p">:</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span>     <span class="c1"># We only need one instance of the class, but we will solve for different alpha values</span>
 <span class="ne">---&gt; </span><span class="mi">14</span>     <span class="n">times</span><span class="p">,</span> <span class="n">errors</span> <span class="o">=</span> <span class="n">HF_solutions</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">15</span> 
 <span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="c1"># We need these values for the limits on the graph</span>
 
-<span class="nn">/tmp/ipykernel_1987/1244451009.py</span> in <span class="ni">HF_solutions</span><span class="nt">(h)</span>
+<span class="nn">/tmp/ipykernel_2071/1244451009.py</span> in <span class="ni">HF_solutions</span><span class="nt">(h)</span>
 <span class="g g-Whitespace">     </span><span class="mi">10</span>         <span class="n">alpha</span> <span class="o">=</span> <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="g g-Whitespace">     </span><span class="mi">11</span>         <span class="c1"># We used the classes&#39; function HO_solver() to solve the equation for different alpha values</span>
 <span class="ne">---&gt; </span><span class="mi">12</span>         <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span><span class="p">,</span> <span class="n">t1me</span><span class="p">,</span> <span class="n">m_val</span> <span class="o">=</span> <span class="n">fdm_instance</span><span class="o">.</span><span class="n">HO_solver</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">13</span> 
 <span class="g g-Whitespace">     </span><span class="mi">14</span>         <span class="c1"># We use our exact solution to compare to the calculated eigenvalue</span>
 
-<span class="nn">/tmp/ipykernel_1987/2581557196.py</span> in <span class="ni">HO_solver</span><span class="nt">(self, alpha)</span>
+<span class="nn">/tmp/ipykernel_2071/2581557196.py</span> in <span class="ni">HO_solver</span><span class="nt">(self, alpha)</span>
 <span class="g g-Whitespace">     </span><span class="mi">59</span>         <span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">HO_creator</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">60</span>         <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
 <span class="ne">---&gt; </span><span class="mi">61</span>         <span class="n">solveTime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timing</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
 <span class="g g-Whitespace">     </span><span class="mi">62</span>         <span class="n">evects</span><span class="o">=</span> <span class="n">evects</span><span class="o">.</span><span class="n">T</span>
 <span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="n">m_val</span> <span class="o">=</span> <span class="n">evects</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">evects</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sign</span><span class="p">(</span><span class="n">evects</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span>  <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">])</span>
 
-<span class="nn">/tmp/ipykernel_1987/2581557196.py</span> in <span class="ni">timing</span><span class="nt">(self, H)</span>
+<span class="nn">/tmp/ipykernel_2071/2581557196.py</span> in <span class="ni">timing</span><span class="nt">(self, H)</span>
 <span class="g g-Whitespace">     </span><span class="mi">49</span>         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timingInt</span><span class="p">):</span>
 <span class="g g-Whitespace">     </span><span class="mi">50</span>             <span class="n">time0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 <span class="ne">---&gt; </span><span class="mi">51</span>             <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
@@ -770,29 +770,29 @@ document.write(`
 \[ (\frac{d^2}{dx^2} + \alpha x^2 - \lambda )\phi(x) = 0 \]</div>
 <p>However, we can put forth a reformulation of the math.</p>
 <p>Because we are solving an eigenvalue problem, we can arrive at a set of different-looking equations, using the same set of judges <span class="math notranslate nohighlight">\(\{\psi_i(x)\}_{i=1}^n\)</span> as before. We can simply plug <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_k}\)</span> into the Schrodinger equation and project both sides onto the judges, writing</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9bac57bc-aa34-4f36-98bd-10e8c901e171">
-<span class="eqno">(49)<a class="headerlink" href="#equation-9bac57bc-aa34-4f36-98bd-10e8c901e171" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-4386d136-25dc-4fb6-aa6f-18561e8dbe80">
+<span class="eqno">(49)<a class="headerlink" href="#equation-4386d136-25dc-4fb6-aa6f-18561e8dbe80" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{i=1}^na_i\langle \psi_j|H_{\alpha_k}|\phi_i\rangle=\lambda\sum_{i=1}^na_i\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>Define now two matrices:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-618da78f-2a25-4a72-b2b1-1f06cdf76c30">
-<span class="eqno">(50)<a class="headerlink" href="#equation-618da78f-2a25-4a72-b2b1-1f06cdf76c30" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bb67b570-5853-4e9c-b24b-898a67492613">
+<span class="eqno">(50)<a class="headerlink" href="#equation-bb67b570-5853-4e9c-b24b-898a67492613" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,\quad N_{ij}\equiv\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>These are both <span class="math notranslate nohighlight">\(n\times n\)</span> matrices, and we now have a generalized eigenvalue problem for <span class="math notranslate nohighlight">\(\vec{a}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7ebd70c3-594f-4695-a24c-742385e2209a">
-<span class="eqno">(51)<a class="headerlink" href="#equation-7ebd70c3-594f-4695-a24c-742385e2209a" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-103427f9-eb19-4b38-aa64-5e1bee0be371">
+<span class="eqno">(51)<a class="headerlink" href="#equation-103427f9-eb19-4b38-aa64-5e1bee0be371" title="Permalink to this equation">#</a></span>\[\begin{align}
 M(\alpha)\vec{a}=\lambda N\vec{a}.
 \end{align}\]</div>
 <p>Situationally, this may be quicker to solve than finding the roots of the nonlinear system that results from the “traditional” RBM approach.</p>
 <p>As with traditional RBM approaches, this is only helpful if we can evaluate <span class="math notranslate nohighlight">\(M(\alpha)\)</span> quickly for different <span class="math notranslate nohighlight">\(\alpha\)</span> values. For the HO, this is not too hard: we can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9a09b315-6b2d-405d-bde8-ef6bc80f754d">
-<span class="eqno">(52)<a class="headerlink" href="#equation-9a09b315-6b2d-405d-bde8-ef6bc80f754d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-ea35179c-1ac0-4edb-89d5-286a8b20f938">
+<span class="eqno">(52)<a class="headerlink" href="#equation-ea35179c-1ac0-4edb-89d5-286a8b20f938" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle\psi_j|H_\alpha|\phi_i\rangle=\langle\psi_j|T|\phi_i\rangle+\alpha\langle \psi_j|x^2|\phi_i\rangle\equiv M_{ij}^{(0)}+\alpha M_{ij}^{(1)}.
 \end{align}\]</div>
 <p>Our eigenvalue equation is then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c36e2969-a8ef-4525-a666-1f4a55dc46ee">
-<span class="eqno">(53)<a class="headerlink" href="#equation-c36e2969-a8ef-4525-a666-1f4a55dc46ee" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f6c23ae1-f78b-489d-891c-18b96275aed4">
+<span class="eqno">(53)<a class="headerlink" href="#equation-f6c23ae1-f78b-489d-891c-18b96275aed4" title="Permalink to this equation">#</a></span>\[\begin{align}
 [M^{(0)}+\alpha M^{(1)}]\vec{a}=\lambda N\vec{a},
 \end{align}\]</div>
 <p>and all of <span class="math notranslate nohighlight">\(M^{(0)},M^{(1)}\)</span> and <span class="math notranslate nohighlight">\(N\)</span> can be precomputed.</p>

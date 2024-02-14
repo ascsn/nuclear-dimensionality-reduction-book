@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Aplication 5: Black-Box Methods &#8212; Dimensionality Reduction in Nuclear Physics</title>
+    <title>Application 5: Black-Box Methods &#8212; Dimensionality Reduction in Nuclear Physics</title>
   
   
   
@@ -165,7 +165,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Aplication 5: Black-Box Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Application 5: Black-Box Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="SECAR.html">Efficient Emulation of SECAR Beam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DFT_Toy_Model.html">Non-linear and non-affine problem</a></li>
 </ul>
@@ -356,7 +356,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Aplication 5: Black-Box Methods</h1>
+    <h1>Application 5: Black-Box Methods</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -370,9 +370,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="aplication-5-black-box-methods">
-<h1>Aplication 5: Black-Box Methods<a class="headerlink" href="#aplication-5-black-box-methods" title="Permalink to this heading">#</a></h1>
-<p>Contributed by: Diogenes Figueroa</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="application-5-black-box-methods">
+<h1>Application 5: Black-Box Methods<a class="headerlink" href="#application-5-black-box-methods" title="Permalink to this heading">#</a></h1>
+<p>Contributed by: Diogenes Figueroa
+Edited by: Kyle Godbey</p>
 <p>The power of reduced basis methods lies in their ability to capture the directions of maximal variation of some high-dimensional representation of our objects of interest. By concentrating on the most relevant of those directions we can obtain a low-dimensional representation (the reduced coordinates) of the problem which, although not perfect, can capture a lot of the dynamics of the system to a sufficiently good degree.</p>
 <p>In all the examples that have been discussed so far we first found the reduced coordinates -usually through a principal component analysis- and then took the analytical expression governing the dynamics of our system and built the Galerkin projections using these reduced coordinates. But what if we don’t know the governing equations for our system? What if we know them but we can’t efficiently transform them into their reduced counter parts (when the EIM fails)? Can we build an approximation of these equations from the data itself? It would make sense that it is so, since the solutions all have in common the governing equation. This is what we explore in this chapter.</p>
 <div class="toctree-wrapper compound">

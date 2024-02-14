@@ -167,7 +167,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Aplication 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Application 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/SECAR.html">Efficient Emulation of SECAR Beam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/DFT_Toy_Model.html">Non-linear and non-affine problem</a></li>
 </ul>
@@ -440,31 +440,31 @@ document.write(`
 <h1>Application 1: The Quantum Harmonic Oscillator<a class="headerlink" href="#application-1-the-quantum-harmonic-oscillator" title="Permalink to this heading">#</a></h1>
 <p>Contributed by: Daniel Lay, Eric Flynn</p>
 <p>The Schrodinger equation for the 1d harmonic oscillator (HO) is usually written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9f349712-e436-4b03-9621-a42f5ae5a6a0">
-<span class="eqno">(1)<a class="headerlink" href="#equation-9f349712-e436-4b03-9621-a42f5ae5a6a0" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-70290f92-ea70-4c82-baf7-88499649f76f">
+<span class="eqno">(1)<a class="headerlink" href="#equation-70290f92-ea70-4c82-baf7-88499649f76f" title="Permalink to this equation">#</a></span>\[\begin{align}
 H_\alpha\phi(x)\equiv \bigg(-\frac{d^2}{dx^2}+\alpha x^2\bigg)\phi(x)=\lambda\phi(x),\quad \langle\phi|\phi\rangle=1,
 \end{align}\]</div>
 <p>where, for comparison with textbooks, the eigenvalue is <span class="math notranslate nohighlight">\(\lambda=2mE/\hbar^2\)</span> and the HO parameter is <span class="math notranslate nohighlight">\(\alpha=(m\omega/\hbar)^2\)</span>. A useful distinction is the kinetic and potential energy terms:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-f9ed64d9-a2c3-43c4-9f24-9631dc0b710c">
-<span class="eqno">(2)<a class="headerlink" href="#equation-f9ed64d9-a2c3-43c4-9f24-9631dc0b710c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-02214a6e-bbdd-4c4d-8090-df96e07ea27f">
+<span class="eqno">(2)<a class="headerlink" href="#equation-02214a6e-bbdd-4c4d-8090-df96e07ea27f" title="Permalink to this equation">#</a></span>\[\begin{align}
 T\phi(x)=-\frac{d^2}{dx^2}\phi(x),\quad V_\alpha(x)\phi(x)=\alpha x^2\phi(x),\quad H_\alpha(x)=T+V(x).
 \end{align}\]</div>
 <p>Technically, all of <span class="math notranslate nohighlight">\(T,V_\alpha\)</span>, and <span class="math notranslate nohighlight">\(H_\alpha\)</span> are operators, but if we discretize our wavefunction (in order to, say, put it on a computer), they are just matrices.</p>
 <section id="traditional-rbm">
 <h2>“Traditional” RBM<a class="headerlink" href="#traditional-rbm" title="Permalink to this heading">#</a></h2>
 <p>To use the traditional RBM approach, one option is to rewrite the Schrodinger equation as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-853963a5-3242-40d0-99bb-fcbf37720089">
-<span class="eqno">(3)<a class="headerlink" href="#equation-853963a5-3242-40d0-99bb-fcbf37720089" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-fe1b9559-0dbf-4c42-976c-e26569287db5">
+<span class="eqno">(3)<a class="headerlink" href="#equation-fe1b9559-0dbf-4c42-976c-e26569287db5" title="Permalink to this equation">#</a></span>\[\begin{align}
 \bigg(-\frac{d^2}{dx^2}+\alpha x^2-\lambda\bigg)\phi(x)\equiv F_\alpha(\phi(x))=0,
 \end{align}\]</div>
 <p>defining the operator <span class="math notranslate nohighlight">\(F_\alpha\)</span>, and solving the system</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b3914af-34e2-49d3-a0ef-f68a62c60e09">
-<span class="eqno">(4)<a class="headerlink" href="#equation-5b3914af-34e2-49d3-a0ef-f68a62c60e09" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-817bd791-ecd0-4301-9ee6-42e52b02b5c6">
+<span class="eqno">(4)<a class="headerlink" href="#equation-817bd791-ecd0-4301-9ee6-42e52b02b5c6" title="Permalink to this equation">#</a></span>\[\begin{align}
 F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
 \end{align}\]</div>
 <p>We then solve this for a set of parameters <span class="math notranslate nohighlight">\(\{\alpha_i\}_{i=1}^n\)</span>, and for any arbitrary parameter <span class="math notranslate nohighlight">\(\alpha_k\)</span>, take as our ansatz</p>
-<div class="amsmath math notranslate nohighlight" id="equation-723c2571-8cdd-4af5-8f7e-21ed5cf75fc4">
-<span class="eqno">(5)<a class="headerlink" href="#equation-723c2571-8cdd-4af5-8f7e-21ed5cf75fc4" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c773ccc0-0692-4b92-96c0-306e9e81a6d9">
+<span class="eqno">(5)<a class="headerlink" href="#equation-c773ccc0-0692-4b92-96c0-306e9e81a6d9" title="Permalink to this equation">#</a></span>\[\begin{align}
 	\hat{\phi}_{\alpha_{k}}(x) = \sum_{i=1}^{n} a_{i} \phi_{i}(x) .
 \end{align}\]</div>
 <p>This is a nice form, as it is straightforward to generalize to non-eigenvalue problems.</p>
@@ -596,29 +596,29 @@ F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
 <section id="a-slight-reformulation">
 <h2>A Slight Reformulation<a class="headerlink" href="#a-slight-reformulation" title="Permalink to this heading">#</a></h2>
 <p>Because we are solving an eigenvalue problem, we can arrive at a set of different-looking equations, using the same set of judges <span class="math notranslate nohighlight">\(\{\psi_i(x)\}_{i=1}^n\)</span> as before. We can simply plug <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_k}\)</span> into the Schrodinger equation and project both sides onto the judges, writing</p>
-<div class="amsmath math notranslate nohighlight" id="equation-33c73f4f-a701-4731-b28f-025ac63493c7">
-<span class="eqno">(6)<a class="headerlink" href="#equation-33c73f4f-a701-4731-b28f-025ac63493c7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b13fff8d-780c-49c5-96a8-39f52c53062c">
+<span class="eqno">(6)<a class="headerlink" href="#equation-b13fff8d-780c-49c5-96a8-39f52c53062c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{i=1}^na_i\langle \psi_j|H_{\alpha_k}|\phi_i\rangle=\lambda\sum_{i=1}^na_i\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>Define now two matrices:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-7f3add9b-0b3e-4b4d-9345-5f498a25e11f">
-<span class="eqno">(7)<a class="headerlink" href="#equation-7f3add9b-0b3e-4b4d-9345-5f498a25e11f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-dd88c03c-410a-4caa-8572-ad88deb3739d">
+<span class="eqno">(7)<a class="headerlink" href="#equation-dd88c03c-410a-4caa-8572-ad88deb3739d" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,\quad N_{ij}\equiv\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>These are both <span class="math notranslate nohighlight">\(n\times n\)</span> matrices, and we now have a generalized eigenvalue problem for <span class="math notranslate nohighlight">\(\vec{a}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-59dffe25-ae6f-488a-920b-3ec155dc3c1e">
-<span class="eqno">(8)<a class="headerlink" href="#equation-59dffe25-ae6f-488a-920b-3ec155dc3c1e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a517ced6-7a4b-434f-ad35-779cc47896c7">
+<span class="eqno">(8)<a class="headerlink" href="#equation-a517ced6-7a4b-434f-ad35-779cc47896c7" title="Permalink to this equation">#</a></span>\[\begin{align}
 M(\alpha)\vec{a}=\lambda N\vec{a}.
 \end{align}\]</div>
 <p>Situationally, this may be quicker to solve than finding the roots of the nonlinear system that results from the “traditional” RBM approach.</p>
 <p>As with traditional RBM approaches, this is only helpful if we can evaluate <span class="math notranslate nohighlight">\(M(\alpha)\)</span> quickly for different <span class="math notranslate nohighlight">\(\alpha\)</span> values. For the HO, this is not too hard: we can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3b525f52-8e28-43ae-a446-3b96764d925f">
-<span class="eqno">(9)<a class="headerlink" href="#equation-3b525f52-8e28-43ae-a446-3b96764d925f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0b36cbee-cca8-4a98-a199-d7bb04ca68d8">
+<span class="eqno">(9)<a class="headerlink" href="#equation-0b36cbee-cca8-4a98-a199-d7bb04ca68d8" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle\psi_j|H_\alpha|\phi_i\rangle=\langle\psi_j|T|\phi_i\rangle+\alpha\langle \psi_j|x^2|\phi_i\rangle\equiv M_{ij}^{(0)}+\alpha M_{ij}^{(1)}.
 \end{align}\]</div>
 <p>Our eigenvalue equation is then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-86386d95-6f58-4394-9282-473affba6b32">
-<span class="eqno">(10)<a class="headerlink" href="#equation-86386d95-6f58-4394-9282-473affba6b32" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-c633593e-a451-45b5-8608-5ff2a2b283ad">
+<span class="eqno">(10)<a class="headerlink" href="#equation-c633593e-a451-45b5-8608-5ff2a2b283ad" title="Permalink to this equation">#</a></span>\[\begin{align}
 [M^{(0)}+\alpha M^{(1)}]\vec{a}=\lambda N\vec{a},
 \end{align}\]</div>
 <p>and all of <span class="math notranslate nohighlight">\(M^{(0)},M^{(1)}\)</span> and <span class="math notranslate nohighlight">\(N\)</span> can be precomputed.</p>
@@ -723,13 +723,13 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.331e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.336e-01 s
 Finite Difference relative error: 3.423e-06
-Standard RBM time: 3.417e-05 s
+Standard RBM time: 3.380e-05 s
 RBM relative error: 6.042e-04
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f169c24fa90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f37e47e2450&gt;
 </pre></div>
 </div>
 <img alt="../_images/fdaf8616290e776a155634186b095b50efd4867450da4369e17674da32b6a315.png" src="../_images/fdaf8616290e776a155634186b095b50efd4867450da4369e17674da32b6a315.png" />
@@ -739,14 +739,14 @@ RBM relative error: 6.042e-04
 <section id="variational-rbm">
 <h2>Variational RBM<a class="headerlink" href="#variational-rbm" title="Permalink to this heading">#</a></h2>
 <p>For many physicists, the first thing to try is the variational approach to solving the Schrodinger equation. We can attempt the same thing, except using the expansion coefficients <span class="math notranslate nohighlight">\(\vec{a}\)</span> as variational coefficients. This, as far as I am aware, is what is known as “eigenvector continuation,” although different people mean different things when mentioning eigenvector continuation. In general, the variational energy is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-af8a6e0c-6f43-4efc-8e95-593e3bb52d83">
-<span class="eqno">(11)<a class="headerlink" href="#equation-af8a6e0c-6f43-4efc-8e95-593e3bb52d83" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-53967aa8-8176-445c-a331-edf265334b9e">
+<span class="eqno">(11)<a class="headerlink" href="#equation-53967aa8-8176-445c-a331-edf265334b9e" title="Permalink to this equation">#</a></span>\[\begin{align}
 	E_\alpha(\vec{a})=\frac{\langle \phi_{\vec{a}}|H_\alpha|\phi_{\vec{a}}\rangle}{\langle \phi_{\vec{a}}|\phi_{\vec{a}}\rangle},
 \end{align}\]</div>
 <p>and by minimizing this energy with respect to the parameters <span class="math notranslate nohighlight">\(\vec{a}\)</span>, we approximate the ground state energy.</p>
 <p>For the HO, this is again fairly simple to write out, using the matrices from the previous section:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05dc8a3f-8e85-44d7-b127-ff856119bc40">
-<span class="eqno">(12)<a class="headerlink" href="#equation-05dc8a3f-8e85-44d7-b127-ff856119bc40" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e0e727cb-e640-4eaf-be6d-c303b7c7c0ac">
+<span class="eqno">(12)<a class="headerlink" href="#equation-e0e727cb-e640-4eaf-be6d-c303b7c7c0ac" title="Permalink to this equation">#</a></span>\[\begin{align}
 E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec{a}}.
 \end{align}\]</div>
 <p>To speed this up, we can also write out the gradient (and even the Hessian). While I will not write out either here, the code implementation below utilizes the gradient to speed up the calculation.</p>
@@ -861,15 +861,15 @@ E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.388e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.499e-01 s
 Finite Difference relative error: 3.423e-06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 5.126e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 5.056e-03 s
 RBM relative error: 6.042e-04
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f169c0b1190&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f37ec027fd0&gt;
 </pre></div>
 </div>
 <img alt="../_images/b3cf780e6801d68360e5b576a25238a37be67e773cae1c82bb83ea18568a6e14.png" src="../_images/b3cf780e6801d68360e5b576a25238a37be67e773cae1c82bb83ea18568a6e14.png" />
@@ -879,24 +879,24 @@ RBM relative error: 6.042e-04
 <section id="inferring-the-reduced-hamiltonian">
 <h2>Inferring the Reduced Hamiltonian<a class="headerlink" href="#inferring-the-reduced-hamiltonian" title="Permalink to this heading">#</a></h2>
 <p>All of the above is fantastic: it speeds up the code versus a standard finite difference solver, without losing basically any accuracy. But, we are always required to compute overlaps of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-9850a1d7-338c-4133-83a5-0db1ced23f54">
-<span class="eqno">(13)<a class="headerlink" href="#equation-9850a1d7-338c-4133-83a5-0db1ced23f54" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0b7907f4-bbcb-44c7-a764-39402ac66bdf">
+<span class="eqno">(13)<a class="headerlink" href="#equation-0b7907f4-bbcb-44c7-a764-39402ac66bdf" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
 \end{align}\]</div>
 <p>in a manner that is <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> without much accuracy loss. Even for problems in which the parameter(s) appear in an affine manner (such as the HO), this can be time-consuming, especially given many parameters in the problem. It is even worse when parameters are not affine, and so to apply this to any particular problem uses a lot of development time thinking about implementation details.</p>
 <p>One work-around is to attempt to infer a simple form of <span class="math notranslate nohighlight">\(M(\alpha)\)</span>, say, <span class="math notranslate nohighlight">\(\hat{M}(\alpha)\)</span>, just based on the overlaps themselves. As an example, suppose we assume a quadratic polynomial in <span class="math notranslate nohighlight">\(\alpha\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5e65f367-1c50-4842-97a1-d6694e6c9e53">
-<span class="eqno">(14)<a class="headerlink" href="#equation-5e65f367-1c50-4842-97a1-d6694e6c9e53" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-db1edeef-b078-4c40-bb40-21f3de241874">
+<span class="eqno">(14)<a class="headerlink" href="#equation-db1edeef-b078-4c40-bb40-21f3de241874" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{M}(\alpha)\equiv M^{(0)}+\alpha M^{(1)}+\alpha^2M^{(2)}.
 \end{align}\]</div>
 <p>We can use our high-fidelity solutions <span class="math notranslate nohighlight">\(\{\phi_i\}\)</span> and judges <span class="math notranslate nohighlight">\(\{\psi_i\}\)</span>, compute the overlaps <span class="math notranslate nohighlight">\(M_{ij}(\alpha_k)\)</span> for <span class="math notranslate nohighlight">\(\alpha_k=\alpha_1,\ldots,\alpha_n\)</span>, and fit the coefficients of <span class="math notranslate nohighlight">\(\hat{M}\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c9fd450b-de1b-464c-ac3d-cc295e9e0121">
-<span class="eqno">(15)<a class="headerlink" href="#equation-c9fd450b-de1b-464c-ac3d-cc295e9e0121" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-903550c8-5222-4d22-af57-bab3780f7049">
+<span class="eqno">(15)<a class="headerlink" href="#equation-903550c8-5222-4d22-af57-bab3780f7049" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{M}(\alpha_k)\approx M(\alpha_k),\quad k=1,\ldots,n.
 \end{align}\]</div>
 <p>This can be done coefficient-by-coefficient, to minimize the residual</p>
-<div class="amsmath math notranslate nohighlight" id="equation-16fd177b-c80a-4ff3-989c-edf9a84936ca">
-<span class="eqno">(16)<a class="headerlink" href="#equation-16fd177b-c80a-4ff3-989c-edf9a84936ca" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-89388a96-ac26-4307-98bf-d4686e7b2515">
+<span class="eqno">(16)<a class="headerlink" href="#equation-89388a96-ac26-4307-98bf-d4686e7b2515" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{k=1}^n[\hat{M}_{ij}(\alpha_k)-M_{ij}(\alpha_k)]^2.
 \end{align}\]</div>
 <p>No longer do you have to attempt to make the division made above (although it is simpler for the HO).</p>
@@ -1017,13 +1017,13 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.481e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.403e-01 s
 Finite Difference relative error: 3.423e-06
-Inferred Matrix time: 4.254e-05 s
+Inferred Matrix time: 4.292e-05 s
 Relative error: 6.042e-04
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f169c0b1a10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f37ec0acd90&gt;
 </pre></div>
 </div>
 <img alt="../_images/8f4fbca2391b7ff1fd76ff09ba37d2281e0bf621c42974f37f1c26054e1567a3.png" src="../_images/8f4fbca2391b7ff1fd76ff09ba37d2281e0bf621c42974f37f1c26054e1567a3.png" />
@@ -1119,47 +1119,47 @@ Relative error: 6.042e-04
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.342e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.375e-01 s
 Relative error: 3.423e-06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 2.684e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 2.651e-05 s
 Relative error: 5.696e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 3.177e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 3.158e-03 s
 Relative error: 5.696e-03
-Inferred Matrix time: 3.643e-05 s
+Inferred Matrix time: 3.592e-05 s
 Relative error: 5.696e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 2.924e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 2.953e-05 s
 Relative error: 1.292e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 5.334e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 5.194e-03 s
 Relative error: 1.292e-03
-Inferred Matrix time: 3.867e-05 s
+Inferred Matrix time: 3.855e-05 s
 Relative error: 1.292e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.324e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.312e-05 s
 Relative error: 8.799e-04
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 5.031e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 4.970e-03 s
 Relative error: 1.647e-03
-Inferred Matrix time: 4.256e-05 s
+Inferred Matrix time: 4.288e-05 s
 Relative error: 8.799e-04
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.843e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.972e-05 s
 Relative error: 7.248e-05
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.199e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.181e-03 s
 Relative error: 1.441e-04
-Inferred Matrix time: 4.842e-05 s
+Inferred Matrix time: 4.792e-05 s
 Relative error: 7.248e-05
 </pre></div>
 </div>
@@ -1171,7 +1171,7 @@ Relative error: 7.248e-05
  (1e-06, 0.1)]
 </pre></div>
 </div>
-<img alt="../_images/980beff0c849e9f6d79426ad4df78066aa031723142728079de41c47142011c8.png" src="../_images/980beff0c849e9f6d79426ad4df78066aa031723142728079de41c47142011c8.png" />
+<img alt="../_images/54f87b37fe1cfee0161a86bbf8cd16d520590ae6ff3cd0fad5fbca7034856942.png" src="../_images/54f87b37fe1cfee0161a86bbf8cd16d520590ae6ff3cd0fad5fbca7034856942.png" />
 </div>
 </div>
 </section>
