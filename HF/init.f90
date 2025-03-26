@@ -30,7 +30,7 @@ contains
           namelist /box/ nbox,h
           namelist /params/ r0,conv,hbar22m,itermax,xmix
           namelist /nucleus/ nn,np,lmax
-          namelist /interaction/ t0,x0,t1,x1,t2,x2,t3,x3,sig,w0, &
+          namelist /interaction/ t0,x0,t1,x1,t2,x2,t3,x3,sig,cso0,cso1, &
                    j2terms,icoul,icm
           read(5,io)
           rewind(5)
@@ -87,8 +87,8 @@ contains
           cdds0 = - 1._wp/24._wp * t3 * ( 1._wp/2._wp - x3 )
           cdds1 = - 1._wp/48._wp * t3
           !
-          cso0 = - 3._wp/4._wp * w0
-          cso1 = - 1._wp/4._wp * w0
+          cso0 = cso0 !- 3._wp/4._wp * w0
+          cso1 = cso1 !- 1._wp/4._wp * w0
      end subroutine init_params
 
      !> Initialization of the grids
