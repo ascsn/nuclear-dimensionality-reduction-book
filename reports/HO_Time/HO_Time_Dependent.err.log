@@ -1,38 +1,56 @@
 Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/nbclient/client.py", line 730, in _async_poll_for_reply
-    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/nbclient/util.py", line 96, in ensure_async
-    result = await obj
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/jupyter_client/channels.py", line 230, in get_msg
-    raise Empty
-_queue.Empty
+  File "/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 154, in wrapped
+    asyncio.get_running_loop()
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^
+RuntimeError: no running event loop
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/jupyter_cache/executors/utils.py", line 64, in single_nb_execution
-    **kwargs,
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/nbclient/client.py", line 1204, in execute
+  File "/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/nbclient/client.py", line 1319, in execute
     return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/nbclient/util.py", line 84, in wrapped
-    return just_run(coro(*args, **kwargs))
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/nbclient/util.py", line 62, in just_run
-    return loop.run_until_complete(coro)
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/asyncio/base_events.py", line 587, in run_until_complete
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/jupyter_core/utils/__init__.py", line 158, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
     return future.result()
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/nbclient/client.py", line 664, in async_execute
-    cell, index, execution_count=self.code_cells_executed + 1
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/nbclient/client.py", line 949, in async_execute_cell
-    exec_reply = await self.task_poll_for_reply
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/nbclient/client.py", line 754, in _async_poll_for_reply
-    await self._async_handle_timeout(timeout, cell)
-  File "/opt/hostedtoolcache/Python/3.7.17/x64/lib/python3.7/site-packages/nbclient/client.py", line 802, in _async_handle_timeout
-    "Cell execution timed out", timeout, cell
-nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 30 seconds.
-The message was: Cell execution timed out.
-Here is a preview of the cell contents:
--------------------
-%%time
-HF_results_super=harmonic_oscillator_time_evolution(initial_state, 10, super_HF_config[0], Omega_Val0,super_HF_config[1],super_HF_config[2])
--------------------
+           ~~~~~~~~~~~~~^^
+  File "/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/hostedtoolcache/Python/3.13.7/x64/lib/python3.13/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+RBM_stuff=Galerkin_Helper(wf_HF0,3,150)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mTypeError[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[15][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m RBM_stuff=[43mGalerkin_Helper[49m[43m([49m[43mwf_HF0[49m[43m,[49m[32;43m3[39;49m[43m,[49m[32;43m150[39;49m[43m)[49m
+
+[36mCell[39m[36m [39m[32mIn[14][39m[32m, line 21[39m, in [36mGalerkin_Helper[39m[34m(wf_list, total_basis, N_grid)[39m
+[32m     17[39m pot_ham=[32m1[39m*np.diag([32m0.5[39m * x**[32m2[39m)
+[32m     19[39m phi_basis=[Vt[l]/np.sqrt(np.dot(Vt[l],np.conj(Vt[l])*dx))    [38;5;28;01mfor[39;00m l [38;5;129;01min[39;00m [38;5;28mrange[39m(total_basis)   ]
+[32m---> [39m[32m21[39m reduced_K_ham=[43mnp[49m[43m.[49m[43mzeros[49m[43m([49m[43m([49m[43mtotal_basis[49m[43m,[49m[43mtotal_basis[49m[43m)[49m[43m,[49m[43mdtype[49m[43m [49m[43m=[49m[43m [49m[33;43m'[39;49m[33;43mcomplex_[39;49m[33;43m'[39;49m[43m)[49m
+[32m     23[39m reduced_pot_ham=np.zeros((total_basis,total_basis),dtype = [33m'[39m[33mcomplex_[39m[33m'[39m)
+[32m     25[39m [38;5;28;01mfor[39;00m i [38;5;129;01min[39;00m [38;5;28mrange[39m(total_basis):
+
+[31mTypeError[39m: data type 'complex_' not understood
 

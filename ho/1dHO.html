@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Application 1: The Quantum Harmonic Oscillator &#8212; Dimensionality Reduction in Nuclear Physics</title>
   
@@ -15,52 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'ho/1dHO';</script>
@@ -77,19 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -111,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../landing.html">
+  
   
   
   
@@ -143,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Dimensionality Reduction in Nuclear Physics - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Dimensionality Reduction in Nuclear Physics - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -159,23 +182,23 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/emulators.html">Why emulators?</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Application 1: The Quantum Harmonic Oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Application 5: Black-Box Methods</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../blackbox_galerkin/Introduction.html">Application 5: Black-Box Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/SECAR.html">Efficient Emulation of SECAR Beam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../blackbox_galerkin/DFT_Toy_Model.html">Non-linear and non-affine problem</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../in-progress/introduction.html">In-Progress Additions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../in-progress/introduction.html">In-Progress Additions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../in-progress/HarmonicIntro.html">Harmonic Introduction</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
 </ul>
 
@@ -192,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -201,14 +224,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -233,14 +256,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/ascsn/nuclear-dimensionality-reduction-book/main?urlpath=tree/nuclear-dr/ho/1dHO.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -251,14 +274,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/ascsn/nuclear-dimensionality-reduction-book/blob/main/nuclear-dr/ho/1dHO.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -379,26 +402,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -434,56 +459,56 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="application-1-the-quantum-harmonic-oscillator">
-<h1>Application 1: The Quantum Harmonic Oscillator<a class="headerlink" href="#application-1-the-quantum-harmonic-oscillator" title="Permalink to this heading">#</a></h1>
+<h1>Application 1: The Quantum Harmonic Oscillator<a class="headerlink" href="#application-1-the-quantum-harmonic-oscillator" title="Link to this heading">#</a></h1>
 <p>Contributed by: Daniel Lay, Eric Flynn</p>
 <p>The Schrodinger equation for the 1d harmonic oscillator (HO) is usually written as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-70290f92-ea70-4c82-baf7-88499649f76f">
-<span class="eqno">(1)<a class="headerlink" href="#equation-70290f92-ea70-4c82-baf7-88499649f76f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-05a25568-ba3f-4e0f-af33-1269dd230d73">
+<span class="eqno">(1)<a class="headerlink" href="#equation-05a25568-ba3f-4e0f-af33-1269dd230d73" title="Permalink to this equation">#</a></span>\[\begin{align}
 H_\alpha\phi(x)\equiv \bigg(-\frac{d^2}{dx^2}+\alpha x^2\bigg)\phi(x)=\lambda\phi(x),\quad \langle\phi|\phi\rangle=1,
 \end{align}\]</div>
 <p>where, for comparison with textbooks, the eigenvalue is <span class="math notranslate nohighlight">\(\lambda=2mE/\hbar^2\)</span> and the HO parameter is <span class="math notranslate nohighlight">\(\alpha=(m\omega/\hbar)^2\)</span>. A useful distinction is the kinetic and potential energy terms:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-02214a6e-bbdd-4c4d-8090-df96e07ea27f">
-<span class="eqno">(2)<a class="headerlink" href="#equation-02214a6e-bbdd-4c4d-8090-df96e07ea27f" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-a0204328-6b68-40a0-b078-b6e28eba87da">
+<span class="eqno">(2)<a class="headerlink" href="#equation-a0204328-6b68-40a0-b078-b6e28eba87da" title="Permalink to this equation">#</a></span>\[\begin{align}
 T\phi(x)=-\frac{d^2}{dx^2}\phi(x),\quad V_\alpha(x)\phi(x)=\alpha x^2\phi(x),\quad H_\alpha(x)=T+V(x).
 \end{align}\]</div>
 <p>Technically, all of <span class="math notranslate nohighlight">\(T,V_\alpha\)</span>, and <span class="math notranslate nohighlight">\(H_\alpha\)</span> are operators, but if we discretize our wavefunction (in order to, say, put it on a computer), they are just matrices.</p>
 <section id="traditional-rbm">
-<h2>“Traditional” RBM<a class="headerlink" href="#traditional-rbm" title="Permalink to this heading">#</a></h2>
+<h2>“Traditional” RBM<a class="headerlink" href="#traditional-rbm" title="Link to this heading">#</a></h2>
 <p>To use the traditional RBM approach, one option is to rewrite the Schrodinger equation as</p>
-<div class="amsmath math notranslate nohighlight" id="equation-fe1b9559-0dbf-4c42-976c-e26569287db5">
-<span class="eqno">(3)<a class="headerlink" href="#equation-fe1b9559-0dbf-4c42-976c-e26569287db5" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-d617e4a4-53f7-440e-ab0d-684010426976">
+<span class="eqno">(3)<a class="headerlink" href="#equation-d617e4a4-53f7-440e-ab0d-684010426976" title="Permalink to this equation">#</a></span>\[\begin{align}
 \bigg(-\frac{d^2}{dx^2}+\alpha x^2-\lambda\bigg)\phi(x)\equiv F_\alpha(\phi(x))=0,
 \end{align}\]</div>
 <p>defining the operator <span class="math notranslate nohighlight">\(F_\alpha\)</span>, and solving the system</p>
-<div class="amsmath math notranslate nohighlight" id="equation-817bd791-ecd0-4301-9ee6-42e52b02b5c6">
-<span class="eqno">(4)<a class="headerlink" href="#equation-817bd791-ecd0-4301-9ee6-42e52b02b5c6" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-1a2149b0-0fc1-4761-837e-f3b238a20c7c">
+<span class="eqno">(4)<a class="headerlink" href="#equation-1a2149b0-0fc1-4761-837e-f3b238a20c7c" title="Permalink to this equation">#</a></span>\[\begin{align}
 F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
 \end{align}\]</div>
 <p>We then solve this for a set of parameters <span class="math notranslate nohighlight">\(\{\alpha_i\}_{i=1}^n\)</span>, and for any arbitrary parameter <span class="math notranslate nohighlight">\(\alpha_k\)</span>, take as our ansatz</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c773ccc0-0692-4b92-96c0-306e9e81a6d9">
-<span class="eqno">(5)<a class="headerlink" href="#equation-c773ccc0-0692-4b92-96c0-306e9e81a6d9" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9bd8ed11-e37c-463f-92fd-20b3c9eae04a">
+<span class="eqno">(5)<a class="headerlink" href="#equation-9bd8ed11-e37c-463f-92fd-20b3c9eae04a" title="Permalink to this equation">#</a></span>\[\begin{align}
 	\hat{\phi}_{\alpha_{k}}(x) = \sum_{i=1}^{n} a_{i} \phi_{i}(x) .
 \end{align}\]</div>
 <p>This is a nice form, as it is straightforward to generalize to non-eigenvalue problems.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">special</span>
-<span class="kn">import</span> <span class="nn">scipy</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
-<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">eigh</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">special</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">eigh</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">exact_wavefunction</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">exact_wavefunction</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exact wavefunction, from </span>
 <span class="sd">    https://en.wikipedia.org/wiki/Quantum_harmonic_oscillator#Hamiltonian_and_energy_eigenstates</span>
@@ -504,11 +529,11 @@ F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">norm</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.</span><span class="o">**</span><span class="n">n</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span>
     <span class="n">herm</span> <span class="o">=</span> <span class="n">special</span><span class="o">.</span><span class="n">hermite</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">wf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wf</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">norm</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">herm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">wf</span>
 
-<span class="k">def</span> <span class="nf">exact_eigenvalue</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">exact_eigenvalue</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exact eigenvalue $\lambda$ of the ODE</span>
 <span class="sd">    </span>
@@ -533,14 +558,14 @@ F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
     
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">FiniteDifferenceSolver</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">regularGrid</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">FiniteDifferenceSolver</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">regularGrid</span><span class="p">,</span><span class="n">h</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">regularGrid</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">H</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_Hamiltonian_matrix</span><span class="p">()</span>
         
-    <span class="k">def</span> <span class="nf">make_kinetic_term</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_kinetic_term</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">size</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">)</span>
         <span class="n">offDiag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">size</span><span class="p">)</span>
         <span class="n">offDiag</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -549,14 +574,14 @@ F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
         <span class="n">H</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">size</span><span class="p">)</span> <span class="o">+</span> <span class="n">scipy</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">toeplitz</span><span class="p">(</span><span class="n">offDiag</span><span class="p">))</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span>
         <span class="k">return</span> <span class="n">H</span>
         
-    <span class="k">def</span> <span class="nf">make_potential_term</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_potential_term</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">H</span>
         
-    <span class="k">def</span> <span class="nf">make_Hamiltonian_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_Hamiltonian_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_kinetic_term</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_potential_term</span><span class="p">()</span>
     
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">t0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">H</span><span class="p">,</span><span class="n">subset_by_index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
         <span class="c1"># evals, evects = np.linalg.eigh(self.H)</span>
@@ -565,6 +590,14 @@ F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
         
         <span class="n">solveTime</span> <span class="o">=</span> <span class="n">t1</span> <span class="o">-</span> <span class="n">t0</span>
         <span class="k">return</span> <span class="n">evals</span><span class="p">,</span> <span class="n">evects</span><span class="p">,</span> <span class="n">solveTime</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;&gt;:28: SyntaxWarning: invalid escape sequence &#39;\l&#39;
+&lt;&gt;:28: SyntaxWarning: invalid escape sequence &#39;\l&#39;
+/tmp/ipykernel_2214/6258585.py:28: SyntaxWarning: invalid escape sequence &#39;\l&#39;
+  Exact eigenvalue $\lambda$ of the ODE
 </pre></div>
 </div>
 </div>
@@ -594,39 +627,39 @@ F_\alpha(\phi(x))=0,\quad\langle\phi|\phi\rangle=1.
 </div>
 </section>
 <section id="a-slight-reformulation">
-<h2>A Slight Reformulation<a class="headerlink" href="#a-slight-reformulation" title="Permalink to this heading">#</a></h2>
+<h2>A Slight Reformulation<a class="headerlink" href="#a-slight-reformulation" title="Link to this heading">#</a></h2>
 <p>Because we are solving an eigenvalue problem, we can arrive at a set of different-looking equations, using the same set of judges <span class="math notranslate nohighlight">\(\{\psi_i(x)\}_{i=1}^n\)</span> as before. We can simply plug <span class="math notranslate nohighlight">\(\hat{\phi}_{\alpha_k}\)</span> into the Schrodinger equation and project both sides onto the judges, writing</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b13fff8d-780c-49c5-96a8-39f52c53062c">
-<span class="eqno">(6)<a class="headerlink" href="#equation-b13fff8d-780c-49c5-96a8-39f52c53062c" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-f05c8379-a396-48b5-b35a-e74087f06346">
+<span class="eqno">(6)<a class="headerlink" href="#equation-f05c8379-a396-48b5-b35a-e74087f06346" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{i=1}^na_i\langle \psi_j|H_{\alpha_k}|\phi_i\rangle=\lambda\sum_{i=1}^na_i\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>Define now two matrices:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-dd88c03c-410a-4caa-8572-ad88deb3739d">
-<span class="eqno">(7)<a class="headerlink" href="#equation-dd88c03c-410a-4caa-8572-ad88deb3739d" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-416f8523-b983-4c1c-98a8-41d5f2cd0f51">
+<span class="eqno">(7)<a class="headerlink" href="#equation-416f8523-b983-4c1c-98a8-41d5f2cd0f51" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,\quad N_{ij}\equiv\langle\psi_j|\phi_i\rangle.
 \end{align}\]</div>
 <p>These are both <span class="math notranslate nohighlight">\(n\times n\)</span> matrices, and we now have a generalized eigenvalue problem for <span class="math notranslate nohighlight">\(\vec{a}\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-a517ced6-7a4b-434f-ad35-779cc47896c7">
-<span class="eqno">(8)<a class="headerlink" href="#equation-a517ced6-7a4b-434f-ad35-779cc47896c7" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-e909ccaf-83df-4ccf-8b63-6e8d991c19ec">
+<span class="eqno">(8)<a class="headerlink" href="#equation-e909ccaf-83df-4ccf-8b63-6e8d991c19ec" title="Permalink to this equation">#</a></span>\[\begin{align}
 M(\alpha)\vec{a}=\lambda N\vec{a}.
 \end{align}\]</div>
 <p>Situationally, this may be quicker to solve than finding the roots of the nonlinear system that results from the “traditional” RBM approach.</p>
 <p>As with traditional RBM approaches, this is only helpful if we can evaluate <span class="math notranslate nohighlight">\(M(\alpha)\)</span> quickly for different <span class="math notranslate nohighlight">\(\alpha\)</span> values. For the HO, this is not too hard: we can write</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0b36cbee-cca8-4a98-a199-d7bb04ca68d8">
-<span class="eqno">(9)<a class="headerlink" href="#equation-0b36cbee-cca8-4a98-a199-d7bb04ca68d8" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b7e29177-4758-4280-9c26-d05f3e467d2c">
+<span class="eqno">(9)<a class="headerlink" href="#equation-b7e29177-4758-4280-9c26-d05f3e467d2c" title="Permalink to this equation">#</a></span>\[\begin{align}
 \langle\psi_j|H_\alpha|\phi_i\rangle=\langle\psi_j|T|\phi_i\rangle+\alpha\langle \psi_j|x^2|\phi_i\rangle\equiv M_{ij}^{(0)}+\alpha M_{ij}^{(1)}.
 \end{align}\]</div>
 <p>Our eigenvalue equation is then</p>
-<div class="amsmath math notranslate nohighlight" id="equation-c633593e-a451-45b5-8608-5ff2a2b283ad">
-<span class="eqno">(10)<a class="headerlink" href="#equation-c633593e-a451-45b5-8608-5ff2a2b283ad" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-0d8f3103-3bb5-48e6-b6d8-a31c2d1dd013">
+<span class="eqno">(10)<a class="headerlink" href="#equation-0d8f3103-3bb5-48e6-b6d8-a31c2d1dd013" title="Permalink to this equation">#</a></span>\[\begin{align}
 [M^{(0)}+\alpha M^{(1)}]\vec{a}=\lambda N\vec{a},
 \end{align}\]</div>
 <p>and all of <span class="math notranslate nohighlight">\(M^{(0)},M^{(1)}\)</span> and <span class="math notranslate nohighlight">\(N\)</span> can be precomputed.</p>
 <p>As one would hope, this reproduces the exact same results as the “traditional” RBM approach. A code implementation is given below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">StandardRBM</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">psiMat</span><span class="p">,</span><span class="n">kineticTerm</span><span class="p">,</span><span class="n">potentialTerm</span><span class="p">,</span><span class="n">judges</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">StandardRBM</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">psiMat</span><span class="p">,</span><span class="n">kineticTerm</span><span class="p">,</span><span class="n">potentialTerm</span><span class="p">,</span><span class="n">judges</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1">#potentialTerm should not be multiplied by alpha</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">=</span> <span class="n">psiMat</span>
         <span class="k">if</span> <span class="n">judges</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -640,7 +673,7 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
         <span class="bp">self</span><span class="o">.</span><span class="n">kinProj</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">potProj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_projections</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_overlaps</span><span class="p">()</span>
         
-    <span class="k">def</span> <span class="nf">compute_projections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_projections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">kinProj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
         <span class="n">potProj</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
@@ -653,7 +686,7 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
                     
         <span class="k">return</span> <span class="n">kinProj</span><span class="p">,</span> <span class="n">potProj</span>
     
-    <span class="k">def</span> <span class="nf">compute_overlaps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_overlaps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">overlapMatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
@@ -661,10 +694,10 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
                 <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">overlapMatrix</span>
         
-    <span class="k">def</span> <span class="nf">return_wf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">return_wf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
         <span class="n">mat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">kinProj</span> <span class="o">+</span> <span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">potProj</span>
             
         <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span> <span class="o">=</span> <span class="n">eigh</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span><span class="p">,</span><span class="n">check_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -723,45 +756,45 @@ M(\alpha)\vec{a}=\lambda N\vec{a}.
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.336e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.486e-01 s
 Finite Difference relative error: 3.423e-06
-Standard RBM time: 3.380e-05 s
+Standard RBM time: 3.321e-05 s
 RBM relative error: 6.042e-04
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f37e47e2450&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff2f552c440&gt;
 </pre></div>
 </div>
-<img alt="../_images/fdaf8616290e776a155634186b095b50efd4867450da4369e17674da32b6a315.png" src="../_images/fdaf8616290e776a155634186b095b50efd4867450da4369e17674da32b6a315.png" />
+<img alt="../_images/e8a6520c73f64ac50ecc68fefa0412bf3bc861b62eea34b18761a94de65cfa7c.png" src="../_images/e8a6520c73f64ac50ecc68fefa0412bf3bc861b62eea34b18761a94de65cfa7c.png" />
 </div>
 </div>
 </section>
 <section id="variational-rbm">
-<h2>Variational RBM<a class="headerlink" href="#variational-rbm" title="Permalink to this heading">#</a></h2>
+<h2>Variational RBM<a class="headerlink" href="#variational-rbm" title="Link to this heading">#</a></h2>
 <p>For many physicists, the first thing to try is the variational approach to solving the Schrodinger equation. We can attempt the same thing, except using the expansion coefficients <span class="math notranslate nohighlight">\(\vec{a}\)</span> as variational coefficients. This, as far as I am aware, is what is known as “eigenvector continuation,” although different people mean different things when mentioning eigenvector continuation. In general, the variational energy is</p>
-<div class="amsmath math notranslate nohighlight" id="equation-53967aa8-8176-445c-a331-edf265334b9e">
-<span class="eqno">(11)<a class="headerlink" href="#equation-53967aa8-8176-445c-a331-edf265334b9e" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3f286606-8ec0-4c5a-a25f-bff53bcd13ca">
+<span class="eqno">(11)<a class="headerlink" href="#equation-3f286606-8ec0-4c5a-a25f-bff53bcd13ca" title="Permalink to this equation">#</a></span>\[\begin{align}
 	E_\alpha(\vec{a})=\frac{\langle \phi_{\vec{a}}|H_\alpha|\phi_{\vec{a}}\rangle}{\langle \phi_{\vec{a}}|\phi_{\vec{a}}\rangle},
 \end{align}\]</div>
 <p>and by minimizing this energy with respect to the parameters <span class="math notranslate nohighlight">\(\vec{a}\)</span>, we approximate the ground state energy.</p>
 <p>For the HO, this is again fairly simple to write out, using the matrices from the previous section:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e0e727cb-e640-4eaf-be6d-c303b7c7c0ac">
-<span class="eqno">(12)<a class="headerlink" href="#equation-e0e727cb-e640-4eaf-be6d-c303b7c7c0ac" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-3fde61a3-4cec-4c28-a9ee-7e04f54c9fda">
+<span class="eqno">(12)<a class="headerlink" href="#equation-3fde61a3-4cec-4c28-a9ee-7e04f54c9fda" title="Permalink to this equation">#</a></span>\[\begin{align}
 E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec{a}}.
 \end{align}\]</div>
 <p>To speed this up, we can also write out the gradient (and even the Hessian). While I will not write out either here, the code implementation below utilizes the gradient to speed up the calculation.</p>
 <p>Note that now, we are solving a minimization problem for a nonlinear function of <span class="math notranslate nohighlight">\(\vec{a}\)</span>. I find it tricky to imagine this being faster than solving an eigenvalue problem, and (at least for the straightforward implementation below), we will see that it does, indeed, take longer to run.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">VariationalRBM</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">psiMat</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">regularGrid</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">VariationalRBM</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">psiMat</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">regularGrid</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">=</span> <span class="n">psiMat</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">h</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">=</span> <span class="n">regularGrid</span>
         
         <span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix_components</span><span class="p">()</span>
         
-    <span class="k">def</span> <span class="nf">matrix_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">matrix_components</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">nComps</span><span class="p">,</span> <span class="n">vecSize</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="o">.</span><span class="n">shape</span>
         
         <span class="n">offDiag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">vecSize</span><span class="p">)</span>
@@ -787,18 +820,18 @@ E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec
                 <span class="n">m3</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">m3</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">,</span> <span class="n">m3</span>
     
-    <span class="k">def</span> <span class="nf">energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">energy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">)</span> <span class="o">@</span> <span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">@</span> <span class="n">a</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">energy_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">energy_grad</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
         <span class="n">f1Eval</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">)</span> <span class="o">@</span> <span class="n">a</span>
         <span class="n">f2Eval</span> <span class="o">=</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">@</span> <span class="n">a</span>
         <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">m1</span><span class="o">+</span><span class="n">alpha</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">m2</span><span class="p">)</span> <span class="o">@</span> <span class="n">a</span><span class="o">/</span><span class="n">f2Eval</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">f1Eval</span><span class="o">/</span><span class="n">f2Eval</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">m3</span> <span class="o">@</span> <span class="n">a</span>
     
-    <span class="k">def</span> <span class="nf">return_wf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">return_wf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">a0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">a0</span><span class="p">):</span>
         <span class="n">opt</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">energy</span><span class="p">,</span><span class="n">a0</span><span class="p">,</span><span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">alpha</span><span class="p">,),</span><span class="n">jac</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">energy_grad</span><span class="p">)</span>
         
         <span class="c1">#Normalize total wavefunction</span>
@@ -861,42 +894,42 @@ E_\alpha(\vec{a})=\frac{\vec{a}^T[M^{(0)}+\alpha M^{(1)}]\vec{a}}{\vec{a}^TN\vec
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.499e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.486e-01 s
 Finite Difference relative error: 3.423e-06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 5.056e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 6.341e-03 s
 RBM relative error: 6.042e-04
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f37ec027fd0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff2f3324410&gt;
 </pre></div>
 </div>
-<img alt="../_images/b3cf780e6801d68360e5b576a25238a37be67e773cae1c82bb83ea18568a6e14.png" src="../_images/b3cf780e6801d68360e5b576a25238a37be67e773cae1c82bb83ea18568a6e14.png" />
+<img alt="../_images/2674ff1dda08997e3856188bb5db45f995200095c7ae6341b8a2eb6daedb4183.png" src="../_images/2674ff1dda08997e3856188bb5db45f995200095c7ae6341b8a2eb6daedb4183.png" />
 </div>
 </div>
 </section>
 <section id="inferring-the-reduced-hamiltonian">
-<h2>Inferring the Reduced Hamiltonian<a class="headerlink" href="#inferring-the-reduced-hamiltonian" title="Permalink to this heading">#</a></h2>
+<h2>Inferring the Reduced Hamiltonian<a class="headerlink" href="#inferring-the-reduced-hamiltonian" title="Link to this heading">#</a></h2>
 <p>All of the above is fantastic: it speeds up the code versus a standard finite difference solver, without losing basically any accuracy. But, we are always required to compute overlaps of the form</p>
-<div class="amsmath math notranslate nohighlight" id="equation-0b7907f4-bbcb-44c7-a764-39402ac66bdf">
-<span class="eqno">(13)<a class="headerlink" href="#equation-0b7907f4-bbcb-44c7-a764-39402ac66bdf" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-bbef55ce-d960-449d-b8c7-c7d2a22297c6">
+<span class="eqno">(13)<a class="headerlink" href="#equation-bbef55ce-d960-449d-b8c7-c7d2a22297c6" title="Permalink to this equation">#</a></span>\[\begin{align}
 M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
 \end{align}\]</div>
 <p>in a manner that is <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> without much accuracy loss. Even for problems in which the parameter(s) appear in an affine manner (such as the HO), this can be time-consuming, especially given many parameters in the problem. It is even worse when parameters are not affine, and so to apply this to any particular problem uses a lot of development time thinking about implementation details.</p>
 <p>One work-around is to attempt to infer a simple form of <span class="math notranslate nohighlight">\(M(\alpha)\)</span>, say, <span class="math notranslate nohighlight">\(\hat{M}(\alpha)\)</span>, just based on the overlaps themselves. As an example, suppose we assume a quadratic polynomial in <span class="math notranslate nohighlight">\(\alpha\)</span>,</p>
-<div class="amsmath math notranslate nohighlight" id="equation-db1edeef-b078-4c40-bb40-21f3de241874">
-<span class="eqno">(14)<a class="headerlink" href="#equation-db1edeef-b078-4c40-bb40-21f3de241874" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-7ddab8d0-2e50-4eef-a147-a18e026c8ca8">
+<span class="eqno">(14)<a class="headerlink" href="#equation-7ddab8d0-2e50-4eef-a147-a18e026c8ca8" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{M}(\alpha)\equiv M^{(0)}+\alpha M^{(1)}+\alpha^2M^{(2)}.
 \end{align}\]</div>
 <p>We can use our high-fidelity solutions <span class="math notranslate nohighlight">\(\{\phi_i\}\)</span> and judges <span class="math notranslate nohighlight">\(\{\psi_i\}\)</span>, compute the overlaps <span class="math notranslate nohighlight">\(M_{ij}(\alpha_k)\)</span> for <span class="math notranslate nohighlight">\(\alpha_k=\alpha_1,\ldots,\alpha_n\)</span>, and fit the coefficients of <span class="math notranslate nohighlight">\(\hat{M}\)</span> such that</p>
-<div class="amsmath math notranslate nohighlight" id="equation-903550c8-5222-4d22-af57-bab3780f7049">
-<span class="eqno">(15)<a class="headerlink" href="#equation-903550c8-5222-4d22-af57-bab3780f7049" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-b753bc20-f4c8-4c8a-a0f5-8fc2b6b7a598">
+<span class="eqno">(15)<a class="headerlink" href="#equation-b753bc20-f4c8-4c8a-a0f5-8fc2b6b7a598" title="Permalink to this equation">#</a></span>\[\begin{align}
 \hat{M}(\alpha_k)\approx M(\alpha_k),\quad k=1,\ldots,n.
 \end{align}\]</div>
 <p>This can be done coefficient-by-coefficient, to minimize the residual</p>
-<div class="amsmath math notranslate nohighlight" id="equation-89388a96-ac26-4307-98bf-d4686e7b2515">
-<span class="eqno">(16)<a class="headerlink" href="#equation-89388a96-ac26-4307-98bf-d4686e7b2515" title="Permalink to this equation">#</a></span>\[\begin{align}
+<div class="amsmath math notranslate nohighlight" id="equation-9ce21a6e-eb04-427f-b55c-4b59b16085b9">
+<span class="eqno">(16)<a class="headerlink" href="#equation-9ce21a6e-eb04-427f-b55c-4b59b16085b9" title="Permalink to this equation">#</a></span>\[\begin{align}
 \sum_{k=1}^n[\hat{M}_{ij}(\alpha_k)-M_{ij}(\alpha_k)]^2.
 \end{align}\]</div>
 <p>No longer do you have to attempt to make the division made above (although it is simpler for the HO).</p>
@@ -904,8 +937,8 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
 <p>This is implemented for the HO below, with just a linear polynomial in <span class="math notranslate nohighlight">\(\alpha\)</span>. Since we know the correct form already, this example can be taken as guidance if you wish to apply it to your own problem. And, it can be extended to non-eigenvalue problems in the same way “traditional” RBM approaches have been.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">InferHamiltonian</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">psiMat</span><span class="p">,</span><span class="n">arrOfHamiltonians</span><span class="p">,</span><span class="n">alphaVals</span><span class="p">,</span><span class="n">judges</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">InferHamiltonian</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">psiMat</span><span class="p">,</span><span class="n">arrOfHamiltonians</span><span class="p">,</span><span class="n">alphaVals</span><span class="p">,</span><span class="n">judges</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">=</span> <span class="n">psiMat</span>
         <span class="k">if</span> <span class="n">judges</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">judges</span> <span class="o">=</span> <span class="n">psiMat</span>
@@ -918,7 +951,7 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
         <span class="bp">self</span><span class="o">.</span><span class="n">projections</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_projections</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">overlaps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_overlaps</span><span class="p">()</span>
         
-    <span class="k">def</span> <span class="nf">compute_projections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_projections</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">projections</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
@@ -928,7 +961,7 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
                     
         <span class="k">return</span> <span class="n">projections</span>
     
-    <span class="k">def</span> <span class="nf">compute_overlaps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_overlaps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">overlapMatrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
             <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">):</span>
@@ -936,7 +969,7 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
                 <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">overlapMatrix</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">overlapMatrix</span>
     
-    <span class="k">def</span> <span class="nf">fit_matrices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">polyDegree</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit_matrices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">polyDegree</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
         <span class="c1">#Note that minCoeffs is indexed backwards - the first element is</span>
         <span class="c1">#the coefficient of the highest degree term in the polynomial</span>
         <span class="n">minCoeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">polyDegree</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,),)</span>
@@ -948,10 +981,10 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
                 <span class="n">minCoeffs</span><span class="p">[:,</span><span class="n">j</span><span class="p">,</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">minCoeffs</span><span class="p">[:,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">minCoeffs</span>
         
-    <span class="k">def</span> <span class="nf">return_wf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">return_wf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">a</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">psiMat</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">coeffs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">coeffs</span><span class="p">):</span>
         <span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrixDim</span><span class="p">,))</span>
         <span class="n">maxPolyDim</span> <span class="o">=</span> <span class="n">coeffs</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">coeffIter</span><span class="p">,</span><span class="n">coeff</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">coeffs</span><span class="p">):</span>
@@ -1017,21 +1050,21 @@ M_{ij}(\alpha)\equiv \langle\psi_j|H_\alpha|\phi_i\rangle,
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.403e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.584e-01 s
 Finite Difference relative error: 3.423e-06
-Inferred Matrix time: 4.292e-05 s
+Inferred Matrix time: 4.133e-05 s
 Relative error: 6.042e-04
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f37ec0acd90&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff2f33a1f90&gt;
 </pre></div>
 </div>
-<img alt="../_images/8f4fbca2391b7ff1fd76ff09ba37d2281e0bf621c42974f37f1c26054e1567a3.png" src="../_images/8f4fbca2391b7ff1fd76ff09ba37d2281e0bf621c42974f37f1c26054e1567a3.png" />
+<img alt="../_images/1a2fa67c27699c66230689972be10abf5c2afe8059fcbcd35e97af77a85d7a6d.png" src="../_images/1a2fa67c27699c66230689972be10abf5c2afe8059fcbcd35e97af77a85d7a6d.png" />
 </div>
 </div>
 </section>
 <section id="the-cat-plot">
-<h2>The CAT Plot<a class="headerlink" href="#the-cat-plot" title="Permalink to this heading">#</a></h2>
+<h2>The CAT Plot<a class="headerlink" href="#the-cat-plot" title="Link to this heading">#</a></h2>
 <p>There are many concerns when choosing which method to use to solve your problem. While there are many considerations, including development time, one useful diagnostic tool is the so-called CAT plot, which shows the accuracy vs run time of your method. This is created below for the methods described above. For each method, the run time is averaged over multiple runs. Additionally, multiple different sets of training solutions are used.</p>
 <p>As can be seen, including more <span class="math notranslate nohighlight">\(\alpha\)</span> values improves performance, with little runtime increase, almost up to the high-fidelity solution’s performance. Additionally, it is clear that the finite difference solver is incredibly slow relative to other methods, and even the variational RBM fails to compete with the standard RBM case.</p>
 <div class="cell docutils container">
@@ -1119,47 +1152,47 @@ Relative error: 6.042e-04
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.375e-01 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Finite Difference time: 2.457e-01 s
 Relative error: 3.423e-06
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 2.651e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 2.899e-05 s
 Relative error: 5.696e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 3.158e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 3.917e-03 s
 Relative error: 5.696e-03
-Inferred Matrix time: 3.592e-05 s
+Inferred Matrix time: 3.691e-05 s
 Relative error: 5.696e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 2.953e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.016e-05 s
 Relative error: 1.292e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 5.194e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.388e-03 s
 Relative error: 1.292e-03
-Inferred Matrix time: 3.855e-05 s
+Inferred Matrix time: 3.844e-05 s
 Relative error: 1.292e-03
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.312e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.205e-05 s
 Relative error: 8.799e-04
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 4.970e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.080e-03 s
 Relative error: 1.647e-03
-Inferred Matrix time: 4.288e-05 s
+Inferred Matrix time: 4.041e-05 s
 Relative error: 8.799e-04
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.972e-05 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Standard RBM time: 3.505e-05 s
 Relative error: 7.248e-05
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 6.181e-03 s
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Variational RBM time: 7.566e-03 s
 Relative error: 1.441e-04
-Inferred Matrix time: 4.792e-05 s
+Inferred Matrix time: 4.351e-05 s
 Relative error: 7.248e-05
 </pre></div>
 </div>
@@ -1171,12 +1204,12 @@ Relative error: 7.248e-05
  (1e-06, 0.1)]
 </pre></div>
 </div>
-<img alt="../_images/54f87b37fe1cfee0161a86bbf8cd16d520590ae6ff3cd0fad5fbca7034856942.png" src="../_images/54f87b37fe1cfee0161a86bbf8cd16d520590ae6ff3cd0fad5fbca7034856942.png" />
+<img alt="../_images/70c899fdc45dc70ba3738dcb390b8845c184aaa2cfb1cbf4ed0ef6223b4fa975.png" src="../_images/70c899fdc45dc70ba3738dcb390b8845c184aaa2cfb1cbf4ed0ef6223b4fa975.png" />
 </div>
 </div>
 </section>
 <section id="final-remarks">
-<h2>Final Remarks<a class="headerlink" href="#final-remarks" title="Permalink to this heading">#</a></h2>
+<h2>Final Remarks<a class="headerlink" href="#final-remarks" title="Link to this heading">#</a></h2>
 <p>If you look closely, nowhere in this code have I used the principal components of a set of solutions. While it may help, it is not strictly necessary for any of this. Additionally, the code has been implemented such that one can use any judges desired - again, while it works well to use the high-fidelity solutions as judges, that is not strictly necessary, and is worth exploring on a problem-by-problem basis.</p>
 </section>
 </section>
@@ -1206,11 +1239,10 @@ Relative error: 7.248e-05
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../introduction/emulators.html"
@@ -1230,10 +1262,7 @@ Relative error: 7.248e-05
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1241,6 +1270,7 @@ Relative error: 7.248e-05
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1275,9 +1305,10 @@ By Advanced Scientific Computing and Statistics Network
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1301,8 +1332,8 @@ By Advanced Scientific Computing and Statistics Network
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

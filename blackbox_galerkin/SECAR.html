@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Efficient Emulation of SECAR Beam &#8212; Dimensionality Reduction in Nuclear Physics</title>
   
@@ -15,52 +14,49 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'blackbox_galerkin/SECAR';</script>
@@ -77,19 +73,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -111,12 +111,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -131,9 +139,13 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
+  
+    
   
 
 <a class="navbar-brand logo" href="../landing.html">
+  
   
   
   
@@ -143,12 +155,23 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Dimensionality Reduction in Nuclear Physics - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Dimensionality Reduction in Nuclear Physics - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -159,23 +182,23 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../introduction/introduction.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../introduction/emulators.html">Why emulators?</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../ho/1dHO.html">Application 1: The Quantum Harmonic Oscillator</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/scattering.html">Application 2: Two body single channel nuclear scattering</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../scattering/eim.html">Application 3: The Empirical Interpolation Method</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../HO_Time/HO_Time_Dependent.html">Application 4: Time Dependent Systems (evolution in the reduced space)</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="Introduction.html">Application 5: Black-Box Methods</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="Introduction.html">Application 5: Black-Box Methods</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Efficient Emulation of SECAR Beam</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DFT_Toy_Model.html">Non-linear and non-affine problem</a></li>
 </ul>
-</li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../in-progress/introduction.html">In-Progress Additions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../in-progress/introduction.html">In-Progress Additions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../in-progress/HarmonicIntro.html">Harmonic Introduction</a></li>
 </ul>
-</li>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../contributors.html">Contributors</a></li>
 </ul>
 
@@ -192,7 +215,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -201,14 +224,14 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
       
-        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
   <span class="fa-solid fa-bars"></span>
-</label></div>
+</button></div>
       
     </div>
   
@@ -233,14 +256,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://mybinder.org/v2/gh/ascsn/nuclear-dimensionality-reduction-book/main?urlpath=tree/nuclear-dr/blackbox_galerkin/SECAR.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onBinder"
+   title="Launch on Binder"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_binder.svg">
+    <img alt="Binder logo" src="../_static/images/logo_binder.svg">
   </span>
 <span class="btn__text-container">Binder</span>
 </a>
@@ -251,14 +274,14 @@ const thebe_selector_output = ".output, .cell_output"
       
       <li><a href="https://colab.research.google.com/github/ascsn/nuclear-dimensionality-reduction-book/blob/main/nuclear-dr/blackbox_galerkin/SECAR.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
-   title="Launch onColab"
+   title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
 <span class="btn__icon-container">
   
-    <img src="../_static/images/logo_colab.png">
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
   </span>
 <span class="btn__text-container">Colab</span>
 </a>
@@ -379,26 +402,28 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
-  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
-<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
-</label>
+</button>
 </div></div>
       
     </div>
@@ -438,11 +463,11 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="efficient-emulation-of-secar-beam">
-<h1>Efficient Emulation of SECAR Beam<a class="headerlink" href="#efficient-emulation-of-secar-beam" title="Permalink to this heading">#</a></h1>
-<p>Contributed by: Diógenes Figueroa, Ruchi Garg
+<h1>Efficient Emulation of SECAR Beam<a class="headerlink" href="#efficient-emulation-of-secar-beam" title="Link to this heading">#</a></h1>
+<p>Contributed by: Diógenes Figueroa, Ruchi Garg, Edgard Bonilla
 Edited by: Pablo Giuliani</p>
 <p>This section is based on a final project for the <a class="reference external" href="https://indico.frib.msu.edu/event/65/">FRIB-TA Summer School: Practical Uncertainty Quantification and Emulator Development in Nuclear Physics</a>, all code shown here are simplified versions of the publicly final project repository available here: <a class="reference external" href="https://github.com/diogenes1991/RBMSecar">RBM SECAR</a></p>
 <p>In this section we discuss how to apply the reduced basis method to problems for which the underlying dynamics are unknown or complicated enough that tracking the dependence on the parametrs of interest is unfeasible. We will explore two kinds of emulators:</p>
@@ -452,39 +477,39 @@ Edited by: Pablo Giuliani</p>
 </ul>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span><span class="o">,</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">math</span><span class="o">,</span> <span class="nn">array</span><span class="o">,</span> <span class="nn">random</span>
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy</span> <span class="k">as</span> <span class="nn">sp</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">CubicSpline</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span><span class="o">,</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span><span class="o">,</span><span class="w"> </span><span class="nn">array</span><span class="o">,</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sp</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.interpolate</span><span class="w"> </span><span class="kn">import</span> <span class="n">CubicSpline</span>
 </pre></div>
 </div>
 </div>
 </div>
 <section id="interpolation-emulator-for-secar">
-<h2>Interpolation Emulator for SECAR<a class="headerlink" href="#interpolation-emulator-for-secar" title="Permalink to this heading">#</a></h2>
+<h2>Interpolation Emulator for SECAR<a class="headerlink" href="#interpolation-emulator-for-secar" title="Link to this heading">#</a></h2>
 <p>The problem that we are trying to tackle here is the emulation of beam dynamics for the <a class="reference external" href="http://secar.space/">SECAR</a> recoil separator, as discussed at the introduction of this book. These dynamics are governed by the interactions between the charged particles in the beams and the magnetic fields generated by each one of the 19 electromagnets of the experiment. Each one of these magnets influences the trajectory of the beams, an effect which we can parametrize as a power series on the characteristics of the beam is employed. For simplicity we shall parametrize the state of the electromagnets as one-dimensional, depending only on the current <span class="math notranslate nohighlight">\(I\)</span> flowing through it. Symbolically, if we denote by <span class="math notranslate nohighlight">\(v\)</span> the state of the beam, the transport equation looks like:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b17833a-ef7c-4aeb-b18c-7362d2bfca6f">
-<span class="eqno">(44)<a class="headerlink" href="#equation-5b17833a-ef7c-4aeb-b18c-7362d2bfca6f" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-3db2b7b3-00b2-4a90-8c57-05bbbb59651b">
+<span class="eqno">(44)<a class="headerlink" href="#equation-3db2b7b3-00b2-4a90-8c57-05bbbb59651b" title="Permalink to this equation">#</a></span>\[\begin{equation}
     v^{after}_i = (S^0[I])_i + (S^1[I])_i{}^jv^{before}_j + (S^2[I])_i{}^{jk}v^{before}_jv^{before}_k+\cdots 
 \end{equation}\]</div>
 <p>In the case of SECAR, the tensors <span class="math notranslate nohighlight">\(S^0,S^1,\cdots\)</span> (i.e. the high-fidelity solutions) are calculated by the <a class="reference external" href="https://www.bmtdynamics.org/index_cosy.htm">COSY INFINITY</a> system. This program is capable of finding these transport tensors for any order. In the application we show here the COSY program has been used to generate <span class="math notranslate nohighlight">\(100\)</span> high-fidelity solutions for the transport of beams described by <span class="math notranslate nohighlight">\(8\)</span> state variables. Tensors of degree up to <span class="math notranslate nohighlight">\(4\)</span> are kept.</p>
 <p>Our reduced basis approximation will read:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-96c1aff5-f52f-4f02-bccd-e1a695cd0c39">
-<span class="eqno">(45)<a class="headerlink" href="#equation-96c1aff5-f52f-4f02-bccd-e1a695cd0c39" title="Permalink to this equation">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-53e5eafa-c3e5-4284-a293-9f953e268c23">
+<span class="eqno">(45)<a class="headerlink" href="#equation-53e5eafa-c3e5-4284-a293-9f953e268c23" title="Permalink to this equation">#</a></span>\[\begin{equation}
     S^{l} (I) \approx \hat S^{l} (I) = \sum_{k=1}^n a_k^l(I) S_k^{l},
 \end{equation}\]</div>
 <p>for every tensor <span class="math notranslate nohighlight">\(S^{l}\)</span> <span class="math notranslate nohighlight">\((l=0,1,\cdots)\)</span>. Now, the dependence on the current is carried by the coefficients <span class="math notranslate nohighlight">\(a_k^l(I)\)</span></p>
 <section id="some-helpers-for-reading-cosy-files">
-<h3>Some helpers for reading COSY files<a class="headerlink" href="#some-helpers-for-reading-cosy-files" title="Permalink to this heading">#</a></h3>
+<h3>Some helpers for reading COSY files<a class="headerlink" href="#some-helpers-for-reading-cosy-files" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">combinations_with_replacement</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations_with_replacement</span>
 
-<span class="k">def</span> <span class="nf">generate_lookup</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_lookup</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     
     <span class="n">low_pow</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;lowPower&quot;</span><span class="p">]</span>
     <span class="n">hig_pow</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;highPower&quot;</span><span class="p">]</span>
@@ -507,14 +532,14 @@ Edited by: Pablo Giuliani</p>
     
     <span class="k">return</span> <span class="n">lookup</span>
 
-<span class="k">class</span> <span class="nc">CosyIO</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CosyIO</span><span class="p">:</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;  </span>
 <span class="sd">        COSY Formatted files reader class</span>
 <span class="sd">    </span>
 <span class="sd">    &#39;&#39;&#39;</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nLetters</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">lowPower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">highPower</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">nLetters</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">lowPower</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">highPower</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nLetters</span>  <span class="o">=</span> <span class="n">nLetters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lowPower</span>  <span class="o">=</span> <span class="n">lowPower</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">higiPower</span> <span class="o">=</span> <span class="n">highPower</span>
@@ -526,7 +551,7 @@ Edited by: Pablo Giuliani</p>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Convert keys to list of powers &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">key_to_list</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">,</span><span class="n">l</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">key_to_list</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span><span class="n">l</span><span class="o">+</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">])])</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">!=</span><span class="mi">0</span> <span class="k">else</span> <span class="n">l</span>
         
-    <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">path</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">path</span><span class="p">):</span>
         <span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">matrices</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">local_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
@@ -574,10 +599,10 @@ Edited by: Pablo Giuliani</p>
 </div>
 </section>
 <section id="cubicspline-based-emulator">
-<h3><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html#scipy.interpolate.CubicSpline">CubicSpline</a> based Emulator<a class="headerlink" href="#cubicspline-based-emulator" title="Permalink to this heading">#</a></h3>
+<h3><a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.CubicSpline.html#scipy.interpolate.CubicSpline">CubicSpline</a> based Emulator<a class="headerlink" href="#cubicspline-based-emulator" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Emulator</span><span class="p">:</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Emulator</span><span class="p">:</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
 <span class="sd">        Interpolation-Based Emulator </span>
@@ -586,14 +611,14 @@ Edited by: Pablo Giuliani</p>
 <span class="sd">    </span>
 <span class="sd">    &#39;&#39;&#39;</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">axis</span><span class="p">,</span><span class="n">matrix</span><span class="p">,</span><span class="n">cutoff</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">axis</span><span class="p">,</span><span class="n">matrix</span><span class="p">,</span><span class="n">cutoff</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axis</span>   <span class="o">=</span> <span class="n">axis</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="n">matrix</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span> <span class="o">=</span> <span class="n">cutoff</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">shape</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
     
-    <span class="k">def</span> <span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Normalize the data &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">means</span> <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">average</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span> <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sdevs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span> <span class="p">]</span>
@@ -604,7 +629,7 @@ Edited by: Pablo Giuliani</p>
                       <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">)</span> <span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">renor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">renor</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Build all the CubicSpline interpolators &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
 <span class="w">        </span>
@@ -614,7 +639,7 @@ Edited by: Pablo Giuliani</p>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Build all the CubicSpline interpolators for the coefficients &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">splines</span> <span class="o">=</span> <span class="p">[</span> <span class="n">sp</span><span class="o">.</span><span class="n">interpolate</span><span class="o">.</span><span class="n">CubicSpline</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">[:,</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span><span class="p">)</span> <span class="p">]</span>
     
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">value</span><span class="p">):</span>
         <span class="n">rval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cutoff</span><span class="p">):</span>
             <span class="n">rval</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">splines</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">value</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -626,14 +651,14 @@ Edited by: Pablo Giuliani</p>
 </div>
 </section>
 <section id="interface-between-cosy-file-reading-and-the-emulators">
-<h3>Interface between COSY file reading and the emulators<a class="headerlink" href="#interface-between-cosy-file-reading-and-the-emulators" title="Permalink to this heading">#</a></h3>
+<h3>Interface between COSY file reading and the emulators<a class="headerlink" href="#interface-between-cosy-file-reading-and-the-emulators" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CosyMagnet</span><span class="p">(</span><span class="n">Emulator</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CosyMagnet</span><span class="p">(</span><span class="n">Emulator</span><span class="p">):</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; Wrapped emulator for the Cosy format &#39;&#39;&#39;</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Load all the datafile names and assume the scale is the name  &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">path</span>   <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span>
@@ -691,7 +716,7 @@ Edited by: Pablo Giuliani</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3ac45b425c4b941b2bbdc52f2c4183a98578b0bc3641f0a36a1a6674f767aec0.png" src="../_images/3ac45b425c4b941b2bbdc52f2c4183a98578b0bc3641f0a36a1a6674f767aec0.png" />
+<img alt="../_images/4c5856bba888757ffd601edff635d6b38cf591ef0f9687080916c89a145ba0f5.png" src="../_images/4c5856bba888757ffd601edff635d6b38cf591ef0f9687080916c89a145ba0f5.png" />
 </div>
 </div>
 <p>This tells us that by keeping 5-10 singular values we would capture most of the dynamics.
@@ -711,7 +736,7 @@ Since we are also interpolating the coefficients <span class="math notranslate n
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3326a62e3bfd8fc2b9d7415cfbc366565c3c4a380237418fe5524a525887d3b7.png" src="../_images/3326a62e3bfd8fc2b9d7415cfbc366565c3c4a380237418fe5524a525887d3b7.png" />
+<img alt="../_images/4ccdf39625c8c1e49efc8ee44cfe38ef9c32f26a7e80d86524faee799847687b.png" src="../_images/4ccdf39625c8c1e49efc8ee44cfe38ef9c32f26a7e80d86524faee799847687b.png" />
 </div>
 </div>
 <p>We see that most of them are pretty smooth, but the discontinuities on the smaller pcs might prevent us from reaching really small errors.</p>
@@ -728,7 +753,7 @@ Since we are also interpolating the coefficients <span class="math notranslate n
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">error</span><span class="p">(</span><span class="n">emulated</span><span class="p">,</span><span class="n">real</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">error</span><span class="p">(</span><span class="n">emulated</span><span class="p">,</span><span class="n">real</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">emulated</span> <span class="o">-</span> <span class="n">real</span><span class="p">))</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">real</span><span class="p">)))</span>
 
 <span class="n">error_matrix</span>   <span class="o">=</span> <span class="p">[</span> <span class="p">[</span> <span class="n">error</span><span class="p">(</span><span class="n">Emulators</span><span class="p">[</span><span class="n">i</span><span class="p">](</span><span class="n">scales</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span><span class="n">matrices</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">scales</span><span class="p">))</span> <span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nEmulators</span><span class="p">)</span> <span class="p">]</span>
@@ -751,16 +776,16 @@ Since we are also interpolating the coefficients <span class="math notranslate n
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/5d3c947dd4fadffd2d67ee51dc64e44c639e4d0f7205e2537e517c466344eed1.png" src="../_images/5d3c947dd4fadffd2d67ee51dc64e44c639e4d0f7205e2537e517c466344eed1.png" />
+<img alt="../_images/c3bacd2a0673089d82f6b352aadae40abc44840c37625f64938cba9bde35f9a9.png" src="../_images/c3bacd2a0673089d82f6b352aadae40abc44840c37625f64938cba9bde35f9a9.png" />
 </div>
 </div>
 <p>Here we notice that the error becomes worse near the places of discontinuity of the original coefficients. We could use these emulators to evaluate beam transport, see: <a class="reference external" href="https://github.com/diogenes1991/RBMSecar/blob/master/Emulator/RBM.ipynb">RBM SECAR</a> for more details. One way to improve on this issue would be to build effective dynamical equations for our system, as we show next.</p>
 </section>
 </section>
 <section id="black-box-emulator-for-secar">
-<h2>Black-Box Emulator for SECAR<a class="headerlink" href="#black-box-emulator-for-secar" title="Permalink to this heading">#</a></h2>
+<h2>Black-Box Emulator for SECAR<a class="headerlink" href="#black-box-emulator-for-secar" title="Link to this heading">#</a></h2>
 <section id="we-now-try-a-new-approach-which-more-closely-resembles-the-galerkin-approach-to-rbm-s">
-<h3>We now try a new approach which more closely resembles the Galerkin approach to RBM’s.<a class="headerlink" href="#we-now-try-a-new-approach-which-more-closely-resembles-the-galerkin-approach-to-rbm-s" title="Permalink to this heading">#</a></h3>
+<h3>We now try a new approach which more closely resembles the Galerkin approach to RBM’s.<a class="headerlink" href="#we-now-try-a-new-approach-which-more-closely-resembles-the-galerkin-approach-to-rbm-s" title="Link to this heading">#</a></h3>
 <p>The main issue is that although we have the PCs there is no defining equation <span class="math notranslate nohighlight">\(F_\alpha[\phi]=0 \)</span> to project, <span class="math notranslate nohighlight">\(\alpha\)</span> now taking the role of the current and <span class="math notranslate nohighlight">\(\phi\)</span> the role of the tensors <span class="math notranslate nohighlight">\(S^l\)</span>. Lacking access to these equations is what motivated us to interpolate the reduced coefficients <span class="math notranslate nohighlight">\(a_k(I)\)</span>.</p>
 <p>Inspired by how for some of the previous systems we have studied in this book the dynamical equations reduced to an effective Hamiltonian, we now try to find some such a reduced operator for our problem. In this formulation we interpret the projection of the COSY matrix onto the principal components as a wavefunction and encode our problem into an eigenvalue-eigenvector problem, more precisely:</p>
 <p><span class="math notranslate nohighlight">\(\mathcal{H}_{\text{Eff}}(x;I) \Psi(x;I) = E\Psi(x;I) \)</span></p>
@@ -771,9 +796,9 @@ Since we are also interpolating the coefficients <span class="math notranslate n
 <p><strong>We sart with some definitions</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.optimize</span> <span class="k">as</span> <span class="nn">op</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">op</span>
 
-<span class="k">def</span> <span class="nf">build_pdm</span><span class="p">(</span><span class="n">coefficients</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">parity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_pdm</span><span class="p">(</span><span class="n">coefficients</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">parity</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; Builds a parity defined matrix &#39;&#39;&#39;</span>
     <span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>  <span class="c1"># Initialize matrix with zeros</span>
     <span class="n">cc</span><span class="o">=</span><span class="mi">0</span>
@@ -788,21 +813,21 @@ Since we are also interpolating the coefficients <span class="math notranslate n
     <span class="n">matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">matrix</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">matrix</span>
 
-<span class="k">class</span> <span class="nc">Hamiltonian</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Hamiltonian</span><span class="p">:</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; </span>
 <span class="sd">        Implements eigenvalue-eigenvector porblem fitter</span>
 <span class="sd">    </span>
 <span class="sd">    &#39;&#39;&#39;</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axis</span>              <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;axis&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data</span>              <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">u</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">s</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">v</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
 <span class="w">     </span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39; Enforce Eigenvectors &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="nf">objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">variables</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">variables</span><span class="p">):</span>
         <span class="n">rval</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="w">            </span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Build H0, H1, ... &#39;&#39;&#39;</span>
@@ -820,7 +845,7 @@ Since we are also interpolating the coefficients <span class="math notranslate n
          
         <span class="k">return</span> <span class="n">rval</span>
          
-    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dimension</span><span class="p">,</span><span class="n">order</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">dimension</span><span class="p">,</span><span class="n">order</span><span class="p">):</span>
 <span class="w">        </span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Here we build an approximate to the Galerkin Equations &#39;&#39;&#39;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">=</span> <span class="n">dimension</span>
@@ -841,30 +866,30 @@ Since we are also interpolating the coefficients <span class="math notranslate n
         <span class="bp">self</span><span class="o">.</span><span class="n">op_solution</span> <span class="o">=</span> <span class="n">op</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">objective</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">vars</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">minimum</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">op_solution</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
     
-    <span class="k">def</span> <span class="nf">predict_pcs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict_pcs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
         <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ord</span><span class="p">):</span>
             <span class="n">H</span> <span class="o">+=</span> <span class="p">(</span><span class="n">alpha</span><span class="o">**</span><span class="n">j</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">hs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">predict_real</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict_real</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
         <span class="bp">NotImplemented</span>
         
-    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">NotImplemented</span>
     
-    <span class="k">def</span> <span class="nf">get_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">NotImplemented</span>   
 
-<span class="k">class</span> <span class="nc">RealHamiltonian</span><span class="p">(</span><span class="n">Hamiltonian</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RealHamiltonian</span><span class="p">(</span><span class="n">Hamiltonian</span><span class="p">):</span>
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix_dimension</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">dim</span> <span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">dim</span><span class="o">*</span><span class="p">(</span><span class="n">dim</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">type</span>             <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">matrix_method</span>    <span class="o">=</span> <span class="n">build_pdm</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">predict_real</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict_real</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
         <span class="n">evl</span><span class="p">,</span><span class="n">evc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict_pcs</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
         <span class="n">rval</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
 <span class="w">            </span>
@@ -874,7 +899,7 @@ Since we are also interpolating the coefficients <span class="math notranslate n
             
         <span class="k">return</span> <span class="n">rval</span>
     
-    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Loop over eigenfunctions &#39;&#39;&#39;</span>
         <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">&#39;&#39;&#39; Loop over known scales &#39;&#39;&#39;</span>
@@ -892,7 +917,7 @@ Since we are also interpolating the coefficients <span class="math notranslate n
             
             <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
             
-    <span class="k">def</span> <span class="nf">get_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_error</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">error</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="w">        </span><span class="sd">&#39;&#39;&#39; Loop over known scales &#39;&#39;&#39;</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">scale</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis</span><span class="p">):</span>
@@ -966,7 +991,7 @@ Since we are also interpolating the coefficients <span class="math notranslate n
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/35c3f5f69fa84fcaaf1bf158ab618708ba813fe905798e518fcfece29b2a8467.png" src="../_images/35c3f5f69fa84fcaaf1bf158ab618708ba813fe905798e518fcfece29b2a8467.png" />
+<img alt="../_images/11b2240284b8ce104e9349f8ec44b99b1012b1200e805b695398b5a29a912081.png" src="../_images/11b2240284b8ce104e9349f8ec44b99b1012b1200e805b695398b5a29a912081.png" />
 </div>
 </div>
 <p>And it works! We have obtained a reduced effective equation for our tensor <span class="math notranslate nohighlight">\(S^l\)</span> expanded in our reduced basis.</p>
@@ -1000,11 +1025,10 @@ Since we are also interpolating the coefficients <span class="math notranslate n
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="Introduction.html"
@@ -1024,10 +1048,7 @@ Since we are also interpolating the coefficients <span class="math notranslate n
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -1035,6 +1056,7 @@ Since we are also interpolating the coefficients <span class="math notranslate n
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1073,9 +1095,10 @@ By Advanced Scientific Computing and Statistics Network
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2022.
+      © Copyright 2023.
       <br/>
     
   </p>
@@ -1099,8 +1122,8 @@ By Advanced Scientific Computing and Statistics Network
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
